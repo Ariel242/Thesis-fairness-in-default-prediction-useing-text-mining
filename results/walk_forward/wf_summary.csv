@@ -1,0 +1,7 @@
+,,AUC,AUC,PR_AUC,PR_AUC,GINI,GINI,Brier,Brier,FNR_gap,FNR_gap,FPR_gap,FPR_gap,Brier_gap,Brier_gap
+,,mean,std,mean,std,mean,std,mean,std,mean,std,mean,std,mean,std
+Model,Variant,,,,,,,,,,,,,,
+Logistic,Structured,0.884,0.0198,0.5522,0.0567,0.768,0.0395,0.147,0.0143,0.2348,0.1143,0.0952,0.0437,0.0658,0.0273
+Logistic,Structured+Text,0.8833,0.0195,0.5507,0.0554,0.7665,0.039,0.1479,0.0136,0.2511,0.0996,0.1009,0.0369,0.0667,0.0298
+XGBoost,Structured,0.8927,0.019,0.5778,0.0666,0.7853,0.038,0.1362,0.0113,0.2334,0.059,0.1111,0.0564,0.0674,0.029
+XGBoost,Structured+Text,0.8923,0.019,0.58,0.0594,0.7846,0.038,0.1382,0.0103,0.2131,0.0813,0.1068,0.0558,0.0666,0.0285

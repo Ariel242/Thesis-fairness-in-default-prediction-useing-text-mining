@@ -1,0 +1,5 @@
+,Δ_AUC,Δ_AUC,Δ_PR_AUC,Δ_PR_AUC,Δ_Brier,Δ_Brier,Δ_GINI,Δ_GINI
+,mean,std,mean,std,mean,std,mean,std
+Model,,,,,,,,
+Logistic,-0.0008,0.0024,-0.0015,0.0054,0.0009,0.0015,-0.0015,0.0049
+XGBoost,-0.0004,0.0063,0.0023,0.0126,0.0019,0.0039,-0.0008,0.0127
