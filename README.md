@@ -32,6 +32,10 @@ census_final_data/ # ACS demographic panel (2011–2014) matched to ZIP codes
 - Effects on fairness were **model-dependent**: slight degradation in Logistic Regression, slight improvement in XGBoost
 - Geographic disparities in error rates persist regardless of feature set
 
+## Documentation
+
+- [`docs/pipeline.md`](docs/pipeline.md) — step-by-step pipeline description: inputs, outputs, and parameters for each notebook and script
+
 ## Data
 
 Raw LendingClub data is not included in this repository due to file size. It can be downloaded from [Kaggle](https://www.kaggle.com/datasets/wordsforthewise/lending-club).
