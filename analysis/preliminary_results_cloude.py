@@ -9,6 +9,7 @@ PARAMETERS (edit below):
 
 import re
 import os
+from pathlib import Path
 import numpy as np
 import pandas as pd
 from scipy import stats
@@ -25,7 +26,8 @@ warnings.filterwarnings("ignore")
 # ============================================================
 # PARAMETERS — edit these before running
 # ============================================================
-PATH_CSV        = r"C:\Users\ariel\Desktop\Seminar - Thesis\F-TM-CR\data\03_advanced_prep\lc_after_03_advanced_prep_basic+test_20260108_1516.csv"
+BASE_DIR        = Path(__file__).resolve().parent.parent
+PATH_CSV        = BASE_DIR / "data" / "03_advanced_prep" / "lc_after_03_advanced_prep_basic+test_20260108_1516.csv"
 TARGET_COL      = "is_default"
 TEXT_COL        = "text_all_clean"
 RAW_TEXT_COLS   = ["desc", "title", "emp_title"]
@@ -755,7 +757,7 @@ else:
 # ============================================================
 # 10. SAVE
 # ============================================================
-out_dir = r"C:\Users\ariel\Desktop\Seminar - Thesis\F-TM-CR\results\walk_forward"
+out_dir = BASE_DIR / "results" / "walk_forward"
 os.makedirs(out_dir, exist_ok=True)
 
 # Raw per-fold data
