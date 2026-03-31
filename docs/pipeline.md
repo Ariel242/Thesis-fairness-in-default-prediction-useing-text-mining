@@ -114,7 +114,7 @@ This project runs in five sequential steps. Each step's output serves as the nex
 - Fairness (at thresholds 0.5, 0.6, 0.7): FNR gap, FPR gap, Brier gap across ZIP3 groups (min group size: `MIN_GROUP_N = 100`, `MIN_GROUP_POS = 10`)
 - DeLong test for statistical comparison of AUCs between Structured vs Structured+Text
 
-**Outputs:** see `docs/outputs.md`
+**Outputs:** see [`docs/outputs.md`](outputs.md)
 
 ---
 
