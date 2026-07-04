@@ -9,6 +9,8 @@ PARAMETERS (edit below):
 
 import re
 import os
+import sys
+sys.stdout.reconfigure(encoding='utf-8')
 from pathlib import Path
 import numpy as np
 import pandas as pd
@@ -44,7 +46,7 @@ MIN_TEST_DEFAULTS = 100  # minimum default events per test window (dynamic)
 STEP_MONTHS       = 3    # quarterly step (~10–13 folds expected)
 
 # Fairness filter
-MIN_GROUP_N   = 100
+MIN_GROUP_N   = 80
 MIN_GROUP_POS = 10
 
 # Decision thresholds for fairness evaluation
@@ -406,8 +408,8 @@ folds = build_folds(
 )
 print(f"  Total folds: {len(folds)}")
 for f in folds:
-    print(f"  Fold {f['fold']}: train ≤ {f['train_cutoff']}  |  "
-          f"test {f['train_cutoff']}–{f['test_end']}  |  "
+    print(f"  Fold {f['fold']}: train <= {f['train_cutoff']}  |  "
+          f"test {f['train_cutoff']} - {f['test_end']}  |  "
           f"n_train={f['n_train']:,}  n_test={f['n_test']:,}  "
           f"defaults_in_test={f['n_test_defaults']}")
 
@@ -798,3 +800,319 @@ print("  wf_delta_summary.csv              — text vs struct deltas")
 print("  wf_fairness_summary_thr{05,06,07}.csv — fairness summary per threshold")
 print("  wf_group_coverage.csv             — group coverage statistics")
 print("  wf_zip_summary.csv                — ZIP3-level summary (threshold=0.5)")
+
+# ============================================================
+# 11. FIGURES
+# ============================================================
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
+import seaborn as sns
+
+figures_dir = BASE_DIR / "results" / "figures"
+os.makedirs(figures_dir, exist_ok=True)
+
+sns.set_theme(style="whitegrid", font_scale=1.15)
+plt.rcParams.update({"figure.dpi": 150})
+
+# Consistent palette
+_CLR  = {"Logistic": "#2166ac", "XGBoost": "#d6604d"}
+_COMBO_COLORS  = ["#2166ac", "#74add1", "#d6604d", "#f4a582"]
+_COMBO_LABELS  = ["LR – Structured", "LR – Structured+Text",
+                  "XGB – Structured", "XGB – Structured+Text"]
+_COMBOS        = [("Logistic","Structured"), ("Logistic","Structured+Text"),
+                  ("XGBoost","Structured"),  ("XGBoost","Structured+Text")]
+
+print("\nGenerating figures...")
+
+# ── Figure 1: Walk-Forward AUC Stability ────────────────────────────────────
+fig, axes = plt.subplots(1, 2, figsize=(13, 5), sharey=True)
+for ax, model in zip(axes, ["Logistic", "XGBoost"]):
+    color = _CLR[model]
+    for variant, ls, marker, alpha in [
+        ("Structured",       "-",  "o", 1.00),
+        ("Structured+Text",  "--", "s", 0.70),
+    ]:
+        sub = (df_pred[(df_pred["Model"] == model) & (df_pred["Variant"] == variant)]
+               .sort_values("fold"))
+        ax.plot(sub["fold"], sub["AUC"],
+                linestyle=ls, marker=marker, color=color, alpha=alpha,
+                linewidth=2, markersize=5, label=variant)
+        if not sub["AUC_CI_lo"].isna().all():
+            ax.fill_between(sub["fold"], sub["AUC_CI_lo"], sub["AUC_CI_hi"],
+                            alpha=0.12, color=color)
+    ax.set_title(model, fontsize=13, fontweight="bold")
+    ax.set_xlabel("Fold (chronological)")
+    if ax is axes[0]:
+        ax.set_ylabel("AUC")
+    ax.legend(title="Variant", fontsize=9)
+    ax.xaxis.set_major_locator(plt.MaxNLocator(integer=True))
+
+fig.suptitle("Walk-Forward AUC Stability Across Folds\n(shaded band = 95% bootstrap CI)",
+             fontsize=13, fontweight="bold")
+fig.tight_layout()
+fig.savefig(figures_dir / "fig1_auc_stability.png", dpi=300, bbox_inches="tight")
+plt.close(fig)
+print("  fig1_auc_stability.png")
+
+# ── Figure 2: DeLong ΔAUC per fold ──────────────────────────────────────────
+fig, axes = plt.subplots(1, 2, figsize=(13, 5), sharey=True)
+for ax, model in zip(axes, ["Logistic", "XGBoost"]):
+    sub = df_delong[df_delong["Model"] == model].sort_values("fold")
+    pvals = sub["p_value"].fillna(1.0).values
+    bar_colors = ["#d73027" if p < 0.05 else "#bababa" for p in pvals]
+
+    x = sub["fold"].values
+    y = sub["Delta_AUC"].values
+    ax.bar(x, y, color=bar_colors, alpha=0.85, width=0.6, zorder=3)
+
+    # 95% CI error bars (asymmetric: lo/hi are bounds of delta, not half-widths)
+    ci_lo = sub["CI_95_lo"].values
+    ci_hi = sub["CI_95_hi"].values
+    valid = ~(np.isnan(ci_lo) | np.isnan(ci_hi))
+    if valid.any():
+        # CI_95 is for (auc_s - auc_f); Delta_AUC = auc_f - auc_s
+        # SE is symmetric, so half-width = (ci_hi - ci_lo) / 2
+        half_width = (ci_hi - ci_lo) / 2
+        ax.errorbar(x[valid], y[valid],
+                    yerr=half_width[valid],
+                    fmt="none", color="black", capsize=3, linewidth=1, zorder=4)
+
+    ax.axhline(0, color="black", linewidth=1.2, zorder=5)
+    ax.set_title(model, fontsize=13, fontweight="bold")
+    ax.set_xlabel("Fold (chronological)")
+    if ax is axes[0]:
+        ax.set_ylabel("ΔAUC  (Structured+Text − Structured)")
+    ax.xaxis.set_major_locator(plt.MaxNLocator(integer=True))
+
+    sig_patch = mpatches.Patch(color="#d73027", alpha=0.85, label="p < 0.05")
+    ns_patch  = mpatches.Patch(color="#bababa", alpha=0.85, label="p ≥ 0.05")
+    ax.legend(handles=[sig_patch, ns_patch], title="DeLong test", fontsize=9)
+
+fig.suptitle("DeLong Test: ΔAUC per Fold  (Structured+Text − Structured)\n"
+             "(bars above zero = text improves AUC; error bars = 95% CI)",
+             fontsize=13, fontweight="bold")
+fig.tight_layout()
+fig.savefig(figures_dir / "fig2_delong_delta_auc.png", dpi=300, bbox_inches="tight")
+plt.close(fig)
+print("  fig2_delong_delta_auc.png")
+
+# ── Figure 3: Fairness Trade-off Scatter ────────────────────────────────────
+fair_05 = df_fair[df_fair["threshold"] == 0.5].copy()
+scatter_rows = []
+for model, variant in _COMBOS:
+    p_sub = df_pred[(df_pred["Model"] == model) & (df_pred["Variant"] == variant)]
+    f_sub = fair_05[(fair_05["Model"] == model) & (fair_05["Variant"] == variant)]
+    if p_sub.empty or f_sub.empty:
+        continue
+    scatter_rows.append({
+        "Model":        model,
+        "Variant":      variant,
+        "AUC_mean":     p_sub["AUC"].mean(),
+        "AUC_std":      p_sub["AUC"].std(),
+        "FNR_mean":     f_sub["FNR_gap"].mean(),
+        "FNR_std":      f_sub["FNR_gap"].std(),
+    })
+df_sc = pd.DataFrame(scatter_rows)
+
+fig, ax = plt.subplots(figsize=(8, 6))
+for color, (_, row) in zip(_COMBO_COLORS, df_sc.iterrows()):
+    marker = "o" if row["Variant"] == "Structured" else "s"
+    ax.errorbar(row["AUC_mean"], row["FNR_mean"],
+                xerr=row["AUC_std"], yerr=row["FNR_std"],
+                fmt=marker, color=color, markersize=11,
+                capsize=2, elinewidth=0.8, ecolor="#aaaaaa",
+                linewidth=1.4, label=f"{row['Model']} – {row['Variant']}")
+    short = ("LR" if row["Model"] == "Logistic" else "XGB") + \
+            ("-S" if row["Variant"] == "Structured" else "-S+T")
+    ax.annotate(short, (row["AUC_mean"], row["FNR_mean"]),
+                textcoords="offset points", xytext=(7, 4), fontsize=9)
+
+ax.set_xlabel("Mean AUC  (±1 SD across folds)", fontsize=11)
+ax.set_ylabel("Mean FNR Gap  (±1 SD across folds)", fontsize=11)
+ax.set_title("Predictive Accuracy vs. Fairness Trade-off\n"
+             "(threshold = 0.5; lower FNR Gap = more equitable)",
+             fontsize=12, fontweight="bold")
+ax.legend(fontsize=9)
+fig.tight_layout()
+fig.savefig(figures_dir / "fig3_fairness_tradeoff.png", dpi=300, bbox_inches="tight")
+plt.close(fig)
+print("  fig3_fairness_tradeoff.png")
+
+# ── Figure 4: Fairness Gaps by Decision Threshold ───────────────────────────
+fair_agg = (
+    df_fair
+    .groupby(["Model", "Variant", "threshold"])[["FNR_gap", "FPR_gap", "Brier_gap"]]
+    .agg(FNR_mean=("FNR_gap",   "mean"), FNR_std=("FNR_gap",   "std"),
+         FPR_mean=("FPR_gap",   "mean"), FPR_std=("FPR_gap",   "std"),
+         Brier_mean=("Brier_gap","mean"), Brier_std=("Brier_gap","std"))
+    .reset_index()
+)
+
+thresholds = sorted(fair_agg["threshold"].unique())
+x          = np.arange(len(thresholds))
+bar_width  = 0.18
+
+fig, axes = plt.subplots(1, 3, figsize=(18, 5), sharey=False)
+for ax, (metric_mean, metric_std, ylabel, title) in zip(
+    axes,
+    [("FNR_mean",   "FNR_std",   "FNR Gap",   "False Negative Rate Gap"),
+     ("FPR_mean",   "FPR_std",   "FPR Gap",   "False Positive Rate Gap"),
+     ("Brier_mean", "Brier_std", "Brier Gap", "Brier Score Gap")],
+):
+    for i, ((model, variant), color, label) in enumerate(
+        zip(_COMBOS, _COMBO_COLORS, _COMBO_LABELS)
+    ):
+        sub = (fair_agg[(fair_agg["Model"] == model) & (fair_agg["Variant"] == variant)]
+               .sort_values("threshold"))
+        offset = (i - 1.5) * bar_width
+        ax.bar(x + offset, sub[metric_mean], bar_width,
+               yerr=sub[metric_std],
+               error_kw={"capsize": 2, "elinewidth": 0.8, "ecolor": "#aaaaaa"},
+               color=color, alpha=0.85, label=label)
+
+    ax.set_xticks(x)
+    ax.set_xticklabels([str(t) for t in thresholds])
+    ax.set_xlabel("Decision Threshold", fontsize=11)
+    ax.set_ylabel(ylabel, fontsize=11)
+    ax.set_title(title, fontsize=12, fontweight="bold")
+    ax.legend(fontsize=8)
+
+fig.suptitle("Fairness Gaps by Decision Threshold  (mean ± SD across folds)",
+             fontsize=13, fontweight="bold")
+fig.tight_layout()
+fig.savefig(figures_dir / "fig4_threshold_sensitivity.png", dpi=300, bbox_inches="tight")
+plt.close(fig)
+print("  fig4_threshold_sensitivity.png")
+
+print(f"\nAll figures saved to: {figures_dir}")
+
+# ── Summary tables per threshold ─────────────────────────────────────────────
+pred_means = (
+    df_pred
+    .groupby(["Model", "Variant"])[["AUC", "PR_AUC", "Brier"]]
+    .mean()
+    .round(4)
+    .reset_index()
+)
+
+print("\n" + "="*70)
+print("SUMMARY TABLES BY THRESHOLD")
+print("="*70)
+
+for thr in THRESHOLDS:
+    fair_means = (
+        df_fair[df_fair["threshold"] == thr]
+        .groupby(["Model", "Variant"])[["Brier_gap", "FNR_gap", "FPR_gap"]]
+        .mean()
+        .round(4)
+        .reset_index()
+    )
+    tbl = pred_means.merge(fair_means, on=["Model", "Variant"])
+    tbl = tbl[["Model", "Variant", "AUC", "PR_AUC", "Brier",
+               "Brier_gap", "FNR_gap", "FPR_gap"]]
+
+    thr_tag = str(thr).replace(".", "")
+    tbl.to_csv(out_dir / f"wf_summary_thr{thr_tag}.csv", index=False)
+
+    print(f"\n  Threshold = {thr}")
+    print(tbl.to_string(index=False))
+
+print(f"\nSummary tables saved to: {out_dir}")
+
+# ============================================================
+# 12. FEATURE IMPORTANCE — LAST FOLD, STRUCTURED+TEXT
+# ============================================================
+print("\n" + "="*70)
+print("FEATURE IMPORTANCE — Last Fold, Structured+Text")
+print("="*70)
+
+last_f = folds[-1]
+print(f"  Last fold: train <= {last_f['train_cutoff']}  |  test end: {last_f['test_end']}")
+print(f"  Train n={last_f['n_train']:,}  |  Test n={last_f['n_test']:,}")
+
+_tr = last_f["tr_idx"]
+_te = last_f["te_idx"]
+_df_tr = df.loc[_tr]
+_df_te = df.loc[_te]
+_y_tr  = _df_tr[TARGET_COL].values.astype(int)
+_y_te  = _df_te[TARGET_COL].values.astype(int)
+
+# Structured features — same pipeline as main loop
+_imputer = SimpleImputer(strategy="constant", fill_value=0)
+_X_tr_s  = _imputer.fit_transform(_df_tr[struct_cols].values.astype(np.float32))
+_X_te_s  = _imputer.transform(_df_te[struct_cols].values.astype(np.float32))
+_scaler  = StandardScaler()
+_X_tr_s  = _scaler.fit_transform(_X_tr_s)
+_X_te_s  = _scaler.transform(_X_te_s)
+
+# Text features — same TF-IDF as main loop
+_X_tr_txt, _X_te_txt = make_text_features(_df_tr[TEXT_COL], _df_te[TEXT_COL])
+
+# Reconstruct TF-IDF vocabulary for feature names
+_tfidf_fi = TfidfVectorizer(
+    max_features=TFIDF_MAX_FEATURES,
+    ngram_range=TFIDF_NGRAM_RANGE,
+    sublinear_tf=True, min_df=5,
+    strip_accents="unicode", analyzer="word",
+    token_pattern=r"[a-zA-Z]{3,}",
+    stop_words="english", norm="l2",
+)
+_tfidf_fi.fit(_df_tr[TEXT_COL].fillna("").astype(str))
+_tfidf_names = _tfidf_fi.get_feature_names_out().tolist()
+
+_all_names = struct_cols + _tfidf_names
+
+# Full matrix
+_X_tr_full = hstack([csr_matrix(_X_tr_s), _X_tr_txt])
+_X_te_full = hstack([csr_matrix(_X_te_s), _X_te_txt])
+
+# Train models — same params as main loop
+_lr = LogisticRegression(**LR_PARAMS)
+_lr.fit(_X_tr_full, _y_tr)
+
+_xgb = xgb.XGBClassifier(
+    n_estimators=300, max_depth=4, learning_rate=0.05, subsample=0.8,
+    scale_pos_weight=(_y_tr==0).sum() / (_y_tr==1).sum(),
+    eval_metric="auc", use_label_encoder=False, verbosity=0, n_jobs=-1,
+)
+_xgb.fit(_X_tr_full, _y_tr)
+
+# ── LR importance: absolute standardized coefficients ────────────────────────
+_lr_imp = np.abs(_lr.coef_[0])
+_df_lr_imp = (
+    pd.DataFrame({"Feature": _all_names, "Importance": _lr_imp})
+    .sort_values("Importance", ascending=False)
+    .reset_index(drop=True)
+)
+_df_lr_imp.index += 1
+_df_lr_imp["Text?"] = _df_lr_imp["Feature"].isin(_tfidf_names).map({True: "YES", False: ""})
+
+# ── XGBoost importance: Gain ──────────────────────────────────────────────────
+_xgb_gain = _xgb.get_booster().get_score(importance_type="gain")
+_df_xgb_imp = pd.DataFrame([
+    {"Feature": _all_names[int(k.replace("f", ""))], "Gain": round(v, 2)}
+    for k, v in _xgb_gain.items()
+]).sort_values("Gain", ascending=False).reset_index(drop=True)
+_df_xgb_imp.index += 1
+_df_xgb_imp["Text?"] = _df_xgb_imp["Feature"].isin(_tfidf_names).map({True: "YES", False: ""})
+
+# ── XGBoost text-only importance ─────────────────────────────────────────────
+_df_xgb_text = (
+    _df_xgb_imp[_df_xgb_imp["Text?"] == "YES"]
+    .drop(columns=["Text?"])
+    .reset_index(drop=True)
+)
+_df_xgb_text.index += 1
+
+TOP_N = 20
+
+print("\n── Table 1: XGBoost — Top 20 Features (Structured+Text) ──")
+print(_df_xgb_imp.head(TOP_N).to_string())
+
+print("\n── Table 2: Logistic Regression — Top 20 Features (Structured+Text) ──")
+print(_df_lr_imp.head(TOP_N).to_string())
+
+print("\n── Table 3: XGBoost — Top 20 Text (TF-IDF) Features ──")
+print(_df_xgb_text.head(TOP_N).to_string())

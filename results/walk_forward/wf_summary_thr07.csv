@@ -1,0 +1,5 @@
+Model,Variant,AUC,PR_AUC,Brier,Brier_gap,FNR_gap,FPR_gap
+Logistic,Structured,0.884,0.5522,0.147,0.0856,0.3709,0.1234
+Logistic,Structured+Text,0.8832,0.5507,0.1479,0.0872,0.3709,0.1194
+XGBoost,Structured,0.8926,0.5778,0.1362,0.0926,0.3256,0.1446
+XGBoost,Structured+Text,0.8923,0.58,0.1382,0.0908,0.3253,0.1314

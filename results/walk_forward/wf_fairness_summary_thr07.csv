@@ -1,7 +1,7 @@
 ,,FNR_gap,FNR_gap,FPR_gap,FPR_gap,Brier_gap,Brier_gap
 ,,mean,std,mean,std,mean,std
 Model,Variant,,,,,,
-Logistic,Structured,0.2444,0.1616,0.0984,0.033,0.0658,0.0302
-Logistic,Structured+Text,0.2739,0.1454,0.099,0.0305,0.0668,0.033
-XGBoost,Structured,0.242,0.0627,0.1083,0.0321,0.0674,0.0321
-XGBoost,Structured+Text,0.2117,0.1002,0.0972,0.0435,0.0666,0.0315
+Logistic,Structured,0.3709,0.1052,0.1234,0.029,0.0856,0.0338
+Logistic,Structured+Text,0.3709,0.1052,0.1194,0.0439,0.0872,0.0347
+XGBoost,Structured,0.3256,0.1197,0.1446,0.0543,0.0926,0.0357
+XGBoost,Structured+Text,0.3253,0.0862,0.1314,0.0558,0.0908,0.035
