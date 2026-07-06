@@ -84,7 +84,8 @@ This project runs in five sequential steps. Each step's output serves as the nex
 ---
 
 ## Step 5 — Walk-Forward Modeling Pipeline
-**File:** `analysis/preliminary_results_cloude.py`
+**File:** `analysis/preliminary_results_v2.py` (current — see the "Step 5 (v2) — Changelog" section below)
+**Superseded file:** `analysis/preliminary_results_cloude.py` (v1, kept unmodified as a historical record; do not use for new results)
 
 **Input:** `data/03_advanced_prep/lc_after_03_advanced_prep_basic+test_<timestamp>.csv`
 
@@ -102,8 +103,8 @@ This project runs in five sequential steps. Each step's output serves as the nex
 - Result: ~10–13 folds
 
 **Two feature variants per fold:**
-- **Structured** — numeric + one-hot features only
-- **Structured + Text** — above + TF-IDF on `text_all_clean` (top `TFIDF_MAX_FEATURES` unigrams/bigrams, `min_df=5`, sublinear TF, L2 norm)
+- **Structured** — numeric + one-hot features only, **and no text-derived signal of any kind** (v2; see changelog)
+- **Structured + Text** — Structured + text-derived numeric stats (length, word counts, TTR) + TF-IDF on `text_all_clean` (top `TFIDF_MAX_FEATURES` unigrams/bigrams, `min_df=5`, sublinear TF, L2 norm)
 
 **Two models per variant:**
 - **Logistic Regression** — L2 penalty, C=0.3, solver=saga, balanced class weights
@@ -114,11 +115,29 @@ This project runs in five sequential steps. Each step's output serves as the nex
 - Fairness (at thresholds 0.5, 0.6, 0.7): FNR gap, FPR gap, Brier gap across ZIP3 groups (min group size: `MIN_GROUP_N = 100`, `MIN_GROUP_POS = 10`)
 - DeLong test for statistical comparison of AUCs between Structured vs Structured+Text
 
-**Outputs:** see [`docs/outputs.md`](outputs.md)
+**Outputs:** written to `results/walk_forward_v2/` and `results/figures_v2/` — see [`docs/outputs.md`](outputs.md). v1's original outputs remain untouched in `results/walk_forward/` and `results/figures/` for comparison.
 
 ---
 
-## Parameters Reference (`preliminary_results_cloude.py`)
+## Step 5 (v2) — Changelog
+
+A code review found two bugs in v1 (`preliminary_results_cloude.py`) that affect the thesis's core comparison. Both are fixed in `preliminary_results_v2.py`, which otherwise reproduces v1's folds, models, and fairness metrics unchanged.
+
+**1. Baseline contamination — "Structured" was not text-free.**
+v1 computed numeric text statistics (character length, word count, unique words, average word length, type-token ratio for `desc`/`title`/`emp_title`) and merged them into the same `struct_cols` list used for the "Structured" (no-text) variant. Since description length alone is a known predictor of default, the "Structured" baseline already carried a text signal — understating how much TF-IDF adds and confounding the Structured vs. Structured+Text comparison the thesis's research question rests on.
+Fix: these engineered stats now live in a separate `TEXT_STAT_COLS` list, excluded from `STRUCT_COLS_BASE` ("Structured") and included only in `FULL_STRUCT_COLS` ("Structured+Text", alongside TF-IDF).
+
+**2. Silent loss of LendingClub's risk grade (`grade` / `sub_grade`).**
+In `03_advanced_prep.ipynb`, `grade`/`sub_grade` were converted to an ordered pandas `Categorical`, but pandas serializes `Categorical` columns to CSV as their string labels ("B", "B3"), not numeric codes. The modeling script only keeps numeric-dtype columns, so both fields were silently dropped from every model — the platform's own risk rating never reached the pipeline, even though `02_data_prep.ipynb` explicitly listed both as mandatory "classical risk variables".
+Fix: `preliminary_results_v2.py` re-derives `grade_ord` (1–7) and `sub_grade_ord` (1–35) as explicit ordinal encodings right after load, without touching the upstream notebook or CSV. Both are kept (sub_grade is a refinement of grade; regularization absorbs the resulting collinearity), matching the original mandatory-features design.
+
+**Validation:** both fixes were verified with a reduced-scale smoke test (15K-row sample, fewer folds/trees/bootstrap draws) confirming the script runs end-to-end and that `grade_ord`/`sub_grade_ord` appear as structured features while TF-IDF and text-stat features are correctly separated in the feature-importance tables (`Text?` column now distinguishes `TF-IDF` from `text-stat`).
+
+A full production run (original parameters, full dataset) has not yet been executed as of this writing — `results/walk_forward_v2/` and `results/figures_v2/` will be populated once it is.
+
+---
+
+## Parameters Reference (`preliminary_results_v2.py`)
 
 | Parameter | Default | Description |
 |-----------|---------|-------------|

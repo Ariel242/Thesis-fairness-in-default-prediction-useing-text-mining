@@ -28,6 +28,8 @@ census_final_data/ # ACS demographic panel (2011–2014) matched to ZIP codes
 
 ## Key Results
 
+> **Note:** the results below are from `analysis/preliminary_results_cloude.py` (v1). A code review found that v1's "Structured" baseline was not actually text-free (it included text-derived numeric stats) and that it silently dropped LendingClub's `grade`/`sub_grade` risk rating — see `docs/pipeline.md` ("Step 5 (v2) — Changelog") for details. Both are fixed in `analysis/preliminary_results_v2.py`; the numbers below should be treated as provisional until v2's full run replaces them.
+
 - Adding text features had **minimal effect on predictive accuracy** (ΔAUC ≈ 0%)
 - Effects on fairness were **model-dependent**: slight degradation in Logistic Regression, slight improvement in XGBoost
 - Geographic disparities in error rates persist regardless of feature set
