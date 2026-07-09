@@ -40,6 +40,28 @@ Two bugs in v1 were found during a code review and are fixed here:
    analysis design, which explicitly listed both as mandatory "classical risk
    variables" in 02_data_prep.ipynb.
 
+3. TEMPORAL LEAKAGE VIA last_fico_range_high / last_fico_range_low.
+   These record the borrower's FICO range as of the platform's LAST credit
+   pull, not at loan origination — the same post-origination event already
+   flagged as leakage via `last_credit_pull_d` in 02_data_prep.ipynb, but the
+   FICO values themselves were never added to that leakage list, so they rode
+   along into every model. This explains why `last_fico_range_high` dominated
+   the feature-importance tables (Gain ~10x the next feature): it is a proxy
+   for the outcome, not a predictor available at underwriting time.
+   Fix (immediate, no notebook re-run needed): both columns are added to
+   EXCLUDE_COLS here, so this script stops using them against the existing
+   CSV. The proper long-term fix is upstream: 02_data_prep.ipynb's
+   `leakage_columns` now also drops both columns, and `fico_range_low` /
+   `fico_range_high` (the legitimate origination-time scores) were added to
+   `mandatory_columns` so they survive the multicollinearity filtering
+   the way grade/sub_grade already do. (Boruta has since been removed from
+   that notebook entirely: it was fit on the pooled 2010-2013 data, so its
+   feature selection itself leaked future information across time; feature
+   filtering there is now leakage-list + missing-threshold + multicollinearity
+   only.) That notebook has not been re-run yet, so `fico_range_high` is not
+   yet available in the current CSV — only the EXCLUDE_COLS mitigation is
+   active until it is.
+
 No other behavior was changed: same folds, same models, same fairness
 metrics, same output file names (still written to results/walk_forward/).
 -----------------------------------------------------------------------------
@@ -158,7 +180,8 @@ EXCLUDE_COLS = {TARGET_COL, DATE_COL, ZIP_COL,
                 "issue_d", "issue_ym", "month_idx", "issue_month_start",
                 "zip_code", "emp_title", "title", "desc", "funded_ratio",
                 "text_all_clean", "desc_clean", "title_clean", "emp_title_clean",
-                "grade", "sub_grade"}   # raw string cols — numeric encodings are grade_ord / sub_grade_ord
+                "grade", "sub_grade",   # raw string cols — numeric encodings are grade_ord / sub_grade_ord
+                "last_fico_range_high", "last_fico_range_low"}  # temporal leakage: FICO as of the LAST credit pull, not at origination (see v2 changelog #3)
 STRUCT_COLS_BASE = [c for c in df.columns
                     if c not in EXCLUDE_COLS
                     and df[c].dtype in [np.float64, np.float32, np.int64, np.int32,
