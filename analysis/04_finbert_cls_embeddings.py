@@ -16,14 +16,16 @@ OUTPUT (written to data/04_finbert/)
     finbert_cls_embeddings.npy   — float16 array, shape (n_rows, 768).
                                    Row i corresponds to row i of PATH_CSV.
                                    Rows with empty/missing desc are all-zeros.
-    finbert_cls_meta.parquet     — per-row metadata: row_id (position in
-                                   PATH_CSV), has_desc flag, n_tokens.
+    finbert_cls_meta.parquet     — per-row metadata: id (LendingClub loan
+                                   id, the primary key), row_id (position
+                                   in PATH_CSV), has_desc flag, n_tokens.
 
 MERGING DOWNSTREAM
-    preliminary_results_v2.py sorts by issue_month_start before building
-    folds, so do NOT merge by position after that sort — attach the
-    embeddings to df immediately after pd.read_csv (row_id == positional
-    index at that moment), and only then sort.
+    Preferred: merge on `id` — the loan-level primary key carried through
+    the pipeline since 02_data_prep. This is robust to any sorting or row
+    filtering. Positional row_id is kept as a fallback/sanity check; note
+    that preliminary_results_v2.py sorts by issue_month_start, so positional
+    alignment is only valid immediately after pd.read_csv, before that sort.
 
 NOTES
     - Text cleaning is minimal on purpose: FinBERT expects natural text,
@@ -74,9 +76,13 @@ META_PATH  = OUT_DIR / "finbert_cls_meta.parquet"
 # 1. LOAD TEXTS
 # ============================================================
 print("Loading data...")
-df = pd.read_csv(PATH_CSV, usecols=[TEXT_COL], low_memory=False)
+ID_COL = "id"  # LendingClub loan id — primary key, carried through the pipeline since 02_data_prep
+df = pd.read_csv(PATH_CSV, usecols=[ID_COL, TEXT_COL], low_memory=False)
 n_rows = len(df)
 print(f"  Rows: {n_rows:,}")
+if df[ID_COL].isna().any() or df[ID_COL].duplicated().any():
+    raise ValueError(f"'{ID_COL}' is not a valid primary key in {PATH_CSV.name} "
+                     f"(nulls or duplicates found) — aborting to avoid unkeyed embeddings.")
 
 # Minimal cleaning: drop LC boilerplate + HTML breaks, keep natural text
 BOILERPLATE_RE = re.compile(r"borrower\s+added\s+on\s+\d{2}/\d{2}/\d{2}\s*>?", re.IGNORECASE)
@@ -168,6 +174,7 @@ for ci in range(n_chunks):
 np.save(EMB_PATH, embeddings)
 
 meta = pd.DataFrame({
+    "id":       df[ID_COL].values,
     "row_id":   np.arange(n_rows, dtype=np.int64),
     "has_desc": has_desc,
     "n_tokens": token_counts,
@@ -176,5 +183,5 @@ meta.to_parquet(META_PATH, index=False)
 
 print(f"\nSaved:")
 print(f"  {EMB_PATH}  — shape {embeddings.shape}, dtype float16")
-print(f"  {META_PATH} — row_id / has_desc / n_tokens")
+print(f"  {META_PATH} — id / row_id / has_desc / n_tokens")
 print(f"  (chunk checkpoints kept in {CHUNK_DIR}; delete the folder to reclaim space)")

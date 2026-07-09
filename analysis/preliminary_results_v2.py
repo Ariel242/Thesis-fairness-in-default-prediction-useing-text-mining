@@ -197,6 +197,7 @@ print("  Ordinal risk grades restored: grade_ord (1-7), sub_grade_ord (1-35) —
       "both kept; sub_grade_ord refines grade_ord, regularization absorbs the collinearity")
 
 EXCLUDE_COLS = {TARGET_COL, DATE_COL, ZIP_COL,
+                "id",   # primary key -- identifier only, never a feature
                 "issue_d", "issue_ym", "month_idx", "issue_month_start",
                 "zip_code", "emp_title", "title", "desc", "funded_ratio",
                 "text_all_clean", "desc_clean", "title_clean", "emp_title_clean",
