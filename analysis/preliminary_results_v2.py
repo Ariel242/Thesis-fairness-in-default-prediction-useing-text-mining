@@ -89,7 +89,7 @@ warnings.filterwarnings("ignore")
 # PARAMETERS — edit these before running
 # ============================================================
 BASE_DIR        = Path(__file__).resolve().parent.parent
-PATH_CSV        = BASE_DIR / "data" / "03_advanced_prep" / "lc_after_03_advanced_prep_basic+test_20260108_1516.csv"
+PATH_CSV        = BASE_DIR / "data" / "03_advanced_prep" / "lc_after_03_advanced_prep_basic+test_20260709_1340.csv"
 TARGET_COL      = "is_default"
 TEXT_COL        = "text_all_clean"
 RAW_TEXT_COLS   = ["desc", "title", "emp_title"]

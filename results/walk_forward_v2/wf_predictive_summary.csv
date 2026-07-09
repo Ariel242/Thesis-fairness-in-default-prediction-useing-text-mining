@@ -1,0 +1,7 @@
+,,AUC,AUC,PR_AUC,PR_AUC,Brier,Brier,GINI,GINI
+,,mean,std,mean,std,mean,std,mean,std
+Model,Variant,,,,,,,,
+Logistic,Structured,0.6941,0.0149,0.2854,0.0303,0.2299,0.0134,0.3883,0.0299
+Logistic,Structured+Text,0.6983,0.0153,0.2897,0.0293,0.2267,0.0135,0.3965,0.0306
+XGBoost,Structured,0.6918,0.0158,0.2855,0.0319,0.2118,0.0148,0.3835,0.0316
+XGBoost,Structured+Text,0.6958,0.0145,0.2888,0.0276,0.2142,0.0161,0.3916,0.029
