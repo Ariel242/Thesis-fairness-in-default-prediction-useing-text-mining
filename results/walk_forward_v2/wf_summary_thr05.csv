@@ -1,5 +1,7 @@
 Model,Variant,AUC,PR_AUC,Brier,Brier_gap,FNR_gap,FPR_gap
 Logistic,Structured,0.6941,0.2854,0.2299,0.0788,0.466,0.2887
 Logistic,Structured+Text,0.6983,0.2897,0.2267,0.0835,0.5191,0.2862
-XGBoost,Structured,0.6918,0.2855,0.2118,0.0693,0.5,0.2334
-XGBoost,Structured+Text,0.6958,0.2888,0.2142,0.063,0.44,0.2064
+RandomForest,Structured,0.6888,0.2781,0.1881,0.0465,0.4265,0.1399
+RandomForest,Structured+Text,0.6913,0.2793,0.1922,0.044,0.3771,0.1348
+XGBoost,Structured,0.6916,0.2859,0.2116,0.0704,0.5068,0.2403
+XGBoost,Structured+Text,0.6957,0.2905,0.2143,0.0631,0.5148,0.2173

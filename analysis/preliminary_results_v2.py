@@ -64,6 +64,12 @@ Two bugs in v1 were found during a code review and are fixed here:
 
 No other behavior was changed: same folds, same models, same fairness
 metrics, same output file names (still written to results/walk_forward/).
+
+v2.1 UPDATE (2026-07-09): RandomForest added as a third model, evaluated
+under the identical walk-forward protocol, metrics, figures and importance
+tables as Logistic/XGBoost. Initial spec: 500 trees; min_samples_leaf=20
+bounds tree size so 500 full-depth trees on ~200K-row folds fit in memory.
+A single fixed RANDOM_STATE=242 is now used for all three models.
 -----------------------------------------------------------------------------
 """
 
@@ -76,6 +82,7 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.feature_extraction.text import TfidfVectorizer, ENGLISH_STOP_WORDS
 from sklearn.preprocessing import StandardScaler
 from sklearn.impute import SimpleImputer
@@ -120,6 +127,9 @@ TFIDF_NGRAM_RANGE  = (1, 2)   # unigrams + bigrams
 N_BOOTSTRAP = 500
 BOOT_SEED   = 42
 
+# Fixed random state — shared by all three models
+RANDOM_STATE = 242
+
 # Logistic Regression — explicit spec for documentation
 LR_PARAMS = dict(
     penalty      = "l2",      # L2 regularization
@@ -127,6 +137,16 @@ LR_PARAMS = dict(
     solver       = "saga",
     max_iter     = 1000,
     class_weight = "balanced",
+    random_state = RANDOM_STATE,
+)
+
+# Random Forest — explicit spec for documentation
+RF_PARAMS = dict(
+    n_estimators     = 500,   # initial setting
+    min_samples_leaf = 20,    # bounds tree size: 500 unconstrained trees on ~200K-row folds exceed available RAM
+    class_weight     = "balanced",
+    n_jobs           = -1,
+    random_state     = RANDOM_STATE,
 )
 
 # ============================================================
@@ -570,7 +590,9 @@ for f in folds:
             use_label_encoder= False,
             verbosity        = 0,
             n_jobs           = -1,
+            random_state     = RANDOM_STATE,
         ),
+        "RandomForest": RandomForestClassifier(**RF_PARAMS),
     }
 
     fold_preds = {}
@@ -930,18 +952,22 @@ sns.set_theme(style="whitegrid", font_scale=1.15)
 plt.rcParams.update({"figure.dpi": 150})
 
 # Consistent palette
-_CLR  = {"Logistic": "#2166ac", "XGBoost": "#d6604d"}
-_COMBO_COLORS  = ["#2166ac", "#74add1", "#d6604d", "#f4a582"]
-_COMBO_LABELS  = ["LR – Structured", "LR – Structured+Text",
-                  "XGB – Structured", "XGB – Structured+Text"]
-_COMBOS        = [("Logistic","Structured"), ("Logistic","Structured+Text"),
-                  ("XGBoost","Structured"),  ("XGBoost","Structured+Text")]
+MODEL_NAMES = ["Logistic", "XGBoost", "RandomForest"]
+_CLR  = {"Logistic": "#2166ac", "XGBoost": "#d6604d", "RandomForest": "#1a9850"}
+_SHORT = {"Logistic": "LR", "XGBoost": "XGB", "RandomForest": "RF"}
+_COMBO_COLORS  = ["#2166ac", "#74add1", "#d6604d", "#f4a582", "#1a9850", "#a6d96a"]
+_COMBO_LABELS  = ["LR – Structured",  "LR – Structured+Text",
+                  "XGB – Structured", "XGB – Structured+Text",
+                  "RF – Structured",  "RF – Structured+Text"]
+_COMBOS        = [("Logistic","Structured"),     ("Logistic","Structured+Text"),
+                  ("XGBoost","Structured"),      ("XGBoost","Structured+Text"),
+                  ("RandomForest","Structured"), ("RandomForest","Structured+Text")]
 
 print("\nGenerating figures...")
 
 # ── Figure 1: Walk-Forward AUC Stability ────────────────────────────────────
-fig, axes = plt.subplots(1, 2, figsize=(13, 5), sharey=True)
-for ax, model in zip(axes, ["Logistic", "XGBoost"]):
+fig, axes = plt.subplots(1, len(MODEL_NAMES), figsize=(6.5 * len(MODEL_NAMES), 5), sharey=True)
+for ax, model in zip(axes, MODEL_NAMES):
     color = _CLR[model]
     for variant, ls, marker, alpha in [
         ("Structured",       "-",  "o", 1.00),
@@ -970,8 +996,8 @@ plt.close(fig)
 print("  fig1_auc_stability.png")
 
 # ── Figure 2: DeLong ΔAUC per fold ──────────────────────────────────────────
-fig, axes = plt.subplots(1, 2, figsize=(13, 5), sharey=True)
-for ax, model in zip(axes, ["Logistic", "XGBoost"]):
+fig, axes = plt.subplots(1, len(MODEL_NAMES), figsize=(6.5 * len(MODEL_NAMES), 5), sharey=True)
+for ax, model in zip(axes, MODEL_NAMES):
     sub = df_delong[df_delong["Model"] == model].sort_values("fold")
     pvals = sub["p_value"].fillna(1.0).values
     bar_colors = ["#d73027" if p < 0.05 else "#bababa" for p in pvals]
@@ -1037,7 +1063,7 @@ for color, (_, row) in zip(_COMBO_COLORS, df_sc.iterrows()):
                 fmt=marker, color=color, markersize=11,
                 capsize=2, elinewidth=0.8, ecolor="#aaaaaa",
                 linewidth=1.4, label=f"{row['Model']} – {row['Variant']}")
-    short = ("LR" if row["Model"] == "Logistic" else "XGB") + \
+    short = _SHORT[row["Model"]] + \
             ("-S" if row["Variant"] == "Structured" else "-S+T")
     ax.annotate(short, (row["AUC_mean"], row["FNR_mean"]),
                 textcoords="offset points", xytext=(7, 4), fontsize=9)
@@ -1065,7 +1091,7 @@ fair_agg = (
 
 thresholds = sorted(fair_agg["threshold"].unique())
 x          = np.arange(len(thresholds))
-bar_width  = 0.18
+bar_width  = 0.8 / len(_COMBOS)
 
 fig, axes = plt.subplots(1, 3, figsize=(18, 5), sharey=False)
 for ax, (metric_mean, metric_std, ylabel, title) in zip(
@@ -1079,7 +1105,7 @@ for ax, (metric_mean, metric_std, ylabel, title) in zip(
     ):
         sub = (fair_agg[(fair_agg["Model"] == model) & (fair_agg["Variant"] == variant)]
                .sort_values("threshold"))
-        offset = (i - 1.5) * bar_width
+        offset = (i - (len(_COMBOS) - 1) / 2) * bar_width
         ax.bar(x + offset, sub[metric_mean], bar_width,
                yerr=sub[metric_std],
                error_kw={"capsize": 2, "elinewidth": 0.8, "ecolor": "#aaaaaa"},
@@ -1189,8 +1215,12 @@ _xgb = xgb.XGBClassifier(
     n_estimators=300, max_depth=4, learning_rate=0.05, subsample=0.8,
     scale_pos_weight=(_y_tr==0).sum() / (_y_tr==1).sum(),
     eval_metric="auc", use_label_encoder=False, verbosity=0, n_jobs=-1,
+    random_state=RANDOM_STATE,
 )
 _xgb.fit(_X_tr_full, _y_tr)
+
+_rf = RandomForestClassifier(**RF_PARAMS)
+_rf.fit(_X_tr_full, _y_tr)
 
 def _feature_kind(name):
     """v2 addition: distinguish TF-IDF tokens from engineered text-stat features,
@@ -1228,6 +1258,23 @@ _df_xgb_text = (
 )
 _df_xgb_text.index += 1
 
+# ── RandomForest importance: mean decrease in impurity ───────────────────────
+_df_rf_imp = (
+    pd.DataFrame({"Feature": _all_names,
+                  "Importance": np.round(_rf.feature_importances_, 5)})
+    .sort_values("Importance", ascending=False)
+    .reset_index(drop=True)
+)
+_df_rf_imp.index += 1
+_df_rf_imp["Text?"] = _df_rf_imp["Feature"].map(_feature_kind)
+
+_df_rf_text = (
+    _df_rf_imp[_df_rf_imp["Text?"] == "TF-IDF"]
+    .drop(columns=["Text?"])
+    .reset_index(drop=True)
+)
+_df_rf_text.index += 1
+
 TOP_N = 20
 
 print("\n── Table 1: XGBoost — Top 20 Features (Structured+Text) ──")
@@ -1238,3 +1285,9 @@ print(_df_lr_imp.head(TOP_N).to_string())
 
 print("\n── Table 3: XGBoost — Top 20 Text (TF-IDF) Features ──")
 print(_df_xgb_text.head(TOP_N).to_string())
+
+print("\n── Table 4: RandomForest — Top 20 Features (Structured+Text) ──")
+print(_df_rf_imp.head(TOP_N).to_string())
+
+print("\n── Table 5: RandomForest — Top 20 Text (TF-IDF) Features ──")
+print(_df_rf_text.head(TOP_N).to_string())

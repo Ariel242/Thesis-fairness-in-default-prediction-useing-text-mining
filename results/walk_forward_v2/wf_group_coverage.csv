@@ -5,6 +5,12 @@ Logistic,Structured,0.7,598.6,4.8,11.0,4.2
 Logistic,Structured+Text,0.5,598.6,4.8,11.0,4.2
 Logistic,Structured+Text,0.6,598.6,4.8,11.0,4.2
 Logistic,Structured+Text,0.7,598.6,4.8,11.0,4.2
+RandomForest,Structured,0.5,598.6,4.8,11.0,4.2
+RandomForest,Structured,0.6,598.6,4.8,11.0,4.2
+RandomForest,Structured,0.7,598.6,4.8,11.0,4.2
+RandomForest,Structured+Text,0.5,598.6,4.8,11.0,4.2
+RandomForest,Structured+Text,0.6,598.6,4.8,11.0,4.2
+RandomForest,Structured+Text,0.7,598.6,4.8,11.0,4.2
 XGBoost,Structured,0.5,598.6,4.8,11.0,4.2
 XGBoost,Structured,0.6,598.6,4.8,11.0,4.2
 XGBoost,Structured,0.7,598.6,4.8,11.0,4.2
