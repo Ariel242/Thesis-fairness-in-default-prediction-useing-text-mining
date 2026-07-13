@@ -8,7 +8,7 @@ PARAMETERS (edit below):
 
 -----------------------------------------------------------------------------
 v2 CHANGELOG (this file supersedes preliminary_results_cloude.py — the v1
-script is kept unmodified in this folder as a historical record)
+script is kept unmodified in analysis/archive/ as a historical record)
 -----------------------------------------------------------------------------
 Two bugs in v1 were found during a code review and are fixed here:
 

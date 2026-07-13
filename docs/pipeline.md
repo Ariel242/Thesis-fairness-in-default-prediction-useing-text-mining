@@ -85,7 +85,7 @@ This project runs in five sequential steps. Each step's output serves as the nex
 
 ## Step 5 — Walk-Forward Modeling Pipeline
 **File:** `analysis/preliminary_results_v2.py` (current — see the "Step 5 (v2) — Changelog" section below)
-**Superseded file:** `analysis/preliminary_results_cloude.py` (v1, kept unmodified as a historical record; do not use for new results)
+**Superseded file:** `analysis/archive/preliminary_results_cloude.py` (v1, kept unmodified as a historical record; do not use for new results)
 
 **Input:** `data/03_advanced_prep/lc_after_03_advanced_prep_basic+test_<timestamp>.csv`
 
