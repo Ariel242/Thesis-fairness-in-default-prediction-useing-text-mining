@@ -30,8 +30,9 @@ MERGING DOWNSTREAM
 NOTES
     - Text cleaning is minimal on purpose: FinBERT expects natural text,
       so we only strip the LendingClub boilerplate ("Borrower added on
-      MM/DD/YY >") and HTML breaks. No stopword removal, no lowercasing
-      beyond what the tokenizer does.
+      MM/DD/YY >" and its variants), drop <br> tags, and decode HTML
+      entities (&quot; -> ") back to the characters the borrower typed.
+      No stopword removal, no lowercasing beyond what the tokenizer does.
     - Embedding extraction is deterministic (inference only, no dropout),
       so no random seed is needed.
     - Runs on GPU if available, otherwise CPU (expect hours on CPU for
@@ -39,6 +40,7 @@ NOTES
       so the script can be stopped and resumed).
 """
 
+import html
 import os
 import re
 import sys
@@ -84,13 +86,17 @@ if df[ID_COL].isna().any() or df[ID_COL].duplicated().any():
     raise ValueError(f"'{ID_COL}' is not a valid primary key in {PATH_CSV.name} "
                      f"(nulls or duplicates found) — aborting to avoid unkeyed embeddings.")
 
-# Minimal cleaning: drop LC boilerplate + HTML breaks, keep natural text
-BOILERPLATE_RE = re.compile(r"borrower\s+added\s+on\s+\d{2}/\d{2}/\d{2}\s*>?", re.IGNORECASE)
+# Minimal cleaning: drop LC boilerplate + HTML artifacts, keep natural text.
+# The boilerplate prefix appears in three variants: "Borrower added on MM/DD/YY >",
+# "<listing id> added on MM/DD/YY >", and bare "added on MM/DD/YY >". The date is
+# what anchors the match — a borrower's own "added on ..." (no date) is never touched.
+BOILERPLATE_RE = re.compile(r"(?:borrower\s+|\d+\s+)?added\s+on\s+\d{2}/\d{2}/\d{2}\s*>?", re.IGNORECASE)
 
 def clean_for_bert(text):
     if pd.isna(text):
         return ""
     s = str(text)
+    s = html.unescape(s)  # &quot;/&amp;/&#39;... -> the characters the borrower actually typed
     s = BOILERPLATE_RE.sub(" ", s)
     s = re.sub(r"<\s*br\s*/?\s*>", " ", s, flags=re.IGNORECASE)
     s = re.sub(r"\s+", " ", s).strip()
