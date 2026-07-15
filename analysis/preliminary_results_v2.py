@@ -96,7 +96,7 @@ warnings.filterwarnings("ignore")
 # PARAMETERS — edit these before running
 # ============================================================
 BASE_DIR        = Path(__file__).resolve().parent.parent
-PATH_CSV        = BASE_DIR / "data" / "03_advanced_prep" / "lc_after_03_advanced_prep_basic+test_20260709_1340.csv"
+PATH_CSV        = BASE_DIR / "data" / "03_advanced_prep" / "lc_after_03_advanced_prep_basic+test_20260715_2119.csv"
 TARGET_COL      = "is_default"
 TEXT_COL        = "text_all_clean"
 RAW_TEXT_COLS   = ["desc", "title", "emp_title"]
@@ -120,7 +120,7 @@ MIN_GROUP_POS = 10
 THRESHOLDS = [0.5, 0.6, 0.7]
 
 # TF-IDF
-TFIDF_MAX_FEATURES = 600
+TFIDF_MAX_FEATURES = 1000
 TFIDF_NGRAM_RANGE  = (1, 2)   # unigrams + bigrams
 
 # Bootstrap CI (set N_BOOTSTRAP=0 to skip — faster runs)
@@ -1202,7 +1202,13 @@ _tfidf_fi = TfidfVectorizer(
 _tfidf_fi.fit(_df_tr[TEXT_COL].fillna("").astype(str))
 _tfidf_names = _tfidf_fi.get_feature_names_out().tolist()
 
-_all_names = FULL_STRUCT_COLS + _tfidf_names
+# v2 fix: a TF-IDF token can share its name with a structured column (e.g.
+# "term" the vocabulary word vs `term` the 36/60-month field). Classifying by
+# name conflated them in the importance tables, so kind is now assigned by
+# POSITION in the hstacked matrix, and TF-IDF display names get a txt: prefix.
+_all_names = FULL_STRUCT_COLS + [f"txt:{n}" for n in _tfidf_names]
+_all_kinds = ["text-stat" if c in TEXT_STAT_COLS else "" for c in FULL_STRUCT_COLS] \
+           + ["TF-IDF"] * len(_tfidf_names)
 
 # Full matrix
 _X_tr_full = hstack([csr_matrix(_X_tr_s), _X_tr_txt])
@@ -1223,33 +1229,26 @@ _xgb.fit(_X_tr_full, _y_tr)
 _rf = RandomForestClassifier(**RF_PARAMS)
 _rf.fit(_X_tr_full, _y_tr)
 
-def _feature_kind(name):
-    """v2 addition: distinguish TF-IDF tokens from engineered text-stat features,
-    so the contamination fix (v2 changelog #1) is visible in the importance tables."""
-    if name in _tfidf_names:
-        return "TF-IDF"
-    if name in TEXT_STAT_COLS:
-        return "text-stat"
-    return ""
+# (kind lookup is positional — see _all_kinds above; the old name-based
+# _feature_kind() mislabeled the structured `term` column as TF-IDF)
 
 # ── LR importance: absolute standardized coefficients ────────────────────────
 _lr_imp = np.abs(_lr.coef_[0])
 _df_lr_imp = (
-    pd.DataFrame({"Feature": _all_names, "Importance": _lr_imp})
+    pd.DataFrame({"Feature": _all_names, "Importance": _lr_imp, "Text?": _all_kinds})
     .sort_values("Importance", ascending=False)
     .reset_index(drop=True)
 )
 _df_lr_imp.index += 1
-_df_lr_imp["Text?"] = _df_lr_imp["Feature"].map(_feature_kind)
 
 # ── XGBoost importance: Gain ──────────────────────────────────────────────────
 _xgb_gain = _xgb.get_booster().get_score(importance_type="gain")
 _df_xgb_imp = pd.DataFrame([
-    {"Feature": _all_names[int(k.replace("f", ""))], "Gain": round(v, 2)}
+    {"Feature": _all_names[int(k.replace("f", ""))], "Gain": round(v, 2),
+     "Text?": _all_kinds[int(k.replace("f", ""))]}
     for k, v in _xgb_gain.items()
 ]).sort_values("Gain", ascending=False).reset_index(drop=True)
 _df_xgb_imp.index += 1
-_df_xgb_imp["Text?"] = _df_xgb_imp["Feature"].map(_feature_kind)
 
 # ── XGBoost text-only importance ─────────────────────────────────────────────
 _df_xgb_text = (
@@ -1262,12 +1261,12 @@ _df_xgb_text.index += 1
 # ── RandomForest importance: mean decrease in impurity ───────────────────────
 _df_rf_imp = (
     pd.DataFrame({"Feature": _all_names,
-                  "Importance": np.round(_rf.feature_importances_, 5)})
+                  "Importance": np.round(_rf.feature_importances_, 5),
+                  "Text?": _all_kinds})
     .sort_values("Importance", ascending=False)
     .reset_index(drop=True)
 )
 _df_rf_imp.index += 1
-_df_rf_imp["Text?"] = _df_rf_imp["Feature"].map(_feature_kind)
 
 _df_rf_text = (
     _df_rf_imp[_df_rf_imp["Text?"] == "TF-IDF"]
