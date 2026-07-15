@@ -2,7 +2,7 @@
 
 All 71 columns of `data/lc_after_02_data_prep/lc_basic_database.csv` (the `+_desc` file adds one more column, `desc`). Descriptions follow the official LendingClub data dictionary. Generated 2026-07-13; regenerate after changing 02's feature filtering.
 
-**enters_model** legend: `yes` = model feature (possibly transformed in 03); `via encoding` = enters as a derived encoding; `via text pipeline` = enters as text stats + TF-IDF (Structured+Text arm only); `not yet` = restored 2026-07-13, awaiting handling in 03; `no` = identifier / target / time axis / excluded.
+**enters_model** legend: `yes` = model feature (possibly transformed in 03); `via encoding` = enters as a derived encoding; `via text pipeline` = enters as text stats + TF-IDF (Structured+Text arm only); `no` = identifier / target / time axis / excluded.
 
 | # | Feature | Description | Variable type | Dtype | Missing % | Enters model | Notes |
 |---|---------|-------------|---------------|-------|-----------|--------------|-------|
@@ -18,14 +18,14 @@ All 71 columns of `data/lc_after_02_data_prep/lc_basic_database.csv` (the `+_des
 | 10 | `delinq_2yrs` | Number of 30+ days past-due delinquency incidences in the past 2 years | count | float64 | 0.0 | yes | Numeric feature, passed through as-is |
 | 11 | `delinq_amnt` | Past-due amount owed on accounts currently delinquent | continuous (amount) | float64 | 0.0 | yes | Numeric feature, passed through as-is |
 | 12 | `dti` | Debt-to-income ratio: monthly debt payments (excl. mortgage) / monthly income (%) | continuous (%) | float64 | 0.0 | yes | Numeric feature, passed through as-is |
-| 13 | `earliest_cr_line` | Month the borrower's earliest reported credit line was opened | date | object | 0.0 | not yet | Restored 2026-07-13; date string with no transform in 03 yet (planned: credit-history length vs issue_d) |
+| 13 | `earliest_cr_line` | Month the borrower's earliest reported credit line was opened | date | object | 0.0 | via encoding | Converted in 03 (2026-07-16) to `credit_history_months` = months from earliest_cr_line to issue_d (credit-history length at origination); raw date dropped, negatives set to NA |
 | 14 | `emp_length` | Employment length in years: 0 (<1) to 10 (10+) | ordinal (0-10) | object | 4.08 | yes | Converted to numeric years (0-10) in 03 |
 | 15 | `emp_title` | Job title supplied by the borrower | free text | object | 5.96 | via text pipeline | Raw column excluded in v2; enters via cleaned-text stats + TF-IDF (Structured+Text arm only) |
 | 16 | `funded_amnt` | Total amount committed to the loan at funding | continuous (amount) | float64 | 0.0 | no (currently) | Kept by the 2026-07-13 multicollinearity rule; 03 replaces it with funded_ratio and drops it, and funded_ratio is in v2 EXCLUDE_COLS |
 | 17 | `grade` | LendingClub assigned risk grade, A (best) to G (worst) | ordinal (7 levels) | object | 0.0 | via encoding | Raw string excluded in v2; enters as ordinal grade_ord / sub_grade_ord |
 | 18 | `home_ownership` | Home ownership status: RENT / OWN / MORTGAGE / OTHER / NONE | categorical (nominal) | object | 0.0 | yes | One-hot encoded in 03 |
 | 19 | `id` | Unique LendingClub listing ID for the loan | identifier | int64 | 0.0 | no | Primary key; EXCLUDE_COLS in v2 — identifier only |
-| 20 | `initial_list_status` | Initial listing status of the loan: w (whole) / f (fractional) | binary categorical | object | 0.0 | not yet | Restored 2026-07-13; not in 03's one-hot list yet |
+| 20 | `initial_list_status` | Initial listing status of the loan: w (whole) / f (fractional) | binary categorical | object | 0.0 | via encoding | Converted in 03 (2026-07-16) to binary flag `initial_list_status_w` (1 = w, 0 = f); raw column dropped |
 | 21 | `inq_last_6mths` | Credit inquiries in the last 6 months (excl. auto and mortgage) | count | float64 | 0.0 | yes | Numeric feature, passed through as-is |
 | 22 | `int_rate` | Interest rate on the loan (%) | continuous (%) | float64 | 0.0 | yes | Numeric feature, passed through as-is |
 | 23 | `is_default` | Target: 1 = Charged Off / Default, 0 = Fully Paid | binary (target) | int64 | 0.0 | no | Target variable, not a feature |
