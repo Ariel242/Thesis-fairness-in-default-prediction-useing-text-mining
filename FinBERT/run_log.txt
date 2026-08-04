@@ -1,0 +1,398 @@
+Loading structured data...
+  Rows after filtering: 217,287  |  Default rate: 15.36%
+  Ordinal risk grades restored: grade_ord (1-7), sub_grade_ord (1-35)
+  Structured features (Structured baseline, identical to v2): 124
+Loading FinBERT embeddings...
+  Merged embeddings for 217,287 rows (45.9% have a non-empty description)
+
+Building Walk-Forward folds...
+  Total folds: 14
+  Fold 1: train <= 2010-08  |  test 2010-08 - 2010-09  |  n_train=6,694  n_test=1,042  defaults_in_test=157
+  Fold 2: train <= 2010-11  |  test 2010-11 - 2010-12  |  n_train=9,893  n_test=1,222  defaults_in_test=136
+  Fold 3: train <= 2011-02  |  test 2011-02 - 2011-03  |  n_train=13,674  n_test=1,369  defaults_in_test=184
+  Fold 4: train <= 2011-05  |  test 2011-05 - 2011-06  |  n_train=18,165  n_test=1,762  defaults_in_test=255
+  Fold 5: train <= 2011-08  |  test 2011-08 - 2011-09  |  n_train=23,547  n_test=1,979  defaults_in_test=286
+  Fold 6: train <= 2011-11  |  test 2011-11 - 2011-12  |  n_train=29,671  n_test=2,190  defaults_in_test=406
+  Fold 7: train <= 2012-02  |  test 2012-02 - 2012-03  |  n_train=36,786  n_test=2,781  defaults_in_test=413
+  Fold 8: train <= 2012-05  |  test 2012-05 - 2012-06  |  n_train=45,976  n_test=3,713  defaults_in_test=681
+  Fold 9: train <= 2012-08  |  test 2012-08 - 2012-09  |  n_train=59,483  n_test=5,975  defaults_in_test=919
+  Fold 10: train <= 2012-11  |  test 2012-11 - 2012-12  |  n_train=77,872  n_test=5,970  defaults_in_test=893
+  Fold 11: train <= 2013-02  |  test 2013-02 - 2013-03  |  n_train=98,111  n_test=8,184  defaults_in_test=1164
+  Fold 12: train <= 2013-05  |  test 2013-05 - 2013-06  |  n_train=125,865  n_test=10,802  defaults_in_test=1739
+  Fold 13: train <= 2013-08  |  test 2013-08 - 2013-09  |  n_train=161,023  n_test=12,846  defaults_in_test=2007
+  Fold 14: train <= 2013-11  |  test 2013-11 - 2013-12  |  n_train=202,442  n_test=14,845  defaults_in_test=2263
+  Fold 1 done. (PCA explained variance: 88.1%)
+  Fold 2 done. (PCA explained variance: 88.2%)
+  Fold 3 done. (PCA explained variance: 88.4%)
+  Fold 4 done. (PCA explained variance: 88.4%)
+  Fold 5 done. (PCA explained variance: 88.2%)
+  Fold 6 done. (PCA explained variance: 88.2%)
+  Fold 7 done. (PCA explained variance: 88.2%)
+  Fold 8 done. (PCA explained variance: 88.2%)
+  Fold 9 done. (PCA explained variance: 88.0%)
+  Fold 10 done. (PCA explained variance: 88.0%)
+  Fold 11 done. (PCA explained variance: 88.3%)
+  Fold 12 done. (PCA explained variance: 89.0%)
+  Fold 13 done. (PCA explained variance: 89.7%)
+  Fold 14 done. (PCA explained variance: 90.2%)
+
+======================================================================
+A. PREDICTIVE PERFORMANCE SUMMARY (mean +/- std across folds)
+======================================================================
+                                    AUC          PR_AUC           Brier            GINI        
+                                   mean     std    mean     std    mean     std    mean     std
+Model        Variant                                                                           
+Logistic     Structured          0.6923  0.0155  0.2760  0.0324  0.2312  0.0153  0.3845  0.0310
+             Structured+FinBERT  0.6942  0.0157  0.2783  0.0326  0.2309  0.0151  0.3885  0.0313
+RandomForest Structured          0.6874  0.0211  0.2735  0.0360  0.1890  0.0140  0.3749  0.0422
+             Structured+FinBERT  0.6848  0.0207  0.2666  0.0358  0.1762  0.0116  0.3696  0.0415
+XGBoost      Structured          0.6884  0.0217  0.2761  0.0375  0.2122  0.0165  0.3767  0.0433
+             Structured+FinBERT  0.6894  0.0213  0.2755  0.0402  0.2072  0.0207  0.3788  0.0426
+
+======================================================================
+B. DELTA: Structured+FinBERT - Structured  (mean +/- std across folds)
+======================================================================
+               Δ_AUC         Δ_PR_AUC         Δ_Brier          Δ_GINI        
+                mean     std     mean     std    mean     std    mean     std
+Model                                                                        
+Logistic      0.0020  0.0036   0.0023  0.0044 -0.0003  0.0011  0.0040  0.0073
+RandomForest -0.0026  0.0026  -0.0068  0.0088 -0.0128  0.0091 -0.0052  0.0052
+XGBoost       0.0011  0.0046  -0.0006  0.0076 -0.0050  0.0079  0.0021  0.0091
+
+  Consistency check (fraction of folds where FinBERT improved AUC):
+    [Logistic]  improved in 79% of folds  mean ΔAUC=+0.0020  -> consistent
+    [XGBoost]  improved in 64% of folds  mean ΔAUC=+0.0011  -> mixed
+    [RandomForest]  improved in 7% of folds  mean ΔAUC=-0.0026  -> mostly worse
+
+======================================================================
+C. DELONG TEST: Structured vs Structured+FinBERT (per fold)
+======================================================================
+ fold        Model  AUC_Structured  AUC_Structured+FinBERT  Delta_AUC  Z_stat  p_value  CI_95_lo  CI_95_hi
+    1     Logistic          0.6568                  0.6545    -0.0023   0.265   0.7909   -0.0145    0.0191
+    1      XGBoost          0.6231                  0.6245     0.0014  -0.082   0.9346   -0.0356    0.0327
+    1 RandomForest          0.6265                  0.6253    -0.0012   0.152   0.8789   -0.0147    0.0172
+    2     Logistic          0.6785                  0.6761    -0.0024   0.443   0.6577   -0.0082    0.0130
+    2      XGBoost          0.6761                  0.6832     0.0071  -0.558   0.5766   -0.0320    0.0178
+    2 RandomForest          0.6669                  0.6649    -0.0020   0.267   0.7892   -0.0125    0.0164
+    3     Logistic          0.7051                  0.7012    -0.0040   0.786   0.4316   -0.0059    0.0138
+    3      XGBoost          0.6864                  0.6856    -0.0008   0.067   0.9464   -0.0235    0.0252
+    3 RandomForest          0.7010                  0.6938    -0.0072   0.995   0.3196   -0.0070    0.0215
+    4     Logistic          0.6985                  0.7058     0.0073  -1.702   0.0888   -0.0157    0.0011
+    4      XGBoost          0.6797                  0.6849     0.0051  -0.528   0.5972   -0.0241    0.0139
+    4 RandomForest          0.6873                  0.6821    -0.0053   0.807   0.4198   -0.0075    0.0180
+    5     Logistic          0.7172                  0.7189     0.0016  -0.349   0.7268   -0.0108    0.0075
+    5      XGBoost          0.7141                  0.7175     0.0034  -0.469   0.6393   -0.0176    0.0108
+    5 RandomForest          0.7116                  0.7116    -0.0000   0.009   0.9926   -0.0105    0.0106
+    6     Logistic          0.6707                  0.6805     0.0098  -2.495   0.0126   -0.0175   -0.0021
+    6      XGBoost          0.6800                  0.6832     0.0032  -0.464   0.6426   -0.0165    0.0102
+    6 RandomForest          0.6756                  0.6743    -0.0013   0.254   0.7991   -0.0084    0.0109
+    7     Logistic          0.7009                  0.7016     0.0008  -0.203   0.8393   -0.0080    0.0065
+    7      XGBoost          0.6997                  0.6910    -0.0087   1.429   0.1531   -0.0032    0.0206
+    7 RandomForest          0.6911                  0.6848    -0.0063   1.169   0.2423   -0.0043    0.0169
+    8     Logistic          0.6838                  0.6878     0.0039  -1.393   0.1636   -0.0094    0.0016
+    8      XGBoost          0.6878                  0.6865    -0.0013   0.242   0.8090   -0.0094    0.0120
+    8 RandomForest          0.6843                  0.6813    -0.0030   0.824   0.4100   -0.0041    0.0100
+    9     Logistic          0.6987                  0.7007     0.0019  -0.809   0.4184   -0.0066    0.0028
+    9      XGBoost          0.6936                  0.7030     0.0094  -2.090   0.0366   -0.0181   -0.0006
+    9 RandomForest          0.7041                  0.6982    -0.0059   1.862   0.0626   -0.0003    0.0121
+   10     Logistic          0.6920                  0.6945     0.0025  -1.120   0.2628   -0.0068    0.0019
+   10      XGBoost          0.6944                  0.6928    -0.0016   0.576   0.5644   -0.0039    0.0072
+   10 RandomForest          0.6925                  0.6929     0.0004  -0.152   0.8789   -0.0049    0.0042
+   11     Logistic          0.6913                  0.6951     0.0038  -2.278   0.0227   -0.0071   -0.0005
+   11      XGBoost          0.6960                  0.6918    -0.0042   1.858   0.0632   -0.0002    0.0086
+   11 RandomForest          0.6911                  0.6905    -0.0006   0.369   0.7125   -0.0028    0.0041
+   12     Logistic          0.7035                  0.7053     0.0019  -1.583   0.1134   -0.0042    0.0004
+   12      XGBoost          0.7050                  0.7055     0.0006  -0.391   0.6956   -0.0034    0.0023
+   12 RandomForest          0.6989                  0.6984    -0.0005   0.390   0.6966   -0.0020    0.0030
+   13     Logistic          0.6947                  0.6970     0.0023  -2.067   0.0387   -0.0045   -0.0001
+   13      XGBoost          0.6957                  0.6967     0.0010  -0.781   0.4347   -0.0035    0.0015
+   13 RandomForest          0.6895                  0.6894    -0.0001   0.116   0.9073   -0.0022    0.0024
+   14     Logistic          0.6999                  0.7005     0.0007  -0.651   0.5151   -0.0027    0.0013
+   14      XGBoost          0.7056                  0.7057     0.0001  -0.075   0.9399   -0.0022    0.0020
+   14 RandomForest          0.7037                  0.7001    -0.0036   3.581   0.0003    0.0016    0.0055
+
+  DeLong — mean across folds:
+              Delta_AUC  Z_stat  p_value
+Model                                   
+Logistic         0.0020 -0.9397   0.3630
+RandomForest    -0.0026  0.7602   0.5793
+XGBoost          0.0011 -0.0904   0.5738
+
+======================================================================
+D. FAIRNESS SUMMARY BY THRESHOLD (mean +/- std across folds)
+======================================================================
+
+  Threshold = 0.5
+                                FNR_gap         FPR_gap         Brier_gap        
+                                   mean     std    mean     std      mean     std
+Model        Variant                                                             
+Logistic     Structured          0.4256  0.0537  0.2830  0.0660    0.0816  0.0180
+             Structured+FinBERT  0.4575  0.1043  0.2786  0.0597    0.0819  0.0161
+RandomForest Structured          0.4416  0.1929  0.1336  0.0385    0.0475  0.0170
+             Structured+FinBERT  0.3954  0.1696  0.1362  0.0142    0.0466  0.0159
+XGBoost      Structured          0.4587  0.0822  0.2469  0.0943    0.0704  0.0179
+             Structured+FinBERT  0.4734  0.0866  0.2150  0.0628    0.0648  0.0201
+
+  Threshold = 0.6
+                                FNR_gap         FPR_gap         Brier_gap        
+                                   mean     std    mean     std      mean     std
+Model        Variant                                                             
+Logistic     Structured          0.4320  0.1107  0.2098  0.0481    0.0816  0.0180
+             Structured+FinBERT  0.4579  0.1288  0.2048  0.0506    0.0819  0.0161
+RandomForest Structured          0.3404  0.1408  0.0774  0.0247    0.0475  0.0170
+             Structured+FinBERT  0.3072  0.0976  0.0700  0.0204    0.0466  0.0159
+XGBoost      Structured          0.4714  0.1868  0.1626  0.0220    0.0704  0.0179
+             Structured+FinBERT  0.5089  0.1680  0.1541  0.0388    0.0648  0.0201
+
+  Threshold = 0.7
+                                FNR_gap         FPR_gap         Brier_gap        
+                                   mean     std    mean     std      mean     std
+Model        Variant                                                             
+Logistic     Structured          0.3851  0.2417  0.1296  0.0346    0.0816  0.0180
+             Structured+FinBERT  0.3996  0.2106  0.1257  0.0244    0.0819  0.0161
+RandomForest Structured          0.1521  0.0579  0.0260  0.0136    0.0475  0.0170
+             Structured+FinBERT  0.1521  0.0579  0.0217  0.0080    0.0466  0.0159
+XGBoost      Structured          0.3578  0.1682  0.1042  0.0268    0.0704  0.0179
+             Structured+FinBERT  0.3570  0.1310  0.0978  0.0312    0.0648  0.0201
+
+======================================================================
+E. FAIRNESS DIRECTION: Adding FinBERT vs Structured-only
+   (for gap metrics: negative delta = improved; positive = worsened)
+======================================================================
+
+  Threshold = 0.5
+    [Logistic] FNR_gap: mean delta=+0.0320  -> worsened
+    [Logistic] FPR_gap: mean delta=-0.0045  -> improved
+    [Logistic] Brier_gap: mean delta=+0.0003  -> worsened
+    [XGBoost] FNR_gap: mean delta=+0.0147  -> worsened
+    [XGBoost] FPR_gap: mean delta=-0.0320  -> improved
+    [XGBoost] Brier_gap: mean delta=-0.0056  -> improved
+    [RandomForest] FNR_gap: mean delta=-0.0462  -> improved
+    [RandomForest] FPR_gap: mean delta=+0.0027  -> worsened
+    [RandomForest] Brier_gap: mean delta=-0.0009  -> improved
+
+  Threshold = 0.6
+    [Logistic] FNR_gap: mean delta=+0.0259  -> worsened
+    [Logistic] FPR_gap: mean delta=-0.0050  -> improved
+    [Logistic] Brier_gap: mean delta=+0.0003  -> worsened
+    [XGBoost] FNR_gap: mean delta=+0.0375  -> worsened
+    [XGBoost] FPR_gap: mean delta=-0.0085  -> improved
+    [XGBoost] Brier_gap: mean delta=-0.0056  -> improved
+    [RandomForest] FNR_gap: mean delta=-0.0332  -> improved
+    [RandomForest] FPR_gap: mean delta=-0.0074  -> improved
+    [RandomForest] Brier_gap: mean delta=-0.0009  -> improved
+
+  Threshold = 0.7
+    [Logistic] FNR_gap: mean delta=+0.0144  -> worsened
+    [Logistic] FPR_gap: mean delta=-0.0039  -> improved
+    [Logistic] Brier_gap: mean delta=+0.0003  -> worsened
+    [XGBoost] FNR_gap: mean delta=-0.0008  -> improved
+    [XGBoost] FPR_gap: mean delta=-0.0064  -> improved
+    [XGBoost] Brier_gap: mean delta=-0.0056  -> improved
+    [RandomForest] FNR_gap: mean delta=+0.0000  -> no change
+    [RandomForest] FPR_gap: mean delta=-0.0043  -> improved
+    [RandomForest] Brier_gap: mean delta=-0.0009  -> improved
+
+======================================================================
+F. GROUP COVERAGE SUMMARY (mean across folds)
+======================================================================
+       Model            Variant  threshold  n_candidate_groups  n_pass_n_threshold  n_pass_pos_threshold  n_included
+    Logistic         Structured        0.5               594.1                 4.7                  10.1         4.2
+    Logistic         Structured        0.6               594.1                 4.7                  10.1         4.2
+    Logistic         Structured        0.7               594.1                 4.7                  10.1         4.2
+    Logistic Structured+FinBERT        0.5               594.1                 4.7                  10.1         4.2
+    Logistic Structured+FinBERT        0.6               594.1                 4.7                  10.1         4.2
+    Logistic Structured+FinBERT        0.7               594.1                 4.7                  10.1         4.2
+RandomForest         Structured        0.5               594.1                 4.7                  10.1         4.2
+RandomForest         Structured        0.6               594.1                 4.7                  10.1         4.2
+RandomForest         Structured        0.7               594.1                 4.7                  10.1         4.2
+RandomForest Structured+FinBERT        0.5               594.1                 4.7                  10.1         4.2
+RandomForest Structured+FinBERT        0.6               594.1                 4.7                  10.1         4.2
+RandomForest Structured+FinBERT        0.7               594.1                 4.7                  10.1         4.2
+     XGBoost         Structured        0.5               594.1                 4.7                  10.1         4.2
+     XGBoost         Structured        0.6               594.1                 4.7                  10.1         4.2
+     XGBoost         Structured        0.7               594.1                 4.7                  10.1         4.2
+     XGBoost Structured+FinBERT        0.5               594.1                 4.7                  10.1         4.2
+     XGBoost Structured+FinBERT        0.6               594.1                 4.7                  10.1         4.2
+     XGBoost Structured+FinBERT        0.7               594.1                 4.7                  10.1         4.2
+
+======================================================================
+G. ZIP3 SUMMARY (mean across folds, threshold=0.5, top 20 by n_total)
+======================================================================
+zip3        Model            Variant  n_folds  n_total  n_default  AUC_mean  FNR_mean  FPR_mean  Brier_mean  default_rate
+ 945     Logistic         Structured        5      655         83    0.6719    0.3744    0.3894      0.2248        0.1267
+ 945     Logistic Structured+FinBERT        5      655         83    0.6797    0.3744    0.3764      0.2245        0.1267
+ 945 RandomForest         Structured        5      655         83    0.6896    0.5605    0.2009      0.1720        0.1267
+ 945 RandomForest Structured+FinBERT        5      655         83    0.6932    0.6259    0.1728      0.1670        0.1267
+ 945      XGBoost         Structured        5      655         83    0.6904    0.3931    0.3281      0.2061        0.1267
+ 945      XGBoost Structured+FinBERT        5      655         83    0.6810    0.4105    0.3628      0.2101        0.1267
+ 750 RandomForest         Structured        5      615         87    0.6778    0.7582    0.1644      0.1661        0.1415
+ 750 RandomForest Structured+FinBERT        5      615         87    0.6843    0.7620    0.1434      0.1630        0.1415
+ 750      XGBoost Structured+FinBERT        5      615         87    0.6988    0.4281    0.2866      0.1907        0.1415
+ 750      XGBoost         Structured        5      615         87    0.7045    0.4498    0.2658      0.1883        0.1415
+ 750     Logistic         Structured        5      615         87    0.6980    0.4748    0.2478      0.1911        0.1415
+ 750     Logistic Structured+FinBERT        5      615         87    0.7004    0.5035    0.2484      0.1902        0.1415
+ 112     Logistic         Structured        4      505        102    0.7020    0.2591    0.4178      0.2342        0.2020
+ 112     Logistic Structured+FinBERT        4      505        102    0.7000    0.2650    0.4120      0.2366        0.2020
+ 112 RandomForest         Structured        4      505        102    0.7177    0.5446    0.1875      0.1846        0.2020
+ 112 RandomForest Structured+FinBERT        4      505        102    0.7110    0.5898    0.1677      0.1822        0.2020
+ 112      XGBoost         Structured        4      505        102    0.7150    0.2819    0.4155      0.2260        0.2020
+ 112      XGBoost Structured+FinBERT        4      505        102    0.7219    0.3195    0.4136      0.2235        0.2020
+ 606      XGBoost         Structured        4      442         56    0.7707    0.3467    0.2942      0.1895        0.1267
+ 606      XGBoost Structured+FinBERT        4      442         56    0.7475    0.3624    0.3200      0.1962        0.1267
+
+======================================================================
+H. PCA EXPLAINED VARIANCE PER FOLD
+======================================================================
+ fold  n_components  explained_variance_ratio
+    1            50                    0.8810
+    2            50                    0.8816
+    3            50                    0.8837
+    4            50                    0.8840
+    5            50                    0.8820
+    6            50                    0.8823
+    7            50                    0.8820
+    8            50                    0.8825
+    9            50                    0.8795
+   10            50                    0.8800
+   11            50                    0.8831
+   12            50                    0.8902
+   13            50                    0.8966
+   14            50                    0.9018
+
+Saved results to: C:\Users\ariel\Desktop\Thesis\F-TM-CR\FinBERT\results
+
+Generating figures...
+  fig1_auc_stability.png
+  fig2_delong_delta_auc.png
+  fig3_fairness_tradeoff.png
+  fig4_threshold_sensitivity.png
+
+All figures saved to: C:\Users\ariel\Desktop\Thesis\F-TM-CR\FinBERT\figures
+
+======================================================================
+FEATURE IMPORTANCE — Last Fold, Structured+FinBERT
+======================================================================
+
+── Table 1: XGBoost — Top 20 Features (Structured+FinBERT) ──
+                       Feature     Gain        Kind
+1                    grade_ord  1713.58  structured
+2                sub_grade_ord  1259.50  structured
+3                     int_rate   741.48  structured
+4                         term   427.24  structured
+5                   annual_inc   194.85  structured
+6         acc_open_past_24mths   116.80  structured
+7          purpose_credit_card    99.12  structured
+8                          dti    90.56  structured
+9               inq_last_6mths    89.47  structured
+10              mo_sin_rcnt_tl    85.04  structured
+11                  fb:pca_016    73.40     FinBERT
+12        mths_since_recent_bc    72.49  structured
+13               fico_midpoint    70.51  structured
+14                   loan_amnt    64.63  structured
+15         home_ownership_RENT    64.17  structured
+16                 avg_cur_bal    63.72  structured
+17                   num_il_tl    60.94  structured
+18               addr_state_TX    60.33  structured
+19  purpose_debt_consolidation    60.31  structured
+20             num_actv_rev_tl    59.20  structured
+
+── Table 2: Logistic Regression — Top 20 Features (Structured+FinBERT) ──
+                 Feature  Importance        Kind
+1               int_rate    0.300316  structured
+2             annual_inc    0.276856  structured
+3                   term    0.275694  structured
+4         bc_open_to_buy    0.207126  structured
+5   mths_since_recent_bc    0.201623  structured
+6              loan_amnt    0.186133  structured
+7                bc_util    0.181229  structured
+8          fico_midpoint    0.166787  structured
+9   acc_open_past_24mths    0.160572  structured
+10            revol_util    0.119926  structured
+11         num_rev_accts    0.105485  structured
+12                   dti    0.100775  structured
+13        inq_last_6mths    0.096474  structured
+14             num_bc_tl    0.081126  structured
+15             num_il_tl    0.073166  structured
+16            fb:pca_016    0.070246     FinBERT
+17       num_actv_rev_tl    0.062949  structured
+18           avg_cur_bal    0.062596  structured
+19         purpose_other    0.062215  structured
+20             revol_bal    0.059273  structured
+
+── Table 3: RandomForest — Top 20 Features (Structured+FinBERT) ──
+                 Feature  Importance        Kind
+1               int_rate     0.06859  structured
+2          sub_grade_ord     0.05957  structured
+3              grade_ord     0.04121  structured
+4             annual_inc     0.03656  structured
+5                   term     0.03234  structured
+6                    dti     0.02950  structured
+7          fico_midpoint     0.02502  structured
+8              loan_amnt     0.02338  structured
+9             revol_util     0.02237  structured
+10             revol_bal     0.01991  structured
+11        bc_open_to_buy     0.01788  structured
+12        total_bc_limit     0.01652  structured
+13           avg_cur_bal     0.01628  structured
+14               bc_util     0.01621  structured
+15     total_bal_ex_mort     0.01603  structured
+16  mths_since_recent_bc     0.01531  structured
+17           tot_cur_bal     0.01524  structured
+18             total_acc     0.01431  structured
+19  mo_sin_old_rev_tl_op     0.01401  structured
+20      total_rev_hi_lim     0.01364  structured
+
+── Table 4: XGBoost — Top 20 FinBERT-only Features ──
+       Feature   Gain
+11  fb:pca_016  73.40
+21  fb:pca_003  59.15
+33  fb:pca_008  53.84
+45  fb:pca_004  48.29
+50  fb:pca_000  47.23
+55  fb:pca_001  45.18
+59  fb:pca_040  43.85
+60  fb:pca_042  43.43
+62  fb:pca_006  43.32
+67  fb:pca_005  42.11
+69  fb:pca_009  41.33
+70  fb:pca_023  40.85
+71  fb:pca_031  40.59
+76  fb:pca_014  40.13
+77  fb:pca_022  39.90
+81  fb:pca_021  39.07
+83  fb:pca_038  38.57
+84  fb:pca_002  38.56
+85  fb:pca_041  38.29
+86  fb:pca_046  38.16
+
+── Table 5: RandomForest — Top 20 FinBERT-only Features ──
+       Feature  Importance
+34  fb:pca_016     0.00711
+38  fb:pca_004     0.00600
+41  fb:pca_003     0.00580
+42  fb:pca_040     0.00574
+43  fb:pca_008     0.00573
+44  fb:pca_005     0.00569
+45  fb:pca_042     0.00566
+47  fb:pca_001     0.00552
+49  fb:pca_045     0.00537
+50  fb:pca_007     0.00537
+51  fb:pca_024     0.00536
+52  fb:pca_038     0.00535
+53  fb:pca_009     0.00532
+54  fb:pca_011     0.00530
+55  fb:pca_015     0.00527
+56  fb:pca_034     0.00527
+57  fb:pca_019     0.00526
+58  fb:pca_031     0.00523
+59  fb:pca_002     0.00522
+60  fb:pca_023     0.00520
+
+── Table 6: Importance mass — FinBERT block vs Structured block (last fold) ──
+       Model  FinBERT_share  Structured_share
+    Logistic         0.1459            0.8541
+     XGBoost         0.1856            0.8144
+RandomForest         0.2635            0.7365
+
+Done. Results in C:\Users\ariel\Desktop\Thesis\F-TM-CR\FinBERT\results, figures in C:\Users\ariel\Desktop\Thesis\F-TM-CR\FinBERT\figures

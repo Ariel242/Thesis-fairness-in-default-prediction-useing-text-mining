@@ -1,0 +1,4 @@
+Model,FinBERT_share,Structured_share
+Logistic,0.14589999616146088,0.8540999889373779
+XGBoost,0.1856,0.8144
+RandomForest,0.2635,0.7365
