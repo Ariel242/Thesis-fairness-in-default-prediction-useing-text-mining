@@ -1,5 +1,0 @@
-LC unique ZIP3: 956
-Panel unique ZIP3: 894
-Matched ZIP3: 890
-Missing in panel: 66
-Match rate: 93.096%
