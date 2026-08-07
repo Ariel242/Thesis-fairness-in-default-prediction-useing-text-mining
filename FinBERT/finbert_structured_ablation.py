@@ -1,184 +1,182 @@
 """
 Structured vs Structured+FinBERT — Walk-Forward Ablation
-==========================================================
-Isolates the marginal contribution of FinBERT's deep text representations to
-default prediction, against a pure no-text baseline. This is a companion to
-analysis/preliminary_results_v2.py ("v2") — v2 is NOT imported, edited, or
-executed by this script. Everything needed (walk-forward folds, DeLong test,
-bootstrap CI, fairness metrics) is reimplemented here so this script is fully
+(v2: feature selection + per-algorithm regularization tuning, no fairness)
+==========================================================================
+Companion to analysis/preliminary_results_v2.py ("v2") — v2 is NOT imported,
+edited, or executed by this script. Everything needed (walk-forward folds,
+feature selection, regularization tuning, DeLong test, bootstrap CI) is
 self-contained inside FinBERT/.
 
-WHY A SEPARATE SCRIPT (NOT A CHANGE TO v2)
-    v2 already answers "does TF-IDF text help?" (Structured vs
-    Structured+Text). This script answers a different question first: "do
-    FinBERT's deep embeddings help, on their own, over the same no-text
-    baseline?" Keeping it separate means v2's existing (already-reviewed)
-    results stay untouched, and the FinBERT effect can be read in isolation
-    before any decision is made about combining it with TF-IDF.
+-----------------------------------------------------------------------------
+WHAT CHANGED FROM THE 2026-08-03 RUN, AND WHY
+-----------------------------------------------------------------------------
+The 2026-08-03 run (see FinBERT/run_log.txt) used the FULL raw feature pool
+(all ~120+ structured columns, or that plus all 51 FinBERT dims: has_desc +
+50 PCA components) and hyperparameters copied verbatim from v2. Result:
+FinBERT barely helped Logistic/XGBoost and actively hurt RandomForest
+(mean ΔAUC: LR +0.0020, XGB +0.0011, RF -0.0026 — see fb_delta_summary.csv
+from that run). That result is confounded by two things this version
+isolates:
+  1. Every model saw every raw column, including weak/collinear ones —
+     no pressure to find the genuinely strongest predictors.
+  2. Regularization was fixed, not tuned for this specific feature set —
+     a model tuned for the OLD (larger, TF-IDF-free) feature space isn't
+     necessarily well-regularized for THIS one.
+This version adds (1) mutual-information feature selection from the full
+combined pool and (2) per-algorithm regularization tuning, on BOTH arms of
+the ablation (Structured and Structured+FinBERT get the identical
+selection+tuning treatment), so any remaining AUC gap is attributable to
+FinBERT's signal itself — not to leftover noise columns or stale
+hyperparameters. Fairness metrics are dropped entirely per explicit request
+(out of scope for this predictive-focused run); this script answers "does
+FinBERT's deep representation improve default-risk PREDICTION" only.
 
 -----------------------------------------------------------------------------
-1. THE TWO VARIANTS
+1. THE TWO VARIANTS  (unchanged from 2026-08-03)
 -----------------------------------------------------------------------------
-"Structured"
-    Identical in definition to v2's "Structured" baseline: every numeric,
-    non-leaky, non-identifier column from the post-03_advanced_prep CSV
-    (same EXCLUDE_COLS as v2, including the grade/sub_grade ordinal fix and
-    the last_fico_range_high/low temporal-leakage exclusion — see v2's
-    changelog for why). No text signal of any kind. Reusing v2's exact
-    column definition means a difference in AUC between this script's
-    "Structured" arm and its "Structured+FinBERT" arm is attributable only
-    to the embeddings, not to a differently-defined baseline.
-
-"Structured+FinBERT"
-    "Structured" (identical block, identically scaled) PLUS a FinBERT block:
-      - has_desc         : 1 if the borrower wrote a (non-boilerplate)
-                            description, else 0.
-      - pca_000..pca_0{K} : the description's FinBERT "semantic" (mean-
-                            pooled) embedding, compressed from 768 to
-                            N_PCA_COMPONENTS dimensions by PCA (see below).
-    No TF-IDF, no engineered text-length statistics — the FinBERT block is
-    the only text signal added, so this is a clean embeddings-only ablation.
+"Structured"          — every numeric, non-leaky, non-identifier column
+                         from the post-03_advanced_prep CSV (identical
+                         definition to v2's STRUCT_COLS_BASE).
+"Structured+FinBERT"  — "Structured" PLUS has_desc + 50-dim PCA-compressed
+                         FinBERT sem_* (mean-pooled) embedding of `desc`.
+Both arms now go through the SAME two extra steps before modeling:
+feature selection (section 2) and regularization tuning (section 3).
 
 -----------------------------------------------------------------------------
-2. HOW THE DEEP REPRESENTATION IS BUILT AND INTEGRATED
+2. FEATURE SELECTION: TOP-K BY MUTUAL INFORMATION, PER FOLD, PER ARM
 -----------------------------------------------------------------------------
-Source: data/04_finbert/finbert_desc_embeddings.parquet, produced by
-analysis/finbert_cls_embeddings.py (FinBERT: yiyanghkust/finbert-pretrain).
-That file has ONE row per loan application (keyed by `id`) with two 768-dim
-representations per description:
-  - cls_*  : final-layer hidden state of the [CLS] token.
-  - sem_*  : attention-mask-weighted mean of all final-layer token states
-             ("semantic"/mean-pooled — the standard sentence-embedding
-             pooling, and generally the stronger general-purpose
-             representation; see that script's own docstring).
-
-This script uses ONLY sem_* to start. Doubling to sem_+cls_ (1536 dims)
-before even knowing whether 768 dims of signal are useful adds cost with no
-established benefit here; cls_* is already sitting in the same parquet and
-is a one-line swap for a follow-up ablation if sem_* underperforms.
-
-Merge discipline: sem_*/has_desc are merged onto the modeling dataframe by
-`id` (never row position — the parquet is not sorted the way the modeling
-frame is), and this merge happens AFTER STRUCT_COLS_BASE is computed from
-the CSV alone, so the embedding/has_desc columns can never accidentally leak
-into the "Structured" feature list.
-
-Dimensionality reduction (PCA), and why it's needed here specifically:
-768 continuous, highly collinear dimensions are a poor match for this
-project's tree models: XGBoost is capped at max_depth=4 and RandomForest at
-min_samples_leaf=20 (both deliberately shallow — see v2 for why), so neither
-can spend many splits carving up a diffuse 768-dim continuous space the way
-they can exploit a handful of informative structured columns or sparse
-TF-IDF tokens. PCA compresses the embedding into N_PCA_COMPONENTS orthogonal
-directions that concentrate the variance, giving all three models (not just
-Logistic) a feature block they can actually use within their existing
-hyperparameters.
-
-LEAKAGE DISCIPLINE (the most important methodological point in this script):
-PCA is fit on the TRAINING portion of each walk-forward fold ONLY, then
-applied unchanged to that fold's test portion — exactly mirroring how v2
-refits TfidfVectorizer inside every fold. A PCA fit on the full dataset
-(train+test pooled) would let the principal directions of FUTURE loans'
-embeddings shape the features used to predict on the past-relative-to-them
-training data, which is precisely the kind of leakage the walk-forward
-design exists to prevent elsewhere in this pipeline. The same fold-local
-StandardScaler discipline v2 uses for its numeric blocks is applied here too
-(fit on train, applied to test) for [has_desc, pca_000..pca_0{K}] as one
-block, after PCA.
-
-has_desc as an explicit feature: ~54% of loan applications have no
-description at all, and their embedding is the exact zero vector (see
-finbert_cls_embeddings.py). Without has_desc, the model has to infer "wrote
-nothing" from "embedding happens to be near the origin" — which is not
-guaranteed to be a natural signal in PCA-compressed space. has_desc makes
-that a first-class binary feature instead of an inference.
+For each arm, each fold's raw pool (Structured: ~120+ columns; Structured+
+FinBERT: that plus 51 FinBERT dims) is ranked by mutual_info_classif against
+the target, and only the TOP_K_FEATURES=50 strongest are kept for modeling.
+Fixed K, chosen in advance (not data-driven per fold) — kept simple, per
+explicit request. 50 was chosen so genuine selection pressure exists on
+both arms: ~40% of the Structured pool survives, ~28% of the combined pool
+survives, so FinBERT's 51 dimensions must out-compete structured columns on
+their own merits to make the cut (see fb_selected_features_composition.csv
+/ fig3 for how many actually do, per fold).
+Leakage discipline: ranking is fit on the fold's TRAINING rows only, then
+the same K column indices are applied to that fold's test rows — exactly
+mirroring the existing PCA/scaler fold-local discipline. The MI ranking
+itself is estimated on a random subsample of up to MI_SAMPLE_CAP=30,000
+training rows (kNN-based MI estimation scales poorly past that); the actual
+model fit below still uses the FULL training set on the K selected columns
+— only the ranking step is subsampled, purely for runtime.
+Selection is computed ONCE per (fold, arm) and shared across all three
+models — i.e. LR/RF/XGBoost see the same top-K columns within a given
+fold/arm. Simpler than per-model selection and defensible: the question is
+"what are the strongest predictors," not "what does each model happen to
+lean on."
 
 -----------------------------------------------------------------------------
-3. REGULARIZATION / MODEL HYPERPARAMETERS
+3. REGULARIZATION TUNING: PER ARM, PER ALGORITHM
 -----------------------------------------------------------------------------
-All three models' hyperparameters are IDENTICAL to v2, deliberately. This
-holds model capacity fixed so any AUC difference is attributable to the
-added representation, not to re-tuning:
-  - Logistic  : L2, C=0.3 (fairly strong shrinkage — appropriate given the
-                FinBERT block adds up to N_PCA_COMPONENTS+1 correlated new
-                dimensions), solver="saga", class_weight="balanced".
-  - XGBoost   : 300 trees, max_depth=4 (shallow — limits how much any one
-                tree can overfit to individual PCA directions), learning
-                rate 0.05, subsample 0.8, scale_pos_weight for imbalance.
-  - RandomForest: 500 trees, min_samples_leaf=20 (bounds tree size/RAM),
-                class_weight="balanced".
-PCA itself is an additional, deliberate form of regularization on top of
-each model's native one: compressing 768 dims to N_PCA_COMPONENTS removes
-low-variance directions that are mostly noise relative to this sample size,
-before any model-specific penalty is even applied.
-RANDOM_STATE=242 throughout (models AND PCA's internal solver), matching the
-single shared seed convention used across this whole project.
+Per the explicit brief: NOT a broad grid search — a small set of sensible,
+hand-picked candidates per model, shaped by what each algorithm's
+regularization actually looks like, evaluated on TUNING_FOLD_NUMBERS=[4, 8,
+12] (3 of the 14 folds, spread early/mid/late so the chosen setting isn't
+overfit to one data volume), and picked by mean AUC on an INNER validation
+split — the last INNER_VAL_FRAC=20% of that fold's TRAINING rows,
+chronologically. The fold's actual TEST rows are never touched by tuning,
+for any of the 14 folds, at any point.
+  - Logistic     : single knob (C, inverse L2 strength) — a 1-D sweep
+                   around the old baseline (C=0.3): [0.05, 0.1, 0.3, 0.6, 1.0].
+  - RandomForest : single knob (min_samples_leaf, the primary
+                   regularization AND RAM-safety control — this machine has
+                   13.7GB RAM and unconstrained trees OOM) — a 1-D sweep
+                   never going below 10: [10, 20, 30, 50].
+  - XGBoost      : regularization here is multi-dimensional (depth,
+                   L1/L2, learning rate) and these interact, so instead of
+                   a cartesian grid it's 5 named, holistic candidates
+                   spanning "less regularized" to "more regularized"
+                   (see XGB_CANDIDATES below).
+Every candidate's per-tuning-fold AUC, mean AUC, and which one won is
+written to fb_tuning_results.csv — full documentation of every option
+tried, per the explicit request, not just the final choice.
+The winning candidate per (arm, model) is locked in and reused, unchanged,
+across all 14 folds of the main evaluation below — tuning happens once,
+not per fold, keeping this "a few sensible tries" rather than a nested
+walk-forward grid search (which would multiply runtime by ~14x for
+negligible expected benefit at this candidate-set size).
+All other hyperparameters (n_estimators, subsample, class_weight, etc.) are
+held at their original v2/2026-08-03 values — only the parameters that
+actually control regularization are tuned.
+LIMITATION: tuning folds 4/8/12 were chosen for spread, not for
+chronological separation from the EARLY main-loop folds' test windows.
+Folds 4-8's test periods fall inside, or just before, the inner-validation
+window used to tune on fold 8 (and similarly for other overlaps) — so the
+chosen hyperparameters were selected using data from at-or-after some early
+folds' own test periods. No fold's TEST rows are ever scored by a
+candidate (the literal "don't touch the test" instruction is honored), and
+since both arms go through the identical tuning procedure this does not
+bias the Structured-vs-Structured+FinBERT comparison (ΔAUC, DeLong) — but
+it means the ABSOLUTE AUC levels reported for the earliest folds are mildly
+optimistic relative to a strict walk-forward-only tuning scheme. Worth a
+caveat if these absolute numbers are quoted in the thesis.
 
 -----------------------------------------------------------------------------
-4. WALK-FORWARD PROTOCOL (identical parameters to v2)
+4. WALK-FORWARD PROTOCOL — MUST YIELD EXACTLY 14 FOLDS
 -----------------------------------------------------------------------------
-Expanding-window, chronological, no shuffling. MIN_TRAIN_MONTHS=8 months
-before the first test fold, STEP_MONTHS=3 (quarterly), each test window
-dynamically expanded until it contains at least MIN_TEST_DEFAULTS=100
-default events. All fold-local fitting (imputer, scaler, PCA) happens
-strictly inside the fold loop, fit on that fold's training rows only.
+Expanding-window, chronological, no shuffling — identical parameters to v2
+and to the 2026-08-03 run (MIN_TRAIN_MONTHS=8, STEP_MONTHS=3,
+MIN_TEST_DEFAULTS=100), which is verified (fb_pca_variance.csv from the
+2026-08-03 run) to already produce exactly 14 folds on this dataset. The
+script asserts len(folds)==14 immediately after building them and stops
+hard if that's ever not true, per the explicit "run on 14 folds" requirement.
 
 -----------------------------------------------------------------------------
-5. METRICS (identical definitions to v2)
+5. METRICS
 -----------------------------------------------------------------------------
-  - AUC, PR-AUC (average precision), Brier score, GINI = 2*AUC-1 — each with
-    a 500-resample percentile bootstrap 95% CI (BOOT_SEED=42).
-  - DeLong test (DeLong et al. 1988) per fold per model: "Structured" vs
-    "Structured+FinBERT" AUC, paired on the same test set — tests whether
-    the FinBERT block's AUC gain is distinguishable from noise, fold by
-    fold (mirrors v2's Structured vs Structured+Text DeLong table).
-  - Fairness: FNR gap / FPR gap / Brier gap across ZIP3 groups, at decision
-    thresholds {0.5, 0.6, 0.7}, with the same group-inclusion filters as v2
-    (MIN_GROUP_N=80 rows, MIN_GROUP_POS=10 positive events per group) — kept
-    because fairness across groups is the thesis's core theme, not an
-    afterthought specific to the text-vs-no-text comparison.
-  - Feature importance (last fold, Structured+FinBERT): per-model top-20
-    tables (LR: |standardized coefficient|; XGBoost: Gain; RandomForest:
-    mean decrease in impurity), a FinBERT-only top-20 (which PCA components/
-    has_desc matter most — not human-readable like TF-IDF tokens, but useful
-    as a diagnostic), and an aggregate "importance mass" table showing what
-    share of each model's total importance sits in the FinBERT block vs the
-    structured block — the single clearest answer to "how much did the deep
-    representation matter overall."
+  - AUC, PR-AUC, Brier, GINI per fold per arm per model, each with a
+    500-resample percentile bootstrap 95% CI (BOOT_SEED=42).
+  - DeLong test (DeLong et al. 1988), per fold per model: Structured vs
+    Structured+FinBERT AUC, paired on the same test set.
+  - Feature importance + importance mass (FinBERT share vs Structured
+    share), computed directly from the already-fitted last-fold
+    Structured+FinBERT models (captured during the main loop, not
+    refit separately — avoids the duplicate-fitting the 2026-08-03
+    version did for this section).
+  - NEW: selected-feature composition per fold — how many of the winning
+    top-50 are structured vs FinBERT (fb_selected_features_composition.csv,
+    fig3) — the most direct answer to "are FinBERT dimensions actually
+    among the strongest features, or mostly filtered out."
 
 -----------------------------------------------------------------------------
 6. WHAT THIS SCRIPT DELIBERATELY DOES NOT DO
 -----------------------------------------------------------------------------
+  - No fairness metrics of any kind (ZIP3 groups, FNR/FPR/Brier gaps,
+    thresholds) — out of scope for this run per explicit instruction.
   - Does not modify, import, or execute analysis/preliminary_results_v2.py.
-  - Does not combine FinBERT with TF-IDF (no "Structured+Text+FinBERT"
-    variant) — that combination is a deliberate next step, deferred until
-    the results here are reviewed.
-  - Writes nothing outside this FinBERT/ folder (results/, figures/ here).
+  - Does not combine FinBERT with TF-IDF.
+  - Writes nothing outside this FinBERT/ folder.
 
 -----------------------------------------------------------------------------
-7. OUTPUTS (written under FinBERT/)
+7. OUTPUTS (written under FinBERT/) — overwrites the 2026-08-03 run's files
+   with the same names; fairness-only files from that run (fb_fairness_*,
+   fb_group_coverage.csv, fb_zip_summary.csv) are NOT recreated and will be
+   stale leftovers until manually removed.
 -----------------------------------------------------------------------------
 results/
-  fb_predictive_folds.csv        — per-fold predictive metrics + bootstrap CIs
-  fb_fairness_folds.csv          — per-fold fairness metrics by threshold
-  fb_delong.csv                  — DeLong test per fold
-  fb_predictive_summary.csv      — predictive summary (mean +/- std)
-  fb_delta_summary.csv           — FinBERT vs Structured deltas
-  fb_pca_variance.csv            — explained variance captured by PCA, per fold
-  fb_fairness_summary_thr{05,06,07}.csv
-  fb_group_coverage.csv
-  fb_zip_summary.csv
-  fb_importance_mass.csv         — % importance in FinBERT block vs structured, per model
+  fb_predictive_folds.csv               — per-fold predictive metrics + CIs
+  fb_predictive_summary.csv             — predictive summary (mean +/- std)
+  fb_delta_summary.csv                  — FinBERT vs Structured deltas
+  fb_delong.csv                         — DeLong test per fold
+  fb_pca_variance.csv                   — PCA explained variance, per fold
+  fb_tuning_results.csv                 — NEW: every regularization candidate
+                                           tried, per tuning fold, + winner flag
+  fb_selected_features_composition.csv  — NEW: structured vs FinBERT count
+                                           in the selected top-K, per fold/arm
+  fb_importance_mass.csv                — % importance FinBERT vs structured
+                                           (last fold, selected features only)
 figures/
   fig1_auc_stability.png
   fig2_delong_delta_auc.png
-  fig3_fairness_tradeoff.png
-  fig4_threshold_sensitivity.png
+  fig3_feature_selection_composition.png  — NEW
 """
 
 import os
 import sys
 sys.stdout.reconfigure(encoding='utf-8')
+import json
 from pathlib import Path
 import numpy as np
 import pandas as pd
@@ -188,6 +186,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 from sklearn.impute import SimpleImputer
+from sklearn.feature_selection import mutual_info_classif
 from sklearn.metrics import roc_auc_score, average_precision_score, brier_score_loss
 import xgboost as xgb
 import warnings
@@ -199,83 +198,108 @@ warnings.filterwarnings("ignore")
 SCRIPT_DIR = Path(__file__).resolve().parent            # .../F-TM-CR/FinBERT
 BASE_DIR   = SCRIPT_DIR.parent                           # .../F-TM-CR  (data lives here; never written to)
 
-# Must match v2's PATH_CSV exactly — same dataset, so the "Structured"
-# baseline computed here is directly comparable to v2's.
-PATH_CSV      = BASE_DIR / "data" / "03_advanced_prep" / "lc_after_03_advanced_prep_basic+test_20260715_2119.csv"
-PATH_FINBERT  = BASE_DIR / "data" / "04_finbert" / "finbert_desc_embeddings.parquet"
+PATH_CSV     = BASE_DIR / "data" / "03_advanced_prep" / "lc_after_03_advanced_prep_basic+test_20260715_2119.csv"
+PATH_FINBERT = BASE_DIR / "data" / "04_finbert" / "finbert_desc_embeddings.parquet"
 
 TARGET_COL = "is_default"
 DATE_COL   = "issue_month_start"
-ZIP_COL    = "zip3"
 ID_COL     = "id"
 
-# Walk-Forward parameters (identical to v2)
+# Walk-Forward parameters (identical to v2 / 2026-08-03 run — must yield 14 folds)
 MIN_TRAIN_MONTHS  = 8
 MIN_TEST_DEFAULTS = 100
 STEP_MONTHS       = 3
 
-# Fairness filter (identical to v2)
-MIN_GROUP_N   = 80
-MIN_GROUP_POS = 10
-THRESHOLDS    = [0.5, 0.6, 0.7]
-
-# Bootstrap CI (identical to v2)
+# Bootstrap CI
 N_BOOTSTRAP = 500
 BOOT_SEED   = 42
 
 # FinBERT block
-N_PCA_COMPONENTS = 50   # 768 sem_* dims compressed to this many; see docstring section 2
+N_PCA_COMPONENTS = 50   # 768 sem_* dims compressed to this many
 
-# Fixed random state — shared across models AND PCA's internal solver
-RANDOM_STATE = 242
+# Feature selection (section 2)
+TOP_K_FEATURES = 50     # fixed, chosen in advance — see docstring section 2
+MI_SAMPLE_CAP  = 30000  # cap rows used to *rank* features (model fit still uses full train set)
 
-# Logistic Regression — identical spec to v2
-LR_PARAMS = dict(
+# Regularization tuning (section 3)
+TUNING_FOLD_NUMBERS = [4, 8, 12]   # 3 of 14 folds, spread early/mid/late
+INNER_VAL_FRAC      = 0.20         # last 20% of each tuning fold's TRAIN rows, chronologically
+
+RANDOM_STATE = 242   # shared across models, PCA, MI subsampling, and tuning
+
+# --- Fixed (non-tuned) parts of each model's spec ---
+LR_BASE_PARAMS = dict(
     penalty      = "l2",
-    C            = 0.3,
     solver       = "saga",
     max_iter     = 1000,
     class_weight = "balanced",
     random_state = RANDOM_STATE,
 )
-
-# Random Forest — identical spec to v2
-RF_PARAMS = dict(
+RF_BASE_PARAMS = dict(
     n_estimators     = 500,
-    min_samples_leaf = 20,
     class_weight     = "balanced",
     n_jobs           = -1,
     random_state     = RANDOM_STATE,
 )
 
-def make_xgb(y_tr):
-    # Identical spec to v2 (scale_pos_weight recomputed per fold, as in v2)
-    return xgb.XGBClassifier(
-        n_estimators     = 300,
-        max_depth        = 4,
-        learning_rate    = 0.05,
-        subsample        = 0.8,
-        scale_pos_weight = (y_tr == 0).sum() / (y_tr == 1).sum(),
-        eval_metric      = "auc",
-        use_label_encoder= False,
-        verbosity        = 0,
-        n_jobs           = -1,
-        random_state     = RANDOM_STATE,
-    )
+# --- Regularization candidates (section 3) ---
+LR_CANDIDATES = [
+    {"label": "C=0.05",          "C": 0.05},
+    {"label": "C=0.1",           "C": 0.1},
+    {"label": "C=0.3 (old baseline)", "C": 0.3},
+    {"label": "C=0.6",           "C": 0.6},
+    {"label": "C=1.0",           "C": 1.0},
+]
+RF_CANDIDATES = [
+    {"label": "min_leaf=10",              "min_samples_leaf": 10},
+    {"label": "min_leaf=20 (old baseline)", "min_samples_leaf": 20},
+    {"label": "min_leaf=30",              "min_samples_leaf": 30},
+    {"label": "min_leaf=50",              "min_samples_leaf": 50},
+]
+XGB_CANDIDATES = [
+    {"label": "baseline (depth4, lr.05, a0, L1)",        "max_depth": 4, "learning_rate": 0.05, "reg_alpha": 0.0, "reg_lambda": 1.0},
+    {"label": "shallow+L2 (depth3, lr.05, a0, L5)",       "max_depth": 3, "learning_rate": 0.05, "reg_alpha": 0.0, "reg_lambda": 5.0},
+    {"label": "shallow+L1L2 (depth3, lr.05, a.5, L5)",    "max_depth": 3, "learning_rate": 0.05, "reg_alpha": 0.5, "reg_lambda": 5.0},
+    {"label": "deeper light-reg (depth5, lr.05, a0, L1)", "max_depth": 5, "learning_rate": 0.05, "reg_alpha": 0.0, "reg_lambda": 1.0},
+    {"label": "strong reg (depth3, lr.03, a1, L10)",      "max_depth": 3, "learning_rate": 0.03, "reg_alpha": 1.0, "reg_lambda": 10.0},
+]
+CANDIDATES  = {"Logistic": LR_CANDIDATES, "XGBoost": XGB_CANDIDATES, "RandomForest": RF_CANDIDATES}
+MODEL_NAMES = ["Logistic", "XGBoost", "RandomForest"]
+ARMS        = ["Structured", "Structured+FinBERT"]
+
+
+def make_model(model_name, params, y_tr):
+    if model_name == "Logistic":
+        p = dict(LR_BASE_PARAMS); p["C"] = params["C"]
+        return LogisticRegression(**p)
+    elif model_name == "RandomForest":
+        p = dict(RF_BASE_PARAMS); p["min_samples_leaf"] = params["min_samples_leaf"]
+        return RandomForestClassifier(**p)
+    elif model_name == "XGBoost":
+        return xgb.XGBClassifier(
+            n_estimators     = 300,
+            max_depth        = params["max_depth"],
+            learning_rate    = params["learning_rate"],
+            reg_alpha        = params["reg_alpha"],
+            reg_lambda       = params["reg_lambda"],
+            subsample        = 0.8,
+            scale_pos_weight = (y_tr == 0).sum() / (y_tr == 1).sum(),
+            eval_metric      = "auc",
+            use_label_encoder= False,
+            verbosity        = 0,
+            n_jobs           = -1,
+            random_state     = RANDOM_STATE,
+        )
+    raise ValueError(model_name)
 
 # ============================================================
-# 1. LOAD STRUCTURED DATA  (CSV only — FinBERT merged in step 3)
+# 1. LOAD STRUCTURED DATA
 # ============================================================
 print("Loading structured data...")
 df = pd.read_csv(PATH_CSV, parse_dates=[DATE_COL], low_memory=False)
 df = df.sort_values(DATE_COL).reset_index(drop=True)
 df = df[df[TARGET_COL].isin([0, 1])].copy()
 print(f"  Rows after filtering: {len(df):,}  |  Default rate: {df[TARGET_COL].mean():.2%}")
-
-if ZIP_COL in df.columns:
-    df[ZIP_COL] = df[ZIP_COL].astype(object).astype(str).replace("nan", np.nan)
-else:
-    print(f"  WARNING: ZIP column '{ZIP_COL}' not found in CSV")
 
 # ============================================================
 # 1b. RESTORE ORDINAL RISK GRADES (identical fix to v2)
@@ -292,36 +316,34 @@ if "sub_grade" in df.columns:
 print("  Ordinal risk grades restored: grade_ord (1-7), sub_grade_ord (1-35)")
 
 # ============================================================
-# 2. STRUCTURED FEATURE LIST  (identical definition to v2's STRUCT_COLS_BASE)
-#    Computed BEFORE the FinBERT merge so has_desc/sem_* can never leak in.
+# 2. STRUCTURED FEATURE LIST (identical definition to v2's STRUCT_COLS_BASE)
 # ============================================================
-EXCLUDE_COLS = {TARGET_COL, DATE_COL, ZIP_COL,
+EXCLUDE_COLS = {TARGET_COL, DATE_COL,
                 "id", "issue_d", "issue_ym", "month_idx", "issue_month_start",
-                "zip_code", "emp_title", "title", "desc", "funded_ratio",
+                "zip_code", "zip3", "emp_title", "title", "desc", "funded_ratio",
                 "text_all_clean", "desc_clean", "title_clean", "emp_title_clean",
                 "grade", "sub_grade",
-                "last_fico_range_high", "last_fico_range_low"}  # temporal leakage — see v2 changelog #3
+                "last_fico_range_high", "last_fico_range_low"}  # temporal leakage — see v2 changelog
 STRUCT_COLS_BASE = [c for c in df.columns
                     if c not in EXCLUDE_COLS
                     and df[c].dtype in [np.float64, np.float32, np.int64, np.int32,
                                         np.int8, "Int64", "float32", "float64"]]
-print(f"  Structured features (Structured baseline, identical to v2): {len(STRUCT_COLS_BASE)}")
+print(f"  Structured features (raw pool, pre-selection): {len(STRUCT_COLS_BASE)}")
 
 # ============================================================
-# 3. MERGE FINBERT EMBEDDINGS  (by id — never row position)
+# 3. MERGE FINBERT EMBEDDINGS (by id — never row position)
 # ============================================================
 print("Loading FinBERT embeddings...")
 SEM_COLS = [f"sem_{i:03d}" for i in range(768)]
 df_fb = pd.read_parquet(PATH_FINBERT, columns=[ID_COL, "has_desc"] + SEM_COLS)
 for c in SEM_COLS:
-    df_fb[c] = df_fb[c].astype(np.float32)   # parquet stores float16 — upcast for numerical stability
+    df_fb[c] = df_fb[c].astype(np.float32)
 
 n_before = len(df)
 df = df.merge(df_fb, on=ID_COL, how="left", validate="one_to_one")
 assert len(df) == n_before, "Merge changed row count — id is not a clean 1:1 key"
 assert df["has_desc"].isna().sum() == 0, "Unmatched rows after FinBERT merge — check id coverage"
-print(f"  Merged embeddings for {len(df):,} rows "
-      f"({df['has_desc'].mean():.1%} have a non-empty description)")
+print(f"  Merged embeddings for {len(df):,} rows ({df['has_desc'].mean():.1%} have a non-empty description)")
 
 # ============================================================
 # 4. DELONG TEST
@@ -375,58 +397,7 @@ def bootstrap_ci(y_true, p, metric_fn, n=N_BOOTSTRAP, seed=BOOT_SEED, alpha=0.05
             float(np.percentile(boot_stats, 100 * (1 - alpha / 2))))
 
 # ============================================================
-# 6. FAIRNESS METRICS
-# ============================================================
-def fairness_gaps(y_true, p, groups, threshold=0.5, min_n=MIN_GROUP_N, min_pos=MIN_GROUP_POS):
-    y_true = np.asarray(y_true).astype(int)
-    p_arr  = np.asarray(p)
-    yhat   = (p_arr >= threshold).astype(int)
-    dfg = pd.DataFrame({"y": y_true, "yhat": yhat, "p": p_arr, "g": np.asarray(groups)}).reset_index(drop=True)
-
-    grp  = dfg.groupby("g").agg(n=("y","size"), pos=("y","sum"))
-    coverage = {
-        "n_candidate_groups":   int(grp.shape[0]),
-        "n_pass_n_threshold":   int((grp["n"] >= min_n).sum()),
-        "n_pass_pos_threshold": int((grp["pos"] >= min_pos).sum()),
-    }
-    keep = grp[(grp["n"] >= min_n) & (grp["pos"] >= min_pos)].index
-    coverage["n_included"] = int(len(keep))
-
-    dfg = dfg[dfg["g"].isin(keep)]
-    if dfg.empty:
-        return {"FNR_gap": np.nan, "FPR_gap": np.nan, "n_groups": 0, "coverage": coverage}
-
-    def rates(sub):
-        y, yh = sub["y"].values, sub["yhat"].values
-        tp = ((yh==1)&(y==1)).sum(); fn = ((yh==0)&(y==1)).sum()
-        fp = ((yh==1)&(y==0)).sum(); tn = ((yh==0)&(y==0)).sum()
-        fnr = fn/(fn+tp) if (fn+tp)>0 else np.nan
-        fpr = fp/(fp+tn) if (fp+tn)>0 else np.nan
-        return pd.Series({"FNR": fnr, "FPR": fpr})
-
-    per = dfg.groupby("g").apply(rates, include_groups=False).dropna()
-    if per.empty or len(per) < 2:
-        return {"FNR_gap": np.nan, "FPR_gap": np.nan, "n_groups": int(len(per)), "coverage": coverage}
-    return {
-        "FNR_gap":  float(per["FNR"].max() - per["FNR"].min()),
-        "FPR_gap":  float(per["FPR"].max() - per["FPR"].min()),
-        "n_groups": int(len(per)),
-        "coverage": coverage,
-    }
-
-def brier_gap(y_true, p, groups, min_n=MIN_GROUP_N, min_pos=MIN_GROUP_POS):
-    dfg = pd.DataFrame({"y": np.asarray(y_true).astype(int), "p": np.asarray(p), "g": np.asarray(groups)}).reset_index(drop=True)
-    dfg["sq"] = (dfg["p"] - dfg["y"])**2
-    grp  = dfg.groupby("g").agg(n=("y","size"), pos=("y","sum"))
-    keep = grp[(grp["n"] >= min_n) & (grp["pos"] >= min_pos)].index
-    dfg  = dfg[dfg["g"].isin(keep)]
-    if dfg.empty or dfg["g"].nunique() < 2:
-        return np.nan
-    per = dfg.groupby("g")["sq"].mean()
-    return float(per.max() - per.min())
-
-# ============================================================
-# 7. WALK-FORWARD FOLDS (identical logic to v2)
+# 6. WALK-FORWARD FOLDS (identical logic to v2)
 # ============================================================
 def build_folds(df, date_col, min_train_months, step_months, min_test_defaults):
     months      = df[date_col].dt.to_period("M")
@@ -454,7 +425,7 @@ def build_folds(df, date_col, min_train_months, step_months, min_test_defaults):
             "n_train": int(tr_mask.sum()),
             "n_test": int(te_mask.sum()),
             "n_test_defaults": int(df.loc[te_mask, TARGET_COL].sum()),
-            "tr_idx": df.index[tr_mask].tolist(),
+            "tr_idx": df.index[tr_mask].tolist(),   # chronologically ordered — df is globally date-sorted
             "te_idx": df.index[te_mask].tolist(),
         })
         fold_start_idx += step_months
@@ -462,66 +433,171 @@ def build_folds(df, date_col, min_train_months, step_months, min_test_defaults):
 
 print("\nBuilding Walk-Forward folds...")
 folds = build_folds(df, DATE_COL, MIN_TRAIN_MONTHS, STEP_MONTHS, MIN_TEST_DEFAULTS)
+assert len(folds) == 14, (
+    f"Expected exactly 14 walk-forward folds, got {len(folds)}. "
+    f"Check MIN_TRAIN_MONTHS/STEP_MONTHS/MIN_TEST_DEFAULTS or whether PATH_CSV changed."
+)
 print(f"  Total folds: {len(folds)}")
 for f in folds:
     print(f"  Fold {f['fold']}: train <= {f['train_cutoff']}  |  test {f['train_cutoff']} - {f['test_end']}  |  "
           f"n_train={f['n_train']:,}  n_test={f['n_test']:,}  defaults_in_test={f['n_test_defaults']}")
 
 # ============================================================
-# 8. MAIN LOOP
+# 7. FEATURE MATRIX + SELECTION (shared by tuning and main loop)
 # ============================================================
-pred_rows, fair_rows, coverage_rows, delong_rows, zip_rows, pca_rows = [], [], [], [], [], []
+def build_arm_matrix(df, tr_idx, te_idx, arm):
+    """Impute/scale the structured block; add the fold-local-PCA FinBERT block if arm requires it.
+    No selection yet — returns the FULL raw pool for this arm."""
+    df_tr, df_te = df.loc[tr_idx], df.loc[te_idx]
+    imputer = SimpleImputer(strategy="constant", fill_value=0)
+    X_tr_s = imputer.fit_transform(df_tr[STRUCT_COLS_BASE].values.astype(np.float32))
+    X_te_s = imputer.transform(df_te[STRUCT_COLS_BASE].values.astype(np.float32))
+    scaler_s = StandardScaler()
+    X_tr_s = scaler_s.fit_transform(X_tr_s)
+    X_te_s = scaler_s.transform(X_te_s)
+    names = list(STRUCT_COLS_BASE)
+    kinds = ["structured"] * len(names)
+
+    evr = None
+    if arm == "Structured+FinBERT":
+        pca = PCA(n_components=N_PCA_COMPONENTS, random_state=RANDOM_STATE)
+        pca_tr = pca.fit_transform(df_tr[SEM_COLS].values)
+        pca_te = pca.transform(df_te[SEM_COLS].values)
+        evr = float(pca.explained_variance_ratio_.sum())
+        fb_tr_raw = np.hstack([df_tr[["has_desc"]].values.astype(np.float32), pca_tr])
+        fb_te_raw = np.hstack([df_te[["has_desc"]].values.astype(np.float32), pca_te])
+        scaler_fb = StandardScaler()
+        fb_tr = scaler_fb.fit_transform(fb_tr_raw)
+        fb_te = scaler_fb.transform(fb_te_raw)
+        X_tr_pool = np.hstack([X_tr_s, fb_tr])
+        X_te_pool = np.hstack([X_te_s, fb_te])
+        names = names + ["fb:has_desc"] + [f"fb:pca_{i:03d}" for i in range(N_PCA_COMPONENTS)]
+        kinds = kinds + ["FinBERT"] * (1 + N_PCA_COMPONENTS)
+    else:
+        X_tr_pool, X_te_pool = X_tr_s, X_te_s
+
+    y_tr = df_tr[TARGET_COL].values.astype(int)
+    y_te = df_te[TARGET_COL].values.astype(int)
+    return X_tr_pool, X_te_pool, y_tr, y_te, names, kinds, evr
+
+
+def select_features(X_tr_pool, y_tr, names, kinds, k=TOP_K_FEATURES, sample_cap=MI_SAMPLE_CAP, seed=RANDOM_STATE):
+    """Rank the pool by mutual information (fit on TRAIN only, per docstring section 2) and keep the top-k."""
+    n = X_tr_pool.shape[0]
+    if n > sample_cap:
+        rng = np.random.default_rng(seed)
+        sub = rng.choice(n, size=sample_cap, replace=False)
+        X_mi, y_mi = X_tr_pool[sub], y_tr[sub]
+    else:
+        X_mi, y_mi = X_tr_pool, y_tr
+    k_eff = min(k, X_tr_pool.shape[1])
+    mi = mutual_info_classif(X_mi, y_mi, random_state=seed)
+    top_idx = np.sort(np.argsort(mi)[::-1][:k_eff])
+    sel_names = [names[i] for i in top_idx]
+    sel_kinds = [kinds[i] for i in top_idx]
+    return top_idx, sel_names, sel_kinds, mi[top_idx]
+
+# ============================================================
+# 8. REGULARIZATION TUNING (section 3)
+# ============================================================
+print("\n" + "="*70)
+print("REGULARIZATION TUNING (per arm, per model)")
+print("="*70)
+print(f"  Tuning folds: {TUNING_FOLD_NUMBERS}  |  Inner validation = last {INNER_VAL_FRAC:.0%} "
+      f"of each fold's TRAIN rows, chronologically. Test sets are never touched.\n")
+
+tuning_folds = [f for f in folds if f["fold"] in TUNING_FOLD_NUMBERS]
+assert len(tuning_folds) == len(TUNING_FOLD_NUMBERS), \
+    f"Expected tuning folds {TUNING_FOLD_NUMBERS} not all found among the {len(folds)} folds."
+
+tuning_rows = []
+BEST_PARAMS = {arm: {} for arm in ARMS}
+
+for arm in ARMS:
+    print(f"\n-- Arm: {arm} --")
+    # Selection + inner split computed once per tuning fold, shared across all model candidates
+    fold_data = {}
+    for tf in tuning_folds:
+        n_val = max(1, int(round(len(tf["tr_idx"]) * INNER_VAL_FRAC)))
+        inner_tr, inner_val = tf["tr_idx"][:-n_val], tf["tr_idx"][-n_val:]
+        X_tr_pool, X_val_pool, y_tr_i, y_val_i, names, kinds, _evr = build_arm_matrix(df, inner_tr, inner_val, arm)
+        idx, sel_names, sel_kinds, _ = select_features(X_tr_pool, y_tr_i, names, kinds)
+        fold_data[tf["fold"]] = (X_tr_pool[:, idx], X_val_pool[:, idx], y_tr_i, y_val_i)
+
+    for model_name in MODEL_NAMES:
+        candidates = CANDIDATES[model_name]
+        cand_results = []
+        for cand in candidates:
+            aucs = []
+            for tf in tuning_folds:
+                X_tr_sel, X_val_sel, y_tr_i, y_val_i = fold_data[tf["fold"]]
+                model = make_model(model_name, cand, y_tr_i)
+                model.fit(X_tr_sel, y_tr_i)
+                p = model.predict_proba(X_val_sel)[:, 1]
+                aucs.append(roc_auc_score(y_val_i, p))
+            cand_results.append((cand, aucs, float(np.mean(aucs))))
+
+        best_cand, best_aucs, best_mean = max(cand_results, key=lambda t: t[2])
+        BEST_PARAMS[arm][model_name] = best_cand
+
+        for cand, aucs, mean_auc in cand_results:
+            is_winner = (cand["label"] == best_cand["label"])
+            for tf, auc in zip(tuning_folds, aucs):
+                tuning_rows.append({
+                    "Arm": arm, "Model": model_name, "Candidate": cand["label"],
+                    "params": json.dumps({k: v for k, v in cand.items() if k != "label"}),
+                    "tuning_fold": tf["fold"], "inner_val_AUC": round(auc, 4),
+                    "mean_AUC_over_tuning_folds": round(mean_auc, 4), "is_winner": is_winner,
+                })
+
+        print(f"  [{model_name}] winner: {best_cand['label']}  (mean inner-val AUC = {best_mean:.4f})")
+        for cand, aucs, mean_auc in sorted(cand_results, key=lambda t: -t[2]):
+            flag = " <-- chosen" if cand["label"] == best_cand["label"] else ""
+            print(f"      {cand['label']:<40s} mean AUC={mean_auc:.4f}{flag}")
+
+df_tuning = pd.DataFrame(tuning_rows)
+
+# ============================================================
+# 9. MAIN WALK-FORWARD EVALUATION — all 14 folds, tuned + feature-selected
+# ============================================================
+print("\n" + "="*70)
+print("MAIN WALK-FORWARD EVALUATION (14 folds)")
+print("="*70)
+
+pred_rows, delong_rows, pca_rows, composition_rows = [], [], [], []
+last_fold_num = folds[-1]["fold"]
+last_fold_fitted = {}   # model_name -> {"model":..., "names":..., "kinds":...} for Structured+FinBERT, last fold
 
 for f in folds:
     tr, te = f["tr_idx"], f["te_idx"]
-    df_tr, df_te = df.loc[tr], df.loc[te]
-    y_tr = df_tr[TARGET_COL].values.astype(int)
-    y_te = df_te[TARGET_COL].values.astype(int)
-    zip_te = df_te[ZIP_COL].values if ZIP_COL in df.columns else None
+    fold_preds = {m: {} for m in MODEL_NAMES}
 
-    # --- Structured block: shared, identical, by both variants ---
-    imputer_struct = SimpleImputer(strategy="constant", fill_value=0)
-    X_tr_s = imputer_struct.fit_transform(df_tr[STRUCT_COLS_BASE].values.astype(np.float32))
-    X_te_s = imputer_struct.transform(df_te[STRUCT_COLS_BASE].values.astype(np.float32))
-    scaler_struct = StandardScaler()
-    X_tr_s = scaler_struct.fit_transform(X_tr_s)
-    X_te_s = scaler_struct.transform(X_te_s)
+    for arm in ARMS:
+        X_tr_pool, X_te_pool, y_tr, y_te, names, kinds, evr = build_arm_matrix(df, tr, te, arm)
+        idx, sel_names, sel_kinds, _ = select_features(X_tr_pool, y_tr, names, kinds)
+        X_tr_sel, X_te_sel = X_tr_pool[:, idx], X_te_pool[:, idx]
 
-    # --- FinBERT block: PCA fit on TRAIN fold only, then has_desc + PCA scaled together ---
-    pca = PCA(n_components=N_PCA_COMPONENTS, random_state=RANDOM_STATE)
-    pca_tr = pca.fit_transform(df_tr[SEM_COLS].values)
-    pca_te = pca.transform(df_te[SEM_COLS].values)
-    evr = float(pca.explained_variance_ratio_.sum())
-    pca_rows.append({"fold": f["fold"], "n_components": N_PCA_COMPONENTS, "explained_variance_ratio": round(evr, 4)})
+        n_fb_selected = sum(1 for k_ in sel_kinds if k_ == "FinBERT")
+        composition_rows.append({
+            "fold": f["fold"], "Arm": arm,
+            "n_structured_selected": len(sel_kinds) - n_fb_selected,
+            "n_finbert_selected": n_fb_selected,
+        })
 
-    fb_tr_raw = np.hstack([df_tr[["has_desc"]].values.astype(np.float32), pca_tr])
-    fb_te_raw = np.hstack([df_te[["has_desc"]].values.astype(np.float32), pca_te])
-    scaler_fb = StandardScaler()
-    fb_tr = scaler_fb.fit_transform(fb_tr_raw)
-    fb_te = scaler_fb.transform(fb_te_raw)
+        if arm == "Structured+FinBERT":
+            pca_rows.append({"fold": f["fold"], "n_components": N_PCA_COMPONENTS,
+                              "explained_variance_ratio": round(evr, 4)})
 
-    X_tr_full = np.hstack([X_tr_s, fb_tr])
-    X_te_full = np.hstack([X_te_s, fb_te])
+        for model_name in MODEL_NAMES:
+            params = BEST_PARAMS[arm][model_name]
+            model = make_model(model_name, params, y_tr)
+            model.fit(X_tr_sel, y_tr)
+            p = model.predict_proba(X_te_sel)[:, 1]
+            fold_preds[model_name][arm] = p
 
-    models = {
-        "Logistic":     LogisticRegression(**LR_PARAMS),
-        "XGBoost":      make_xgb(y_tr),
-        "RandomForest": RandomForestClassifier(**RF_PARAMS),
-    }
+            if f["fold"] == last_fold_num and arm == "Structured+FinBERT":
+                last_fold_fitted[model_name] = {"model": model, "names": sel_names, "kinds": sel_kinds}
 
-    fold_preds = {}
-    for mname, model in models.items():
-        m_s = model.__class__(**model.get_params()) if mname != "XGBoost" else make_xgb(y_tr)
-        m_s.fit(X_tr_s, y_tr)
-        p_s = m_s.predict_proba(X_te_s)[:, 1]
-
-        m_f = model.__class__(**model.get_params()) if mname != "XGBoost" else make_xgb(y_tr)
-        m_f.fit(X_tr_full, y_tr)
-        p_f = m_f.predict_proba(X_te_full)[:, 1]
-
-        fold_preds[mname] = {"struct": p_s, "full": p_f}
-
-        for variant, p in [("Structured", p_s), ("Structured+FinBERT", p_f)]:
             auc   = roc_auc_score(y_te, p)
             prauc = average_precision_score(y_te, p)
             brier = brier_score_loss(y_te, p)
@@ -532,7 +608,7 @@ for f in folds:
             pred_rows.append({
                 "fold": f["fold"], "train_cutoff": f["train_cutoff"], "test_end": f["test_end"],
                 "n_train": f["n_train"], "n_test": f["n_test"], "n_defaults": f["n_test_defaults"],
-                "Model": mname, "Variant": variant,
+                "Model": model_name, "Variant": arm, "n_features_selected": len(sel_names),
                 "AUC": round(auc,4), "AUC_CI_lo": round(auc_lo,4) if not np.isnan(auc_lo) else np.nan,
                 "AUC_CI_hi": round(auc_hi,4) if not np.isnan(auc_hi) else np.nan,
                 "PR_AUC": round(prauc,4), "PR_AUC_CI_lo": round(prauc_lo,4) if not np.isnan(prauc_lo) else np.nan,
@@ -542,48 +618,12 @@ for f in folds:
                 "GINI": round(2*auc-1, 4),
             })
 
-            for thr in THRESHOLDS:
-                fair_row = {"fold": f["fold"], "train_cutoff": f["train_cutoff"], "test_end": f["test_end"],
-                            "Model": mname, "Variant": variant, "threshold": thr}
-                if zip_te is not None:
-                    fg = fairness_gaps(y_te, p, zip_te, threshold=thr)
-                    bg = brier_gap(y_te, p, zip_te)
-                    fair_row.update({
-                        "FNR_gap": round(fg["FNR_gap"],4) if not np.isnan(fg["FNR_gap"]) else np.nan,
-                        "FPR_gap": round(fg["FPR_gap"],4) if not np.isnan(fg["FPR_gap"]) else np.nan,
-                        "Brier_gap": round(bg,4) if not np.isnan(bg) else np.nan,
-                        "n_groups": fg["n_groups"],
-                    })
-                    cov = fg["coverage"]
-                    coverage_rows.append({"fold": f["fold"], "Model": mname, "Variant": variant, "threshold": thr, **cov})
-                fair_rows.append(fair_row)
-
-                if zip_te is not None and thr == 0.5:
-                    p_arr = np.asarray(p); y_arr = np.asarray(y_te).astype(int); g_arr = np.asarray(zip_te)
-                    dfz = pd.DataFrame({"y": y_arr, "p": p_arr, "yhat": (p_arr>=thr).astype(int), "g": g_arr}).reset_index(drop=True)
-                    for grp_name, grp_df in dfz.groupby("g"):
-                        n = len(grp_df); pos = int(grp_df["y"].sum())
-                        if n < MIN_GROUP_N or pos < MIN_GROUP_POS:
-                            continue
-                        y_g, yh_g, p_g = grp_df["y"].values, grp_df["yhat"].values, grp_df["p"].values
-                        tp=((yh_g==1)&(y_g==1)).sum(); fn=((yh_g==0)&(y_g==1)).sum()
-                        fp=((yh_g==1)&(y_g==0)).sum(); tn=((yh_g==0)&(y_g==0)).sum()
-                        try:
-                            auc_g = roc_auc_score(y_g, p_g) if 0 < pos < n else np.nan
-                        except Exception:
-                            auc_g = np.nan
-                        zip_rows.append({
-                            "zip3": grp_name, "fold": f["fold"], "Model": mname, "Variant": variant,
-                            "n": n, "n_default": pos, "default_rate": round(pos/n,4),
-                            "AUC": round(auc_g,4) if not np.isnan(auc_g) else np.nan,
-                            "FNR": round(fn/(fn+tp),4) if (fn+tp)>0 else np.nan,
-                            "FPR": round(fp/(fp+tn),4) if (fp+tn)>0 else np.nan,
-                            "Brier": round(float(np.mean((p_g-y_g)**2)),4),
-                        })
-
-        auc_s, auc_f, z, pval, ci_lo, ci_hi = delong_auc_test(y_te, fold_preds[mname]["struct"], fold_preds[mname]["full"])
+    y_te_full = df.loc[te, TARGET_COL].values.astype(int)
+    for model_name in MODEL_NAMES:
+        p_s, p_f = fold_preds[model_name]["Structured"], fold_preds[model_name]["Structured+FinBERT"]
+        auc_s, auc_f, z, pval, ci_lo, ci_hi = delong_auc_test(y_te_full, p_s, p_f)
         delong_rows.append({
-            "fold": f["fold"], "Model": mname,
+            "fold": f["fold"], "Model": model_name,
             "AUC_Structured": round(auc_s,4), "AUC_Structured+FinBERT": round(auc_f,4),
             "Delta_AUC": round(auc_f-auc_s,4),
             "Z_stat": round(z,3) if not np.isnan(z) else np.nan,
@@ -592,23 +632,20 @@ for f in folds:
             "CI_95_hi": round(ci_hi,4) if not np.isnan(ci_hi) else np.nan,
         })
 
-    print(f"  Fold {f['fold']} done. (PCA explained variance: {evr:.1%})")
+    print(f"  Fold {f['fold']} done.")
 
 # ============================================================
-# 9. AGGREGATE RESULTS
+# 10. AGGREGATE RESULTS
 # ============================================================
-df_pred     = pd.DataFrame(pred_rows)
-df_fair     = pd.DataFrame(fair_rows)
-df_coverage = pd.DataFrame(coverage_rows) if coverage_rows else pd.DataFrame()
-df_delong   = pd.DataFrame(delong_rows)
-df_pca      = pd.DataFrame(pca_rows)
+df_pred        = pd.DataFrame(pred_rows)
+df_delong      = pd.DataFrame(delong_rows)
+df_pca         = pd.DataFrame(pca_rows)
+df_composition = pd.DataFrame(composition_rows)
 
 PRED_METRICS = ["AUC", "PR_AUC", "Brier", "GINI"]
-FAIR_METRICS = [c for c in ["FNR_gap", "FPR_gap", "Brier_gap"] if c in df_fair.columns]
-
 pred_summary = df_pred.groupby(["Model","Variant"])[PRED_METRICS].agg(["mean","std"]).round(4)
 print("\n" + "="*70)
-print("A. PREDICTIVE PERFORMANCE SUMMARY (mean +/- std across folds)")
+print("A. PREDICTIVE PERFORMANCE SUMMARY (mean +/- std across 14 folds)")
 print("="*70)
 print(pred_summary.to_string())
 
@@ -628,7 +665,7 @@ delta_metric_cols = [f"Δ_{c}" for c in PRED_METRICS]
 df_delta_summary = df_delta.groupby("Model")[delta_metric_cols].agg(["mean","std"]).round(4)
 
 print("\n" + "="*70)
-print("B. DELTA: Structured+FinBERT - Structured  (mean +/- std across folds)")
+print("B. DELTA: Structured+FinBERT - Structured (mean +/- std across 14 folds)")
 print("="*70)
 print(df_delta_summary.to_string())
 
@@ -647,92 +684,41 @@ delong_summary = df_delong.groupby("Model")[["Delta_AUC","Z_stat","p_value"]].me
 print("\n  DeLong — mean across folds:")
 print(delong_summary.to_string())
 
-if FAIR_METRICS:
-    print("\n" + "="*70)
-    print("D. FAIRNESS SUMMARY BY THRESHOLD (mean +/- std across folds)")
-    print("="*70)
-    for thr in THRESHOLDS:
-        sub = df_fair[df_fair["threshold"]==thr]
-        if sub.empty: continue
-        summary = sub.groupby(["Model","Variant"])[FAIR_METRICS].agg(["mean","std"]).round(4)
-        print(f"\n  Threshold = {thr}")
-        print(summary.to_string())
-
-    print("\n" + "="*70)
-    print("E. FAIRNESS DIRECTION: Adding FinBERT vs Structured-only")
-    print("   (for gap metrics: negative delta = improved; positive = worsened)")
-    print("="*70)
-    for thr in THRESHOLDS:
-        print(f"\n  Threshold = {thr}")
-        for m in df_fair["Model"].unique():
-            for c in FAIR_METRICS:
-                base_vals = df_fair[(df_fair["Model"]==m)&(df_fair["Variant"]=="Structured")&(df_fair["threshold"]==thr)][c].dropna()
-                full_vals = df_fair[(df_fair["Model"]==m)&(df_fair["Variant"]=="Structured+FinBERT")&(df_fair["threshold"]==thr)][c].dropna()
-                if base_vals.empty or full_vals.empty: continue
-                delta = full_vals.mean() - base_vals.mean()
-                direction = "improved" if delta<-1e-5 else ("worsened" if delta>1e-5 else "no change")
-                print(f"    [{m}] {c}: mean delta={delta:+.4f}  -> {direction}")
-
-if not df_coverage.empty:
-    cov_summary = (df_coverage.groupby(["Model","Variant","threshold"])
-                   .agg(n_candidate_groups=("n_candidate_groups","mean"),
-                        n_pass_n_threshold=("n_pass_n_threshold","mean"),
-                        n_pass_pos_threshold=("n_pass_pos_threshold","mean"),
-                        n_included=("n_included","mean")).round(1).reset_index())
-    print("\n" + "="*70)
-    print("F. GROUP COVERAGE SUMMARY (mean across folds)")
-    print("="*70)
-    print(cov_summary.to_string(index=False))
-
-if zip_rows:
-    df_zip = pd.DataFrame(zip_rows)
-    df_zip_summary = (df_zip.groupby(["zip3","Model","Variant"])
-                      .agg(n_folds=("fold","count"), n_total=("n","sum"), n_default=("n_default","sum"),
-                           AUC_mean=("AUC","mean"), FNR_mean=("FNR","mean"), FPR_mean=("FPR","mean"),
-                           Brier_mean=("Brier","mean")).reset_index().round(4))
-    df_zip_summary["default_rate"] = (df_zip_summary["n_default"]/df_zip_summary["n_total"]).round(4)
-    print("\n" + "="*70)
-    print("G. ZIP3 SUMMARY (mean across folds, threshold=0.5, top 20 by n_total)")
-    print("="*70)
-    print(df_zip_summary.sort_values("n_total", ascending=False).head(20).to_string(index=False))
-else:
-    df_zip_summary = pd.DataFrame()
+print("\n" + "="*70)
+print("D. SELECTED-FEATURE COMPOSITION (structured vs FinBERT, per fold)")
+print("="*70)
+print(df_composition.pivot(index="fold", columns="Arm",
+                            values=["n_structured_selected","n_finbert_selected"]).to_string())
 
 print("\n" + "="*70)
-print("H. PCA EXPLAINED VARIANCE PER FOLD")
+print("E. REGULARIZATION TUNING — chosen hyperparameters")
+print("="*70)
+for arm in ARMS:
+    for model_name in MODEL_NAMES:
+        print(f"  [{arm}] {model_name}: {BEST_PARAMS[arm][model_name]['label']}")
+
+print("\n" + "="*70)
+print("F. PCA EXPLAINED VARIANCE PER FOLD")
 print("="*70)
 print(df_pca.to_string(index=False))
 
 # ============================================================
-# 10. SAVE
+# 11. SAVE
 # ============================================================
 out_dir = SCRIPT_DIR / "results"
 os.makedirs(out_dir, exist_ok=True)
 
 df_pred.to_csv(out_dir / "fb_predictive_folds.csv", index=False)
-df_fair.to_csv(out_dir / "fb_fairness_folds.csv", index=False)
 df_delong.to_csv(out_dir / "fb_delong.csv", index=False)
 pred_summary.to_csv(out_dir / "fb_predictive_summary.csv")
 df_delta_summary.to_csv(out_dir / "fb_delta_summary.csv")
 df_pca.to_csv(out_dir / "fb_pca_variance.csv", index=False)
-
-if FAIR_METRICS:
-    for thr in THRESHOLDS:
-        sub = df_fair[df_fair["threshold"]==thr]
-        if sub.empty: continue
-        out_thr = sub.groupby(["Model","Variant"])[FAIR_METRICS].agg(["mean","std"]).round(4)
-        thr_tag = str(thr).replace(".","")
-        out_thr.to_csv(out_dir / f"fb_fairness_summary_thr{thr_tag}.csv")
-
-if not df_coverage.empty:
-    cov_summary.to_csv(out_dir / "fb_group_coverage.csv", index=False)
-if not df_zip_summary.empty:
-    df_zip_summary.to_csv(out_dir / "fb_zip_summary.csv", index=False)
-
+df_tuning.to_csv(out_dir / "fb_tuning_results.csv", index=False)
+df_composition.to_csv(out_dir / "fb_selected_features_composition.csv", index=False)
 print(f"\nSaved results to: {out_dir}")
 
 # ============================================================
-# 11. FIGURES
+# 12. FIGURES
 # ============================================================
 import matplotlib
 matplotlib.use("Agg")
@@ -745,16 +731,7 @@ os.makedirs(figures_dir, exist_ok=True)
 sns.set_theme(style="whitegrid", font_scale=1.15)
 plt.rcParams.update({"figure.dpi": 150})
 
-MODEL_NAMES = ["Logistic", "XGBoost", "RandomForest"]
-_CLR   = {"Logistic": "#2166ac", "XGBoost": "#d6604d", "RandomForest": "#1a9850"}
-_SHORT = {"Logistic": "LR", "XGBoost": "XGB", "RandomForest": "RF"}
-_COMBO_COLORS = ["#2166ac", "#74add1", "#d6604d", "#f4a582", "#1a9850", "#a6d96a"]
-_COMBO_LABELS = ["LR – Structured", "LR – Structured+FinBERT",
-                  "XGB – Structured", "XGB – Structured+FinBERT",
-                  "RF – Structured", "RF – Structured+FinBERT"]
-_COMBOS = [("Logistic","Structured"), ("Logistic","Structured+FinBERT"),
-           ("XGBoost","Structured"), ("XGBoost","Structured+FinBERT"),
-           ("RandomForest","Structured"), ("RandomForest","Structured+FinBERT")]
+_CLR = {"Logistic": "#2166ac", "XGBoost": "#d6604d", "RandomForest": "#1a9850"}
 
 print("\nGenerating figures...")
 
@@ -772,7 +749,8 @@ for ax, model in zip(axes, MODEL_NAMES):
     if ax is axes[0]: ax.set_ylabel("AUC")
     ax.legend(title="Variant", fontsize=9)
     ax.xaxis.set_major_locator(plt.MaxNLocator(integer=True))
-fig.suptitle("Walk-Forward AUC Stability Across Folds\n(shaded band = 95% bootstrap CI)", fontsize=13, fontweight="bold")
+fig.suptitle("Walk-Forward AUC Stability Across Folds — Tuned + Feature-Selected\n(shaded band = 95% bootstrap CI)",
+             fontsize=13, fontweight="bold")
 fig.tight_layout()
 fig.savefig(figures_dir / "fig1_auc_stability.png", dpi=300, bbox_inches="tight")
 plt.close(fig)
@@ -805,131 +783,70 @@ fig.savefig(figures_dir / "fig2_delong_delta_auc.png", dpi=300, bbox_inches="tig
 plt.close(fig)
 print("  fig2_delong_delta_auc.png")
 
-fair_05 = df_fair[df_fair["threshold"]==0.5].copy()
-scatter_rows = []
-for model, variant in _COMBOS:
-    p_sub = df_pred[(df_pred["Model"]==model)&(df_pred["Variant"]==variant)]
-    f_sub = fair_05[(fair_05["Model"]==model)&(fair_05["Variant"]==variant)]
-    if p_sub.empty or f_sub.empty: continue
-    scatter_rows.append({"Model": model, "Variant": variant,
-                          "AUC_mean": p_sub["AUC"].mean(), "AUC_std": p_sub["AUC"].std(),
-                          "FNR_mean": f_sub["FNR_gap"].mean(), "FNR_std": f_sub["FNR_gap"].std()})
-df_sc = pd.DataFrame(scatter_rows)
-fig, ax = plt.subplots(figsize=(8,6))
-for color, (_, row) in zip(_COMBO_COLORS, df_sc.iterrows()):
-    marker = "o" if row["Variant"]=="Structured" else "s"
-    ax.errorbar(row["AUC_mean"], row["FNR_mean"], xerr=row["AUC_std"], yerr=row["FNR_std"],
-                fmt=marker, color=color, markersize=11, capsize=2, elinewidth=0.8, ecolor="#aaaaaa",
-                linewidth=1.4, label=f"{row['Model']} – {row['Variant']}")
-    short = _SHORT[row["Model"]] + ("-S" if row["Variant"]=="Structured" else "-S+FB")
-    ax.annotate(short, (row["AUC_mean"], row["FNR_mean"]), textcoords="offset points", xytext=(7,4), fontsize=9)
-ax.set_xlabel("Mean AUC (+/-1 SD across folds)", fontsize=11)
-ax.set_ylabel("Mean FNR Gap (+/-1 SD across folds)", fontsize=11)
-ax.set_title("Predictive Accuracy vs. Fairness Trade-off\n(threshold = 0.5; lower FNR Gap = more equitable)", fontsize=12, fontweight="bold")
-ax.legend(fontsize=9)
+fig, ax = plt.subplots(figsize=(10,5))
+comp_fb = df_composition[df_composition["Arm"]=="Structured+FinBERT"].sort_values("fold")
+ax.bar(comp_fb["fold"], comp_fb["n_structured_selected"], label="Structured", color="#4393c3")
+ax.bar(comp_fb["fold"], comp_fb["n_finbert_selected"], bottom=comp_fb["n_structured_selected"],
+       label="FinBERT", color="#d6604d")
+ax.set_xlabel("Fold (chronological)")
+ax.set_ylabel(f"# features selected (of top {TOP_K_FEATURES})")
+ax.set_title(f"Composition of the Top-{TOP_K_FEATURES} Selected Features per Fold\n"
+             "(Structured+FinBERT arm — how many FinBERT dimensions make the cut)",
+             fontsize=12, fontweight="bold")
+ax.xaxis.set_major_locator(plt.MaxNLocator(integer=True))
+ax.legend()
 fig.tight_layout()
-fig.savefig(figures_dir / "fig3_fairness_tradeoff.png", dpi=300, bbox_inches="tight")
+fig.savefig(figures_dir / "fig3_feature_selection_composition.png", dpi=300, bbox_inches="tight")
 plt.close(fig)
-print("  fig3_fairness_tradeoff.png")
-
-fair_agg = (df_fair.groupby(["Model","Variant","threshold"])[["FNR_gap","FPR_gap","Brier_gap"]]
-            .agg(FNR_mean=("FNR_gap","mean"), FNR_std=("FNR_gap","std"),
-                 FPR_mean=("FPR_gap","mean"), FPR_std=("FPR_gap","std"),
-                 Brier_mean=("Brier_gap","mean"), Brier_std=("Brier_gap","std")).reset_index())
-thresholds_ = sorted(fair_agg["threshold"].unique())
-x = np.arange(len(thresholds_))
-bar_width = 0.8/len(_COMBOS)
-fig, axes = plt.subplots(1, 3, figsize=(18,5), sharey=False)
-for ax, (metric_mean, metric_std, ylabel, title) in zip(
-    axes, [("FNR_mean","FNR_std","FNR Gap","False Negative Rate Gap"),
-           ("FPR_mean","FPR_std","FPR Gap","False Positive Rate Gap"),
-           ("Brier_mean","Brier_std","Brier Gap","Brier Score Gap")]):
-    for i, ((model, variant), color, label) in enumerate(zip(_COMBOS, _COMBO_COLORS, _COMBO_LABELS)):
-        sub = fair_agg[(fair_agg["Model"]==model)&(fair_agg["Variant"]==variant)].sort_values("threshold")
-        offset = (i-(len(_COMBOS)-1)/2)*bar_width
-        ax.bar(x+offset, sub[metric_mean], bar_width, yerr=sub[metric_std],
-               error_kw={"capsize":2,"elinewidth":0.8,"ecolor":"#aaaaaa"}, color=color, alpha=0.85, label=label)
-    ax.set_xticks(x); ax.set_xticklabels([str(t) for t in thresholds_])
-    ax.set_xlabel("Decision Threshold", fontsize=11); ax.set_ylabel(ylabel, fontsize=11)
-    ax.set_title(title, fontsize=12, fontweight="bold"); ax.legend(fontsize=8)
-fig.suptitle("Fairness Gaps by Decision Threshold (mean +/- SD across folds)", fontsize=13, fontweight="bold")
-fig.tight_layout()
-fig.savefig(figures_dir / "fig4_threshold_sensitivity.png", dpi=300, bbox_inches="tight")
-plt.close(fig)
-print("  fig4_threshold_sensitivity.png")
+print("  fig3_feature_selection_composition.png")
 print(f"\nAll figures saved to: {figures_dir}")
 
 # ============================================================
-# 12. FEATURE IMPORTANCE — LAST FOLD, STRUCTURED+FINBERT
+# 13. FEATURE IMPORTANCE — LAST FOLD, STRUCTURED+FINBERT
+#     (reuses the models already fit in the main loop — no refitting)
 # ============================================================
 print("\n" + "="*70)
-print("FEATURE IMPORTANCE — Last Fold, Structured+FinBERT")
+print(f"FEATURE IMPORTANCE — Fold {last_fold_num}, Structured+FinBERT (top-{TOP_K_FEATURES} selected features)")
 print("="*70)
 
-last_f = folds[-1]
-_tr, _te = last_f["tr_idx"], last_f["te_idx"]
-_df_tr, _df_te = df.loc[_tr], df.loc[_te]
-_y_tr = _df_tr[TARGET_COL].values.astype(int)
-
-_imputer = SimpleImputer(strategy="constant", fill_value=0)
-_X_tr_s = _imputer.fit_transform(_df_tr[STRUCT_COLS_BASE].values.astype(np.float32))
-_scaler = StandardScaler()
-_X_tr_s = _scaler.fit_transform(_X_tr_s)
-
-_pca = PCA(n_components=N_PCA_COMPONENTS, random_state=RANDOM_STATE)
-_pca_tr = _pca.fit_transform(_df_tr[SEM_COLS].values)
-_fb_tr_raw = np.hstack([_df_tr[["has_desc"]].values.astype(np.float32), _pca_tr])
-_scaler_fb = StandardScaler()
-_fb_tr = _scaler_fb.fit_transform(_fb_tr_raw)
-
-_X_tr_full = np.hstack([_X_tr_s, _fb_tr])
-
-_all_names = STRUCT_COLS_BASE + ["fb:has_desc"] + [f"fb:pca_{i:03d}" for i in range(N_PCA_COMPONENTS)]
-_all_kinds = ["structured"]*len(STRUCT_COLS_BASE) + ["FinBERT"]*(1+N_PCA_COMPONENTS)
-
-_lr = LogisticRegression(**LR_PARAMS); _lr.fit(_X_tr_full, _y_tr)
-_xgbm = make_xgb(_y_tr); _xgbm.fit(_X_tr_full, _y_tr)
-_rf = RandomForestClassifier(**RF_PARAMS); _rf.fit(_X_tr_full, _y_tr)
-
-_lr_imp = np.abs(_lr.coef_[0])
-_df_lr_imp = (pd.DataFrame({"Feature": _all_names, "Importance": _lr_imp, "Kind": _all_kinds})
-              .sort_values("Importance", ascending=False).reset_index(drop=True))
-_df_lr_imp.index += 1
-
-_xgb_gain = _xgbm.get_booster().get_score(importance_type="gain")
-_df_xgb_imp = pd.DataFrame([
-    {"Feature": _all_names[int(k.replace("f",""))], "Gain": round(v,2), "Kind": _all_kinds[int(k.replace("f",""))]}
-    for k, v in _xgb_gain.items()
-]).sort_values("Gain", ascending=False).reset_index(drop=True)
-_df_xgb_imp.index += 1
-
-_df_rf_imp = (pd.DataFrame({"Feature": _all_names, "Importance": np.round(_rf.feature_importances_,5), "Kind": _all_kinds})
-              .sort_values("Importance", ascending=False).reset_index(drop=True))
-_df_rf_imp.index += 1
+def importance_table(model_name):
+    info = last_fold_fitted[model_name]
+    model, names, kinds = info["model"], info["names"], info["kinds"]
+    if model_name == "Logistic":
+        imp, col = np.abs(model.coef_[0]), "Importance"
+    elif model_name == "XGBoost":
+        gain = model.get_booster().get_score(importance_type="gain")
+        imp = np.array([gain.get(f"f{i}", 0.0) for i in range(len(names))])
+        col = "Gain"
+    else:
+        imp, col = model.feature_importances_, "Importance"
+    dfi = (pd.DataFrame({"Feature": names, col: np.round(imp, 5), "Kind": kinds})
+           .sort_values(col, ascending=False).reset_index(drop=True))
+    dfi.index += 1
+    return dfi, col
 
 TOP_N = 20
-print("\n── Table 1: XGBoost — Top 20 Features (Structured+FinBERT) ──")
-print(_df_xgb_imp.head(TOP_N).to_string())
-print("\n── Table 2: Logistic Regression — Top 20 Features (Structured+FinBERT) ──")
-print(_df_lr_imp.head(TOP_N).to_string())
-print("\n── Table 3: RandomForest — Top 20 Features (Structured+FinBERT) ──")
-print(_df_rf_imp.head(TOP_N).to_string())
+imp_tables = {}
+for model_name in MODEL_NAMES:
+    dfi, col = importance_table(model_name)
+    imp_tables[model_name] = (dfi, col)
+    print(f"\n-- {model_name} — Top {min(TOP_N, len(dfi))} of {len(dfi)} selected features --")
+    print(dfi.head(TOP_N).to_string())
 
-print("\n── Table 4: XGBoost — Top 20 FinBERT-only Features ──")
-print(_df_xgb_imp[_df_xgb_imp["Kind"]=="FinBERT"].drop(columns=["Kind"]).head(TOP_N).to_string())
-print("\n── Table 5: RandomForest — Top 20 FinBERT-only Features ──")
-print(_df_rf_imp[_df_rf_imp["Kind"]=="FinBERT"].drop(columns=["Kind"]).head(TOP_N).to_string())
-
-# ── Importance mass: what share of each model's total importance is FinBERT? ──
 mass_rows = []
-for mname, dfi, col in [("Logistic", _df_lr_imp, "Importance"), ("XGBoost", _df_xgb_imp, "Gain"), ("RandomForest", _df_rf_imp, "Importance")]:
+for model_name, (dfi, col) in imp_tables.items():
     total = dfi[col].sum()
     fb_mass = dfi[dfi["Kind"]=="FinBERT"][col].sum()
-    mass_rows.append({"Model": mname, "FinBERT_share": round(fb_mass/total, 4) if total>0 else np.nan,
-                       "Structured_share": round(1 - fb_mass/total, 4) if total>0 else np.nan})
+    mass_rows.append({
+        "Model": model_name,
+        "FinBERT_share": round(fb_mass/total, 4) if total > 0 else np.nan,
+        "Structured_share": round(1 - fb_mass/total, 4) if total > 0 else np.nan,
+        "n_finbert_features_in_selected_set": int((dfi["Kind"]=="FinBERT").sum()),
+        "n_structured_features_in_selected_set": int((dfi["Kind"]=="structured").sum()),
+    })
 df_mass = pd.DataFrame(mass_rows)
 df_mass.to_csv(out_dir / "fb_importance_mass.csv", index=False)
-print("\n── Table 6: Importance mass — FinBERT block vs Structured block (last fold) ──")
+print(f"\n-- Importance mass: FinBERT vs Structured (within selected top-{TOP_K_FEATURES}, fold {last_fold_num}) --")
 print(df_mass.to_string(index=False))
 
 print(f"\nDone. Results in {out_dir}, figures in {figures_dir}")
