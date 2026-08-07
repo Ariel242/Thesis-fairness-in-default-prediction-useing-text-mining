@@ -216,6 +216,130 @@ F. PCA EXPLAINED VARIANCE PER FOLD
    13            50                    0.8966
    14            50                    0.9018
 
+======================================================================
+G. FEATURE CONTRIBUTION CONSISTENCY (how many dimensions contribute, and how often)
+======================================================================
+
+  [Structured / Logistic]  122 distinct features were EVER among the top-50 across the 14 folds
+    selected in all 14 folds: 1   |   in >=12/14: 2   |   in >=8/14: 33
+    Top 15 most consistent contributors:
+                       Feature       Kind  n_folds_selected  pct_folds_selected  mean_rank_when_selected  mean_importance_share
+                      int_rate structured                14               100.0                     4.86                 0.0774
+         mths_since_recent_inq structured                13                92.9                    17.85                 0.0187
+          acc_open_past_24mths structured                11                78.6                     4.55                 0.0761
+                bc_open_to_buy structured                11                78.6                    19.27                 0.0378
+                    revol_util structured                11                78.6                    22.82                 0.0173
+                 addr_state_AL structured                11                78.6                    32.45                 0.0067
+mths_since_recent_revol_delinq structured                10                71.4                    15.60                 0.0253
+                   delinq_2yrs structured                10                71.4                    16.50                 0.0390
+                 addr_state_NY structured                10                71.4                    34.50                 0.0049
+      mths_since_recent_bc_dlq structured                 9                64.3                     8.33                 0.0795
+                 addr_state_NH structured                 9                64.3                    13.56                 0.0253
+                           dti structured                 9                64.3                    16.44                 0.0217
+                 addr_state_DC structured                 9                64.3                    18.33                 0.0158
+               num_actv_rev_tl structured                 9                64.3                    21.67                 0.0209
+                inq_last_6mths structured                 9                64.3                    21.78                 0.0359
+
+  [Structured / XGBoost]  122 distinct features were EVER among the top-50 across the 14 folds
+    selected in all 14 folds: 1   |   in >=12/14: 2   |   in >=8/14: 33
+    Top 15 most consistent contributors:
+                       Feature       Kind  n_folds_selected  pct_folds_selected  mean_rank_when_selected  mean_importance_share
+                      int_rate structured                14               100.0                     7.14                 0.0751
+         mths_since_recent_inq structured                13                92.9                    15.77                 0.0160
+          acc_open_past_24mths structured                11                78.6                     5.64                 0.0290
+                bc_open_to_buy structured                11                78.6                    22.00                 0.0138
+                    revol_util structured                11                78.6                    27.82                 0.0109
+                 addr_state_AL structured                11                78.6                    31.73                 0.0110
+mths_since_recent_revol_delinq structured                10                71.4                    14.40                 0.0193
+                   delinq_2yrs structured                10                71.4                    18.30                 0.0230
+                 addr_state_NY structured                10                71.4                    34.70                 0.0049
+      mths_since_recent_bc_dlq structured                 9                64.3                     6.89                 0.0721
+                           dti structured                 9                64.3                    13.22                 0.0183
+                 addr_state_NH structured                 9                64.3                    18.44                 0.0183
+                inq_last_6mths structured                 9                64.3                    20.44                 0.0303
+               num_actv_rev_tl structured                 9                64.3                    21.00                 0.0255
+                 addr_state_DC structured                 9                64.3                    21.11                 0.0160
+
+  [Structured / RandomForest]  122 distinct features were EVER among the top-50 across the 14 folds
+    selected in all 14 folds: 1   |   in >=12/14: 2   |   in >=8/14: 33
+    Top 15 most consistent contributors:
+                       Feature       Kind  n_folds_selected  pct_folds_selected  mean_rank_when_selected  mean_importance_share
+                      int_rate structured                14               100.0                     8.57                 0.0605
+         mths_since_recent_inq structured                13                92.9                    13.38                 0.0380
+          acc_open_past_24mths structured                11                78.6                     9.27                 0.0652
+                bc_open_to_buy structured                11                78.6                    15.18                 0.0185
+                    revol_util structured                11                78.6                    19.64                 0.0293
+                 addr_state_AL structured                11                78.6                    39.64                 0.0001
+mths_since_recent_revol_delinq structured                10                71.4                    11.20                 0.0563
+                   delinq_2yrs structured                10                71.4                    17.50                 0.0226
+                 addr_state_NY structured                10                71.4                    35.50                 0.0011
+                           dti structured                 9                64.3                     7.78                 0.0612
+      mths_since_recent_bc_dlq structured                 9                64.3                     9.78                 0.0620
+                 addr_state_NH structured                 9                64.3                    21.33                 0.0051
+                 addr_state_RI structured                 9                64.3                    23.89                 0.0059
+               num_actv_rev_tl structured                 9                64.3                    25.00                 0.0104
+                inq_last_6mths structured                 9                64.3                    25.89                 0.0274
+
+  [Structured+FinBERT / Logistic]  162 distinct features were EVER among the top-50 across the 14 folds
+    selected in all 14 folds: 0   |   in >=12/14: 0   |   in >=8/14: 22
+    Top 15 most consistent contributors:
+                       Feature       Kind  n_folds_selected  pct_folds_selected  mean_rank_when_selected  mean_importance_share
+                          term structured                11                78.6                    16.27                 0.0476
+          acc_open_past_24mths structured                10                71.4                     4.70                 0.0819
+                bc_open_to_buy structured                10                71.4                    13.40                 0.0521
+        mths_since_last_delinq structured                10                71.4                    17.00                 0.0185
+                   delinq_2yrs structured                10                71.4                    23.10                 0.0333
+                   delinq_amnt structured                 9                64.3                     8.56                 0.1504
+mths_since_recent_revol_delinq structured                 9                64.3                    13.22                 0.0283
+        mths_since_last_record structured                 9                64.3                    16.78                 0.0274
+                           dti structured                 9                64.3                    18.33                 0.0206
+                    emp_length structured                 9                64.3                    23.67                 0.0138
+                 addr_state_SC structured                 9                64.3                    26.44                 0.0096
+                      open_acc structured                 9                64.3                    39.78                 0.0026
+                      int_rate structured                 8                57.1                     4.62                 0.0983
+      mths_since_recent_bc_dlq structured                 8                57.1                     6.12                 0.0908
+                inq_last_6mths structured                 8                57.1                    13.62                 0.0438
+
+  [Structured+FinBERT / XGBoost]  162 distinct features were EVER among the top-50 across the 14 folds
+    selected in all 14 folds: 0   |   in >=12/14: 0   |   in >=8/14: 22
+    Top 15 most consistent contributors:
+                       Feature       Kind  n_folds_selected  pct_folds_selected  mean_rank_when_selected  mean_importance_share
+                          term structured                11                78.6                    18.27                 0.0461
+          acc_open_past_24mths structured                10                71.4                     5.50                 0.0308
+        mths_since_last_delinq structured                10                71.4                    11.20                 0.0211
+                bc_open_to_buy structured                10                71.4                    22.00                 0.0123
+                   delinq_2yrs structured                10                71.4                    22.20                 0.0191
+                   delinq_amnt structured                 9                64.3                     9.67                 0.0837
+                 addr_state_SC structured                 9                64.3                    11.22                 0.0761
+mths_since_recent_revol_delinq structured                 9                64.3                    12.33                 0.0208
+        mths_since_last_record structured                 9                64.3                    12.56                 0.0185
+                           dti structured                 9                64.3                    15.00                 0.0177
+                    emp_length structured                 9                64.3                    22.89                 0.0172
+                      open_acc structured                 9                64.3                    40.11                 0.0020
+                      int_rate structured                 8                57.1                     5.75                 0.1208
+      mths_since_recent_bc_dlq structured                 8                57.1                     6.75                 0.0698
+                inq_last_6mths structured                 8                57.1                    11.50                 0.0352
+
+  [Structured+FinBERT / RandomForest]  162 distinct features were EVER among the top-50 across the 14 folds
+    selected in all 14 folds: 0   |   in >=12/14: 0   |   in >=8/14: 22
+    Top 15 most consistent contributors:
+                       Feature       Kind  n_folds_selected  pct_folds_selected  mean_rank_when_selected  mean_importance_share
+                          term structured                11                78.6                    20.00                 0.0303
+          acc_open_past_24mths structured                10                71.4                     9.70                 0.0631
+                bc_open_to_buy structured                10                71.4                    19.10                 0.0169
+                   delinq_2yrs structured                10                71.4                    23.60                 0.0140
+        mths_since_last_delinq structured                10                71.4                    25.30                 0.0072
+                   delinq_amnt structured                 9                64.3                     7.22                 0.1107
+                           dti structured                 9                64.3                     7.44                 0.0446
+mths_since_recent_revol_delinq structured                 9                64.3                    11.44                 0.0493
+                 addr_state_SC structured                 9                64.3                    12.22                 0.0623
+        mths_since_last_record structured                 9                64.3                    16.33                 0.0409
+                    emp_length structured                 9                64.3                    19.00                 0.0181
+                      open_acc structured                 9                64.3                    33.22                 0.0063
+                      int_rate structured                 8                57.1                     5.38                 0.1019
+      mths_since_recent_bc_dlq structured                 8                57.1                     7.75                 0.0662
+         mths_since_recent_inq structured                 8                57.1                    19.88                 0.0193
+
 Saved results to: C:\Users\ariel\Desktop\Thesis\F-TM-CR\FinBERT\results
 
 Generating figures...

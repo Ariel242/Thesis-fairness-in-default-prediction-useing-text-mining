@@ -139,6 +139,16 @@ hard if that's ever not true, per the explicit "run on 14 folds" requirement.
     top-50 are structured vs FinBERT (fb_selected_features_composition.csv,
     fig3) — the most direct answer to "are FinBERT dimensions actually
     among the strongest features, or mostly filtered out."
+  - NEW: per-dimension contribution across ALL 14 folds, both arms
+    (fb_feature_importance_by_fold.csv — every feature's importance/rank in
+    every fold it was selected in) and a rolled-up consistency summary
+    (fb_feature_consistency_summary.csv, printed as section G) — for each
+    (arm, model): how many distinct features were EVER selected across the
+    14 folds, how many were selected in all 14 / >=12 / >=8, and the top-15
+    most consistent contributors with their mean rank and mean importance
+    share when selected. Answers "how many dimensions contribute
+    consistently" directly, rather than inferring it from one fold's
+    snapshot.
 
 -----------------------------------------------------------------------------
 6. WHAT THIS SCRIPT DELIBERATELY DOES NOT DO
@@ -167,6 +177,13 @@ results/
                                            in the selected top-K, per fold/arm
   fb_importance_mass.csv                — % importance FinBERT vs structured
                                            (last fold, selected features only)
+  fb_feature_importance_by_fold.csv     — NEW: every feature's importance/
+                                           rank in every fold it was selected
+                                           in (both arms, all 3 models)
+  fb_feature_consistency_summary.csv    — NEW: per (arm, model), per feature —
+                                           how many of 14 folds it was
+                                           selected in, mean rank, mean
+                                           importance share
 figures/
   fig1_auc_stability.png
   fig2_delong_delta_auc.png
@@ -497,6 +514,17 @@ def select_features(X_tr_pool, y_tr, names, kinds, k=TOP_K_FEATURES, sample_cap=
     sel_kinds = [kinds[i] for i in top_idx]
     return top_idx, sel_names, sel_kinds, mi[top_idx]
 
+
+def extract_importance(model_name, model, n_features):
+    """Raw per-feature importance, aligned to the column order the model was fit on."""
+    if model_name == "Logistic":
+        return np.abs(model.coef_[0])
+    elif model_name == "XGBoost":
+        gain = model.get_booster().get_score(importance_type="gain")
+        return np.array([gain.get(f"f{i}", 0.0) for i in range(n_features)])
+    else:
+        return model.feature_importances_
+
 # ============================================================
 # 8. REGULARIZATION TUNING (section 3)
 # ============================================================
@@ -564,7 +592,7 @@ print("\n" + "="*70)
 print("MAIN WALK-FORWARD EVALUATION (14 folds)")
 print("="*70)
 
-pred_rows, delong_rows, pca_rows, composition_rows = [], [], [], []
+pred_rows, delong_rows, pca_rows, composition_rows, importance_rows = [], [], [], [], []
 last_fold_num = folds[-1]["fold"]
 last_fold_fitted = {}   # model_name -> {"model":..., "names":..., "kinds":...} for Structured+FinBERT, last fold
 
@@ -597,6 +625,21 @@ for f in folds:
 
             if f["fold"] == last_fold_num and arm == "Structured+FinBERT":
                 last_fold_fitted[model_name] = {"model": model, "names": sel_names, "kinds": sel_kinds}
+
+            # Per-fold feature contribution — every fold, both arms, no extra fitting (reuses the model above)
+            imp_raw = extract_importance(model_name, model, len(sel_names))
+            imp_sum = imp_raw.sum()
+            imp_share = imp_raw / imp_sum if imp_sum > 0 else imp_raw
+            rank_of = np.empty(len(sel_names), dtype=int)
+            rank_of[np.argsort(imp_raw)[::-1]] = np.arange(1, len(sel_names) + 1)
+            for feat_i, feat_name in enumerate(sel_names):
+                importance_rows.append({
+                    "fold": f["fold"], "Arm": arm, "Model": model_name,
+                    "Feature": feat_name, "Kind": sel_kinds[feat_i],
+                    "Importance_raw": round(float(imp_raw[feat_i]), 6),
+                    "Importance_share": round(float(imp_share[feat_i]), 6),
+                    "Rank": int(rank_of[feat_i]),
+                })
 
             auc   = roc_auc_score(y_te, p)
             prauc = average_precision_score(y_te, p)
@@ -703,6 +746,52 @@ print("="*70)
 print(df_pca.to_string(index=False))
 
 # ============================================================
+# 10b. FEATURE CONTRIBUTION CONSISTENCY — across all 14 folds, both arms
+#      (per docstring section 5: which dimensions contribute, and how
+#      consistently, not just a last-fold snapshot)
+# ============================================================
+df_importance = pd.DataFrame(importance_rows)
+
+consistency_parts = []
+for arm in ARMS:
+    for model_name in MODEL_NAMES:
+        sub = df_importance[(df_importance["Arm"]==arm) & (df_importance["Model"]==model_name)]
+        grp = sub.groupby(["Feature","Kind"]).agg(
+            n_folds_selected=("fold","nunique"),
+            mean_rank_when_selected=("Rank","mean"),
+            mean_importance_share=("Importance_share","mean"),
+        ).reset_index()
+        grp["Arm"] = arm
+        grp["Model"] = model_name
+        grp["pct_folds_selected"] = (grp["n_folds_selected"] / len(folds) * 100).round(1)
+        grp["mean_rank_when_selected"] = grp["mean_rank_when_selected"].round(2)
+        grp["mean_importance_share"] = grp["mean_importance_share"].round(4)
+        consistency_parts.append(grp)
+df_consistency = pd.concat(consistency_parts, ignore_index=True)
+df_consistency = df_consistency.sort_values(
+    ["Arm","Model","n_folds_selected","mean_rank_when_selected"], ascending=[True,True,False,True]
+).reset_index(drop=True)
+
+print("\n" + "="*70)
+print("G. FEATURE CONTRIBUTION CONSISTENCY (how many dimensions contribute, and how often)")
+print("="*70)
+for arm in ARMS:
+    for model_name in MODEL_NAMES:
+        sub = df_consistency[(df_consistency["Arm"]==arm) & (df_consistency["Model"]==model_name)]
+        n_ever = len(sub)
+        n_all14 = int((sub["n_folds_selected"] == len(folds)).sum())
+        n_12plus = int((sub["n_folds_selected"] >= 12).sum())
+        n_8plus = int((sub["n_folds_selected"] >= 8).sum())
+        print(f"\n  [{arm} / {model_name}]  {n_ever} distinct features were EVER among the top-{TOP_K_FEATURES} "
+              f"across the {len(folds)} folds")
+        print(f"    selected in all {len(folds)} folds: {n_all14}   |   in >=12/{len(folds)}: {n_12plus}   |   "
+              f"in >=8/{len(folds)}: {n_8plus}")
+        top15 = sub.head(15)[["Feature","Kind","n_folds_selected","pct_folds_selected",
+                               "mean_rank_when_selected","mean_importance_share"]]
+        print(f"    Top 15 most consistent contributors:")
+        print(top15.to_string(index=False))
+
+# ============================================================
 # 11. SAVE
 # ============================================================
 out_dir = SCRIPT_DIR / "results"
@@ -715,6 +804,8 @@ df_delta_summary.to_csv(out_dir / "fb_delta_summary.csv")
 df_pca.to_csv(out_dir / "fb_pca_variance.csv", index=False)
 df_tuning.to_csv(out_dir / "fb_tuning_results.csv", index=False)
 df_composition.to_csv(out_dir / "fb_selected_features_composition.csv", index=False)
+df_importance.to_csv(out_dir / "fb_feature_importance_by_fold.csv", index=False)
+df_consistency.to_csv(out_dir / "fb_feature_consistency_summary.csv", index=False)
 print(f"\nSaved results to: {out_dir}")
 
 # ============================================================
@@ -812,14 +903,8 @@ print("="*70)
 def importance_table(model_name):
     info = last_fold_fitted[model_name]
     model, names, kinds = info["model"], info["names"], info["kinds"]
-    if model_name == "Logistic":
-        imp, col = np.abs(model.coef_[0]), "Importance"
-    elif model_name == "XGBoost":
-        gain = model.get_booster().get_score(importance_type="gain")
-        imp = np.array([gain.get(f"f{i}", 0.0) for i in range(len(names))])
-        col = "Gain"
-    else:
-        imp, col = model.feature_importances_, "Importance"
+    imp = extract_importance(model_name, model, len(names))
+    col = "Gain" if model_name == "XGBoost" else "Importance"
     dfi = (pd.DataFrame({"Feature": names, col: np.round(imp, 5), "Kind": kinds})
            .sort_values(col, ascending=False).reset_index(drop=True))
     dfi.index += 1
