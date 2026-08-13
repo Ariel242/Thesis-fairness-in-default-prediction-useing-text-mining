@@ -60,9 +60,9 @@ This project runs in five sequential steps. Each step's output serves as the nex
 ---
 
 ## Step 4 — Census Data Collection
-**File:** `data/ZIP3_code_API.ipynb`
+**File:** `census/ZIP3_code_API.ipynb`
 
-**Input:** `data/zip3_counts_from_lc.csv` (list of ZIP3s present in LendingClub data)
+**Input:** `census/zip3_counts_from_lc.csv` (list of ZIP3s present in LendingClub data)
 
 **What it does:**
 - Queries the **US Census Bureau ACS 5-Year API** for years 2011–2014
@@ -74,12 +74,12 @@ This project runs in five sequential steps. Each step's output serves as the nex
 
 **Note:** Requires a Census API key set in the environment variable `CENSUS_API_KEY`.
 
-**Outputs:**
-- `data/census_final_data/zip3_census_panel_2011_2014.csv` — yearly panel (3,576 rows: 894 ZIP3s × 4 years)
-- `data/census_final_data/zip3_census_profile_mean.csv` — time-averaged profile per ZIP3
-- `data/census_final_data/zip3_groups.csv` — ZIP3s with decile labels
-- `data/census_final_data/coverage_report.txt` — match rate summary
-- `data/census_final_data/missing_zip3_in_panel.csv` — ZIP3s with no census match
+**Outputs (folder moved from `data/census_final_data/` to `census/` — filenames below predate the 2026-07-19 rewrite of this notebook and are stale; see `census/` for the actual current files, e.g. `zip3_census_features_acs5_2012.csv`):**
+- `census/zip3_census_panel_2011_2014.csv` — yearly panel (3,576 rows: 894 ZIP3s × 4 years)
+- `census/zip3_census_profile_mean.csv` — time-averaged profile per ZIP3
+- `census/zip3_groups.csv` — ZIP3s with decile labels
+- `census/coverage_report.txt` — match rate summary
+- `census/missing_zip3_in_panel.csv` — ZIP3s with no census match
 
 ---
 

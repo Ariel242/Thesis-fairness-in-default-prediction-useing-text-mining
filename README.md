@@ -20,10 +20,17 @@ Fairness is measured by the gap in error rates (FNR, FPR) between different ZIP 
 ## Project Structure
 
 ```
-analysis/          # Data preparation and modeling notebooks + main pipeline script
-data/              # Processed datasets and census data
-results/           # Model outputs: predictive metrics, fairness metrics, fold-level results
-census_final_data/ # ACS demographic panel (2011–2014) matched to ZIP codes
+analysis/       # Data preparation and modeling notebooks + main pipeline script (structured + TF-IDF)
+data/           # Processed datasets (raw file, 02/03 pipeline outputs)
+census/         # Census data collection notebook + ACS demographic features matched to ZIP3s
+FinBERT/        # FinBERT text representation: embedding script, embeddings, ablation script, results/figures
+Dictionarys/    # Dictionary-based text representation: build scripts (scripts/), the dictionaries themselves
+                # (dictionaries/), and results/ (once a dictionary-based model is run)
+TF-IDF/         # Landing place for TF-IDF-specific results once split out of preliminary_results_v2.py
+                # (currently TF-IDF is generated inline in the main pipeline; see TF-IDF/README.md)
+results/        # Main pipeline outputs: predictive metrics, fairness metrics, fold-level results
+docs/           # Pipeline and outputs documentation
+הצעה לתזה/       # Archive: all model results generated before this repo reorganization (thesis proposal era)
 ```
 
 ## Key Results

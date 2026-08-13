@@ -1,0 +1,5334 @@
+﻿Term,Type,Document_Frequency
+credit,Unigram,70838
+card,Unigram,66118
+credit card,Bigram,63410
+payment,Unigram,35021
+consolidate,Unigram,32215
+year,Unigram,23557
+use,Unigram,20670
+high,Unigram,18058
+rate,Unigram,16664
+thank,Unigram,16639
+monthly,Unigram,15126
+make,Unigram,15037
+time,Unigram,14947
+like,Unigram,14854
+need,Unigram,14191
+consolidation,Unigram,14143
+want,Unigram,14121
+help,Unigram,14082
+add credit,Bigram,13503
+month,Unigram,13006
+home,Unigram,12771
+lower,Unigram,12148
+job,Unigram,12113
+money,Unigram,11402
+work,Unigram,11171
+consolidate credit,Bigram,11093
+add consolidate,Bigram,10438
+plan,Unigram,9838
+monthly payment,Bigram,9774
+just,Unigram,9697
+fund,Unigram,8920
+add consolidation,Bigram,8859
+look,Unigram,8719
+rat,Unigram,8010
+free,Unigram,7717
+good,Unigram,7591
+balance,Unigram,7416
+new,Unigram,7264
+high credit,Bigram,7218
+save,Unigram,7049
+add use,Bigram,7007
+car,Unigram,6902
+stable,Unigram,6865
+higher,Unigram,6622
+expense,Unigram,6339
+account,Unigram,6257
+try,Unigram,6084
+purchase,Unigram,6063
+company,Unigram,6006
+current,Unigram,5765
+lend,Unigram,5747
+house,Unigram,5741
+lower rate,Bigram,5734
+add like,Bigram,5450
+add want,Bigram,5424
+start,Unigram,5328
+club,Unigram,5303
+able,Unigram,5251
+currently,Unigram,5176
+lend club,Bigram,5103
+payoff,Unigram,5014
+late,Unigram,4872
+allow,Unigram,4680
+income,Unigram,4635
+buy,Unigram,4293
+business,Unigram,4195
+improvement,Unigram,4148
+add plan,Bigram,4113
+add need,Bigram,4090
+medical,Unigram,4035
+personal,Unigram,4018
+family,Unigram,4006
+better,Unigram,3989
+budget,Unigram,3949
+financial,Unigram,3894
+great,Unigram,3869
+close,Unigram,3850
+score,Unigram,3721
+reduce,Unigram,3720
+small,Unigram,3718
+make payment,Bigram,3659
+goal,Unigram,3651
+repair,Unigram,3520
+refinance,Unigram,3515
+live,Unigram,3504
+life,Unigram,3443
+finance,Unigram,3421
+home improvement,Bigram,3409
+add look,Bigram,3322
+credit score,Bigram,3318
+like consolidate,Bigram,3313
+card payment,Bigram,3303
+bank,Unigram,3290
+way,Unigram,3144
+plan use,Bigram,3138
+add high,Bigram,3117
+history,Unigram,3109
+use credit,Bigram,3042
+consideration,Unigram,3025
+miss,Unigram,3002
+request,Unigram,2998
+apr,Unigram,2952
+late payment,Bigram,2898
+fix,Unigram,2865
+cash,Unigram,2844
+rate credit,Bigram,2844
+high rate,Bigram,2816
+minimum,Unigram,2789
+little,Unigram,2775
+card balance,Bigram,2768
+cost,Unigram,2750
+faster,Unigram,2740
+college,Unigram,2729
+past,Unigram,2713
+payment month,Bigram,2696
+end,Unigram,2662
+want consolidate,Bigram,2641
+school,Unigram,2636
+stable job,Bigram,2596
+mortgage,Unigram,2593
+use fund,Bigram,2573
+excellent,Unigram,2554
+future,Unigram,2530
+order,Unigram,2512
+term,Unigram,2475
+employ,Unigram,2455
+save money,Bigram,2418
+instead,Unigram,2411
+know,Unigram,2403
+card add,Bigram,2397
+use consolidate,Bigram,2396
+recently,Unigram,2366
+job year,Bigram,2352
+purpose,Unigram,2338
+saving,Unigram,2331
+total,Unigram,2329
+miss payment,Bigram,2325
+exist,Unigram,2321
+add try,Bigram,2299
+appreciate,Unigram,2298
+student,Unigram,2294
+come,Unigram,2273
+really,Unigram,2249
+low,Unigram,2248
+cover,Unigram,2240
+thank consideration,Bigram,2233
+consolidate high,Bigram,2210
+add just,Bigram,2199
+leave,Unigram,2190
+tax,Unigram,2189
+high rat,Bigram,2187
+rent,Unigram,2182
+build,Unigram,2173
+card high,Bigram,2173
+card lower,Bigram,2150
+feel,Unigram,2130
+look consolidate,Bigram,2129
+increase,Unigram,2121
+wed,Unigram,2119
+rid,Unigram,2117
+invest,Unigram,2106
+eliminate,Unigram,2088
+hard,Unigram,2076
+ago,Unigram,2063
+add thank,Bigram,2055
+amp,Unigram,2035
+higher rate,Bigram,2021
+extra,Unigram,2004
+easier,Unigram,1998
+responsible,Unigram,1991
+investor,Unigram,1969
+opportunity,Unigram,1966
+thing,Unigram,1935
+secure,Unigram,1931
+investment,Unigram,1923
+don,Unigram,1922
+long,Unigram,1922
+card consolidation,Bigram,1913
+include,Unigram,1913
+insurance,Unigram,1906
+remain,Unigram,1904
+couple,Unigram,1877
+question,Unigram,1876
+add help,Bigram,1864
+day,Unigram,1858
+consolidate payment,Bigram,1845
+lot,Unigram,1828
+single,Unigram,1826
+charge,Unigram,1809
+revolve,Unigram,1784
+finish,Unigram,1782
+position,Unigram,1771
+use money,Bigram,1770
+old,Unigram,1765
+receive,Unigram,1764
+improve,Unigram,1752
+possible,Unigram,1722
+wife,Unigram,1697
+lower monthly,Bigram,1689
+offer,Unigram,1688
+good credit,Bigram,1679
+payment time,Bigram,1661
+vehicle,Unigram,1656
+ask,Unigram,1624
+additional,Unigram,1621
+easy,Unigram,1609
+consider,Unigram,1605
+hope,Unigram,1605
+repay,Unigram,1600
+want credit,Bigram,1592
+add home,Bigram,1588
+year ago,Bigram,1579
+replace,Unigram,1575
+apply,Unigram,1574
+just want,Bigram,1572
+place,Unigram,1565
+complete,Unigram,1559
+employment,Unigram,1548
+monthly budget,Bigram,1537
+problem,Unigram,1535
+higher credit,Bigram,1527
+continue,Unigram,1524
+track,Unigram,1519
+kitchen,Unigram,1505
+past year,Bigram,1504
+provide,Unigram,1502
+emergency,Unigram,1498
+forward,Unigram,1495
+line,Unigram,1493
+sooner,Unigram,1492
+combine,Unigram,1490
+company year,Bigram,1482
+credit history,Bigram,1476
+payoff credit,Bigram,1476
+employer,Unigram,1472
+outstanding,Unigram,1472
+job stable,Bigram,1471
+soon,Unigram,1470
+remodel,Unigram,1469
+free year,Bigram,1468
+owe,Unigram,1463
+manage,Unigram,1458
+sell,Unigram,1451
+care,Unigram,1444
+date,Unigram,1438
+quickly,Unigram,1436
+thank help,Bigram,1433
+thank add,Bigram,1431
+payment credit,Bigram,1425
+steady,Unigram,1409
+cut,Unigram,1403
+large,Unigram,1397
+process,Unigram,1391
+project,Unigram,1390
+set,Unigram,1381
+multiple,Unigram,1372
+add payoff,Bigram,1363
+hello,Unigram,1362
+spend,Unigram,1357
+minimum payment,Bigram,1351
+payment lower,Bigram,1351
+right,Unigram,1347
+borrow,Unigram,1343
+need consolidate,Bigram,1341
+auto,Unigram,1337
+graduate,Unigram,1332
+different,Unigram,1328
+major,Unigram,1308
+property,Unigram,1302
+fee,Unigram,1301
+card monthly,Bigram,1285
+card make,Bigram,1280
+think,Unigram,1278
+excellent credit,Bigram,1276
+early,Unigram,1273
+card like,Bigram,1265
+quicker,Unigram,1256
+run,Unigram,1254
+debit,Unigram,1253
+card use,Bigram,1240
+love,Unigram,1230
+consolidation credit,Bigram,1229
+like credit,Bigram,1228
+advance,Unigram,1222
+finally,Unigram,1210
+reason,Unigram,1208
+half,Unigram,1196
+add purpose,Bigram,1194
+add fund,Bigram,1192
+add work,Bigram,1192
+change,Unigram,1183
+payment make,Bigram,1180
+support,Unigram,1177
+consolidation add,Bigram,1176
+situation,Unigram,1174
+incur,Unigram,1173
+roof,Unigram,1166
+market,Unigram,1152
+try consolidate,Bigram,1151
+unexpected,Unigram,1150
+service,Unigram,1149
+daughter,Unigram,1147
+hop,Unigram,1143
+payment add,Bigram,1141
+rest,Unigram,1140
+add hello,Bigram,1131
+career,Unigram,1121
+grow,Unigram,1118
+short,Unigram,1116
+utility,Unigram,1114
+child,Unigram,1110
+open,Unigram,1107
+away,Unigram,1102
+plus,Unigram,1099
+lender,Unigram,1097
+state,Unigram,1096
+vacation,Unigram,1094
+consolidate lower,Bigram,1092
+bathroom,Unigram,1091
+raise,Unigram,1091
+best,Unigram,1089
+begin,Unigram,1071
+better rate,Bigram,1065
+obligation,Unigram,1065
+dollar,Unigram,1060
+intend,Unigram,1053
+add request,Bigram,1037
+issue,Unigram,1035
+week,Unigram,1035
+accumulate,Unigram,1031
+far,Unigram,1028
+card year,Bigram,1027
+people,Unigram,1027
+clear,Unigram,1026
+financially,Unigram,1024
+make monthly,Bigram,1022
+period,Unigram,1019
+let,Unigram,1017
+second,Unigram,1015
+look forward,Bigram,1012
+room,Unigram,1008
+seek,Unigram,1005
+consolidate higher,Bigram,1001
+card higher,Bigram,998
+capital,Unigram,994
+marry,Unigram,988
+mean,Unigram,982
+just need,Bigram,980
+industry,Unigram,979
+fund use,Bigram,977
+son,Unigram,977
+purchase home,Bigram,976
+completely,Unigram,972
+person,Unigram,972
+value,Unigram,972
+card account,Bigram,968
+car payment,Bigram,966
+say,Unigram,961
+wish,Unigram,957
+monthly expense,Bigram,950
+repayment,Unigram,950
+require,Unigram,949
+add currently,Bigram,946
+previous,Unigram,946
+default,Unigram,943
+add purchase,Bigram,933
+null,Unigram,931
+bring,Unigram,930
+card company,Bigram,926
+quot,Unigram,926
+believe,Unigram,924
+card want,Bigram,924
+floor,Unigram,924
+add refinance,Bigram,912
+greatly,Unigram,911
+salary,Unigram,910
+smaller,Unigram,905
+return,Unigram,903
+refinance credit,Bigram,902
+ahead,Unigram,899
+report,Unigram,898
+chase,Unigram,894
+pool,Unigram,890
+control,Unigram,889
+lower payment,Bigram,887
+check,Unigram,886
+decide,Unigram,884
+add higher,Bigram,881
+tire,Unigram,873
+big,Unigram,871
+thank time,Bigram,869
+fully,Unigram,866
+bite,Unigram,864
+note,Unigram,861
+addition,Unigram,860
+manageable,Unigram,857
+consolidate monthly,Bigram,852
+thank advance,Bigram,849
+higher rat,Bigram,848
+food,Unigram,845
+reliable,Unigram,841
+truck,Unigram,837
+sale,Unigram,835
+tell,Unigram,833
+degree,Unigram,831
+flow,Unigram,831
+member,Unigram,830
+solid,Unigram,830
+time job,Bigram,828
+stay,Unigram,825
+upgrade,Unigram,824
+timely,Unigram,821
+credit rat,Bigram,809
+payment instead,Bigram,808
+discover,Unigram,805
+focus,Unigram,805
+afford,Unigram,803
+obtain,Unigram,801
+store,Unigram,801
+medical expense,Bigram,799
+card rat,Bigram,797
+cash flow,Bigram,797
+payment thank,Bigram,797
+dream,Unigram,795
+area,Unigram,792
+card close,Bigram,792
+experience,Unigram,791
+payment year,Bigram,791
+parent,Unigram,790
+longer,Unigram,784
+need credit,Bigram,783
+improve credit,Bigram,782
+professional,Unigram,782
+win,Unigram,782
+approximately,Unigram,781
+gas,Unigram,781
+card consolidate,Bigram,778
+need help,Bigram,778
+overall,Unigram,771
+buy house,Bigram,770
+expect,Unigram,770
+card refinance,Bigram,769
+approve,Unigram,766
+year add,Bigram,765
+extremely,Unigram,762
+lendingclub,Unigram,760
+assist,Unigram,759
+payment history,Bigram,757
+close account,Bigram,752
+actually,Unigram,745
+hold,Unigram,744
+revolve credit,Bigram,744
+reduce monthly,Bigram,743
+ready,Unigram,742
+step,Unigram,739
+meet,Unigram,730
+clean,Unigram,729
+phone,Unigram,729
+single payment,Bigram,728
+field,Unigram,727
+work hard,Bigram,727
+intrest,Unigram,726
+sure,Unigram,726
+credit report,Bigram,719
+work time,Bigram,719
+easy payment,Bigram,716
+simply,Unigram,716
+stand,Unigram,716
+current job,Bigram,714
+year old,Bigram,712
+add make,Bigram,710
+enable,Unigram,710
+cancel,Unigram,703
+card just,Bigram,703
+update,Unigram,703
+deal,Unigram,701
+maintain,Unigram,701
+dental,Unigram,696
+help consolidate,Bigram,695
+thank consider,Bigram,694
+card car,Bigram,693
+reasonable,Unigram,693
+result,Unigram,693
+need money,Bigram,692
+goal free,Bigram,691
+record,Unigram,691
+water,Unigram,691
+answer,Unigram,690
+card free,Bigram,690
+card personal,Bigram,687
+freedom,Unigram,685
+add year,Bigram,684
+employer year,Bigram,683
+home repair,Bigram,683
+friend,Unigram,681
+use high,Bigram,680
+follow,Unigram,679
+equipment,Unigram,673
+furniture,Unigram,673
+health,Unigram,672
+base,Unigram,671
+security,Unigram,670
+simple,Unigram,670
+limit,Unigram,669
+card medical,Bigram,668
+option,Unigram,667
+card credit,Bigram,666
+recent,Unigram,663
+husband,Unigram,662
+make good,Bigram,662
+card help,Bigram,660
+risk,Unigram,660
+add recently,Bigram,659
+line credit,Bigram,659
+master,Unigram,659
+creditor,Unigram,658
+easily,Unigram,658
+economy,Unigram,658
+add buy,Bigram,657
+available,Unigram,656
+start save,Bigram,655
+household,Unigram,653
+education,Unigram,652
+list,Unigram,652
+turn,Unigram,652
+happy,Unigram,650
+accrue,Unigram,649
+achieve,Unigram,649
+retirement,Unigram,647
+add personal,Bigram,643
+balance credit,Bigram,640
+chance,Unigram,640
+bad,Unigram,638
+point,Unigram,638
+card thank,Bigram,637
+carry,Unigram,635
+fund consolidate,Bigram,635
+lower rat,Bigram,633
+year thank,Bigram,631
+story,Unigram,627
+add new,Bigram,626
+employee,Unigram,625
+window,Unigram,625
+establish,Unigram,624
+money use,Bigram,624
+rid credit,Bigram,623
+feel free,Bigram,622
+reach,Unigram,622
+real,Unigram,617
+fresh,Unigram,616
+lose,Unigram,616
+year plan,Bigram,616
+america,Unigram,615
+equity,Unigram,615
+exist credit,Bigram,615
+new home,Bigram,615
+close credit,Bigram,614
+hopefully,Unigram,613
+apartment,Unigram,612
+number,Unigram,612
+hospital,Unigram,611
+card time,Bigram,605
+assistance,Unigram,603
+motorcycle,Unigram,603
+create,Unigram,602
+important,Unigram,601
+current credit,Bigram,599
+expand,Unigram,599
+payment monthly,Bigram,597
+information,Unigram,593
+surgery,Unigram,592
+average,Unigram,591
+card rate,Bigram,590
+program,Unigram,588
+add money,Bigram,586
+owner,Unigram,585
+credit account,Bigram,580
+buy home,Bigram,578
+add time,Bigram,575
+home year,Bigram,574
+like use,Bigram,572
+remainder,Unigram,572
+save month,Bigram,571
+money credit,Bigram,570
+simplify,Unigram,569
+travel,Unigram,569
+item,Unigram,566
+summer,Unigram,566
+add job,Bigram,565
+earn,Unigram,565
+fix rate,Bigram,565
+help credit,Bigram,563
+card month,Bigram,562
+visa,Unigram,562
+difficult,Unigram,559
+just payment,Bigram,559
+perfect,Unigram,559
+mother,Unigram,558
+work company,Bigram,557
+excite,Unigram,556
+paint,Unigram,556
+steady job,Bigram,556
+main,Unigram,554
+kid,Unigram,553
+dept,Unigram,551
+work year,Bigram,551
+decrease,Unigram,550
+price,Unigram,549
+various,Unigram,549
+add current,Bigram,548
+schedule,Unigram,546
+candidate,Unigram,543
+happen,Unigram,543
+lower apr,Bigram,541
+eliminate credit,Bigram,538
+add good,Bigram,537
+government,Unigram,532
+car repair,Bigram,531
+individual,Unigram,531
+rate add,Bigram,531
+learn,Unigram,529
+renovation,Unigram,528
+time payment,Bigram,528
+american,Unigram,527
+stop,Unigram,527
+purchase new,Bigram,526
+unfortunately,Unigram,526
+manner,Unigram,525
+greatly appreciate,Bigram,522
+plan credit,Bigram,521
+proceed,Unigram,521
+year time,Bigram,520
+bank america,Bigram,519
+acquire,Unigram,518
+strong,Unigram,518
+realize,Unigram,515
+thank investor,Bigram,515
+card debit,Bigram,514
+prior,Unigram,514
+retire,Unigram,513
+year credit,Bigram,512
+avoid,Unigram,511
+good job,Bigram,509
+just try,Bigram,509
+add stable,Bigram,508
+wait,Unigram,508
+high apr,Bigram,507
+card save,Bigram,506
+current employer,Bigram,506
+net,Unigram,506
+extra money,Bigram,504
+successful,Unigram,503
+month add,Bigram,502
+great credit,Bigram,501
+add car,Bigram,500
+month credit,Bigram,500
+nice,Unigram,500
+rat credit,Bigram,499
+unsecured,Unigram,499
+break,Unigram,498
+fund credit,Bigram,498
+foot,Unigram,497
+add apply,Bigram,496
+rental,Unigram,496
+try credit,Bigram,496
+enjoy,Unigram,495
+worry,Unigram,494
+basement,Unigram,492
+consolidate make,Bigram,492
+card currently,Bigram,491
+add add,Bigram,490
+catch,Unigram,490
+make easier,Bigram,490
+thank invest,Bigram,490
+ability,Unigram,489
+stress,Unigram,488
+payoff high,Bigram,487
+year work,Bigram,486
+fall,Unigram,483
+payment just,Bigram,483
+rate card,Bigram,483
+application,Unigram,482
+contract,Unigram,482
+appliance,Unigram,481
+long term,Bigram,481
+portion,Unigram,480
+didn,Unigram,478
+management,Unigram,477
+customer,Unigram,476
+send,Unigram,476
+nearly,Unigram,475
+payment help,Bigram,474
+federal,Unigram,473
+entire,Unigram,472
+approx,Unigram,471
+quite,Unigram,470
+card home,Bigram,469
+irs,Unigram,469
+near,Unigram,468
+add medical,Bigram,467
+minor,Unigram,467
+monthly income,Bigram,466
+firm,Unigram,464
+transfer,Unigram,464
+manager,Unigram,463
+able make,Bigram,460
+high card,Bigram,459
+purpose consolidate,Bigram,459
+private,Unigram,458
+ratio,Unigram,457
+start new,Bigram,457
+fast,Unigram,456
+payment plan,Bigram,455
+add tell,Bigram,454
+university,Unigram,453
+deposit,Unigram,452
+condition,Unigram,451
+payment allow,Bigram,451
+soon possible,Bigram,451
+cause,Unigram,450
+necessary,Unigram,450
+local,Unigram,449
+free ask,Bigram,448
+need new,Bigram,448
+review,Unigram,448
+hand,Unigram,447
+tell story,Bigram,447
+card payoff,Bigram,446
+final,Unigram,446
+zero,Unigram,446
+time month,Bigram,444
+city,Unigram,443
+new roof,Bigram,443
+plan consolidate,Bigram,443
+prefer,Unigram,442
+wed expense,Bigram,442
+year make,Bigram,442
+internet,Unigram,441
+payment save,Bigram,441
+add goal,Bigram,440
+case,Unigram,440
+bonus,Unigram,439
+lump,Unigram,439
+want high,Bigram,439
+hour,Unigram,438
+couple credit,Bigram,437
+profit,Unigram,437
+progress,Unigram,436
+short term,Bigram,436
+great job,Bigram,435
+larger,Unigram,433
+level,Unigram,433
+range,Unigram,433
+secure job,Bigram,432
+year year,Bigram,431
+air,Unigram,430
+attempt,Unigram,430
+just look,Bigram,430
+small business,Bigram,430
+worth,Unigram,430
+payment payment,Bigram,429
+sum,Unigram,429
+installment,Unigram,428
+light,Unigram,427
+fact,Unigram,426
+idea,Unigram,426
+mind,Unigram,426
+outstanding credit,Bigram,426
+card good,Bigram,425
+look credit,Bigram,423
+financial situation,Bigram,421
+double,Unigram,420
+ring,Unigram,420
+help add,Bigram,419
+law,Unigram,418
+unit,Unigram,417
+benefit,Unigram,413
+card apr,Bigram,413
+site,Unigram,413
+use purchase,Bigram,413
+ask question,Bigram,412
+express,Unigram,411
+affordable,Unigram,410
+annual,Unigram,409
+card reduce,Bigram,408
+job work,Bigram,408
+significantly,Unigram,408
+use consolidation,Bigram,408
+family member,Bigram,407
+office,Unigram,407
+utilize,Unigram,407
+add exist,Bigram,406
+house year,Bigram,405
+card need,Bigram,404
+help thank,Bigram,404
+huge,Unigram,403
+month payment,Bigram,403
+help family,Bigram,402
+decision,Unigram,401
+earlier,Unigram,401
+read,Unigram,401
+time add,Bigram,400
+buy new,Bigram,399
+appreciate help,Bigram,397
+relocate,Unigram,395
+union,Unigram,395
+tuition,Unigram,394
+want free,Bigram,394
+expensive,Unigram,392
+fence,Unigram,392
+handle,Unigram,392
+small credit,Bigram,392
+add allow,Bigram,391
+money consolidate,Bigram,391
+month thank,Bigram,391
+relate,Unigram,391
+significant,Unigram,391
+responsibility,Unigram,389
+card small,Bigram,388
+live expense,Bigram,388
+event,Unigram,387
+want use,Bigram,387
+don want,Bigram,386
+effort,Unigram,386
+potential,Unigram,386
+shorter,Unigram,386
+young,Unigram,386
+business year,Bigram,385
+couple year,Bigram,383
+location,Unigram,383
+primary,Unigram,383
+self,Unigram,382
+time thank,Bigram,382
+carpet,Unigram,381
+financial freedom,Bigram,381
+heat,Unigram,381
+principal,Unigram,381
+timely manner,Bigram,381
+ensure,Unigram,380
+estate,Unigram,380
+landscape,Unigram,379
+card faster,Bigram,378
+job secure,Bigram,378
+lay,Unigram,378
+mistake,Unigram,378
+use car,Bigram,378
+employ company,Bigram,377
+later,Unigram,377
+new job,Bigram,376
+car credit,Bigram,375
+year job,Bigram,375
+add monthly,Bigram,374
+card work,Bigram,374
+help fund,Bigram,374
+safe,Unigram,374
+asap,Unigram,373
+consumer,Unigram,373
+shop,Unigram,373
+add intend,Bigram,372
+baby,Unigram,372
+citi,Unigram,372
+borrow money,Bigram,371
+load,Unigram,371
+advantage,Unigram,370
+damage,Unigram,370
+add really,Bigram,369
+card allow,Bigram,369
+let know,Bigram,369
+computer,Unigram,368
+pretty,Unigram,368
+accomplish,Unigram,366
+hard work,Bigram,366
+high balance,Bigram,366
+money month,Bigram,365
+good stand,Bigram,364
+rate lower,Bigram,364
+book,Unigram,363
+card card,Bigram,363
+father,Unigram,363
+mile,Unigram,363
+trip,Unigram,363
+engineer,Unigram,362
+paycheck,Unigram,362
+stability,Unigram,362
+fresh start,Bigram,361
+pas,Unigram,361
+majority,Unigram,360
+add seek,Bigram,359
+payment late,Bigram,359
+type,Unigram,359
+course,Unigram,358
+make sure,Bigram,358
+use payoff,Bigram,358
+mortgage payment,Bigram,356
+reduce rate,Bigram,356
+add small,Bigram,355
+alot,Unigram,355
+commit,Unigram,355
+military,Unigram,355
+need little,Bigram,355
+product,Unigram,355
+rate thank,Bigram,355
+add wish,Bigram,354
+present,Unigram,354
+client,Unigram,353
+consolidate add,Bigram,353
+add lower,Bigram,352
+add payment,Bigram,352
+deck,Unigram,352
+work job,Bigram,352
+country,Unigram,351
+door,Unigram,351
+make minimum,Bigram,351
+burden,Unigram,350
+currently month,Bigram,350
+website,Unigram,350
+assure,Unigram,349
+lease,Unigram,349
+prepare,Unigram,349
+understand,Unigram,349
+build credit,Bigram,347
+choose,Unigram,347
+consolidate exist,Bigram,347
+today,Unigram,347
+year stable,Bigram,347
+consolidate current,Bigram,346
+help make,Bigram,346
+consolidation high,Bigram,345
+head,Unigram,345
+want make,Bigram,345
+drive,Unigram,344
+consideration add,Bigram,343
+contact,Unigram,343
+apr credit,Bigram,342
+employ year,Bigram,342
+card total,Bigram,341
+economic,Unigram,341
+like make,Bigram,341
+real estate,Bigram,341
+regard,Unigram,341
+american express,Bigram,340
+cable,Unigram,340
+garage,Unigram,340
+trouble,Unigram,340
+like high,Bigram,339
+department,Unigram,338
+trust,Unigram,337
+use help,Bigram,337
+high intrest,Bigram,336
+hit,Unigram,336
+bedroom,Unigram,335
+card able,Bigram,335
+closer,Unigram,335
+christmas,Unigram,334
+difference,Unigram,334
+haven,Unigram,334
+yard,Unigram,333
+long time,Bigram,332
+matter,Unigram,331
+promotion,Unigram,330
+stable employment,Bigram,329
+struggle,Unigram,329
+card fix,Bigram,328
+card start,Bigram,328
+fix payment,Bigram,328
+good candidate,Bigram,328
+worker,Unigram,328
+answer question,Bigram,327
+rid high,Bigram,327
+force,Unigram,326
+month month,Bigram,326
+need repair,Bigram,326
+dont,Unigram,325
+request consolidate,Bigram,325
+residence,Unigram,325
+able save,Bigram,324
+card plan,Bigram,324
+card try,Bigram,324
+sense,Unigram,324
+add lend,Bigram,323
+add start,Bigram,323
+bless,Unigram,323
+consolidate outstanding,Bigram,323
+efficient,Unigram,323
+remain balance,Bigram,323
+card student,Bigram,322
+cell,Unigram,322
+contribute,Unigram,322
+percentage,Unigram,322
+personal credit,Bigram,322
+source,Unigram,322
+year like,Bigram,322
+credit line,Bigram,321
+rebuild,Unigram,321
+combine credit,Bigram,319
+rate payment,Bigram,319
+unexpected expense,Bigram,319
+community,Unigram,318
+hire,Unigram,318
+multiple payment,Bigram,317
+payment currently,Bigram,317
+money help,Bigram,316
+qualify,Unigram,316
+feel like,Bigram,314
+just make,Bigram,314
+low monthly,Bigram,314
+min,Unigram,314
+need replace,Bigram,314
+retail,Unigram,314
+start business,Bigram,314
+concern,Unigram,313
+consolidation lower,Bigram,313
+home need,Bigram,313
+mom,Unigram,313
+payment like,Bigram,313
+remove,Unigram,313
+share,Unigram,313
+thousand,Unigram,313
+eventually,Unigram,312
+nurse,Unigram,312
+payment card,Bigram,312
+positive,Unigram,312
+unable,Unigram,312
+card amp,Bigram,311
+currently work,Bigram,311
+fiance,Unigram,311
+reach goal,Bigram,311
+total monthly,Bigram,311
+comfortable,Unigram,310
+improvement project,Bigram,310
+multiple credit,Bigram,310
+need fund,Bigram,310
+year current,Bigram,310
+guarantee,Unigram,309
+age,Unigram,308
+decent,Unigram,308
+low rate,Bigram,308
+percent,Unigram,308
+make late,Bigram,307
+online,Unigram,307
+achieve goal,Bigram,306
+construction,Unigram,306
+growth,Unigram,306
+increase credit,Bigram,306
+stable income,Bigram,306
+basically,Unigram,305
+gross,Unigram,305
+land,Unigram,305
+promote,Unigram,305
+verify,Unigram,305
+make money,Bigram,304
+currently credit,Bigram,303
+install,Unigram,303
+space,Unigram,303
+structure,Unigram,303
+thank support,Bigram,303
+world,Unigram,303
+engagement,Unigram,302
+gain,Unigram,302
+graduate school,Bigram,302
+month ago,Bigram,302
+steady income,Bigram,302
+successfully,Unigram,302
+condo,Unigram,301
+dental work,Bigram,301
+use lend,Bigram,301
+good time,Bigram,300
+accept,Unigram,299
+contractor,Unigram,299
+ease,Unigram,299
+figure,Unigram,299
+lower credit,Bigram,299
+rat high,Bigram,299
+amex,Unigram,298
+help save,Bigram,298
+july,Unigram,298
+kind,Unigram,298
+wonderful,Unigram,298
+year want,Bigram,298
+highest,Unigram,297
+immediately,Unigram,297
+associate,Unigram,296
+just like,Bigram,296
+promise,Unigram,296
+usually,Unigram,296
+basis,Unigram,295
+inventory,Unigram,294
+reduce credit,Bigram,294
+card order,Bigram,293
+current payment,Bigram,293
+long run,Bigram,293
+really need,Bigram,293
+research,Unigram,293
+upcoming,Unigram,293
+year just,Bigram,293
+original,Unigram,292
+add reduce,Bigram,291
+card accumulate,Bigram,291
+plan year,Bigram,291
+story add,Bigram,291
+time year,Bigram,291
+transportation,Unigram,291
+year company,Bigram,291
+make life,Bigram,289
+non,Unigram,289
+year help,Bigram,289
+car insurance,Bigram,288
+holiday,Unigram,288
+lump sum,Bigram,288
+use home,Bigram,288
+anticipate,Unigram,287
+cheaper,Unigram,287
+com,Unigram,287
+reduction,Unigram,286
+unemployed,Unigram,286
+add business,Bigram,285
+add great,Bigram,285
+add wife,Bigram,285
+card better,Bigram,285
+divorce,Unigram,285
+frame,Unigram,285
+discover card,Bigram,284
+home add,Bigram,284
+money save,Bigram,284
+post,Unigram,284
+supply,Unigram,284
+class,Unigram,283
+end date,Bigram,283
+improvement add,Bigram,283
+new year,Bigram,283
+consolidation home,Bigram,282
+older,Unigram,282
+prove,Unigram,282
+question thank,Bigram,282
+renovate,Unigram,282
+truly,Unigram,282
+card look,Bigram,281
+fargo,Unigram,281
+grateful,Unigram,281
+attend,Unigram,280
+like lower,Bigram,280
+stable work,Bigram,280
+thank opportunity,Bigram,280
+want rid,Bigram,280
+winter,Unigram,280
+make home,Bigram,279
+software,Unigram,279
+previously,Unigram,278
+time credit,Bigram,278
+doesn,Unigram,277
+instal,Unigram,277
+outside,Unigram,277
+teacher,Unigram,277
+use card,Bigram,277
+january,Unigram,276
+june,Unigram,276
+credit union,Bigram,275
+exist lend,Bigram,275
+boat,Unigram,274
+current monthly,Bigram,274
+dent,Unigram,274
+engagement ring,Bigram,274
+quick,Unigram,274
+misc,Unigram,273
+add family,Bigram,272
+backyard,Unigram,272
+grind,Unigram,272
+regular,Unigram,272
+lead,Unigram,271
+payment account,Bigram,271
+relief,Unigram,271
+relocation,Unigram,271
+company work,Bigram,269
+card single,Bigram,268
+citibank,Unigram,268
+delinquent,Unigram,268
+estimate,Unigram,268
+saving account,Bigram,268
+consolidate easy,Bigram,267
+delinquency,Unigram,267
+forever,Unigram,267
+late miss,Bigram,267
+stable company,Bigram,267
+add combine,Bigram,266
+confident,Unigram,266
+doctor,Unigram,266
+add employ,Bigram,265
+peace,Unigram,265
+job security,Bigram,264
+expire,Unigram,263
+payment rate,Bigram,263
+purchase house,Bigram,263
+choice,Unigram,262
+consolidate card,Bigram,262
+fit,Unigram,262
+free credit,Bigram,262
+free month,Bigram,262
+pocket,Unigram,262
+seriously,Unigram,262
+status,Unigram,262
+add simply,Bigram,261
+april,Unigram,261
+balance high,Bigram,261
+period time,Bigram,261
+responsible person,Bigram,261
+electric,Unigram,260
+pride,Unigram,260
+quality,Unigram,260
+tree,Unigram,260
+allow save,Bigram,258
+credit good,Bigram,258
+credit time,Bigram,258
+organize,Unigram,258
+really appreciate,Bigram,258
+sick,Unigram,258
+thank lend,Bigram,258
+use higher,Bigram,258
+card cut,Bigram,257
+card low,Bigram,257
+honest,Unigram,257
+likely,Unigram,257
+plan free,Bigram,257
+success,Unigram,257
+cell phone,Bigram,256
+public,Unigram,256
+replacement,Unigram,256
+thank fund,Bigram,256
+despite,Unigram,255
+time work,Bigram,254
+breathe,Unigram,253
+expense credit,Bigram,253
+grad,Unigram,253
+maintenance,Unigram,253
+master degree,Bigram,253
+mention,Unigram,253
+payment current,Bigram,253
+road,Unigram,253
+roughly,Unigram,253
+sign,Unigram,253
+train,Unigram,253
+year good,Bigram,253
+august,Unigram,252
+dollar month,Bigram,252
+energy,Unigram,252
+near future,Bigram,252
+pre,Unigram,252
+tunnel,Unigram,252
+add couple,Bigram,251
+december,Unigram,251
+grocery,Unigram,251
+payment work,Bigram,251
+design,Unigram,250
+help achieve,Bigram,250
+march,Unigram,250
+need make,Bigram,250
+payment life,Bigram,250
+teach,Unigram,250
+graduate college,Bigram,249
+look lower,Bigram,249
+miss late,Bigram,249
+operate,Unigram,249
+partner,Unigram,249
+time frame,Bigram,249
+add wed,Bigram,248
+payment want,Bigram,248
+consistent,Unigram,247
+depot,Unigram,247
+path,Unigram,247
+slowly,Unigram,247
+wish consolidate,Bigram,247
+aside,Unigram,246
+extra cash,Bigram,246
+income ratio,Bigram,246
+light end,Bigram,246
+little extra,Bigram,246
+purchase use,Bigram,246
+serve,Unigram,246
+time late,Bigram,246
+like thank,Bigram,245
+month make,Bigram,245
+rate currently,Bigram,245
+roll,Unigram,245
+fico,Unigram,244
+payment reduce,Bigram,244
+quickly possible,Bigram,244
+rate help,Bigram,244
+reasonable rate,Bigram,244
+time consideration,Bigram,244
+want lower,Bigram,244
+definitely,Unigram,243
+dependable,Unigram,243
+allow consolidate,Bigram,242
+sound,Unigram,242
+home equity,Bigram,241
+month year,Bigram,241
+time just,Bigram,241
+anymore,Unigram,240
+card easy,Bigram,240
+home purchase,Bigram,240
+automatic,Unigram,239
+home depot,Bigram,239
+loss,Unigram,239
+remain credit,Bigram,239
+asset,Unigram,238
+cover expense,Bigram,238
+end tunnel,Bigram,238
+time time,Bigram,238
+add close,Bigram,237
+rsquo,Unigram,237
+currently make,Bigram,236
+intention,Unigram,236
+intrest rate,Bigram,236
+add hop,Bigram,235
+legal,Unigram,235
+little bite,Bigram,235
+payment free,Bigram,235
+payment good,Bigram,235
+bank account,Bigram,234
+month instead,Bigram,234
+payment able,Bigram,234
+advertise,Unigram,233
+current lend,Bigram,233
+development,Unigram,233
+drop,Unigram,233
+especially,Unigram,233
+guy,Unigram,233
+sight,Unigram,233
+title,Unigram,233
+bath,Unigram,232
+card cancel,Bigram,232
+eliminate high,Bigram,232
+end year,Bigram,232
+initial,Unigram,232
+like add,Bigram,232
+monthly credit,Bigram,232
+need high,Bigram,232
+priority,Unigram,232
+remodel kitchen,Bigram,232
+repair home,Bigram,232
+add excellent,Bigram,231
+visit,Unigram,231
+year use,Bigram,231
+bankruptcy,Unigram,230
+consistently,Unigram,230
+want able,Bigram,230
+add late,Bigram,229
+appreciate consideration,Bigram,229
+credit payment,Bigram,229
+like able,Bigram,229
+like payment,Bigram,229
+like payoff,Bigram,229
+wall,Unigram,229
+want thank,Bigram,229
+agree,Unigram,228
+cabinet,Unigram,228
+financial obligation,Bigram,228
+jump,Unigram,228
+make month,Bigram,228
+new house,Bigram,228
+payment car,Bigram,228
+revenue,Unigram,228
+year need,Bigram,228
+fail,Unigram,227
+involve,Unigram,227
+primarily,Unigram,227
+probably,Unigram,227
+rate make,Bigram,227
+slow,Unigram,227
+want add,Bigram,227
+year late,Bigram,227
+card incur,Bigram,226
+desire,Unigram,226
+employ time,Bigram,226
+intend use,Bigram,226
+add reason,Bigram,225
+add remodel,Bigram,225
+fully fund,Bigram,225
+medical credit,Bigram,225
+payment stable,Bigram,225
+peer,Unigram,225
+really help,Bigram,225
+really like,Bigram,225
+separate,Unigram,225
+agency,Unigram,224
+extend,Unigram,224
+rack,Unigram,224
+add card,Bigram,223
+demand,Unigram,223
+finance charge,Bigram,223
+payment job,Bigram,223
+penalty,Unigram,223
+settle,Unigram,223
+improvement home,Bigram,222
+patio,Unigram,222
+payment minimum,Bigram,222
+time monthly,Bigram,222
+tool,Unigram,222
+twice,Unigram,222
+commitment,Unigram,221
+furnace,Unigram,221
+little help,Bigram,221
+make time,Bigram,221
+rate like,Bigram,221
+consolidate revolve,Bigram,220
+expense add,Bigram,220
+just monthly,Bigram,220
+lose job,Bigram,220
+material,Unigram,220
+plumb,Unigram,220
+recession,Unigram,220
+stick,Unigram,220
+higher apr,Bigram,219
+mainly,Unigram,219
+refinance high,Bigram,219
+tile,Unigram,219
+account add,Bigram,218
+add tire,Bigram,218
+rat like,Bigram,218
+house need,Bigram,217
+make year,Bigram,217
+procedure,Unigram,217
+rate year,Bigram,217
+recently purchase,Bigram,217
+rent utility,Bigram,217
+save future,Bigram,217
+september,Unigram,217
+swim,Unigram,217
+card purchase,Bigram,216
+help greatly,Bigram,216
+manageable payment,Bigram,216
+new business,Bigram,216
+october,Unigram,216
+peace mind,Bigram,216
+principle,Unigram,216
+reserve,Unigram,216
+smart,Unigram,216
+time make,Bigram,216
+different credit,Bigram,215
+file,Unigram,215
+general,Unigram,215
+hard time,Bigram,215
+add debit,Bigram,214
+card charge,Bigram,214
+consolidate small,Bigram,214
+develop,Unigram,214
+directly,Unigram,214
+leak,Unigram,214
+payment lend,Bigram,214
+want payment,Bigram,214
+greater,Unigram,213
+month just,Bigram,213
+month time,Bigram,213
+piece,Unigram,213
+brother,Unigram,212
+entertainment,Unigram,212
+fund help,Bigram,212
+job good,Bigram,212
+license,Unigram,212
+maybe,Unigram,212
+possibly,Unigram,212
+rate save,Bigram,212
+tough,Unigram,212
+card bank,Bigram,211
+fix monthly,Bigram,211
+god,Unigram,211
+highly,Unigram,211
+job make,Bigram,210
+occur,Unigram,210
+description,Unigram,209
+easy monthly,Bigram,209
+exceed,Unigram,209
+hear,Unigram,209
+helpful,Unigram,209
+industry year,Bigram,209
+institution,Unigram,209
+negative,Unigram,209
+null add,Bigram,209
+active,Unigram,208
+direct,Unigram,208
+minimum monthly,Bigram,208
+spring,Unigram,208
+add eliminate,Bigram,207
+emergency fund,Bigram,207
+equal,Unigram,207
+like refinance,Bigram,207
+mail,Unigram,207
+need home,Bigram,207
+payment easier,Bigram,207
+special,Unigram,207
+spread,Unigram,207
+unexpected medical,Bigram,207
+year look,Bigram,207
+year monthly,Bigram,207
+add replace,Bigram,206
+need extra,Bigram,206
+organization,Unigram,206
+payment better,Bigram,206
+california,Unigram,205
+card late,Bigram,205
+fund thank,Bigram,205
+intrest credit,Bigram,205
+rate allow,Bigram,205
+restaurant,Unigram,205
+rat add,Bigram,204
+single monthly,Bigram,204
+true,Unigram,204
+year month,Bigram,204
+card money,Bigram,203
+consolidate help,Bigram,203
+consolidate single,Bigram,203
+senior,Unigram,203
+thank look,Bigram,203
+want payoff,Bigram,203
+excellent payment,Bigram,202
+income tax,Bigram,202
+late credit,Bigram,202
+oppose,Unigram,202
+profitable,Unigram,202
+rate high,Bigram,202
+seven,Unigram,202
+student credit,Bigram,202
+time minimum,Bigram,202
+card stable,Bigram,201
+clothe,Unigram,201
+cycle,Unigram,201
+season,Unigram,201
+venture,Unigram,201
+able credit,Bigram,200
+easier manage,Bigram,200
+free thank,Bigram,200
+month rent,Bigram,200
+rat make,Bigram,200
+reduce payment,Bigram,200
+combine payment,Bigram,199
+solution,Unigram,199
+target,Unigram,199
+technology,Unigram,199
+trailer,Unigram,199
+circumstance,Unigram,198
+cushion,Unigram,198
+daily,Unigram,198
+florida,Unigram,198
+job time,Bigram,198
+play,Unigram,198
+track record,Bigram,198
+write,Unigram,198
+york,Unigram,198
+add rid,Bigram,197
+better credit,Bigram,197
+consolidate account,Bigram,197
+determine,Unigram,197
+fund purchase,Bigram,197
+major credit,Bigram,197
+new york,Bigram,197
+pick,Unigram,197
+rely,Unigram,197
+time stable,Bigram,197
+web,Unigram,197
+add house,Bigram,196
+form,Unigram,196
+healthcare,Unigram,196
+hot,Unigram,196
+kill,Unigram,196
+mba,Unigram,196
+new car,Bigram,196
+overtime,Unigram,196
+want buy,Bigram,196
+account close,Bigram,195
+allow make,Bigram,195
+college year,Bigram,195
+consolidate couple,Bigram,195
+credit credit,Bigram,195
+minimal,Unigram,195
+money high,Bigram,195
+payment high,Bigram,195
+steadily,Unigram,195
+time like,Bigram,195
+vary,Unigram,195
+add unexpected,Bigram,194
+card auto,Bigram,194
+card current,Bigram,194
+email,Unigram,194
+affect,Unigram,193
+clear credit,Bigram,193
+extremely stable,Bigram,193
+help reach,Bigram,193
+add able,Bigram,192
+compare,Unigram,192
+consolidation higher,Bigram,192
+dedicate,Unigram,192
+gift,Unigram,192
+instead multiple,Bigram,192
+make improvement,Bigram,192
+model,Unigram,192
+poor,Unigram,192
+raise credit,Bigram,192
+start fresh,Bigram,192
+add month,Bigram,191
+position year,Bigram,191
+swim pool,Bigram,191
+wood,Unigram,191
+year currently,Bigram,191
+check account,Bigram,190
+major purchase,Bigram,190
+make easy,Bigram,190
+add additional,Bigram,189
+add ask,Bigram,189
+consolidate save,Bigram,189
+free add,Bigram,189
+good income,Bigram,189
+homeowner,Unigram,189
+revolve account,Bigram,189
+substantial,Unigram,189
+accelerate,Unigram,188
+additionally,Unigram,188
+buy car,Bigram,188
+card college,Bigram,188
+dear,Unigram,188
+great deal,Bigram,188
+rental property,Bigram,188
+stock,Unigram,188
+value home,Bigram,188
+current position,Bigram,187
+grad school,Bigram,187
+operation,Unigram,187
+study,Unigram,187
+work current,Bigram,187
+budget month,Bigram,186
+finish basement,Bigram,186
+live mean,Bigram,186
+money make,Bigram,186
+payment home,Bigram,186
+practice,Unigram,186
+rise,Unigram,186
+want start,Bigram,186
+notice,Unigram,185
+problem make,Bigram,185
+pursue,Unigram,185
+reflect,Unigram,185
+simple payment,Bigram,185
+slightly,Unigram,185
+specific,Unigram,185
+submit,Unigram,185
+add major,Bigram,184
+balance card,Bigram,184
+month like,Bigram,184
+add finish,Bigram,183
+consolidate remain,Bigram,183
+cut credit,Bigram,183
+isn,Unigram,183
+look purchase,Bigram,183
+lot money,Bigram,183
+moment,Unigram,183
+money long,Bigram,183
+month help,Bigram,183
+really want,Bigram,183
+year half,Bigram,183
+bachelor,Unigram,182
+bike,Unigram,182
+club help,Bigram,182
+completely free,Bigram,182
+girlfriend,Unigram,182
+good stable,Bigram,182
+rate monthly,Bigram,182
+add responsible,Bigram,181
+amaze,Unigram,181
+care credit,Bigram,181
+payment consolidate,Bigram,181
+sorry,Unigram,181
+year term,Bigram,181
+add second,Bigram,180
+add vacation,Bigram,180
+attorney,Unigram,180
+lesson,Unigram,180
+numerous,Unigram,180
+trade,Unigram,180
+work capital,Bigram,180
+card remain,Bigram,179
+ive,Unigram,179
+originally,Unigram,179
+sister,Unigram,179
+town,Unigram,179
+consult,Unigram,178
+finance order,Bigram,178
+grant,Unigram,178
+heater,Unigram,178
+plenty,Unigram,178
+totally,Unigram,178
+consolidate order,Bigram,177
+exception,Unigram,177
+free money,Bigram,177
+healthy,Unigram,177
+largest,Unigram,177
+like just,Bigram,177
+make credit,Bigram,177
+profession,Unigram,177
+sear,Unigram,177
+year instead,Bigram,177
+group,Unigram,176
+national,Unigram,176
+normal,Unigram,176
+payoff higher,Bigram,176
+able consolidate,Bigram,175
+add build,Bigram,175
+add marry,Bigram,175
+car add,Bigram,175
+credit balance,Bigram,175
+fico score,Bigram,175
+honeymoon,Unigram,175
+make dent,Bigram,175
+word,Unigram,175
+army,Unigram,174
+fell,Unigram,174
+funeral,Unigram,174
+good money,Bigram,174
+help free,Bigram,174
+history late,Bigram,174
+hope help,Bigram,174
+make progress,Bigram,174
+mastercard,Unigram,174
+montly,Unigram,174
+question feel,Bigram,174
+sufficient,Unigram,174
+use proceed,Bigram,174
+additional fund,Bigram,173
+card minimum,Bigram,173
+financial future,Bigram,173
+financial goal,Bigram,173
+help lower,Bigram,173
+make sense,Bigram,173
+net income,Bigram,173
+team,Unigram,173
+auto repair,Bigram,172
+beautiful,Unigram,172
+charge card,Bigram,172
+electrical,Unigram,172
+fund high,Bigram,172
+refi,Unigram,172
+approximately month,Bigram,171
+consolidate multiple,Bigram,171
+dog,Unigram,171
+refinance lower,Bigram,171
+generate,Unigram,170
+great opportunity,Bigram,170
+impact,Unigram,170
+money buy,Bigram,170
+money need,Bigram,170
+payment miss,Bigram,170
+rat card,Bigram,170
+small home,Bigram,170
+store card,Bigram,170
+better financial,Bigram,169
+debit consolidation,Bigram,169
+different payment,Bigram,169
+hard worker,Bigram,169
+high school,Bigram,169
+history time,Bigram,169
+ill,Unigram,169
+lower overall,Bigram,169
+payment use,Bigram,169
+power,Unigram,169
+shorter time,Bigram,169
+streamline,Unigram,169
+work free,Bigram,169
+year miss,Bigram,169
+cover insurance,Bigram,168
+end sight,Bigram,168
+payment different,Bigram,168
+previous lend,Bigram,168
+rate offer,Bigram,168
+restructure,Unigram,168
+aid,Unigram,167
+convenient,Unigram,167
+depend,Unigram,167
+driveway,Unigram,167
+free cash,Bigram,167
+goal year,Bigram,167
+house add,Bigram,167
+money leave,Bigram,167
+need purchase,Bigram,167
+past month,Bigram,167
+raise rat,Bigram,167
+redo,Unigram,167
+seek consolidate,Bigram,167
+traditional,Unigram,167
+budget allow,Bigram,166
+collection,Unigram,166
+currently employ,Bigram,166
+goal credit,Bigram,166
+good investment,Bigram,166
+income month,Bigram,166
+november,Unigram,166
+thousand dollar,Bigram,166
+time good,Bigram,166
+tremendously,Unigram,166
+add note,Bigram,165
+appreciate thank,Bigram,165
+breathe room,Bigram,165
+card buy,Bigram,165
+card job,Bigram,165
+employment year,Bigram,165
+happy answer,Bigram,165
+kitchen bathroom,Bigram,165
+mark,Unigram,165
+money add,Bigram,165
+payment faster,Bigram,165
+store credit,Bigram,165
+variable,Unigram,165
+consolidate reduce,Bigram,164
+hole,Unigram,164
+nearly year,Bigram,164
+request credit,Bigram,164
+work history,Bigram,164
+balance add,Bigram,163
+close card,Bigram,163
+consolidation help,Bigram,163
+credit limit,Bigram,163
+fortune,Unigram,163
+impossible,Unigram,163
+info,Unigram,163
+like purchase,Bigram,163
+profile,Unigram,163
+rate lend,Bigram,163
+add pool,Bigram,162
+allow credit,Bigram,162
+card way,Bigram,162
+convert,Unigram,162
+cut card,Bigram,162
+just buy,Bigram,162
+mortgage car,Bigram,162
+timely payment,Bigram,162
+fair,Unigram,161
+home renovation,Bigram,161
+investor help,Bigram,161
+make just,Bigram,161
+time help,Bigram,161
+wipe,Unigram,161
+add attempt,Bigram,160
+card leave,Bigram,160
+certain,Unigram,160
+comfortably,Unigram,160
+relationship,Unigram,160
+tax return,Bigram,160
+time look,Bigram,160
+time need,Bigram,160
+weekend,Unigram,160
+balance lower,Bigram,159
+big bank,Bigram,159
+car note,Bigram,159
+card miss,Bigram,159
+cover cost,Bigram,159
+duty,Unigram,159
+extremely high,Bigram,159
+house payment,Bigram,159
+knock,Unigram,159
+save lot,Bigram,159
+tight,Unigram,159
+ultimately,Unigram,159
+work stable,Bigram,159
+younger,Unigram,159
+add tax,Bigram,158
+allow faster,Bigram,158
+clean credit,Bigram,158
+consolidate personal,Bigram,158
+money thank,Bigram,158
+prosper,Unigram,158
+second lend,Bigram,158
+yearly,Unigram,158
+automatically,Unigram,157
+bigger,Unigram,157
+commercial,Unigram,157
+consolidate free,Bigram,157
+consolodate,Unigram,157
+help faster,Bigram,157
+money saving,Bigram,157
+party,Unigram,157
+pull,Unigram,157
+add outstanding,Bigram,156
+concentrate,Unigram,156
+consider request,Bigram,156
+credit late,Bigram,156
+hesitate,Unigram,156
+job company,Bigram,156
+purpose credit,Bigram,156
+remodel home,Bigram,156
+sell house,Bigram,156
+sit,Unigram,156
+central,Unigram,155
+college graduate,Bigram,155
+lot credit,Bigram,155
+plan month,Bigram,155
+relatively,Unigram,155
+similar,Unigram,155
+sole,Unigram,155
+speak,Unigram,155
+try high,Bigram,155
+wasn,Unigram,155
+year free,Bigram,155
+year payment,Bigram,155
+apply consolidate,Bigram,154
+club year,Bigram,154
+end month,Bigram,154
+invest far,Bigram,154
+live home,Bigram,154
+payment close,Bigram,154
+property tax,Bigram,154
+sincerely,Unigram,154
+slate,Unigram,154
+work credit,Bigram,154
+year experience,Bigram,154
+bank credit,Bigram,153
+county,Unigram,153
+credit add,Bigram,153
+dad,Unigram,153
+mid,Unigram,153
+miscellaneous,Unigram,153
+new window,Bigram,153
+payment house,Bigram,153
+purchase car,Bigram,153
+versus,Unigram,153
+account lower,Bigram,152
+add receive,Bigram,152
+address,Unigram,152
+cancel credit,Bigram,152
+card accrue,Bigram,152
+eat,Unigram,152
+low payment,Bigram,152
+manageable monthly,Bigram,152
+month allow,Bigram,152
+officer,Unigram,152
+production,Unigram,152
+rate current,Bigram,152
+resolve,Unigram,152
+smaller payment,Bigram,152
+add daughter,Bigram,151
+close cost,Bigram,151
+club offer,Bigram,151
+correct,Unigram,151
+goal consolidate,Bigram,151
+investment property,Bigram,151
+job just,Bigram,151
+make mistake,Bigram,151
+payment total,Bigram,151
+plan make,Bigram,151
+resource,Unigram,151
+spend money,Bigram,151
+try make,Bigram,151
+use refinance,Bigram,151
+adult,Unigram,150
+card dept,Bigram,150
+card goal,Bigram,150
+consider fund,Bigram,150
+furnish,Unigram,150
+high payment,Bigram,150
+income monthly,Bigram,150
+need additional,Bigram,150
+register,Unigram,150
+repair car,Bigram,150
+add balance,Bigram,149
+add process,Bigram,149
+business add,Bigram,149
+center,Unigram,149
+corporation,Unigram,149
+home remodel,Bigram,149
+low risk,Bigram,149
+need cash,Bigram,149
+reduce overall,Bigram,149
+allow free,Bigram,148
+cable internet,Bigram,148
+chase credit,Bigram,148
+health insurance,Bigram,148
+home month,Bigram,148
+immediate,Unigram,148
+installation,Unigram,148
+interst,Unigram,148
+make possible,Bigram,148
+manage finance,Bigram,148
+monies,Unigram,148
+peer peer,Bigram,148
+ridiculous,Unigram,148
+unforeseen,Unigram,148
+add proceed,Bigram,147
+contribution,Unigram,147
+die,Unigram,147
+field year,Bigram,147
+future thank,Bigram,147
+hurt,Unigram,147
+just year,Bigram,147
+month save,Bigram,147
+new floor,Bigram,147
+outstanding balance,Bigram,147
+payment need,Bigram,147
+payment new,Bigram,147
+rate consolidate,Bigram,147
+speed,Unigram,147
+time want,Bigram,147
+add borrow,Bigram,146
+card improve,Bigram,146
+club lower,Bigram,146
+confidence,Unigram,146
+consolidate smaller,Bigram,146
+daughter wed,Bigram,146
+february,Unigram,146
+know question,Bigram,146
+min payment,Bigram,146
+need fix,Bigram,146
+night,Unigram,146
+stable career,Bigram,146
+use remain,Bigram,146
+weekly,Unigram,146
+year great,Bigram,146
+agreement,Unigram,145
+begin save,Bigram,145
+buyer,Unigram,145
+close high,Bigram,145
+credit make,Bigram,145
+efficiently,Unigram,145
+forget,Unigram,145
+fuel,Unigram,145
+home owner,Bigram,145
+hurricane,Unigram,145
+insurance cover,Bigram,145
+need work,Bigram,145
+new furniture,Bigram,145
+payment end,Bigram,145
+rate want,Bigram,145
+rent car,Bigram,145
+try lower,Bigram,145
+unemployment,Unigram,145
+card expense,Bigram,144
+card lend,Bigram,144
+dig,Unigram,144
+fairly,Unigram,144
+fix term,Bigram,144
+graduation,Unigram,144
+look high,Bigram,144
+month plan,Bigram,144
+month work,Bigram,144
+save payment,Bigram,144
+stable position,Bigram,144
+add live,Bigram,143
+enter,Unigram,143
+financially stable,Bigram,143
+fund add,Bigram,143
+fund need,Bigram,143
+help high,Bigram,143
+like free,Bigram,143
+payback,Unigram,143
+tenure,Unigram,143
+treatment,Unigram,143
+year able,Bigram,143
+year start,Bigram,143
+add miss,Bigram,142
+assistant,Unigram,142
+buy use,Bigram,142
+excess,Unigram,142
+faster lower,Bigram,142
+help appreciate,Bigram,142
+hsbc,Unigram,142
+make thing,Bigram,142
+primary residence,Bigram,142
+relieve,Unigram,142
+substantially,Unigram,142
+thats,Unigram,142
+approval,Unigram,141
+card new,Bigram,141
+destroy,Unigram,141
+extra payment,Bigram,141
+kitchen remodel,Bigram,141
+maxed,Unigram,141
+payment fix,Bigram,141
+payment look,Bigram,141
+reward,Unigram,141
+social,Unigram,141
+boost,Unigram,140
+expansion,Unigram,140
+federal government,Bigram,140
+foundation,Unigram,140
+gainfully,Unigram,140
+goal thank,Bigram,140
+good payment,Bigram,140
+lend tree,Bigram,140
+live free,Bigram,140
+look like,Bigram,140
+look refinance,Bigram,140
+money monthly,Bigram,140
+money payment,Bigram,140
+network,Unigram,140
+payment great,Bigram,140
+payment problem,Bigram,140
+rat lower,Bigram,140
+rebuild credit,Bigram,140
+refuse,Unigram,140
+tub,Unigram,140
+want refinance,Bigram,140
+club credit,Bigram,139
+help reduce,Bigram,139
+intent,Unigram,139
+make great,Bigram,139
+make happen,Bigram,139
+rate faster,Bigram,139
+stable time,Bigram,139
+staff,Unigram,139
+total payment,Bigram,139
+card line,Bigram,138
+card little,Bigram,138
+commute,Unigram,138
+couldn,Unigram,138
+credit year,Bigram,138
+engine,Unigram,138
+exactly,Unigram,138
+game,Unigram,138
+like buy,Bigram,138
+live room,Bigram,138
+money time,Bigram,138
+proceed use,Bigram,138
+rat want,Bigram,138
+add complete,Bigram,137
+add cover,Bigram,137
+balance transfer,Bigram,137
+busy,Unigram,137
+card fund,Bigram,137
+charge credit,Bigram,137
+effect,Unigram,137
+god bless,Bigram,137
+good make,Bigram,137
+hello thank,Bigram,137
+home thank,Bigram,137
+hop consolidate,Bigram,137
+minimum month,Bigram,137
+pas away,Bigram,137
+sell home,Bigram,137
+transmission,Unigram,137
+win win,Bigram,137
+actual,Unigram,136
+approach,Unigram,136
+balance month,Bigram,136
+card finance,Bigram,136
+consolidate car,Bigram,136
+current rate,Bigram,136
+exterior,Unigram,136
+help start,Bigram,136
+honda,Unigram,136
+order consolidate,Bigram,136
+plan high,Bigram,136
+prevent,Unigram,136
+storm,Unigram,136
+throw,Unigram,136
+want close,Bigram,136
+water heater,Bigram,136
+wife work,Bigram,136
+accord,Unigram,135
+accumulate credit,Bigram,135
+add finance,Bigram,135
+add free,Bigram,135
+current rat,Bigram,135
+hardship,Unigram,135
+like rid,Bigram,135
+rat thank,Bigram,135
+rate time,Bigram,135
+repair house,Bigram,135
+say thank,Bigram,135
+statement,Unigram,135
+texas,Unigram,135
+able year,Bigram,134
+counter,Unigram,134
+couple high,Bigram,134
+flexibility,Unigram,134
+high account,Bigram,134
+interior,Unigram,134
+like start,Bigram,134
+look buy,Bigram,134
+month lower,Bigram,134
+shape,Unigram,134
+view,Unigram,134
+accident,Unigram,133
+add repair,Bigram,133
+balance like,Bigram,133
+balance monthly,Bigram,133
+balance payment,Bigram,133
+build saving,Bigram,133
+completion,Unigram,133
+effective,Unigram,133
+expense rent,Bigram,133
+headway,Unigram,133
+life easier,Bigram,133
+oil,Unigram,133
+payment mortgage,Bigram,133
+plan close,Bigram,133
+year come,Bigram,133
+accomplish goal,Bigram,132
+basic,Unigram,132
+best buy,Bigram,132
+consolidate better,Bigram,132
+consolidate payoff,Bigram,132
+easier payment,Bigram,132
+expense include,Bigram,132
+expense month,Bigram,132
+increase value,Bigram,132
+marriage,Unigram,132
+minimize,Unigram,132
+need add,Bigram,132
+open credit,Bigram,132
+payment half,Bigram,132
+rent month,Bigram,132
+self employ,Bigram,132
+spouse,Unigram,132
+surprise,Unigram,132
+thankful,Unigram,132
+total month,Bigram,132
+worthy,Unigram,132
+year excellent,Bigram,132
+advance help,Bigram,131
+card past,Bigram,131
+card quicker,Bigram,131
+card tax,Bigram,131
+concrete,Unigram,131
+corporate,Unigram,131
+easier make,Bigram,131
+gainfully employ,Bigram,131
+honor,Unigram,131
+instead different,Bigram,131
+know year,Bigram,131
+lifestyle,Unigram,131
+maintain good,Bigram,131
+month want,Bigram,131
+need lower,Bigram,131
+personal use,Bigram,131
+refinance add,Bigram,131
+refinance higher,Bigram,131
+school year,Bigram,131
+tax credit,Bigram,131
+time period,Bigram,131
+use make,Bigram,131
+want reduce,Bigram,131
+add college,Bigram,130
+consist,Unigram,130
+consolidate able,Bigram,130
+faster add,Bigram,130
+inside,Unigram,130
+main financial,Bigram,130
+new apartment,Bigram,130
+save dollar,Bigram,130
+size,Unigram,130
+small payment,Bigram,130
+account payment,Bigram,129
+best way,Bigram,129
+card build,Bigram,129
+concept,Unigram,129
+count,Unigram,129
+director,Unigram,129
+fix car,Bigram,129
+illness,Unigram,129
+instead payment,Bigram,129
+job add,Bigram,129
+job stability,Bigram,129
+mobile,Unigram,129
+month monthly,Bigram,129
+payoff date,Bigram,129
+plan purchase,Bigram,129
+rate able,Bigram,129
+reality,Unigram,129
+remodel bathroom,Bigram,129
+roof house,Bigram,129
+storage,Unigram,129
+use exist,Bigram,129
+work need,Bigram,129
+add past,Bigram,128
+ask thank,Bigram,128
+card rid,Bigram,128
+home like,Bigram,128
+like combine,Bigram,128
+monthly cash,Bigram,128
+need buy,Bigram,128
+plan buy,Bigram,128
+request consolidation,Bigram,128
+stable year,Bigram,128
+supplement,Unigram,128
+transition,Unigram,128
+add multiple,Bigram,127
+add total,Bigram,127
+credit car,Bigram,127
+difficulty,Unigram,127
+glad,Unigram,127
+home mortgage,Bigram,127
+layoff,Unigram,127
+monthly basis,Bigram,127
+monthy,Unigram,127
+need thank,Bigram,127
+payment budget,Bigram,127
+perform,Unigram,127
+rate fix,Bigram,127
+recover,Unigram,127
+semester,Unigram,127
+tie,Unigram,127
+yes,Unigram,127
+better manage,Bigram,126
+considerably,Unigram,126
+consolidate eliminate,Bigram,126
+face,Unigram,126
+fund far,Bigram,126
+fund request,Bigram,126
+independent,Unigram,126
+like borrow,Bigram,126
+lock,Unigram,126
+man,Unigram,126
+marry year,Bigram,126
+monthly minimum,Bigram,126
+need car,Bigram,126
+nyc,Unigram,126
+old credit,Bigram,126
+payment balance,Bigram,126
+personal add,Bigram,126
+san,Unigram,126
+card emergency,Bigram,125
+consolidate medical,Bigram,125
+credit miss,Bigram,125
+family emergency,Bigram,125
+help finance,Bigram,125
+month use,Bigram,125
+neighborhood,Unigram,125
+park,Unigram,125
+permanent,Unigram,125
+personally,Unigram,125
+specifically,Unigram,125
+time use,Bigram,125
+use buy,Bigram,125
+year college,Bigram,125
+add dear,Bigram,124
+beneficial,Unigram,124
+brand,Unigram,124
+card chase,Bigram,124
+card increase,Bigram,124
+club thank,Bigram,124
+everyday,Unigram,124
+girl,Unigram,124
+great way,Bigram,124
+improvement house,Bigram,124
+life thank,Bigram,124
+need start,Bigram,124
+payment manageable,Bigram,124
+porch,Unigram,124
+restore,Unigram,124
+rough,Unigram,124
+start work,Bigram,124
+strict,Unigram,124
+test,Unigram,124
+ticket,Unigram,124
+walk,Unigram,124
+year try,Bigram,124
+acre,Unigram,123
+add hard,Bigram,123
+automobile,Unigram,123
+car year,Bigram,123
+card quickly,Bigram,123
+complete home,Bigram,123
+consolidate balance,Bigram,123
+consolidation payment,Bigram,123
+credit consolidation,Bigram,123
+fortunate,Unigram,123
+fun,Unigram,123
+help tremendously,Bigram,123
+household expense,Bigram,123
+income year,Bigram,123
+join,Unigram,123
+just recently,Bigram,123
+life change,Bigram,123
+like help,Bigram,123
+medical issue,Bigram,123
+ownership,Unigram,123
+raise rate,Bigram,123
+trustworthy,Unigram,123
+account credit,Bigram,122
+add fix,Bigram,122
+balance year,Bigram,122
+cancel card,Bigram,122
+couple month,Bigram,122
+death,Unigram,122
+extra month,Bigram,122
+fashion,Unigram,122
+grade,Unigram,122
+help cover,Bigram,122
+importance,Unigram,122
+just purchase,Bigram,122
+need use,Bigram,122
+try save,Bigram,122
+utility phone,Bigram,122
+year home,Bigram,122
+barely,Unigram,121
+business need,Bigram,121
+business start,Bigram,121
+card end,Bigram,121
+card manageable,Bigram,121
+consolidate thank,Bigram,121
+consolidate year,Bigram,121
+control finance,Bigram,121
+future add,Bigram,121
+just finish,Bigram,121
+middle,Unigram,121
+need payoff,Bigram,121
+shoot,Unigram,121
+time early,Bigram,121
+use medical,Bigram,121
+washington,Unigram,121
+wont,Unigram,121
+account year,Bigram,120
+card school,Bigram,120
+current company,Bigram,120
+deserve,Unigram,120
+help daughter,Bigram,120
+help help,Bigram,120
+hour week,Bigram,120
+just credit,Bigram,120
+like close,Bigram,120
+make difficult,Bigram,120
+payment goal,Bigram,120
+payment try,Bigram,120
+pump,Unigram,120
+purchase vehicle,Bigram,120
+purpose consolidation,Bigram,120
+quite bite,Bigram,120
+refinance exist,Bigram,120
+repair add,Bigram,120
+safety,Unigram,120
+add little,Bigram,119
+awesome,Unigram,119
+challenge,Unigram,119
+consolidation want,Bigram,119
+ebay,Unigram,119
+educate,Unigram,119
+expense thank,Bigram,119
+fine,Unigram,119
+month car,Bigram,119
+negotiate,Unigram,119
+newer,Unigram,119
+use rest,Bigram,119
+work home,Bigram,119
+add bank,Bigram,118
+club add,Bigram,118
+consolidation allow,Bigram,118
+error,Unigram,118
+financially responsible,Bigram,118
+fund consolidation,Bigram,118
+locate,Unigram,118
+minor home,Bigram,118
+need cover,Bigram,118
+phone cable,Bigram,118
+reduce rat,Bigram,118
+roof home,Bigram,118
+start small,Bigram,118
+want eliminate,Bigram,118
+year recently,Bigram,118
+add kitchen,Bigram,117
+analyst,Unigram,117
+attention,Unigram,117
+come true,Bigram,117
+crazy,Unigram,117
+crisis,Unigram,117
+daughter college,Bigram,117
+disappoint,Unigram,117
+faster thank,Bigram,117
+fortune company,Bigram,117
+habit,Unigram,117
+hvac,Unigram,117
+life add,Bigram,117
+look way,Bigram,117
+monthly obligation,Bigram,117
+payment set,Bigram,117
+promptly,Unigram,117
+reasonable time,Bigram,117
+rely credit,Bigram,117
+time miss,Bigram,117
+use balance,Bigram,117
+use vehicle,Bigram,117
+year allow,Bigram,117
+add finally,Bigram,116
+add investor,Bigram,116
+consolidation like,Bigram,116
+district,Unigram,116
+expedite,Unigram,116
+gap,Unigram,116
+history credit,Bigram,116
+job extremely,Bigram,116
+large credit,Bigram,116
+lowest,Unigram,116
+make single,Bigram,116
+need rid,Bigram,116
+switch,Unigram,116
+year leave,Bigram,116
+background,Unigram,115
+bridge,Unigram,115
+card eliminate,Bigram,115
+card excellent,Bigram,115
+card feel,Bigram,115
+card great,Bigram,115
+card owe,Bigram,115
+environment,Unigram,115
+equity home,Bigram,115
+franchise,Unigram,115
+help wed,Bigram,115
+job income,Bigram,115
+longer use,Bigram,115
+relative,Unigram,115
+saw,Unigram,115
+stop use,Bigram,115
+vendor,Unigram,115
+want help,Bigram,115
+add husband,Bigram,114
+add love,Bigram,114
+add main,Bigram,114
+add recent,Bigram,114
+air condition,Bigram,114
+annually,Unigram,114
+bed,Unigram,114
+consolidate low,Bigram,114
+entirely,Unigram,114
+expand business,Bigram,114
+help lot,Bigram,114
+help people,Bigram,114
+look help,Bigram,114
+machine,Unigram,114
+month card,Bigram,114
+presently,Unigram,114
+produce,Unigram,114
+proud,Unigram,114
+save home,Bigram,114
+various credit,Bigram,114
+wouldn,Unigram,114
+absolutely,Unigram,113
+add addition,Bigram,113
+advance consideration,Bigram,113
+aggressively,Unigram,113
+attempt consolidate,Bigram,113
+balance use,Bigram,113
+capable,Unigram,113
+car need,Bigram,113
+card don,Bigram,113
+card live,Bigram,113
+club make,Bigram,113
+consolidation reduce,Bigram,113
+credit excellent,Bigram,113
+direction,Unigram,113
+employment history,Bigram,113
+engage,Unigram,113
+facility,Unigram,113
+money purchase,Bigram,113
+month job,Bigram,113
+outrageous,Unigram,113
+payment date,Bigram,113
+peer lend,Bigram,113
+plus year,Bigram,113
+satisfy,Unigram,113
+startup,Unigram,113
+add accumulate,Bigram,112
+add appreciate,Bigram,112
+add lot,Bigram,112
+alternative,Unigram,112
+build new,Bigram,112
+car car,Bigram,112
+card finally,Bigram,112
+commission,Unigram,112
+free life,Bigram,112
+just consolidate,Bigram,112
+key,Unigram,112
+length,Unigram,112
+letter,Unigram,112
+little money,Bigram,112
+make end,Bigram,112
+mortgage year,Bigram,112
+necessity,Unigram,112
+overwhelm,Unigram,112
+payoff exist,Bigram,112
+request fund,Bigram,112
+save house,Bigram,112
+seven year,Bigram,112
+thank assistance,Bigram,112
+total credit,Bigram,112
+try rid,Bigram,112
+year live,Bigram,112
+access,Unigram,111
+add assist,Bigram,111
+add save,Bigram,111
+america credit,Bigram,111
+bear,Unigram,111
+business plan,Bigram,111
+convenience,Unigram,111
+executive,Unigram,111
+int,Unigram,111
+lower total,Bigram,111
+make repair,Bigram,111
+month need,Bigram,111
+outright,Unigram,111
+rate month,Bigram,111
+repay credit,Bigram,111
+small balance,Bigram,111
+strictly,Unigram,111
+stuff,Unigram,111
+use saving,Bigram,111
+want higher,Bigram,111
+automatic payment,Bigram,110
+balance higher,Bigram,110
+consolidate home,Bigram,110
+employment stable,Bigram,110
+felt,Unigram,110
+hardwood,Unigram,110
+health care,Bigram,110
+help track,Bigram,110
+high revolve,Bigram,110
+high want,Bigram,110
+higher payment,Bigram,110
+job plan,Bigram,110
+just month,Bigram,110
+mess,Unigram,110
+order save,Bigram,110
+performance,Unigram,110
+replace roof,Bigram,110
+split,Unigram,110
+standard,Unigram,110
+total balance,Bigram,110
+account like,Bigram,109
+add basically,Bigram,109
+add income,Bigram,109
+add revolve,Bigram,109
+apply credit,Bigram,109
+arise,Unigram,109
+consolidate allow,Bigram,109
+consolidation make,Bigram,109
+cost live,Bigram,109
+deduct,Unigram,109
+employ current,Bigram,109
+fiancee,Unigram,109
+half year,Bigram,109
+hello look,Bigram,109
+high like,Bigram,109
+just minimum,Bigram,109
+labor,Unigram,109
+medical add,Bigram,109
+medium,Unigram,109
+motivate,Unigram,109
+payment know,Bigram,109
+preparation,Unigram,109
+rate use,Bigram,109
+remain fund,Bigram,109
+security deposit,Bigram,109
+update kitchen,Bigram,109
+account monthly,Bigram,108
+action,Unigram,108
+board,Unigram,108
+college student,Bigram,108
+consolidate faster,Bigram,108
+credit thank,Bigram,108
+downpayment,Unigram,108
+employ job,Bigram,108
+fund payoff,Bigram,108
+fund wed,Bigram,108
+history make,Bigram,108
+ira,Unigram,108
+like monthly,Bigram,108
+monthly net,Bigram,108
+penny,Unigram,108
+pmt,Unigram,108
+propose,Unigram,108
+repair need,Bigram,108
+short time,Bigram,108
+use personal,Bigram,108
+waste,Unigram,108
+www,Unigram,108
+boy,Unigram,107
+car expense,Bigram,107
+card really,Bigram,107
+consolidate close,Bigram,107
+continue work,Bigram,107
+end meet,Bigram,107
+financial plan,Bigram,107
+help son,Bigram,107
+managable,Unigram,107
+new start,Bigram,107
+payment quicker,Bigram,107
+plan payoff,Bigram,107
+respect,Unigram,107
+score good,Bigram,107
+specialize,Unigram,107
+till,Unigram,107
+unite,Unigram,107
+want purchase,Bigram,107
+add repay,Bigram,106
+clean slate,Bigram,106
+currently live,Bigram,106
+extensive,Unigram,106
+farm,Unigram,106
+fixture,Unigram,106
+flood,Unigram,106
+grow company,Bigram,106
+hesitate ask,Bigram,106
+household income,Bigram,106
+investor thank,Bigram,106
+liability,Unigram,106
+make extra,Bigram,106
+month able,Bigram,106
+normally,Unigram,106
+quote,Unigram,106
+rate better,Bigram,106
+save thousand,Bigram,106
+score time,Bigram,106
+want say,Bigram,106
+work add,Bigram,106
+year period,Bigram,106
+add company,Bigram,105
+annual income,Bigram,105
+appreciate opportunity,Bigram,105
+carry balance,Bigram,105
+club investor,Bigram,105
+eager,Unigram,105
+effectively,Unigram,105
+fix house,Bigram,105
+ford,Unigram,105
+free soon,Bigram,105
+look make,Bigram,105
+make purchase,Bigram,105
+manage payment,Bigram,105
+month free,Bigram,105
+payment low,Bigram,105
+payoff add,Bigram,105
+personal expense,Bigram,105
+potential investor,Bigram,105
+promotional,Unigram,105
+regularly,Unigram,105
+response,Unigram,105
+set payment,Bigram,105
+skill,Unigram,105
+ultimate,Unigram,105
+utilization,Unigram,105
+year income,Bigram,105
+able start,Bigram,104
+account make,Bigram,104
+add clear,Bigram,104
+contact question,Bigram,104
+driver,Unigram,104
+grind pool,Bigram,104
+hate,Unigram,104
+house market,Bigram,104
+income stable,Bigram,104
+investment thank,Bigram,104
+job great,Bigram,104
+lawyer,Unigram,104
+month current,Bigram,104
+new carpet,Bigram,104
+payment order,Bigram,104
+provider,Unigram,104
+search,Unigram,104
+smarter,Unigram,104
+use lower,Bigram,104
+wrong,Unigram,104
+year business,Bigram,104
+add graduate,Bigram,103
+add son,Bigram,103
+available credit,Bigram,103
+cash hand,Bigram,103
+feel good,Bigram,103
+improvement new,Bigram,103
+law school,Bigram,103
+liquid,Unigram,103
+lower intrest,Bigram,103
+make timely,Bigram,103
+method,Unigram,103
+payment easy,Bigram,103
+place employment,Bigram,103
+possible thank,Bigram,103
+rate balance,Bigram,103
+rate good,Bigram,103
+run credit,Bigram,103
+simplify life,Bigram,103
+solar,Unigram,103
+ton,Unigram,103
+touch,Unigram,103
+verification,Unigram,103
+veteran,Unigram,103
+want save,Bigram,103
+wise,Unigram,103
+work house,Bigram,103
+year goal,Bigram,103
+add mortgage,Bigram,102
+climb,Unigram,102
+consolodation,Unigram,102
+current balance,Bigram,102
+currently high,Bigram,102
+foreclosure,Unigram,102
+forward free,Bigram,102
+gross income,Bigram,102
+lower current,Bigram,102
+max,Unigram,102
+month term,Bigram,102
+payment actually,Bigram,102
+quot quot,Bigram,102
+refinance home,Bigram,102
+return investment,Bigram,102
+route,Unigram,102
+save retirement,Bigram,102
+science,Unigram,102
+work way,Bigram,102
+add feel,Bigram,101
+certainly,Unigram,101
+chunk,Unigram,101
+currently monthly,Bigram,101
+faith,Unigram,101
+grow business,Bigram,101
+insurance company,Bigram,101
+like higher,Bigram,101
+live credit,Bigram,101
+lower fix,Bigram,101
+make headway,Bigram,101
+responsibly,Unigram,101
+saving month,Bigram,101
+way consolidate,Bigram,101
+zero balance,Bigram,101
+able help,Bigram,100
+bachelor degree,Bigram,100
+card carry,Bigram,100
+club month,Bigram,100
+expenditure,Unigram,100
+family vacation,Bigram,100
+favorable,Unigram,100
+high add,Bigram,100
+higher card,Bigram,100
+insurance car,Bigram,100
+job employ,Bigram,100
+job past,Bigram,100
+look better,Bigram,100
+low credit,Bigram,100
+make dream,Bigram,100
+minimum balance,Bigram,100
+money home,Bigram,100
+need consolidation,Bigram,100
+question ask,Bigram,100
+regret,Unigram,100
+requirement,Unigram,100
+start family,Bigram,100
+student payment,Bigram,100
+thank read,Bigram,100
+weight,Unigram,100
+year save,Bigram,100
+account high,Bigram,99
+account month,Bigram,99
+add hope,Bigram,99
+add large,Bigram,99
+add open,Bigram,99
+card finish,Bigram,99
+card revolve,Bigram,99
+good rate,Bigram,99
+green,Unigram,99
+increase monthly,Bigram,99
+intrest rat,Bigram,99
+invest money,Bigram,99
+like reduce,Bigram,99
+ontime,Unigram,99
+payment schedule,Bigram,99
+rat payment,Bigram,99
+save little,Bigram,99
+set aside,Bigram,99
+solely,Unigram,99
+time try,Bigram,99
+vet,Unigram,99
+way thank,Bigram,99
+work employer,Bigram,99
+add owe,Bigram,98
+add update,Bigram,98
+amp credit,Bigram,98
+budget job,Bigram,98
+car month,Bigram,98
+card completely,Bigram,98
+custom,Unigram,98
+downturn,Unigram,98
+harley,Unigram,98
+help able,Bigram,98
+help build,Bigram,98
+help need,Bigram,98
+home family,Bigram,98
+insulation,Unigram,98
+mint,Unigram,98
+owe credit,Bigram,98
+perfect payment,Bigram,98
+rate higher,Bigram,98
+sport,Unigram,98
+stressful,Unigram,98
+survive,Unigram,98
+time employee,Bigram,98
+visa card,Bigram,98
+worthiness,Unigram,98
+add auto,Bigram,97
+card recently,Bigram,97
+dream come,Bigram,97
+heart,Unigram,97
+home want,Bigram,97
+include credit,Bigram,97
+make better,Bigram,97
+medical procedure,Bigram,97
+money just,Bigram,97
+montly payment,Bigram,97
+new appliance,Bigram,97
+offer lend,Bigram,97
+payment money,Bigram,97
+plan early,Bigram,97
+push,Unigram,97
+rat higher,Bigram,97
+recommend,Unigram,97
+right track,Bigram,97
+round,Unigram,97
+school work,Bigram,97
+sell car,Bigram,97
+seller,Unigram,97
+son college,Bigram,97
+south,Unigram,97
+use cash,Bigram,97
+use current,Bigram,97
+add discover,Bigram,96
+add financial,Bigram,96
+allow year,Bigram,96
+card discover,Bigram,96
+ceiling,Unigram,96
+consolidate student,Bigram,96
+decade,Unigram,96
+diligent,Unigram,96
+discipline,Unigram,96
+extra fund,Bigram,96
+family home,Bigram,96
+international,Unigram,96
+just start,Bigram,96
+launch,Unigram,96
+little year,Bigram,96
+manufacture,Unigram,96
+need small,Bigram,96
+new kitchen,Bigram,96
+payment multiple,Bigram,96
+pension,Unigram,96
+pet,Unigram,96
+plan add,Bigram,96
+proof,Unigram,96
+question add,Bigram,96
+start cost,Bigram,96
+tech,Unigram,96
+time money,Bigram,96
+boa,Unigram,95
+bunch,Unigram,95
+card combine,Bigram,95
+card easier,Bigram,95
+card longer,Bigram,95
+card repair,Bigram,95
+conservative,Unigram,95
+consolidate incur,Bigram,95
+consolidate just,Bigram,95
+consolidation payoff,Bigram,95
+cut monthly,Bigram,95
+earlier year,Bigram,95
+expense like,Bigram,95
+financial position,Bigram,95
+food entertainment,Bigram,95
+free sooner,Bigram,95
+history year,Bigram,95
+include mortgage,Bigram,95
+install new,Bigram,95
+investment add,Bigram,95
+legal fee,Bigram,95
+like year,Bigram,95
+new life,Bigram,95
+payment rat,Bigram,95
+percentage rate,Bigram,95
+plant,Unigram,95
+purchase add,Bigram,95
+reduce high,Bigram,95
+register nurse,Bigram,95
+responsible time,Bigram,95
+sink,Unigram,95
+smaller credit,Bigram,95
+try help,Bigram,95
+use cover,Bigram,95
+withdraw,Unigram,95
+work hour,Bigram,95
+year feel,Bigram,95
+year high,Bigram,95
+active duty,Bigram,94
+appreciate add,Bigram,94
+balance rate,Bigram,94
+bathroom remodel,Bigram,94
+card open,Bigram,94
+educational,Unigram,94
+elimination,Unigram,94
+energy efficient,Bigram,94
+family add,Bigram,94
+fund home,Bigram,94
+great rate,Bigram,94
+home credit,Bigram,94
+job need,Bigram,94
+large payment,Bigram,94
+like eliminate,Bigram,94
+partially,Unigram,94
+refund,Unigram,94
+sandy,Unigram,94
+score thank,Bigram,94
+time home,Bigram,94
+typically,Unigram,94
+unless,Unigram,94
+upcoming wed,Bigram,94
+use extra,Bigram,94
+use payment,Bigram,94
+woman,Unigram,94
+able faster,Bigram,93
+account thank,Bigram,93
+add question,Bigram,93
+afford payment,Bigram,93
+appear,Unigram,93
+aren,Unigram,93
+budget plan,Bigram,93
+card sooner,Bigram,93
+child college,Bigram,93
+clarify,Unigram,93
+collect,Unigram,93
+consolidate various,Bigram,93
+consultant,Unigram,93
+continue grow,Bigram,93
+couple small,Bigram,93
+day day,Bigram,93
+day leave,Bigram,93
+hardwood floor,Bigram,93
+increase rat,Bigram,93
+lack,Unigram,93
+month balance,Bigram,93
+navy,Unigram,93
+need finish,Bigram,93
+opportunity consolidate,Bigram,93
+payment easily,Bigram,93
+payroll,Unigram,93
+rat range,Bigram,93
+request help,Bigram,93
+score add,Bigram,93
+table,Unigram,93
+unique,Unigram,93
+use new,Bigram,93
+add account,Bigram,92
+business owner,Bigram,92
+card long,Bigram,92
+case emergency,Bigram,92
+company past,Bigram,92
+credit stable,Bigram,92
+dave,Unigram,92
+disability,Unigram,92
+family thank,Bigram,92
+help improve,Bigram,92
+high make,Bigram,92
+home live,Bigram,92
+income add,Bigram,92
+invest future,Bigram,92
+live paycheck,Bigram,92
+overhead,Unigram,92
+payment past,Bigram,92
+payment single,Bigram,92
+plan stay,Bigram,92
+rent payment,Bigram,92
+score credit,Bigram,92
+temporary,Unigram,92
+unforseen,Unigram,92
+usage,Unigram,92
+weather,Unigram,92
+year lower,Bigram,92
+accumulate year,Bigram,91
+add expense,Bigram,91
+add student,Bigram,91
+apr card,Bigram,91
+aware,Unigram,91
+balance apr,Bigram,91
+bid,Unigram,91
+card instead,Bigram,91
+card outstanding,Bigram,91
+club member,Bigram,91
+combination,Unigram,91
+company add,Bigram,91
+continue make,Bigram,91
+correction,Unigram,91
+costly,Unigram,91
+credit want,Bigram,91
+deductible,Unigram,91
+faithfully,Unigram,91
+grand,Unigram,91
+hang,Unigram,91
+help accomplish,Bigram,91
+hotel,Unigram,91
+instead make,Bigram,91
+money lower,Bigram,91
+motor,Unigram,91
+overall monthly,Bigram,91
+overseas,Unigram,91
+package,Unigram,91
+particular,Unigram,91
+payment feel,Bigram,91
+place year,Bigram,91
+refinance current,Bigram,91
+snowball,Unigram,91
+straight,Unigram,91
+suffer,Unigram,91
+thank investment,Bigram,91
+time read,Bigram,91
+ultimate goal,Bigram,91
+vehicle repair,Bigram,91
+year consolidate,Bigram,91
+account good,Bigram,90
+add dept,Bigram,90
+allow lower,Bigram,90
+art,Unigram,90
+card raise,Bigram,90
+card soon,Bigram,90
+certify,Unigram,90
+club great,Bigram,90
+consolidation medical,Bigram,90
+credit monthly,Bigram,90
+credit worthiness,Bigram,90
+current home,Bigram,90
+don need,Bigram,90
+free clear,Bigram,90
+heloc,Unigram,90
+high monthly,Bigram,90
+home value,Bigram,90
+hot tub,Bigram,90
+kick,Unigram,90
+lot easier,Bigram,90
+minor repair,Bigram,90
+modest,Unigram,90
+month minimum,Bigram,90
+paycheck paycheck,Bigram,90
+protect,Unigram,90
+quality life,Bigram,90
+rat just,Bigram,90
+school credit,Bigram,90
+single lower,Bigram,90
+start year,Bigram,90
+upper,Unigram,90
+van,Unigram,90
+want card,Bigram,90
+additional income,Bigram,89
+advantage lower,Bigram,89
+better position,Bigram,89
+card rest,Bigram,89
+credit lower,Bigram,89
+endeavor,Unigram,89
+expense incur,Bigram,89
+expense year,Bigram,89
+free time,Bigram,89
+fulfill,Unigram,89
+lifetime,Unigram,89
+like idea,Bigram,89
+look use,Bigram,89
+payment student,Bigram,89
+payoff close,Bigram,89
+remember,Unigram,89
+replace old,Bigram,89
+request order,Bigram,89
+responsible individual,Bigram,89
+retain,Unigram,89
+spend year,Bigram,89
+studio,Unigram,89
+time current,Bigram,89
+transaction,Unigram,89
+try free,Bigram,89
+walmart,Unigram,89
+york city,Bigram,89
+add previous,Bigram,88
+add steady,Bigram,88
+add vehicle,Bigram,88
+additional information,Bigram,88
+affordable payment,Bigram,88
+ahead time,Bigram,88
+aim,Unigram,88
+average rate,Bigram,88
+better rat,Bigram,88
+card hospital,Bigram,88
+card wish,Bigram,88
+currently lend,Bigram,88
+dealer,Unigram,88
+decrease monthly,Bigram,88
+dryer,Unigram,88
+end credit,Bigram,88
+example,Unigram,88
+great help,Bigram,88
+history good,Bigram,88
+importantly,Unigram,88
+initially,Unigram,88
+make difference,Bigram,88
+payment record,Bigram,88
+plan future,Bigram,88
+rat help,Bigram,88
+save monthly,Bigram,88
+school time,Bigram,88
+situation good,Bigram,88
+upfront,Unigram,88
+wisely,Unigram,88
+work financial,Bigram,88
+act,Unigram,87
+add simple,Bigram,87
+appreciate time,Bigram,87
+auto payment,Bigram,87
+cancer,Unigram,87
+card vehicle,Bigram,87
+cheap,Unigram,87
+citi card,Bigram,87
+club time,Bigram,87
+combine monthly,Bigram,87
+consolidation thank,Bigram,87
+dentist,Unigram,87
+fund make,Bigram,87
+help purchase,Bigram,87
+house repair,Bigram,87
+improvement credit,Bigram,87
+journey,Unigram,87
+make need,Bigram,87
+mortage,Unigram,87
+payment default,Bigram,87
+plan repay,Bigram,87
+ramsey,Unigram,87
+rat consolidate,Bigram,87
+rate increase,Bigram,87
+reception,Unigram,87
+short sale,Bigram,87
+strive,Unigram,87
+tear,Unigram,87
+tire high,Bigram,87
+want just,Bigram,87
+washer,Unigram,87
+welcome,Unigram,87
+year car,Bigram,87
+add invest,Bigram,86
+card acquire,Bigram,86
+consider application,Bigram,86
+credit just,Bigram,86
+creditcard,Unigram,86
+factor,Unigram,86
+file bankruptcy,Bigram,86
+food gas,Bigram,86
+fund allow,Bigram,86
+greatly help,Bigram,86
+history miss,Bigram,86
+income time,Bigram,86
+manage money,Bigram,86
+partial,Unigram,86
+payday,Unigram,86
+perfect credit,Bigram,86
+pile,Unigram,86
+rate account,Bigram,86
+receive fund,Bigram,86
+role,Unigram,86
+roommate,Unigram,86
+save time,Bigram,86
+simplify payment,Bigram,86
+way credit,Bigram,86
+year love,Bigram,86
+add don,Bigram,85
+approx month,Bigram,85
+bathroom kitchen,Bigram,85
+box,Unigram,85
+budget include,Bigram,85
+company business,Bigram,85
+company stable,Bigram,85
+consolidate debit,Bigram,85
+diligently,Unigram,85
+disposable,Unigram,85
+don know,Bigram,85
+financial responsibility,Bigram,85
+great investment,Bigram,85
+invest thank,Bigram,85
+job like,Bigram,85
+job month,Bigram,85
+minimum credit,Bigram,85
+month currently,Bigram,85
+monthly add,Bigram,85
+newly,Unigram,85
+payment include,Bigram,85
+payment place,Bigram,85
+portfolio,Unigram,85
+position stable,Bigram,85
+purpose use,Bigram,85
+renter,Unigram,85
+repair credit,Bigram,85
+replace window,Bigram,85
+solid credit,Bigram,85
+sooner later,Bigram,85
+tax year,Bigram,85
+thank null,Bigram,85
+time able,Bigram,85
+try reduce,Bigram,85
+watch,Unigram,85
+able repay,Bigram,84
+add day,Bigram,84
+balance car,Bigram,84
+biggest,Unigram,84
+brace,Unigram,84
+capitol,Unigram,84
+card couple,Bigram,84
+card store,Bigram,84
+change life,Bigram,84
+consider invest,Bigram,84
+cool,Unigram,84
+dave ramsey,Bigram,84
+desperately,Unigram,84
+downsize,Unigram,84
+dti,Unigram,84
+easily make,Bigram,84
+explain,Unigram,84
+free contact,Bigram,84
+hassle,Unigram,84
+indicate,Unigram,84
+insure,Unigram,84
+knowledge,Unigram,84
+lump payment,Bigram,84
+make large,Bigram,84
+minute,Unigram,84
+money bank,Bigram,84
+news,Unigram,84
+offset,Unigram,84
+payment higher,Bigram,84
+payment really,Bigram,84
+payoff year,Bigram,84
+policy,Unigram,84
+prompt,Unigram,84
+safe investment,Bigram,84
+shorter period,Bigram,84
+shower,Unigram,84
+toyota,Unigram,84
+add approve,Bigram,83
+apr rate,Bigram,83
+believe good,Bigram,83
+bring home,Bigram,83
+business venture,Bigram,83
+card set,Bigram,83
+club past,Bigram,83
+company make,Bigram,83
+consolidate manageable,Bigram,83
+consolidate unsecured,Bigram,83
+credit use,Bigram,83
+definite,Unigram,83
+delay,Unigram,83
+electricity,Unigram,83
+gutter,Unigram,83
+higher intrest,Bigram,83
+home buy,Bigram,83
+incredibly,Unigram,83
+jeep,Unigram,83
+job job,Bigram,83
+late fee,Bigram,83
+month good,Bigram,83
+new tire,Bigram,83
+payer,Unigram,83
+payment don,Bigram,83
+rat good,Bigram,83
+repayment history,Bigram,83
+set time,Bigram,83
+significantly lower,Bigram,83
+simpler,Unigram,83
+tire credit,Bigram,83
+upgrade home,Bigram,83
+use small,Bigram,83
+want year,Bigram,83
+year steady,Bigram,83
+year wife,Bigram,83
+account balance,Bigram,82
+account time,Bigram,82
+balance just,Bigram,82
+balance rat,Bigram,82
+balance thank,Bigram,82
+better life,Bigram,82
+capital credit,Bigram,82
+chase bank,Bigram,82
+club like,Bigram,82
+collateral,Unigram,82
+college expense,Bigram,82
+day late,Bigram,82
+don hesitate,Bigram,82
+don like,Bigram,82
+family need,Bigram,82
+help parent,Bigram,82
+help rid,Bigram,82
+improve home,Bigram,82
+instead credit,Bigram,82
+internet food,Bigram,82
+look reduce,Bigram,82
+medical insurance,Bigram,82
+million,Unigram,82
+need update,Bigram,82
+offer lower,Bigram,82
+order lower,Bigram,82
+payment eliminate,Bigram,82
+small personal,Bigram,82
+smaller monthly,Bigram,82
+solid job,Bigram,82
+tax owe,Bigram,82
+time plan,Bigram,82
+time student,Bigram,82
+try start,Bigram,82
+use add,Bigram,82
+want combine,Bigram,82
+add different,Bigram,81
+add rate,Bigram,81
+additional question,Bigram,81
+anniversary,Unigram,81
+blue,Unigram,81
+card smaller,Bigram,81
+cater,Unigram,81
+cpa,Unigram,81
+different card,Bigram,81
+enhance,Unigram,81
+excellent job,Bigram,81
+financial stability,Bigram,81
+folk,Unigram,81
+free monthly,Bigram,81
+good risk,Bigram,81
+help payment,Bigram,81
+improvement need,Bigram,81
+integrity,Unigram,81
+invest add,Bigram,81
+like card,Bigram,81
+live parent,Bigram,81
+look fund,Bigram,81
+make additional,Bigram,81
+miss single,Bigram,81
+need complete,Bigram,81
+payment creditor,Bigram,81
+payment obligation,Bigram,81
+purchase equipment,Bigram,81
+refer,Unigram,81
+remodel house,Bigram,81
+simply look,Bigram,81
+sooner thank,Bigram,81
+spend month,Bigram,81
+use wed,Bigram,81
+year sooner,Bigram,81
+add care,Bigram,80
+add enable,Bigram,80
+add utilize,Bigram,80
+additional money,Bigram,80
+appraise,Unigram,80
+ask help,Bigram,80
+balance want,Bigram,80
+bar,Unigram,80
+broker,Unigram,80
+business work,Bigram,80
+card different,Bigram,80
+card know,Bigram,80
+card responsible,Bigram,80
+considerable,Unigram,80
+creditcards,Unigram,80
+department store,Bigram,80
+deplete,Unigram,80
+facilitate,Unigram,80
+fit budget,Bigram,80
+free mortgage,Bigram,80
+great payment,Bigram,80
+help expense,Bigram,80
+help time,Bigram,80
+history excellent,Bigram,80
+improve financial,Bigram,80
+income job,Bigram,80
+investor fund,Bigram,80
+lawn,Unigram,80
+need refinance,Bigram,80
+payment combine,Bigram,80
+payment leave,Bigram,80
+payment reasonable,Bigram,80
+personal finance,Bigram,80
+phone internet,Bigram,80
+purchase engagement,Bigram,80
+rate free,Bigram,80
+repay time,Bigram,80
+represent,Unigram,80
+save buy,Bigram,80
+score late,Bigram,80
+start life,Bigram,80
+strategy,Unigram,80
+tank,Unigram,80
+travel expense,Bigram,80
+treat,Unigram,80
+user,Unigram,80
+way free,Bigram,80
+year end,Bigram,80
+account use,Bigram,79
+add better,Bigram,79
+add value,Bigram,79
+auto credit,Bigram,79
+bank thank,Bigram,79
+better future,Bigram,79
+birth,Unigram,79
+business expense,Bigram,79
+consolidation plan,Bigram,79
+credit like,Bigram,79
+din,Unigram,79
+expense come,Bigram,79
+family friend,Bigram,79
+hardworking,Unigram,79
+home new,Bigram,79
+home use,Bigram,79
+iam,Unigram,79
+job monthly,Bigram,79
+just don,Bigram,79
+leave credit,Bigram,79
+look payoff,Bigram,79
+meet goal,Bigram,79
+mission,Unigram,79
+multi,Unigram,79
+order make,Bigram,79
+plan wed,Bigram,79
+quarter,Unigram,79
+quit,Unigram,79
+regardless,Unigram,79
+rehab,Unigram,79
+request use,Bigram,79
+ruin,Unigram,79
+sector,Unigram,79
+ship,Unigram,79
+someday,Unigram,79
+steady employment,Bigram,79
+stretch,Unigram,79
+thankyou,Unigram,79
+time great,Bigram,79
+unite state,Bigram,79
+want money,Bigram,79
+work great,Bigram,79
+year employer,Bigram,79
+account just,Bigram,78
+accountant,Unigram,78
+add long,Bigram,78
+apr add,Bigram,78
+business use,Bigram,78
+check credit,Bigram,78
+consolidate different,Bigram,78
+consolidate start,Bigram,78
+consolidation purpose,Bigram,78
+cover payment,Bigram,78
+current car,Bigram,78
+double payment,Bigram,78
+ethic,Unigram,78
+house want,Bigram,78
+incur credit,Bigram,78
+lend money,Bigram,78
+like money,Bigram,78
+love job,Bigram,78
+mortgage utility,Bigram,78
+pace,Unigram,78
+payment little,Bigram,78
+payment plus,Bigram,78
+payment sooner,Bigram,78
+payment term,Bigram,78
+previous employer,Bigram,78
+print,Unigram,78
+rapidly,Unigram,78
+rat time,Bigram,78
+really high,Bigram,78
+repay year,Bigram,78
+rock,Unigram,78
+screen,Unigram,78
+simply want,Bigram,78
+tenant,Unigram,78
+thing need,Bigram,78
+time consider,Bigram,78
+truly appreciate,Bigram,78
+try buy,Bigram,78
+use finance,Bigram,78
+work day,Bigram,78
+work month,Bigram,78
+year mortgage,Bigram,78
+year new,Bigram,78
+add run,Bigram,77
+add short,Bigram,77
+add upgrade,Bigram,77
+add way,Bigram,77
+aggressive,Unigram,77
+approximately year,Bigram,77
+bind,Unigram,77
+budget add,Bigram,77
+business grow,Bigram,77
+car work,Bigram,77
+card begin,Bigram,77
+certification,Unigram,77
+chicago,Unigram,77
+court,Unigram,77
+dept consolidation,Bigram,77
+drain,Unigram,77
+enjoy life,Bigram,77
+establish credit,Bigram,77
+expense house,Bigram,77
+experian,Unigram,77
+fantastic,Unigram,77
+good late,Bigram,77
+high lower,Bigram,77
+house like,Bigram,77
+income make,Bigram,77
+kitchen cabinet,Bigram,77
+money higher,Bigram,77
+month late,Bigram,77
+mortgage credit,Bigram,77
+new furnace,Bigram,77
+outdoor,Unigram,77
+participate,Unigram,77
+paydown,Unigram,77
+purchase motorcycle,Bigram,77
+record time,Bigram,77
+rest money,Bigram,77
+salaried,Unigram,77
+spa,Unigram,77
+sum payment,Bigram,77
+total cost,Bigram,77
+upside,Unigram,77
+use work,Bigram,77
+account want,Bigram,76
+add dental,Bigram,76
+add let,Bigram,76
+add ready,Bigram,76
+add relocate,Bigram,76
+administration,Unigram,76
+air force,Bigram,76
+appreciate assistance,Bigram,76
+business business,Bigram,76
+card capital,Bigram,76
+club consolidate,Bigram,76
+club payment,Bigram,76
+cosmetic,Unigram,76
+document,Unigram,76
+fund higher,Bigram,76
+guess,Unigram,76
+help payoff,Bigram,76
+highest rate,Bigram,76
+ideal,Unigram,76
+jack,Unigram,76
+jan,Unigram,76
+job steady,Bigram,76
+just little,Bigram,76
+master card,Bigram,76
+money work,Bigram,76
+money year,Bigram,76
+need assistance,Bigram,76
+new payment,Bigram,76
+new place,Bigram,76
+picture,Unigram,76
+rat monthly,Bigram,76
+rate just,Bigram,76
+stable secure,Bigram,76
+super,Unigram,76
+teeth,Unigram,76
+thank review,Bigram,76
+time employment,Bigram,76
+use finish,Bigram,76
+want clear,Bigram,76
+want monthly,Bigram,76
+wheel,Unigram,76
+year don,Bigram,76
+year employment,Bigram,76
+year responsible,Bigram,76
+able month,Bigram,75
+able purchase,Bigram,75
+add old,Bigram,75
+annual salary,Bigram,75
+awhile,Unigram,75
+card control,Bigram,75
+classic,Unigram,75
+consolidate use,Bigram,75
+coverage,Unigram,75
+dream home,Bigram,75
+eliminate year,Bigram,75
+expense cover,Bigram,75
+fewer,Unigram,75
+finally free,Bigram,75
+good history,Bigram,75
+heavy,Unigram,75
+individually,Unigram,75
+job want,Bigram,75
+medical dental,Bigram,75
+medical field,Bigram,75
+money away,Bigram,75
+money invest,Bigram,75
+month total,Bigram,75
+mortgage month,Bigram,75
+payment excellent,Bigram,75
+permit,Unigram,75
+rat currently,Bigram,75
+really good,Bigram,75
+recieved,Unigram,75
+regain,Unigram,75
+relate expense,Bigram,75
+save year,Bigram,75
+shortly,Unigram,75
+timeshare,Unigram,75
+unfortunate,Unigram,75
+want better,Bigram,75
+acct,Unigram,74
+add chase,Bigram,74
+add sell,Bigram,74
+affordable monthly,Bigram,74
+air conditioner,Bigram,74
+atv,Unigram,74
+breakdown,Unigram,74
+camp,Unigram,74
+card extra,Bigram,74
+card plus,Bigram,74
+conditioner,Unigram,74
+consolidate fix,Bigram,74
+countertop,Unigram,74
+credit important,Bigram,74
+defense,Unigram,74
+earnings,Unigram,74
+excessive,Unigram,74
+fianc,Unigram,74
+finalize,Unigram,74
+help great,Bigram,74
+house thank,Bigram,74
+like balance,Bigram,74
+main reason,Bigram,74
+make larger,Bigram,74
+make little,Bigram,74
+mileage,Unigram,74
+multiple account,Bigram,74
+music,Unigram,74
+plan leave,Bigram,74
+rainy,Unigram,74
+recieve,Unigram,74
+recovery,Unigram,74
+repair roof,Bigram,74
+resort,Unigram,74
+rest credit,Bigram,74
+shed,Unigram,74
+stable add,Bigram,74
+time employ,Bigram,74
+undergraduate,Unigram,74
+upgrade kitchen,Bigram,74
+water damage,Bigram,74
+able afford,Bigram,73
+add roof,Bigram,73
+add sorry,Bigram,73
+add truck,Bigram,73
+allow payment,Bigram,73
+anytime,Unigram,73
+appreciate support,Bigram,73
+card simple,Bigram,73
+chase card,Bigram,73
+company thank,Bigram,73
+consolidate currently,Bigram,73
+davidson,Unigram,73
+dell,Unigram,73
+expense monthly,Bigram,73
+extra income,Bigram,73
+financial decision,Bigram,73
+financial life,Bigram,73
+finish home,Bigram,73
+forth,Unigram,73
+fulltime,Unigram,73
+goal add,Bigram,73
+harley davidson,Bigram,73
+help manage,Bigram,73
+inform,Unigram,73
+juggle,Unigram,73
+just graduate,Bigram,73
+learn lesson,Bigram,73
+little easier,Bigram,73
+look consolidation,Bigram,73
+money owe,Bigram,73
+money wed,Bigram,73
+monthly rent,Bigram,73
+new baby,Bigram,73
+obviously,Unigram,73
+open account,Bigram,73
+past couple,Bigram,73
+payment payoff,Bigram,73
+police,Unigram,73
+purchase price,Bigram,73
+rate work,Bigram,73
+request thank,Bigram,73
+sam,Unigram,73
+state tax,Bigram,73
+wood floor,Bigram,73
+activity,Unigram,72
+add rent,Bigram,72
+add struggle,Bigram,72
+appeal,Unigram,72
+apr high,Bigram,72
+attain,Unigram,72
+auto insurance,Bigram,72
+avoid high,Bigram,72
+balance make,Bigram,72
+bring credit,Bigram,72
+consolidate amp,Bigram,72
+consolidate good,Bigram,72
+credit stand,Bigram,72
+cross,Unigram,72
+currently rent,Bigram,72
+different account,Bigram,72
+disposable income,Bigram,72
+expense mortgage,Bigram,72
+good steady,Bigram,72
+greeting,Unigram,72
+help better,Bigram,72
+hold job,Bigram,72
+home car,Bigram,72
+house car,Bigram,72
+intend consolidate,Bigram,72
+job able,Bigram,72
+like save,Bigram,72
+llc,Unigram,72
+low balance,Bigram,72
+manage monthly,Bigram,72
+money future,Bigram,72
+monitor,Unigram,72
+month consolidate,Bigram,72
+need just,Bigram,72
+north,Unigram,72
+payment consolidation,Bigram,72
+payment remain,Bigram,72
+payment rent,Bigram,72
+physician,Unigram,72
+possibility,Unigram,72
+purpose high,Bigram,72
+rate plan,Bigram,72
+recently buy,Bigram,72
+reimburse,Unigram,72
+saving add,Bigram,72
+score excellent,Bigram,72
+shorten,Unigram,72
+shorter term,Bigram,72
+sooner year,Bigram,72
+spot,Unigram,72
+supervisor,Unigram,72
+technical,Unigram,72
+time review,Bigram,72
+want fix,Bigram,72
+way make,Bigram,72
+wrap,Unigram,72
+year finally,Bigram,72
+year know,Bigram,72
+year money,Bigram,72
+year position,Bigram,72
+add emergency,Bigram,71
+add incur,Bigram,71
+add know,Bigram,71
+add remain,Bigram,71
+add secure,Bigram,71
+add young,Bigram,71
+attractive,Unigram,71
+card irs,Bigram,71
+consilidate,Unigram,71
+consolidation use,Bigram,71
+credit high,Bigram,71
+currently look,Bigram,71
+delinquent account,Bigram,71
+different rat,Bigram,71
+erase,Unigram,71
+essential,Unigram,71
+faster save,Bigram,71
+financial institution,Bigram,71
+frustrate,Unigram,71
+fund plan,Bigram,71
+gym,Unigram,71
+history stable,Bigram,71
+include rent,Bigram,71
+larger payment,Bigram,71
+life insurance,Bigram,71
+like say,Bigram,71
+line work,Bigram,71
+live house,Bigram,71
+macy,Unigram,71
+need payment,Bigram,71
+need personal,Bigram,71
+oldest,Unigram,71
+payment employ,Bigram,71
+payment equal,Bigram,71
+payment require,Bigram,71
+payment start,Bigram,71
+payment way,Bigram,71
+personal high,Bigram,71
+plan work,Bigram,71
+purchase year,Bigram,71
+retirement account,Bigram,71
+score high,Bigram,71
+septic,Unigram,71
+short period,Bigram,71
+sort,Unigram,71
+strong credit,Bigram,71
+talk,Unigram,71
+term goal,Bigram,71
+washer dryer,Bigram,71
+wil,Unigram,71
+year employ,Bigram,71
+year receive,Bigram,71
+accts,Unigram,70
+accumulate college,Bigram,70
+add decide,Bigram,70
+add think,Bigram,70
+alleviate,Unigram,70
+buy furniture,Bigram,70
+card cash,Bigram,70
+come month,Bigram,70
+competitive,Unigram,70
+compound,Unigram,70
+consolidate old,Bigram,70
+decline,Unigram,70
+default late,Bigram,70
+dramatically,Unigram,70
+economic time,Bigram,70
+essentially,Unigram,70
+feb,Unigram,70
+finance credit,Bigram,70
+fiscally,Unigram,70
+fund new,Bigram,70
+gas food,Bigram,70
+good salary,Bigram,70
+harder,Unigram,70
+high demand,Bigram,70
+honestly,Unigram,70
+include car,Bigram,70
+increase rate,Bigram,70
+like better,Bigram,70
+money able,Bigram,70
+money cover,Bigram,70
+month look,Bigram,70
+payment rid,Bigram,70
+payoff current,Bigram,70
+quicker lower,Bigram,70
+rat allow,Bigram,70
+recently graduate,Bigram,70
+reduce current,Bigram,70
+remodel project,Bigram,70
+score make,Bigram,70
+shoulder,Unigram,70
+strict budget,Bigram,70
+time save,Bigram,70
+try refinance,Bigram,70
+use eliminate,Bigram,70
+use motorcycle,Bigram,70
+use remainder,Bigram,70
+use tax,Bigram,70
+vacation add,Bigram,70
+valuable,Unigram,70
+video,Unigram,70
+year continue,Bigram,70
+add irs,Bigram,69
+add thing,Bigram,69
+assume,Unigram,69
+bulk,Unigram,69
+cash advance,Bigram,69
+college education,Bigram,69
+college tuition,Bigram,69
+credit record,Bigram,69
+dependent,Unigram,69
+eligible,Unigram,69
+finance thank,Bigram,69
+free faster,Bigram,69
+fund receive,Bigram,69
+good deal,Bigram,69
+government job,Bigram,69
+help eliminate,Bigram,69
+high personal,Bigram,69
+increase income,Bigram,69
+inquiry,Unigram,69
+insurance month,Bigram,69
+life track,Bigram,69
+look free,Bigram,69
+loose,Unigram,69
+make small,Bigram,69
+meet obligation,Bigram,69
+month stable,Bigram,69
+multiple card,Bigram,69
+need finance,Bigram,69
+new credit,Bigram,69
+open new,Bigram,69
+plan retire,Bigram,69
+pretty good,Bigram,69
+question answer,Bigram,69
+receive promotion,Bigram,69
+refrigerator,Unigram,69
+school district,Bigram,69
+secure position,Bigram,69
+sleep,Unigram,69
+time consolidate,Bigram,69
+tremendous,Unigram,69
+update home,Bigram,69
+use emergency,Bigram,69
+wed honeymoon,Bigram,69
+work business,Bigram,69
+work federal,Bigram,69
+additional month,Bigram,68
+additional payment,Bigram,68
+ahead schedule,Bigram,68
+balance faster,Bigram,68
+bite money,Bigram,68
+budget monthly,Bigram,68
+business credit,Bigram,68
+card dental,Bigram,68
+card employ,Bigram,68
+card large,Bigram,68
+chapter,Unigram,68
+club allow,Bigram,68
+club use,Bigram,68
+consolodate credit,Bigram,68
+cost month,Bigram,68
+cut half,Bigram,68
+deploy,Unigram,68
+developer,Unigram,68
+drastically,Unigram,68
+exam,Unigram,68
+express card,Bigram,68
+eye,Unigram,68
+finish school,Bigram,68
+hard credit,Bigram,68
+house credit,Bigram,68
+increase cash,Bigram,68
+inground,Unigram,68
+irs tax,Bigram,68
+lesser,Unigram,68
+life little,Bigram,68
+lower balance,Bigram,68
+lower currently,Bigram,68
+miss credit,Bigram,68
+obligation time,Bigram,68
+order free,Bigram,68
+panel,Unigram,68
+plan continue,Bigram,68
+position company,Bigram,68
+rate late,Bigram,68
+rate order,Bigram,68
+reduce apr,Bigram,68
+reduce total,Bigram,68
+resident,Unigram,68
+rest assure,Bigram,68
+roof repair,Bigram,68
+second mortgage,Bigram,68
+seek fund,Bigram,68
+select,Unigram,68
+source income,Bigram,68
+stave,Unigram,68
+suppose,Unigram,68
+technician,Unigram,68
+thank god,Bigram,68
+unexpectedly,Unigram,68
+wife credit,Bigram,68
+add bathroom,Bigram,67
+add motorcycle,Bigram,67
+add primary,Bigram,67
+add school,Bigram,67
+advance add,Bigram,67
+appreciative,Unigram,67
+award,Unigram,67
+bofa,Unigram,67
+card focus,Bigram,67
+card remodel,Bigram,67
+card stop,Bigram,67
+cash reserve,Bigram,67
+club good,Bigram,67
+company raise,Bigram,67
+constantly,Unigram,67
+credit help,Bigram,67
+daycare,Unigram,67
+default payment,Bigram,67
+discount,Unigram,67
+eacute,Unigram,67
+employ employer,Bigram,67
+exclude,Unigram,67
+history thank,Bigram,67
+house sell,Bigram,67
+income credit,Bigram,67
+lessen,Unigram,67
+limit credit,Bigram,67
+little credit,Bigram,67
+live year,Bigram,67
+monthly cost,Bigram,67
+morning,Unigram,67
+overall rate,Bigram,67
+payoff car,Bigram,67
+pending,Unigram,67
+rate quicker,Bigram,67
+rate term,Bigram,67
+reason credit,Bigram,67
+refinance consolidate,Bigram,67
+ride,Unigram,67
+simplify finance,Bigram,67
+stabilize,Unigram,67
+stream,Unigram,67
+time high,Bigram,67
+variety,Unigram,67
+withdrawal,Unigram,67
+year hope,Bigram,67
+add excite,Bigram,66
+adjust,Unigram,66
+allocate,Unigram,66
+allow better,Bigram,66
+brand new,Bigram,66
+card financial,Bigram,66
+consolidate dept,Bigram,66
+consolidate lend,Bigram,66
+cost add,Bigram,66
+different date,Bigram,66
+earn money,Bigram,66
+efficiency,Unigram,66
+elderly,Unigram,66
+equity line,Bigram,66
+firm year,Bigram,66
+free help,Bigram,66
+fund cover,Bigram,66
+help financially,Bigram,66
+help medical,Bigram,66
+hope able,Bigram,66
+like opportunity,Bigram,66
+linger,Unigram,66
+lucky,Unigram,66
+main purpose,Bigram,66
+make big,Bigram,66
+money payoff,Bigram,66
+month leave,Bigram,66
+new position,Bigram,66
+payment extra,Bigram,66
+payment issue,Bigram,66
+payment responsible,Bigram,66
+payment timely,Bigram,66
+rate reduce,Bigram,66
+recently receive,Bigram,66
+request high,Bigram,66
+saving plan,Bigram,66
+settlement,Unigram,66
+start make,Bigram,66
+stay home,Bigram,66
+think good,Bigram,66
+way help,Bigram,66
+west,Unigram,66
+work ethic,Bigram,66
+able work,Bigram,65
+account consolidate,Bigram,65
+add reliable,Bigram,65
+agent,Unigram,65
+appraisal,Unigram,65
+base salary,Bigram,65
+bay,Unigram,65
+budget payment,Bigram,65
+card bring,Bigram,65
+card mortgage,Bigram,65
+card right,Bigram,65
+card zero,Bigram,65
+coast,Unigram,65
+consolidate time,Bigram,65
+credit work,Bigram,65
+cut payment,Bigram,65
+daughter marry,Bigram,65
+duration,Unigram,65
+easily afford,Bigram,65
+employeed,Unigram,65
+exist high,Bigram,65
+expense need,Bigram,65
+federal tax,Bigram,65
+free goal,Bigram,65
+freelance,Unigram,65
+friday,Unigram,65
+fund business,Bigram,65
+goal completely,Bigram,65
+great time,Bigram,65
+help foot,Bigram,65
+history add,Bigram,65
+home make,Bigram,65
+hot water,Bigram,65
+inspection,Unigram,65
+job love,Bigram,65
+los,Unigram,65
+make multiple,Bigram,65
+marine,Unigram,65
+month expense,Bigram,65
+need medical,Bigram,65
+non profit,Bigram,65
+payment amp,Bigram,65
+payment kind,Bigram,65
+phd,Unigram,65
+rate look,Bigram,65
+recently marry,Bigram,65
+recently start,Bigram,65
+reduce number,Bigram,65
+rental income,Bigram,65
+rid card,Bigram,65
+school expense,Bigram,65
+second job,Bigram,65
+signature,Unigram,65
+snow,Unigram,65
+start credit,Bigram,65
+succeed,Unigram,65
+term year,Bigram,65
+time past,Bigram,65
+triple,Unigram,65
+way high,Bigram,65
+work field,Bigram,65
+work thank,Bigram,65
+year lend,Bigram,65
+year minimum,Bigram,65
+add fiance,Bigram,64
+add provide,Bigram,64
+afford monthly,Bigram,64
+apr like,Bigram,64
+arrive,Unigram,64
+away credit,Bigram,64
+balance close,Bigram,64
+calculate,Unigram,64
+car thank,Bigram,64
+card range,Bigram,64
+careful,Unigram,64
+cash need,Bigram,64
+citi bank,Bigram,64
+civil,Unigram,64
+company grow,Bigram,64
+consolidate rid,Bigram,64
+consumer credit,Bigram,64
+dealership,Unigram,64
+expense relate,Bigram,64
+expense use,Bigram,64
+family medical,Bigram,64
+feature,Unigram,64
+forward work,Bigram,64
+free end,Bigram,64
+good work,Bigram,64
+great company,Bigram,64
+hello use,Bigram,64
+high income,Bigram,64
+house rent,Bigram,64
+know credit,Bigram,64
+like great,Bigram,64
+like home,Bigram,64
+make financial,Bigram,64
+month mortgage,Bigram,64
+month period,Bigram,64
+order credit,Bigram,64
+outgo,Unigram,64
+payment fit,Bigram,64
+personal consolidate,Bigram,64
+personal payment,Bigram,64
+phase,Unigram,64
+plan thank,Bigram,64
+present job,Bigram,64
+rain,Unigram,64
+rainy day,Bigram,64
+rat year,Bigram,64
+recently promote,Bigram,64
+refinance mortgage,Bigram,64
+repay month,Bigram,64
+review request,Bigram,64
+simplify monthly,Bigram,64
+steadily employ,Bigram,64
+structure payment,Bigram,64
+student car,Bigram,64
+suggest,Unigram,64
+sure time,Bigram,64
+term add,Bigram,64
+thing easier,Bigram,64
+thing like,Bigram,64
+tire make,Bigram,64
+try year,Bigram,64
+wanna,Unigram,64
+work industry,Bigram,64
+work make,Bigram,64
+year buy,Bigram,64
+year previous,Bigram,64
+add life,Bigram,63
+add single,Bigram,63
+ago credit,Bigram,63
+allot,Unigram,63
+angeles,Unigram,63
+budget work,Bigram,63
+card installment,Bigram,63
+citizen,Unigram,63
+clothe household,Bigram,63
+college work,Bigram,63
+currently try,Bigram,63
+defer,Unigram,63
+easy manage,Bigram,63
+escrow,Unigram,63
+expense car,Bigram,63
+fight,Unigram,63
+frugal,Unigram,63
+fully employ,Bigram,63
+fund payment,Bigram,63
+haven able,Bigram,63
+hike,Unigram,63
+home build,Bigram,63
+home home,Bigram,63
+improve cash,Bigram,63
+include new,Bigram,63
+income just,Bigram,63
+instead year,Bigram,63
+job look,Bigram,63
+joint,Unigram,63
+life credit,Bigram,63
+look finance,Bigram,63
+los angeles,Bigram,63
+luck,Unigram,63
+make major,Bigram,63
+math,Unigram,63
+membership,Unigram,63
+money new,Bigram,63
+money spend,Bigram,63
+month include,Bigram,63
+month saving,Bigram,63
+month try,Bigram,63
+monthly saving,Bigram,63
+monthy payment,Bigram,63
+need care,Bigram,63
+new vehicle,Bigram,63
+number credit,Bigram,63
+oct,Unigram,63
+opportunity thank,Bigram,63
+opt,Unigram,63
+overall payment,Bigram,63
+payment hope,Bigram,63
+payment increase,Bigram,63
+previous job,Bigram,63
+properly,Unigram,63
+rat look,Bigram,63
+repair vehicle,Bigram,63
+reputation,Unigram,63
+street,Unigram,63
+style,Unigram,63
+tax insurance,Bigram,63
+thank contribute,Bigram,63
+time share,Bigram,63
+timeframe,Unigram,63
+trap,Unigram,63
+venue,Unigram,63
+wage,Unigram,63
+want know,Bigram,63
+work car,Bigram,63
+work new,Bigram,63
+worse,Unigram,63
+year industry,Bigram,63
+year really,Bigram,63
+year school,Bigram,63
+young professional,Bigram,63
+able lower,Bigram,62
+advancement,Unigram,62
+allow quicker,Bigram,62
+avg,Unigram,62
+bad credit,Bigram,62
+black,Unigram,62
+car high,Bigram,62
+card receive,Bigram,62
+carry credit,Bigram,62
+central air,Bigram,62
+chase visa,Bigram,62
+close year,Bigram,62
+consolidate include,Bigram,62
+continuously,Unigram,62
+credit risk,Bigram,62
+dec,Unigram,62
+entertainment clothe,Bigram,62
+fast possible,Bigram,62
+finally credit,Bigram,62
+finance track,Bigram,62
+fund available,Bigram,62
+guest,Unigram,62
+haven miss,Bigram,62
+high percentage,Bigram,62
+income thank,Bigram,62
+job credit,Bigram,62
+job excellent,Bigram,62
+kohl,Unigram,62
+like small,Bigram,62
+longer term,Bigram,62
+money borrow,Bigram,62
+month lend,Bigram,62
+monthly rate,Bigram,62
+need short,Bigram,62
+outlook,Unigram,62
+owe money,Bigram,62
+people help,Bigram,62
+prospect,Unigram,62
+recent college,Bigram,62
+relocation expense,Bigram,62
+reputable,Unigram,62
+rule,Unigram,62
+series,Unigram,62
+shred,Unigram,62
+solid investment,Bigram,62
+sooner add,Bigram,62
+spend time,Bigram,62
+station,Unigram,62
+tax refund,Bigram,62
+trouble make,Bigram,62
+want finish,Bigram,62
+wear,Unigram,62
+year amp,Bigram,62
+year prior,Bigram,62
+account current,Bigram,61
+add clean,Bigram,61
+add consolodation,Bigram,61
+add cut,Bigram,61
+advise,Unigram,61
+apr lower,Bigram,61
+better job,Bigram,61
+better way,Bigram,61
+car purchase,Bigram,61
+card hope,Bigram,61
+completely credit,Bigram,61
+consider good,Bigram,61
+consideration fund,Bigram,61
+consoladation,Unigram,61
+consolidate work,Bigram,61
+consolidation monthly,Bigram,61
+consolidation save,Bigram,61
+delinquent payment,Bigram,61
+dont want,Bigram,61
+expense help,Bigram,61
+expense utility,Bigram,61
+fault,Unigram,61
+fellow,Unigram,61
+fund able,Bigram,61
+half time,Bigram,61
+heavily,Unigram,61
+house order,Bigram,61
+jump start,Bigram,61
+lately,Unigram,61
+like car,Bigram,61
+like good,Bigram,61
+make hard,Bigram,61
+margin,Unigram,61
+maximum,Unigram,61
+money consolidation,Bigram,61
+monthly fee,Bigram,61
+mortgage home,Bigram,61
+need order,Bigram,61
+owe irs,Bigram,61
+plan eliminate,Bigram,61
+possible add,Bigram,61
+proper,Unigram,61
+pymt,Unigram,61
+reduce balance,Bigram,61
+reduce time,Bigram,61
+responsible make,Bigram,61
+revolve balance,Bigram,61
+shift,Unigram,61
+start live,Bigram,61
+support add,Bigram,61
+term thank,Bigram,61
+time come,Bigram,61
+transunion,Unigram,61
+try payoff,Bigram,61
+use remodel,Bigram,61
+work place,Bigram,61
+work professional,Bigram,61
+year payoff,Bigram,61
+able buy,Bigram,60
+accrue credit,Bigram,60
+battle,Unigram,60
+beach,Unigram,60
+best option,Bigram,60
+better apr,Bigram,60
+build home,Bigram,60
+car just,Bigram,60
+car want,Bigram,60
+come year,Bigram,60
+consider help,Bigram,60
+conventional,Unigram,60
+cosolidate,Unigram,60
+credit look,Bigram,60
+credit ratio,Bigram,60
+crunch,Unigram,60
+data,Unigram,60
+day week,Bigram,60
+default credit,Bigram,60
+electronics,Unigram,60
+entire life,Bigram,60
+favor,Unigram,60
+fiscal,Unigram,60
+fund start,Bigram,60
+funeral expense,Bigram,60
+global,Unigram,60
+goal eliminate,Bigram,60
+help finish,Bigram,60
+hurricane sandy,Bigram,60
+investor far,Bigram,60
+just new,Bigram,60
+laptop,Unigram,60
+like lend,Bigram,60
+master bathroom,Bigram,60
+money allow,Bigram,60
+month miss,Bigram,60
+month rate,Bigram,60
+need able,Bigram,60
+need borrow,Bigram,60
+need reduce,Bigram,60
+objective,Unigram,60
+opportunity add,Bigram,60
+page,Unigram,60
+paper,Unigram,60
+payout,Unigram,60
+photography,Unigram,60
+provide better,Bigram,60
+rate rate,Bigram,60
+require payment,Bigram,60
+residential,Unigram,60
+save approximately,Bigram,60
+save purchase,Bigram,60
+sept,Unigram,60
+setup,Unigram,60
+simply consolidate,Bigram,60
+specialist,Unigram,60
+start thank,Bigram,60
+stress free,Bigram,60
+thing house,Bigram,60
+time company,Bigram,60
+timeline,Unigram,60
+timely fashion,Bigram,60
+use year,Bigram,60
+warranty,Unigram,60
+work like,Bigram,60
+year contract,Bigram,60
+add charge,Bigram,59
+allow start,Bigram,59
+balance current,Bigram,59
+bank card,Bigram,59
+burn,Unigram,59
+card simplify,Bigram,59
+chevy,Unigram,59
+college fund,Bigram,59
+consideration help,Bigram,59
+consilidation,Unigram,59
+credit great,Bigram,59
+credit worthy,Bigram,59
+currently higher,Bigram,59
+currently owe,Bigram,59
+currently year,Bigram,59
+dear lender,Bigram,59
+deduction,Unigram,59
+designer,Unigram,59
+don plan,Bigram,59
+exist higher,Bigram,59
+fianc eacute,Bigram,59
+financial aid,Bigram,59
+financial service,Bigram,59
+fix home,Bigram,59
+francisco,Unigram,59
+free plan,Bigram,59
+gold,Unigram,59
+good good,Bigram,59
+good live,Bigram,59
+grandmother,Unigram,59
+great candidate,Bigram,59
+help quicker,Bigram,59
+higher monthly,Bigram,59
+home help,Bigram,59
+home just,Bigram,59
+horrible,Unigram,59
+job thank,Bigram,59
+kid college,Bigram,59
+like fix,Bigram,59
+look add,Bigram,59
+look borrow,Bigram,59
+look small,Bigram,59
+majority credit,Bigram,59
+make decent,Bigram,59
+mold,Unigram,59
+money want,Bigram,59
+nature,Unigram,59
+plan start,Bigram,59
+pool add,Bigram,59
+purchase property,Bigram,59
+rack credit,Bigram,59
+rat use,Bigram,59
+rate great,Bigram,59
+replace floor,Bigram,59
+respond,Unigram,59
+roughly month,Bigram,59
+san francisco,Bigram,59
+save add,Bigram,59
+secure employment,Bigram,59
+small portion,Bigram,59
+sole purpose,Bigram,59
+square,Unigram,59
+stable monthly,Bigram,59
+start add,Bigram,59
+tax payment,Bigram,59
+time start,Bigram,59
+track thank,Bigram,59
+transfer balance,Bigram,59
+use close,Bigram,59
+verify income,Bigram,59
+want finance,Bigram,59
+wed plan,Bigram,59
+wow,Unigram,59
+year purchase,Bigram,59
+add greeting,Bigram,58
+add problem,Bigram,58
+add swim,Bigram,58
+administrator,Unigram,58
+affect credit,Bigram,58
+apr make,Bigram,58
+balance help,Bigram,58
+balance reduce,Bigram,58
+balance time,Bigram,58
+balance total,Bigram,58
+bos,Unigram,58
+camper,Unigram,58
+card love,Bigram,58
+card reasonable,Bigram,58
+card thing,Bigram,58
+chip,Unigram,58
+church,Unigram,58
+claim,Unigram,58
+company time,Bigram,58
+complete project,Bigram,58
+consolidate expense,Bigram,58
+cost credit,Bigram,58
+debit free,Bigram,58
+define,Unigram,58
+doubt,Unigram,58
+equifax,Unigram,58
+fan,Unigram,58
+foreclose,Unigram,58
+friendly,Unigram,58
+good excellent,Bigram,58
+good miss,Bigram,58
+hello like,Bigram,58
+home ownership,Bigram,58
+horse,Unigram,58
+house purchase,Bigram,58
+just receive,Bigram,58
+landlord,Unigram,58
+lift,Unigram,58
+low apr,Bigram,58
+make lot,Bigram,58
+match,Unigram,58
+medical emergency,Bigram,58
+medical payment,Bigram,58
+money fix,Bigram,58
+month high,Bigram,58
+need dental,Bigram,58
+obtain lower,Bigram,58
+old daughter,Bigram,58
+payment come,Bigram,58
+payment company,Bigram,58
+permanently,Unigram,58
+pickup,Unigram,58
+rate sooner,Bigram,58
+resale,Unigram,58
+save credit,Bigram,58
+score lower,Bigram,58
+second time,Bigram,58
+sewer,Unigram,58
+stupid,Unigram,58
+tackle,Unigram,58
+term month,Bigram,58
+time allow,Bigram,58
+time default,Bigram,58
+time lower,Bigram,58
+traffic,Unigram,58
+unpaid,Unigram,58
+utility food,Bigram,58
+want build,Bigram,58
+work past,Bigram,58
+year service,Bigram,58
+able monthly,Bigram,57
+account higher,Bigram,57
+add fully,Bigram,57
+add improve,Bigram,57
+add primarily,Bigram,57
+average apr,Bigram,57
+balance account,Bigram,57
+bite credit,Bigram,57
+budget money,Bigram,57
+car student,Bigram,57
+card average,Bigram,57
+card extremely,Bigram,57
+card truck,Bigram,57
+child support,Bigram,57
+club able,Bigram,57
+discretionary,Unigram,57
+draw,Unigram,57
+employ stable,Bigram,57
+enforcement,Unigram,57
+finance add,Bigram,57
+finance car,Bigram,57
+flawless,Unigram,57
+friend family,Bigram,57
+fund complete,Bigram,57
+future family,Bigram,57
+home time,Bigram,57
+house buy,Bigram,57
+house month,Bigram,57
+job help,Bigram,57
+like exist,Bigram,57
+like time,Bigram,57
+liquidate,Unigram,57
+liquidity,Unigram,57
+make lower,Bigram,57
+make manageable,Bigram,57
+manage credit,Bigram,57
+market value,Bigram,57
+medical need,Bigram,57
+minimum card,Bigram,57
+money start,Bigram,57
+monthly mortgage,Bigram,57
+order faster,Bigram,57
+payment cut,Bigram,57
+payment utility,Bigram,57
+physical,Unigram,57
+premium,Unigram,57
+rate single,Bigram,57
+reason request,Bigram,57
+reliable person,Bigram,57
+repeat,Unigram,57
+replace carpet,Bigram,57
+secondary,Unigram,57
+seperate,Unigram,57
+somewhat,Unigram,57
+sooner month,Bigram,57
+springleaf,Unigram,57
+start build,Bigram,57
+suit,Unigram,57
+tap,Unigram,57
+upstairs,Unigram,57
+use complete,Bigram,57
+wed cost,Bigram,57
+work school,Bigram,57
+work work,Bigram,57
+youngest,Unigram,57
+youth,Unigram,57
+able free,Bigram,56
+allow focus,Bigram,56
+apt,Unigram,56
+arizona,Unigram,56
+arrangement,Unigram,56
+balance balance,Bigram,56
+birthday,Unigram,56
+borrow lend,Bigram,56
+business currently,Bigram,56
+business partner,Bigram,56
+car home,Bigram,56
+card family,Bigram,56
+card hard,Bigram,56
+card remainder,Bigram,56
+card wed,Bigram,56
+consolidate like,Bigram,56
+consolidate refinance,Bigram,56
+credit obligation,Bigram,56
+credit profile,Bigram,56
+difficult time,Bigram,56
+distribution,Unigram,56
+enrol,Unigram,56
+feed,Unigram,56
+financial burden,Bigram,56
+fly,Unigram,56
+free high,Bigram,56
+gonna,Unigram,56
+hard earn,Bigram,56
+hawaii,Unigram,56
+hello investor,Bigram,56
+help mother,Bigram,56
+help year,Bigram,56
+hight,Unigram,56
+home rent,Bigram,56
+home sell,Bigram,56
+hope consider,Bigram,56
+house use,Bigram,56
+human,Unigram,56
+incur year,Bigram,56
+lake,Unigram,56
+lien,Unigram,56
+like new,Bigram,56
+long way,Bigram,56
+love able,Bigram,56
+metal,Unigram,56
+multiple high,Bigram,56
+need upgrade,Bigram,56
+offer better,Bigram,56
+order reduce,Bigram,56
+payment fund,Bigram,56
+payment small,Bigram,56
+photographer,Unigram,56
+quicker add,Bigram,56
+rat save,Bigram,56
+rate miss,Bigram,56
+rent home,Bigram,56
+responsible credit,Bigram,56
+simple monthly,Bigram,56
+task,Unigram,56
+tend,Unigram,56
+term payment,Bigram,56
+thrive,Unigram,56
+time currently,Bigram,56
+trim,Unigram,56
+truck payment,Bigram,56
+use business,Bigram,56
+want improve,Bigram,56
+wholesale,Unigram,56
+work large,Bigram,56
+worst,Unigram,56
+year graduate,Bigram,56
+add final,Bigram,55
+add number,Bigram,55
+add obtain,Bigram,55
+add professional,Bigram,55
+allow high,Bigram,55
+allow sooner,Bigram,55
+apart,Unigram,55
+balance allow,Bigram,55
+balance owe,Bigram,55
+blow,Unigram,55
+breath,Unigram,55
+budget rent,Bigram,55
+budget thank,Bigram,55
+build house,Bigram,55
+business thank,Bigram,55
+campaign,Unigram,55
+card cover,Bigram,55
+card create,Bigram,55
+card enable,Bigram,55
+card highest,Bigram,55
+card limit,Bigram,55
+card unsecured,Bigram,55
+chain,Unigram,55
+change job,Bigram,55
+club miss,Bigram,55
+college time,Bigram,55
+consolidation good,Bigram,55
+cover monthly,Bigram,55
+credit need,Bigram,55
+deny,Unigram,55
+didnt,Unigram,55
+entire credit,Bigram,55
+exist lower,Bigram,55
+expense new,Bigram,55
+expense want,Bigram,55
+expense work,Bigram,55
+faster rate,Bigram,55
+focus payment,Bigram,55
+fulfil,Unigram,55
+generally,Unigram,55
+help goal,Bigram,55
+help monthly,Bigram,55
+high thank,Bigram,55
+higher lower,Bigram,55
+home project,Bigram,55
+insurance food,Bigram,55
+investor lend,Bigram,55
+know need,Bigram,55
+law enforcement,Bigram,55
+law firm,Bigram,55
+leverage,Unigram,55
+longer need,Bigram,55
+look good,Bigram,55
+money plan,Bigram,55
+month early,Bigram,55
+month old,Bigram,55
+mutual,Unigram,55
+need improvement,Bigram,55
+need want,Bigram,55
+new heat,Bigram,55
+note credit,Bigram,55
+old car,Bigram,55
+payment income,Bigram,55
+personal help,Bigram,55
+prepay,Unigram,55
+profession year,Bigram,55
+quot credit,Bigram,55
+really hard,Bigram,55
+receive offer,Bigram,55
+release,Unigram,55
+rent apartment,Bigram,55
+reorganize,Unigram,55
+repair new,Bigram,55
+report late,Bigram,55
+resolution,Unigram,55
+ridiculously,Unigram,55
+right away,Bigram,55
+star,Unigram,55
+start invest,Bigram,55
+tax add,Bigram,55
+therapy,Unigram,55
+think great,Bigram,55
+unnecessary,Unigram,55
+variable rate,Bigram,55
+want simplify,Bigram,55
+want try,Bigram,55
+wed add,Bigram,55
+wedding,Unigram,55
+wide,Unigram,55
+win let,Bigram,55
+work government,Bigram,55
+work person,Bigram,55
+year better,Bigram,55
+year early,Bigram,55
+yesterday,Unigram,55
+account account,Bigram,54
+add accrue,Bigram,54
+add big,Bigram,54
+add sure,Bigram,54
+allow close,Bigram,54
+bank add,Bigram,54
+beat,Unigram,54
+begin year,Bigram,54
+boost credit,Bigram,54
+budge,Unigram,54
+bureau,Unigram,54
+capital card,Bigram,54
+card come,Bigram,54
+card include,Bigram,54
+card offer,Bigram,54
+card tire,Bigram,54
+card wife,Bigram,54
+charge high,Bigram,54
+colorado,Unigram,54
+consideration thank,Bigram,54
+cover medical,Bigram,54
+crash,Unigram,54
+current minimum,Bigram,54
+currently hold,Bigram,54
+debit payment,Bigram,54
+easier thank,Bigram,54
+eliminate revolve,Bigram,54
+feel great,Bigram,54
+furnishing,Unigram,54
+heat air,Bigram,54
+house new,Bigram,54
+improvment,Unigram,54
+income include,Bigram,54
+instead thank,Bigram,54
+investor add,Bigram,54
+job late,Bigram,54
+leave month,Bigram,54
+live family,Bigram,54
+make change,Bigram,54
+mature,Unigram,54
+meet financial,Bigram,54
+mobile home,Bigram,54
+mountain,Unigram,54
+nov,Unigram,54
+payment steady,Bigram,54
+person time,Bigram,54
+plastic,Unigram,54
+purchase additional,Bigram,54
+question let,Bigram,54
+rat balance,Bigram,54
+refinish,Unigram,54
+regular payment,Bigram,54
+rent house,Bigram,54
+salary year,Bigram,54
+scholarship,Unigram,54
+score higher,Bigram,54
+set monthly,Bigram,54
+stable industry,Bigram,54
+student year,Bigram,54
+time budget,Bigram,54
+time position,Bigram,54
+typo,Unigram,54
+unsecured credit,Bigram,54
+usa,Unigram,54
+vary rat,Bigram,54
+virtually,Unigram,54
+want clean,Bigram,54
+window home,Bigram,54
+wish credit,Bigram,54
+year house,Bigram,54
+account currently,Bigram,53
+account help,Bigram,53
+achieve financial,Bigram,53
+add capital,Bigram,53
+add extra,Bigram,53
+add mother,Bigram,53
+add opportunity,Bigram,53
+add spend,Bigram,53
+advisor,Unigram,53
+automotive,Unigram,53
+await,Unigram,53
+balance consolidate,Bigram,53
+buy year,Bigram,53
+card destroy,Bigram,53
+card exist,Bigram,53
+card lump,Bigram,53
+card visa,Bigram,53
+college credit,Bigram,53
+common,Unigram,53
+communication,Unigram,53
+consolidate plan,Bigram,53
+consolidation small,Bigram,53
+credit bank,Bigram,53
+credit job,Bigram,53
+deadline,Unigram,53
+death family,Bigram,53
+decent credit,Bigram,53
+deep,Unigram,53
+don miss,Bigram,53
+early thank,Bigram,53
+easily able,Bigram,53
+haul,Unigram,53
+health issue,Bigram,53
+help lend,Bigram,53
+holiday season,Bigram,53
+home currently,Bigram,53
+improvement include,Bigram,53
+improvments,Unigram,53
+increase saving,Bigram,53
+increase year,Bigram,53
+instead just,Bigram,53
+invest business,Bigram,53
+job currently,Bigram,53
+kitchen floor,Bigram,53
+large balance,Bigram,53
+leg,Unigram,53
+life want,Bigram,53
+look expand,Bigram,53
+look start,Bigram,53
+low rat,Bigram,53
+lower cost,Bigram,53
+mechanic,Unigram,53
+medical cost,Bigram,53
+meet monthly,Bigram,53
+neighbor,Unigram,53
+ongoing,Unigram,53
+pain,Unigram,53
+payment auto,Bigram,53
+payment automatically,Bigram,53
+people like,Bigram,53
+plan place,Bigram,53
+pressure,Unigram,53
+project add,Bigram,53
+purchase small,Bigram,53
+question concern,Bigram,53
+rate bank,Bigram,53
+rate need,Bigram,53
+rate personal,Bigram,53
+reliable responsible,Bigram,53
+repaint,Unigram,53
+repayment plan,Bigram,53
+ridiculously high,Bigram,53
+score miss,Bigram,53
+spend habit,Bigram,53
+state university,Bigram,53
+support family,Bigram,53
+thing credit,Bigram,53
+try lend,Bigram,53
+vinyl,Unigram,53
+able quicker,Bigram,52
+account save,Bigram,52
+add default,Bigram,52
+add desire,Bigram,52
+add expand,Bigram,52
+add happy,Bigram,52
+add instal,Bigram,52
+add load,Bigram,52
+add quot,Bigram,52
+add rat,Bigram,52
+allow monthly,Bigram,52
+apply lend,Bigram,52
+aspect,Unigram,52
+auction,Unigram,52
+big help,Bigram,52
+boom,Unigram,52
+brake,Unigram,52
+budget stable,Bigram,52
+buffer,Unigram,52
+car like,Bigram,52
+card hopefully,Bigram,52
+citicard,Unigram,52
+close month,Bigram,52
+completely year,Bigram,52
+consolidate accumulate,Bigram,52
+consolidate rate,Bigram,52
+corp,Unigram,52
+credit consolidate,Bigram,52
+current income,Bigram,52
+customer service,Bigram,52
+different time,Bigram,52
+disable,Unigram,52
+division,Unigram,52
+drywall,Unigram,52
+easier just,Bigram,52
+europe,Unigram,52
+exact,Unigram,52
+excellent candidate,Bigram,52
+expense time,Bigram,52
+fear,Unigram,52
+finance control,Bigram,52
+financial security,Bigram,52
+fix time,Bigram,52
+fixer,Unigram,52
+flat,Unigram,52
+future investor,Bigram,52
+glass,Unigram,52
+good add,Bigram,52
+good way,Bigram,52
+help increase,Bigram,52
+high end,Bigram,52
+higher account,Bigram,52
+house insurance,Bigram,52
+income work,Bigram,52
+job history,Bigram,52
+lesson learn,Bigram,52
+life event,Bigram,52
+like know,Bigram,52
+like replace,Bigram,52
+look eliminate,Bigram,52
+look request,Bigram,52
+major repair,Bigram,52
+make bad,Bigram,52
+make double,Bigram,52
+make significant,Bigram,52
+month budget,Bigram,52
+month income,Bigram,52
+month plus,Bigram,52
+need close,Bigram,52
+nurse school,Bigram,52
+ohio,Unigram,52
+passion,Unigram,52
+past credit,Bigram,52
+payment approximately,Bigram,52
+payment dollar,Bigram,52
+payment entire,Bigram,52
+payment long,Bigram,52
+payment quickly,Bigram,52
+payment request,Bigram,52
+payment significantly,Bigram,52
+payment track,Bigram,52
+personal lower,Bigram,52
+phone car,Bigram,52
+plane,Unigram,52
+pmts,Unigram,52
+point life,Bigram,52
+project house,Bigram,52
+purchase credit,Bigram,52
+purpose refinance,Bigram,52
+purpose request,Bigram,52
+rarely,Unigram,52
+reason apply,Bigram,52
+remain use,Bigram,52
+rent mortgage,Bigram,52
+restoration,Unigram,52
+score year,Bigram,52
+seek consolidation,Bigram,52
+sky,Unigram,52
+social security,Bigram,52
+stage,Unigram,52
+start college,Bigram,52
+start money,Bigram,52
+steady time,Bigram,52
+try purchase,Bigram,52
+usaa,Unigram,52
+utility car,Bigram,52
+way save,Bigram,52
+work want,Bigram,52
+year card,Bigram,52
+year include,Bigram,52
+year secure,Bigram,52
+able money,Bigram,51
+able sooner,Bigram,51
+able time,Bigram,51
+actively,Unigram,51
+add budget,Bigram,51
+add catch,Bigram,51
+add correction,Bigram,51
+add renovate,Bigram,51
+add smaller,Bigram,51
+airline,Unigram,51
+amazon,Unigram,51
+apr rat,Bigram,51
+apr want,Bigram,51
+attorney fee,Bigram,51
+balance currently,Bigram,51
+boston,Unigram,51
+card avoid,Bigram,51
+card away,Bigram,51
+card hop,Bigram,51
+card obtain,Bigram,51
+card provide,Bigram,51
+card result,Bigram,51
+career year,Bigram,51
+cash saving,Bigram,51
+college degree,Bigram,51
+come need,Bigram,51
+company just,Bigram,51
+consolidation car,Bigram,51
+current account,Bigram,51
+currently stable,Bigram,51
+drown,Unigram,51
+easier add,Bigram,51
+easier track,Bigram,51
+egg,Unigram,51
+end term,Bigram,51
+excellent history,Bigram,51
+expense low,Bigram,51
+fax,Unigram,51
+feel better,Bigram,51
+finance better,Bigram,51
+fyi,Unigram,51
+garage door,Bigram,51
+graduate degree,Bigram,51
+great idea,Bigram,51
+heat pump,Bigram,51
+help support,Bigram,51
+help way,Bigram,51
+high interst,Bigram,51
+high need,Bigram,51
+hobby,Unigram,51
+house just,Bigram,51
+hurt credit,Bigram,51
+improvement repair,Bigram,51
+income expense,Bigram,51
+instead month,Bigram,51
+introductory,Unigram,51
+invest help,Bigram,51
+job current,Bigram,51
+just tire,Bigram,51
+lastly,Unigram,51
+live life,Bigram,51
+look rid,Bigram,51
+low income,Bigram,51
+make huge,Bigram,51
+mechanical,Unigram,51
+medical school,Bigram,51
+money better,Bigram,51
+money like,Bigram,51
+number payment,Bigram,51
+overall credit,Bigram,51
+overdue,Unigram,51
+payment bank,Bigram,51
+payment lender,Bigram,51
+payment right,Bigram,51
+payoff consolidate,Bigram,51
+privacy,Unigram,51
+professionally,Unigram,51
+purchase inventory,Bigram,51
+question regard,Bigram,51
+quickly add,Bigram,51
+rate exist,Bigram,51
+rate shorter,Bigram,51
+renovate kitchen,Bigram,51
+retail store,Bigram,51
+save wed,Bigram,51
+school add,Bigram,51
+score stable,Bigram,51
+strain,Unigram,51
+thank trust,Bigram,51
+time excellent,Bigram,51
+time responsible,Bigram,51
+time steady,Bigram,51
+try eliminate,Bigram,51
+typical,Unigram,51
+use replace,Bigram,51
+use start,Bigram,51
+vehicle purchase,Bigram,51
+way add,Bigram,51
+wonder,Unigram,51
+work just,Bigram,51
+year solid,Bigram,51
+abroad,Unigram,50
+add come,Bigram,50
+add majority,Bigram,50
+allow payoff,Bigram,50
+annual fee,Bigram,50
+attack,Unigram,50
+attic,Unigram,50
+badly,Unigram,50
+bal,Unigram,50
+bmw,Unigram,50
+budget make,Bigram,50
+car finance,Bigram,50
+card anymore,Bigram,50
+card continue,Bigram,50
+card doctor,Bigram,50
+card life,Bigram,50
+card possible,Bigram,50
+close add,Bigram,50
+close higher,Bigram,50
+consolidate improve,Bigram,50
+consolidate quickly,Bigram,50
+cosolidation,Unigram,50
+cover unexpected,Bigram,50
+crack,Unigram,50
+current budget,Bigram,50
+current employment,Bigram,50
+dear investor,Bigram,50
+deliver,Unigram,50
+dental expense,Bigram,50
+desperate,Unigram,50
+documentation,Unigram,50
+early year,Bigram,50
+expences,Unigram,50
+expense just,Bigram,50
+final payment,Bigram,50
+financially secure,Bigram,50
+floor home,Bigram,50
+future plan,Bigram,50
+good monthly,Bigram,50
+graphic,Unigram,50
+home improvment,Bigram,50
+home work,Bigram,50
+inground pool,Bigram,50
+kitchen appliance,Bigram,50
+know help,Bigram,50
+late make,Bigram,50
+little leave,Bigram,50
+live space,Bigram,50
+make higher,Bigram,50
+monday,Unigram,50
+nest,Unigram,50
+net monthly,Bigram,50
+new fence,Bigram,50
+old house,Bigram,50
+old son,Bigram,50
+payment affordable,Bigram,50
+payment apr,Bigram,50
+payment enable,Bigram,50
+payment focus,Bigram,50
+payment insurance,Bigram,50
+payment smaller,Bigram,50
+payment worry,Bigram,50
+payoff balance,Bigram,50
+personal consolidation,Bigram,50
+personal monthly,Bigram,50
+plan higher,Bigram,50
+plan sell,Bigram,50
+private party,Bigram,50
+problem credit,Bigram,50
+problem just,Bigram,50
+quickly lower,Bigram,50
+quickly thank,Bigram,50
+race,Unigram,50
+rate stable,Bigram,50
+remainder credit,Bigram,50
+renovation home,Bigram,50
+request add,Bigram,50
+salary increase,Bigram,50
+sincerely appreciate,Bigram,50
+span,Unigram,50
+stable good,Bigram,50
+term credit,Bigram,50
+time usually,Bigram,50
+try improve,Bigram,50
+vehicle add,Bigram,50
+wire,Unigram,50
+work week,Bigram,50
+year fix,Bigram,50
+year promote,Bigram,50
+year rate,Bigram,50

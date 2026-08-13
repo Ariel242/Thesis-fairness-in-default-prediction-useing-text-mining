@@ -2,18 +2,14 @@
 # Large raw data files
 # ======================
 data/accepted_2007_to_2018Q4.csv
-data/rejected_2007_to_2018Q4.csv
 
-# Large intermediate files
-data/filtered_50_cols.csv
-data/filtered_by_years_only.csv
+# Large intermediate files (02/03 pipeline outputs, regenerated per run)
 data/lc_after_02_data_prep/lc_basic_database.csv
 data/lc_after_02_data_prep/lc_basic_database_+_desc.csv
 data/03_advanced_prep/lc_after_03_advanced_prep_*.csv
 
-# Duplicate intermediate files in analysis/
-analysis/lc_basic_database.csv
-analysis/lc_basic_database_+_desc.csv
+# FinBERT embeddings (489MB, exceeds GitHub's 100MB file limit)
+FinBERT/data/*.parquet
 
 # ======================
 # Python

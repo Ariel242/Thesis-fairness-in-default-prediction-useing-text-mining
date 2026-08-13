@@ -216,7 +216,7 @@ SCRIPT_DIR = Path(__file__).resolve().parent            # .../F-TM-CR/FinBERT
 BASE_DIR   = SCRIPT_DIR.parent                           # .../F-TM-CR  (data lives here; never written to)
 
 PATH_CSV     = BASE_DIR / "data" / "03_advanced_prep" / "lc_after_03_advanced_prep_basic+test_20260715_2119.csv"
-PATH_FINBERT = BASE_DIR / "data" / "04_finbert" / "finbert_desc_embeddings.parquet"
+PATH_FINBERT = SCRIPT_DIR / "data" / "finbert_desc_embeddings.parquet"
 
 TARGET_COL = "is_default"
 DATE_COL   = "issue_month_start"

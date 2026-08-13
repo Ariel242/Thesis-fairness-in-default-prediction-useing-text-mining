@@ -57,7 +57,8 @@ from transformers import AutoTokenizer, AutoModel
 # ============================================================
 # PARAMETERS — edit these before running
 # ============================================================
-BASE_DIR   = Path(__file__).resolve().parent.parent
+SCRIPT_DIR = Path(__file__).resolve().parent            # .../F-TM-CR/FinBERT
+BASE_DIR   = SCRIPT_DIR.parent                           # .../F-TM-CR  (shared pipeline data lives here)
 PATH_CSV   = BASE_DIR / "data" / "03_advanced_prep" / "lc_after_03_advanced_prep_basic+test_20260715_2119.csv"
 TEXT_COL   = "desc"
 
@@ -71,7 +72,7 @@ MAX_LENGTH = 256    # tokens per text; LC descriptions are rarely longer
 BATCH_SIZE = 32     # lower to 8-16 if RAM is tight
 CHUNK_SIZE = 5_000  # rows per checkpoint file (resume granularity)
 
-OUT_DIR    = BASE_DIR / "data" / "04_finbert"
+OUT_DIR    = SCRIPT_DIR / "data"
 CHUNK_DIR  = OUT_DIR / "chunks"
 OUT_PATH   = OUT_DIR / "finbert_desc_embeddings.parquet"
 
