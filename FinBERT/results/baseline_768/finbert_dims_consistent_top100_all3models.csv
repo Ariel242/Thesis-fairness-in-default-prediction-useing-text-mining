@@ -1,0 +1,3 @@
+dim,LR_rank,XGB_rank,RF_rank,sum_rank
+fb:sem_300,64,19,57,140
+fb:sem_456,99,96,72,267

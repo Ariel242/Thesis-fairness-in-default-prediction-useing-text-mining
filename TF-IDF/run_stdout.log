@@ -1,0 +1,280 @@
+Loading structured data...
+  Rows after filtering: 217,287  |  Default rate: 15.36%
+  Ordinal risk grades restored: grade_ord (1-7), sub_grade_ord (1-35)
+  Structured features: 126
+
+Building Walk-Forward folds...
+  Total folds: 14
+  Fold 1: train <= 2010-08  |  test 2010-08 - 2010-09  |  n_train=6,694  n_test=1,042  defaults_in_test=157
+  Fold 2: train <= 2010-11  |  test 2010-11 - 2010-12  |  n_train=9,893  n_test=1,222  defaults_in_test=136
+  Fold 3: train <= 2011-02  |  test 2011-02 - 2011-03  |  n_train=13,674  n_test=1,369  defaults_in_test=184
+  Fold 4: train <= 2011-05  |  test 2011-05 - 2011-06  |  n_train=18,165  n_test=1,762  defaults_in_test=255
+  Fold 5: train <= 2011-08  |  test 2011-08 - 2011-09  |  n_train=23,547  n_test=1,979  defaults_in_test=286
+  Fold 6: train <= 2011-11  |  test 2011-11 - 2011-12  |  n_train=29,671  n_test=2,190  defaults_in_test=406
+  Fold 7: train <= 2012-02  |  test 2012-02 - 2012-03  |  n_train=36,786  n_test=2,781  defaults_in_test=413
+  Fold 8: train <= 2012-05  |  test 2012-05 - 2012-06  |  n_train=45,976  n_test=3,713  defaults_in_test=681
+  Fold 9: train <= 2012-08  |  test 2012-08 - 2012-09  |  n_train=59,483  n_test=5,975  defaults_in_test=919
+  Fold 10: train <= 2012-11  |  test 2012-11 - 2012-12  |  n_train=77,872  n_test=5,970  defaults_in_test=893
+  Fold 11: train <= 2013-02  |  test 2013-02 - 2013-03  |  n_train=98,111  n_test=8,184  defaults_in_test=1164
+  Fold 12: train <= 2013-05  |  test 2013-05 - 2013-06  |  n_train=125,865  n_test=10,802  defaults_in_test=1739
+  Fold 13: train <= 2013-08  |  test 2013-08 - 2013-09  |  n_train=161,023  n_test=12,846  defaults_in_test=2007
+  Fold 14: train <= 2013-11  |  test 2013-11 - 2013-12  |  n_train=202,442  n_test=14,845  defaults_in_test=2263
+
+======================================================================
+MAIN WALK-FORWARD EVALUATION
+======================================================================
+  Fold 1: TF-IDF vocab=6,227  chi2-selected=500
+    [Logistic    ] arm=Structured               fold= 1  n_features=   126  fit+predict=   7.8s
+    [XGBoost     ] arm=Structured               fold= 1  n_features=   126  fit+predict=   0.4s
+    [RandomForest] arm=Structured               fold= 1  n_features=   126  fit+predict=   1.5s
+    [Logistic    ] arm=Structured+TFIDF_full    fold= 1  n_features= 6,353  fit+predict=   8.7s
+    [XGBoost     ] arm=Structured+TFIDF_full    fold= 1  n_features= 6,353  fit+predict=   9.2s
+    [RandomForest] arm=Structured+TFIDF_full    fold= 1  n_features= 6,353  fit+predict=   2.5s
+    [Logistic    ] arm=Structured+TFIDF_chi2    fold= 1  n_features=   626  fit+predict=   6.4s
+    [XGBoost     ] arm=Structured+TFIDF_chi2    fold= 1  n_features=   626  fit+predict=   1.1s
+    [RandomForest] arm=Structured+TFIDF_chi2    fold= 1  n_features=   626  fit+predict=   3.0s
+  Fold 1 done in 55.2s.
+  Fold 2: TF-IDF vocab=8,624  chi2-selected=500
+    [Logistic    ] arm=Structured               fold= 2  n_features=   126  fit+predict=  13.5s
+    [XGBoost     ] arm=Structured               fold= 2  n_features=   126  fit+predict=   0.6s
+    [RandomForest] arm=Structured               fold= 2  n_features=   126  fit+predict=   2.3s
+    [Logistic    ] arm=Structured+TFIDF_full    fold= 2  n_features= 8,750  fit+predict=  15.4s
+    [XGBoost     ] arm=Structured+TFIDF_full    fold= 2  n_features= 8,750  fit+predict=  14.1s
+    [RandomForest] arm=Structured+TFIDF_full    fold= 2  n_features= 8,750  fit+predict=   3.4s
+    [Logistic    ] arm=Structured+TFIDF_chi2    fold= 2  n_features=   626  fit+predict=  10.7s
+    [XGBoost     ] arm=Structured+TFIDF_chi2    fold= 2  n_features=   626  fit+predict=   1.2s
+    [RandomForest] arm=Structured+TFIDF_chi2    fold= 2  n_features=   626  fit+predict=   4.3s
+  Fold 2 done in 80.7s.
+  Fold 3: TF-IDF vocab=11,226  chi2-selected=500
+    [Logistic    ] arm=Structured               fold= 3  n_features=   126  fit+predict=  15.4s
+    [XGBoost     ] arm=Structured               fold= 3  n_features=   126  fit+predict=   0.5s
+    [RandomForest] arm=Structured               fold= 3  n_features=   126  fit+predict=   2.3s
+    [Logistic    ] arm=Structured+TFIDF_full    fold= 3  n_features=11,352  fit+predict=  22.0s
+    [XGBoost     ] arm=Structured+TFIDF_full    fold= 3  n_features=11,352  fit+predict=  15.9s
+    [RandomForest] arm=Structured+TFIDF_full    fold= 3  n_features=11,352  fit+predict=   4.5s
+    [Logistic    ] arm=Structured+TFIDF_chi2    fold= 3  n_features=   626  fit+predict=  16.3s
+    [XGBoost     ] arm=Structured+TFIDF_chi2    fold= 3  n_features=   626  fit+predict=   1.4s
+    [RandomForest] arm=Structured+TFIDF_chi2    fold= 3  n_features=   626  fit+predict=   6.9s
+  Fold 3 done in 100.8s.
+  Fold 4: TF-IDF vocab=13,672  chi2-selected=500
+    [Logistic    ] arm=Structured               fold= 4  n_features=   126  fit+predict=   8.4s
+    [XGBoost     ] arm=Structured               fold= 4  n_features=   126  fit+predict=   0.7s
+    [RandomForest] arm=Structured               fold= 4  n_features=   126  fit+predict=   2.8s
+    [Logistic    ] arm=Structured+TFIDF_full    fold= 4  n_features=13,798  fit+predict=  30.5s
+    [XGBoost     ] arm=Structured+TFIDF_full    fold= 4  n_features=13,798  fit+predict=  22.3s
+    [RandomForest] arm=Structured+TFIDF_full    fold= 4  n_features=13,798  fit+predict=   6.2s
+    [Logistic    ] arm=Structured+TFIDF_chi2    fold= 4  n_features=   626  fit+predict=  23.3s
+    [XGBoost     ] arm=Structured+TFIDF_chi2    fold= 4  n_features=   626  fit+predict=   1.6s
+    [RandomForest] arm=Structured+TFIDF_chi2    fold= 4  n_features=   626  fit+predict=   9.6s
+  Fold 4 done in 121.8s.
+  Fold 5: TF-IDF vocab=16,504  chi2-selected=500
+    [Logistic    ] arm=Structured               fold= 5  n_features=   126  fit+predict=  11.5s
+    [XGBoost     ] arm=Structured               fold= 5  n_features=   126  fit+predict=   0.8s
+    [RandomForest] arm=Structured               fold= 5  n_features=   126  fit+predict=   3.6s
+    [Logistic    ] arm=Structured+TFIDF_full    fold= 5  n_features=16,630  fit+predict=  40.0s
+    [XGBoost     ] arm=Structured+TFIDF_full    fold= 5  n_features=16,630  fit+predict=  27.4s
+    [RandomForest] arm=Structured+TFIDF_full    fold= 5  n_features=16,630  fit+predict=   8.0s
+    [Logistic    ] arm=Structured+TFIDF_chi2    fold= 5  n_features=   626  fit+predict=  32.3s
+    [XGBoost     ] arm=Structured+TFIDF_chi2    fold= 5  n_features=   626  fit+predict=   1.8s
+    [RandomForest] arm=Structured+TFIDF_chi2    fold= 5  n_features=   626  fit+predict=  14.0s
+  Fold 5 done in 156.3s.
+  Fold 6: TF-IDF vocab=19,081  chi2-selected=500
+    [Logistic    ] arm=Structured               fold= 6  n_features=   126  fit+predict=  13.6s
+    [XGBoost     ] arm=Structured               fold= 6  n_features=   126  fit+predict=   0.9s
+    [RandomForest] arm=Structured               fold= 6  n_features=   126  fit+predict=   4.0s
+    [Logistic    ] arm=Structured+TFIDF_full    fold= 6  n_features=19,207  fit+predict=  53.3s
+    [XGBoost     ] arm=Structured+TFIDF_full    fold= 6  n_features=19,207  fit+predict=  32.0s
+    [RandomForest] arm=Structured+TFIDF_full    fold= 6  n_features=19,207  fit+predict=  10.2s
+    [Logistic    ] arm=Structured+TFIDF_chi2    fold= 6  n_features=   626  fit+predict=  42.5s
+    [XGBoost     ] arm=Structured+TFIDF_chi2    fold= 6  n_features=   626  fit+predict=   2.0s
+    [RandomForest] arm=Structured+TFIDF_chi2    fold= 6  n_features=   626  fit+predict=  20.0s
+  Fold 6 done in 196.6s.
+  Fold 7: TF-IDF vocab=21,482  chi2-selected=500
+    [Logistic    ] arm=Structured               fold= 7  n_features=   126  fit+predict=  17.0s
+    [XGBoost     ] arm=Structured               fold= 7  n_features=   126  fit+predict=   1.1s
+    [RandomForest] arm=Structured               fold= 7  n_features=   126  fit+predict=   4.8s
+    [Logistic    ] arm=Structured+TFIDF_full    fold= 7  n_features=21,608  fit+predict=  68.1s
+    [XGBoost     ] arm=Structured+TFIDF_full    fold= 7  n_features=21,608  fit+predict=  33.8s
+    [RandomForest] arm=Structured+TFIDF_full    fold= 7  n_features=21,608  fit+predict=  12.9s
+    [Logistic    ] arm=Structured+TFIDF_chi2    fold= 7  n_features=   626  fit+predict=  55.8s
+    [XGBoost     ] arm=Structured+TFIDF_chi2    fold= 7  n_features=   626  fit+predict=   2.4s
+    [RandomForest] arm=Structured+TFIDF_chi2    fold= 7  n_features=   626  fit+predict=  32.9s
+  Fold 7 done in 248.3s.
+  Fold 8: TF-IDF vocab=24,356  chi2-selected=500
+    [Logistic    ] arm=Structured               fold= 8  n_features=   126  fit+predict=  29.7s
+    [XGBoost     ] arm=Structured               fold= 8  n_features=   126  fit+predict=   1.2s
+    [RandomForest] arm=Structured               fold= 8  n_features=   126  fit+predict=   6.4s
+    [Logistic    ] arm=Structured+TFIDF_full    fold= 8  n_features=24,482  fit+predict=  92.2s
+    [XGBoost     ] arm=Structured+TFIDF_full    fold= 8  n_features=24,482  fit+predict=  43.2s
+    [RandomForest] arm=Structured+TFIDF_full    fold= 8  n_features=24,482  fit+predict=  16.7s
+    [Logistic    ] arm=Structured+TFIDF_chi2    fold= 8  n_features=   626  fit+predict=  91.6s
+    [XGBoost     ] arm=Structured+TFIDF_chi2    fold= 8  n_features=   626  fit+predict=   3.0s
+    [RandomForest] arm=Structured+TFIDF_chi2    fold= 8  n_features=   626  fit+predict=  57.6s
+  Fold 8 done in 364.6s.
+  Fold 9: TF-IDF vocab=29,073  chi2-selected=500
+    [Logistic    ] arm=Structured               fold= 9  n_features=   126  fit+predict=  27.2s
+    [XGBoost     ] arm=Structured               fold= 9  n_features=   126  fit+predict=   1.6s
+    [RandomForest] arm=Structured               fold= 9  n_features=   126  fit+predict=   9.5s
+    [Logistic    ] arm=Structured+TFIDF_full    fold= 9  n_features=29,199  fit+predict= 144.9s
+    [XGBoost     ] arm=Structured+TFIDF_full    fold= 9  n_features=29,199  fit+predict=  52.9s
+    [RandomForest] arm=Structured+TFIDF_full    fold= 9  n_features=29,199  fit+predict=  22.8s
+    [Logistic    ] arm=Structured+TFIDF_chi2    fold= 9  n_features=   626  fit+predict= 122.3s
+    [XGBoost     ] arm=Structured+TFIDF_chi2    fold= 9  n_features=   626  fit+predict=   4.1s
+    [RandomForest] arm=Structured+TFIDF_chi2    fold= 9  n_features=   626  fit+predict= 108.5s
+  Fold 9 done in 523.6s.
+  Fold 10: TF-IDF vocab=34,317  chi2-selected=500
+    [Logistic    ] arm=Structured               fold=10  n_features=   126  fit+predict=  24.0s
+    [XGBoost     ] arm=Structured               fold=10  n_features=   126  fit+predict=   1.9s
+    [RandomForest] arm=Structured               fold=10  n_features=   126  fit+predict=  14.8s
+    [Logistic    ] arm=Structured+TFIDF_full    fold=10  n_features=34,443  fit+predict= 209.6s
+    [XGBoost     ] arm=Structured+TFIDF_full    fold=10  n_features=34,443  fit+predict=  63.8s
+    [RandomForest] arm=Structured+TFIDF_full    fold=10  n_features=34,443  fit+predict=  31.3s
+    [Logistic    ] arm=Structured+TFIDF_chi2    fold=10  n_features=   626  fit+predict= 173.7s
+    [XGBoost     ] arm=Structured+TFIDF_chi2    fold=10  n_features=   626  fit+predict=   5.0s
+    [RandomForest] arm=Structured+TFIDF_chi2    fold=10  n_features=   626  fit+predict= 203.6s
+  Fold 10 done in 758.1s.
+  Fold 11: TF-IDF vocab=39,208  chi2-selected=500
+    [Logistic    ] arm=Structured               fold=11  n_features=   126  fit+predict=  61.6s
+    [XGBoost     ] arm=Structured               fold=11  n_features=   126  fit+predict=   2.4s
+    [RandomForest] arm=Structured               fold=11  n_features=   126  fit+predict=  20.0s
+    [Logistic    ] arm=Structured+TFIDF_full    fold=11  n_features=39,334  fit+predict= 293.5s
+    [XGBoost     ] arm=Structured+TFIDF_full    fold=11  n_features=39,334  fit+predict=  73.4s
+    [RandomForest] arm=Structured+TFIDF_full    fold=11  n_features=39,334  fit+predict=  41.5s
+    [Logistic    ] arm=Structured+TFIDF_chi2    fold=11  n_features=   626  fit+predict= 231.5s
+    [XGBoost     ] arm=Structured+TFIDF_chi2    fold=11  n_features=   626  fit+predict=   4.3s
+    [RandomForest] arm=Structured+TFIDF_chi2    fold=11  n_features=   626  fit+predict= 270.3s
+  Fold 11 done in 1031.7s.
+  Fold 12: TF-IDF vocab=44,235  chi2-selected=500
+    [Logistic    ] arm=Structured               fold=12  n_features=   126  fit+predict=  30.5s
+    [XGBoost     ] arm=Structured               fold=12  n_features=   126  fit+predict=   3.9s
+    [RandomForest] arm=Structured               fold=12  n_features=   126  fit+predict=  34.6s
+    [Logistic    ] arm=Structured+TFIDF_full    fold=12  n_features=44,361  fit+predict= 174.7s
+    [XGBoost     ] arm=Structured+TFIDF_full    fold=12  n_features=44,361  fit+predict=  75.0s
+    [RandomForest] arm=Structured+TFIDF_full    fold=12  n_features=44,361  fit+predict=  47.4s
+    [Logistic    ] arm=Structured+TFIDF_chi2    fold=12  n_features=   626  fit+predict= 163.5s
+    [XGBoost     ] arm=Structured+TFIDF_chi2    fold=12  n_features=   626  fit+predict=   7.7s
+    [RandomForest] arm=Structured+TFIDF_chi2    fold=12  n_features=   626  fit+predict= 429.3s
+  Fold 12 done in 997.4s.
+  Fold 13: TF-IDF vocab=49,606  chi2-selected=500
+    [Logistic    ] arm=Structured               fold=13  n_features=   126  fit+predict=  27.9s
+    [XGBoost     ] arm=Structured               fold=13  n_features=   126  fit+predict=   4.7s
+    [RandomForest] arm=Structured               fold=13  n_features=   126  fit+predict=  47.8s
+    [Logistic    ] arm=Structured+TFIDF_full    fold=13  n_features=49,732  fit+predict= 230.3s
+    [XGBoost     ] arm=Structured+TFIDF_full    fold=13  n_features=49,732  fit+predict=  79.9s
+    [RandomForest] arm=Structured+TFIDF_full    fold=13  n_features=49,732  fit+predict=  62.1s
+    [Logistic    ] arm=Structured+TFIDF_chi2    fold=13  n_features=   626  fit+predict= 205.7s
+    [XGBoost     ] arm=Structured+TFIDF_chi2    fold=13  n_features=   626  fit+predict=   9.5s
+    [RandomForest] arm=Structured+TFIDF_chi2    fold=13  n_features=   626  fit+predict= 658.8s
+  Fold 13 done in 1361.7s.
+  Fold 14: TF-IDF vocab=55,028  chi2-selected=500
+    [Logistic    ] arm=Structured               fold=14  n_features=   126  fit+predict=  19.1s
+    [XGBoost     ] arm=Structured               fold=14  n_features=   126  fit+predict=   5.9s
+    [RandomForest] arm=Structured               fold=14  n_features=   126  fit+predict=  65.8s
+    [Logistic    ] arm=Structured+TFIDF_full    fold=14  n_features=55,154  fit+predict= 297.7s
+    [XGBoost     ] arm=Structured+TFIDF_full    fold=14  n_features=55,154  fit+predict=  97.9s
+    [RandomForest] arm=Structured+TFIDF_full    fold=14  n_features=55,154  fit+predict=  81.0s
+    [Logistic    ] arm=Structured+TFIDF_chi2    fold=14  n_features=   626  fit+predict= 269.7s
+    [XGBoost     ] arm=Structured+TFIDF_chi2    fold=14  n_features=   626  fit+predict=  11.8s
+    [RandomForest] arm=Structured+TFIDF_chi2    fold=14  n_features=   626  fit+predict= 899.9s
+  Fold 14 done in 1787.9s.
+
+======================================================================
+A. PREDICTIVE PERFORMANCE SUMMARY (mean +/- std across folds)
+======================================================================
+                                       AUC          PR_AUC           Brier            GINI        
+                                      mean     std    mean     std    mean     std    mean     std
+Arm                   Model                                                                       
+Structured            Logistic      0.6930  0.0152  0.2766  0.0322  0.2313  0.0151  0.3860  0.0304
+                      RandomForest  0.6882  0.0199  0.2740  0.0354  0.1891  0.0142  0.3764  0.0398
+                      XGBoost       0.6904  0.0191  0.2794  0.0354  0.2114  0.0171  0.3808  0.0383
+Structured+TFIDF_chi2 Logistic      0.6942  0.0164  0.2791  0.0307  0.2308  0.0151  0.3884  0.0328
+                      RandomForest  0.6870  0.0210  0.2753  0.0329  0.2069  0.0137  0.3740  0.0420
+                      XGBoost       0.6936  0.0204  0.2799  0.0298  0.2166  0.0173  0.3872  0.0408
+Structured+TFIDF_full Logistic      0.6965  0.0159  0.2818  0.0318  0.2268  0.0154  0.3930  0.0318
+                      RandomForest  0.6824  0.0183  0.2700  0.0289  0.2268  0.0127  0.3647  0.0366
+                      XGBoost       0.6936  0.0186  0.2827  0.0273  0.2167  0.0193  0.3872  0.0373
+
+======================================================================
+B. DELONG PAIRWISE TESTS — mean across folds
+======================================================================
+                                                          Delta_AUC  p_value
+Model        Arm_A                 Arm_B                                    
+Logistic     Structured            Structured+TFIDF_chi2     0.0012   0.2902
+                                   Structured+TFIDF_full     0.0035   0.1859
+             Structured+TFIDF_full Structured+TFIDF_chi2    -0.0023   0.1971
+RandomForest Structured            Structured+TFIDF_chi2    -0.0012   0.2892
+                                   Structured+TFIDF_full    -0.0058   0.2394
+             Structured+TFIDF_full Structured+TFIDF_chi2     0.0046   0.2228
+XGBoost      Structured            Structured+TFIDF_chi2     0.0032   0.4377
+                                   Structured+TFIDF_full     0.0032   0.3710
+             Structured+TFIDF_full Structured+TFIDF_chi2     0.0000   0.4843
+
+======================================================================
+C. TF-IDF WORD CONSISTENCY (chi2 arm) — top 15 per model
+======================================================================
+
+  [Logistic]  2734 distinct words ever selected across 14 folds
+             Feature  n_folds_selected  mean_rank_when_selected  mean_importance_share  mean_chi2_score    Model  pct_folds_selected
+            txt:help                14                    17.79                 0.0060             4.59 Logistic               100.0
+            txt:ring                14                    18.21                 0.0058             5.51 Logistic               100.0
+             txt:ups                14                    20.79                 0.0055             5.74 Logistic               100.0
+      txt:engagement                14                    25.29                 0.0052             6.45 Logistic               100.0
+ txt:engagement ring                14                    42.93                 0.0042             5.18 Logistic               100.0
+             txt:apr                13                     9.54                 0.0077             5.20 Logistic                92.9
+            txt:pool                13                    25.62                 0.0092            11.85 Logistic                92.9
+             txt:mta                13                    65.38                 0.0040            10.44 Logistic                92.9
+      txt:motorcycle                13                   108.62                 0.0028             3.75 Logistic                92.9
+       txt:help foot                13                   293.77                 0.0013             4.41 Logistic                92.9
+         txt:trailer                12                    53.92                 0.0036             2.72 Logistic                85.7
+txt:excellent credit                12                   104.58                 0.0026             3.43 Logistic                85.7
+     txt:pay problem                12                   149.25                 0.0020             3.19 Logistic                85.7
+          txt:buster                12                   160.75                 0.0020             3.53 Logistic                85.7
+          txt:payday                12                   219.08                 0.0018             3.31 Logistic                85.7
+
+  [XGBoost]  2734 distinct words ever selected across 14 folds
+             Feature  n_folds_selected  mean_rank_when_selected  mean_importance_share  mean_chi2_score   Model  pct_folds_selected
+      txt:engagement                14                    12.71                 0.0065             6.45 XGBoost               100.0
+            txt:ring                14                    17.07                 0.0062             5.51 XGBoost               100.0
+            txt:help                14                    67.29                 0.0045             4.59 XGBoost               100.0
+             txt:ups                14                   106.93                 0.0040             5.74 XGBoost               100.0
+ txt:engagement ring                14                   220.79                 0.0021             5.18 XGBoost               100.0
+      txt:motorcycle                13                    23.23                 0.0057             3.75 XGBoost                92.9
+             txt:apr                13                    37.85                 0.0053             5.20 XGBoost                92.9
+            txt:pool                13                    73.00                 0.0052            11.85 XGBoost                92.9
+             txt:mta                13                   121.15                 0.0040            10.44 XGBoost                92.9
+       txt:help foot                13                   257.77                 0.0011             4.41 XGBoost                92.9
+txt:excellent credit                12                   103.25                 0.0040             3.43 XGBoost                85.7
+     txt:pay problem                12                   106.42                 0.0039             3.19 XGBoost                85.7
+         txt:trailer                12                   107.08                 0.0041             2.72 XGBoost                85.7
+          txt:payday                12                   222.83                 0.0022             3.31 XGBoost                85.7
+          txt:buster                12                   440.17                 0.0003             3.53 XGBoost                85.7
+
+  [RandomForest]  2734 distinct words ever selected across 14 folds
+             Feature  n_folds_selected  mean_rank_when_selected  mean_importance_share  mean_chi2_score        Model  pct_folds_selected
+            txt:help                14                    34.64                 0.0073             4.59 RandomForest               100.0
+            txt:ring                14                    79.57                 0.0010             5.51 RandomForest               100.0
+      txt:engagement                14                    80.43                 0.0010             6.45 RandomForest               100.0
+ txt:engagement ring                14                    93.14                 0.0006             5.18 RandomForest               100.0
+             txt:ups                14                   195.86                 0.0000             5.74 RandomForest               100.0
+             txt:apr                13                    55.23                 0.0028             5.20 RandomForest                92.9
+            txt:pool                13                    78.46                 0.0013            11.85 RandomForest                92.9
+      txt:motorcycle                13                    79.00                 0.0010             3.75 RandomForest                92.9
+             txt:mta                13                   263.62                 0.0000            10.44 RandomForest                92.9
+       txt:help foot                13                   278.46                 0.0000             4.41 RandomForest                92.9
+txt:excellent credit                12                    70.33                 0.0019             3.43 RandomForest                85.7
+         txt:trailer                12                   192.08                 0.0001             2.72 RandomForest                85.7
+          txt:payday                12                   223.83                 0.0000             3.31 RandomForest                85.7
+     txt:pay problem                12                   252.25                 0.0000             3.19 RandomForest                85.7
+          txt:buster                12                   435.75                 0.0000             3.53 RandomForest                85.7
+
+Saved CSVs to: C:\Users\ariel\Desktop\Thesis\F-TM-CR\TF-IDF\results
+
+Generating figures...
+  fig1_auc_by_fold.png
+  fig2_delong_deltas.png
+
+All figures saved to: C:\Users\ariel\Desktop\Thesis\F-TM-CR\TF-IDF\figures
+
+Written report: C:\Users\ariel\Desktop\Thesis\F-TM-CR\TF-IDF\results\ablation_report.md
+
+Done. Results in C:\Users\ariel\Desktop\Thesis\F-TM-CR\TF-IDF\results, figures in C:\Users\ariel\Desktop\Thesis\F-TM-CR\TF-IDF\figures

@@ -1,0 +1,9 @@
+{
+  "version": "v1",
+  "created": "2026-08-20",
+  "source": "Dictionarys/thesis_lexicon_plan_updated_260820_023907.pdf, section 3 (Formal Zero-Shot Prompt Rubric & Multi-Class Categories)",
+  "model_intended_for": "claude-opus-5",
+  "system": "You are an expert quantitative credit risk analyst. Your objective is to annotate a vocabulary list extracted from peer-to-peer personal loan descriptions. Classify each term into EXACTLY ONE of the following categories: - DEBT_PRESSURE: Terms signaling high debt load, maxed credit lines, mounting interest, or debt-spiral traps. - LIQUIDITY_SHORTAGE: Terms signaling immediate cash-flow deficit, inability to cover basic living expenses, or being past due. - SHOCK_EMERGENCY: Terms signaling unexpected exogenous financial distress (medical emergencies, sudden job loss, urgent repairs). - HIGH_RISK_REFINANCING: Terms explicitly indicating payoff of predatory/payday debt or high-interest short-term borrowing. - NEUTRAL_BENIGN: Terms describing routine loan logistics, stable employment, positive sentiment, planned life events, or general conversational prose. Output format (CSV): token,category,is_distress(0/1),rationale",
+  "user_template": "Classify each of the following {n} terms per the rubric above. Output only the CSV rows, one per term, in the same order given, no header, no commentary, no markdown code fences. Rationale must be a short phrase (under 12 words) with no commas; if you must use a comma, wrap the whole rationale field in double quotes per standard CSV rules:\n{terms}",
+  "notes": "The PDF specifies the system rubric verbatim (reproduced above unchanged) but does not specify user-turn wording; user_template is this project's own minimal, documented addition so the exact text sent on every call is inspectable and citable. {n} and {terms} are substituted per chunk by Dictionarys/scripts/02_llm_zero_shot_annotate.py; {terms} is one term per line."
+}

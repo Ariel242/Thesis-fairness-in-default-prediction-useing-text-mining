@@ -1,0 +1,1650 @@
+﻿token,category,is_distress,rationale
+pay,NEUTRAL_BENIGN,0,generic repayment verb
+credit,NEUTRAL_BENIGN,0,generic financial term
+card,NEUTRAL_BENIGN,0,generic instrument noun
+credit card,DEBT_PRESSURE,1,revolving credit balance context
+year,NEUTRAL_BENIGN,0,time reference
+debt,DEBT_PRESSURE,1,explicit debt load signal
+payment,NEUTRAL_BENIGN,0,routine loan logistics
+add,NEUTRAL_BENIGN,0,conversational verb
+use,NEUTRAL_BENIGN,0,conversational verb
+job,NEUTRAL_BENIGN,0,employment reference typically stable
+work,NEUTRAL_BENIGN,0,employment reference
+month,NEUTRAL_BENIGN,0,time reference
+consolidate,DEBT_PRESSURE,1,multiple debts requiring consolidation
+monthly,NEUTRAL_BENIGN,0,payment cadence descriptor
+help,NEUTRAL_BENIGN,0,general conversational prose
+plan,NEUTRAL_BENIGN,0,planned intent language
+money,NEUTRAL_BENIGN,0,generic financial noun
+fund,NEUTRAL_BENIGN,0,routine funding logistics
+stable,NEUTRAL_BENIGN,0,positive stability signal
+good,NEUTRAL_BENIGN,0,positive sentiment
+home,NEUTRAL_BENIGN,0,property reference neutral
+rate,NEUTRAL_BENIGN,0,generic interest rate mention
+company,NEUTRAL_BENIGN,0,employer reference
+income,NEUTRAL_BENIGN,0,earnings reference
+high,DEBT_PRESSURE,1,usually modifies high interest balances
+pay credit,DEBT_PRESSURE,1,paying down card obligations
+card debt,DEBT_PRESSURE,1,explicit revolving debt burden
+car,NEUTRAL_BENIGN,0,vehicle purchase or loan
+expense,NEUTRAL_BENIGN,0,routine cost reference
+look,NEUTRAL_BENIGN,0,conversational verb
+new,NEUTRAL_BENIGN,0,generic descriptor
+rat,NEUTRAL_BENIGN,0,stemmed rate token neutral
+currently,NEUTRAL_BENIGN,0,temporal qualifier
+current,NEUTRAL_BENIGN,0,temporal qualifier
+account,NEUTRAL_BENIGN,0,banking logistics
+lower,NEUTRAL_BENIGN,0,rate reduction goal benign
+late,LIQUIDITY_SHORTAGE,1,past due payment signal
+balance,DEBT_PRESSURE,1,outstanding revolving balance
+free,NEUTRAL_BENIGN,0,positive debt-free sentiment
+monthly payment,NEUTRAL_BENIGN,0,routine payment logistics
+purchase,NEUTRAL_BENIGN,0,planned spending
+budget,NEUTRAL_BENIGN,0,planning language
+house,NEUTRAL_BENIGN,0,property reference
+able,NEUTRAL_BENIGN,0,capability positive phrasing
+start,NEUTRAL_BENIGN,0,conversational verb
+try,NEUTRAL_BENIGN,0,conversational verb
+bank,NEUTRAL_BENIGN,0,institution reference
+live,NEUTRAL_BENIGN,0,living situation prose
+question,NEUTRAL_BENIGN,0,conversational prose
+pay debt,DEBT_PRESSURE,1,debt repayment burden signal
+save,NEUTRAL_BENIGN,0,routine savings or cost reduction language
+plan use,NEUTRAL_BENIGN,0,describes intended use of funds
+lend,NEUTRAL_BENIGN,0,generic lending logistics term
+score,NEUTRAL_BENIGN,0,generic credit metric reference
+school,NEUTRAL_BENIGN,0,planned education event
+great,NEUTRAL_BENIGN,0,positive sentiment word
+rent,NEUTRAL_BENIGN,0,routine housing expense mention
+financial,NEUTRAL_BENIGN,0,generic descriptor without distress signal
+wife,NEUTRAL_BENIGN,0,family conversational prose
+consolidate credit,DEBT_PRESSURE,1,signals multiple credit balances needing consolidation
+credit score,NEUTRAL_BENIGN,0,routine creditworthiness reference
+family,NEUTRAL_BENIGN,0,conversational family reference
+history,NEUTRAL_BENIGN,0,generic credit history mention
+mortgage,NEUTRAL_BENIGN,0,routine secured obligation
+consolidation,DEBT_PRESSURE,1,indicates accumulated debt requiring restructuring
+buy,NEUTRAL_BENIGN,0,routine planned purchase
+stable job,NEUTRAL_BENIGN,0,stable employment signal
+excellent,NEUTRAL_BENIGN,0,positive sentiment word
+know,NEUTRAL_BENIGN,0,conversational filler verb
+late payment,LIQUIDITY_SHORTAGE,1,past due indicates cash-flow deficit
+miss,LIQUIDITY_SHORTAGE,1,missed payments signal shortfall
+use pay,NEUTRAL_BENIGN,0,generic statement of fund use
+employ,NEUTRAL_BENIGN,0,employment status reference
+appreciate,NEUTRAL_BENIGN,0,polite conversational sentiment
+college,NEUTRAL_BENIGN,0,planned education expense
+pay month,NEUTRAL_BENIGN,0,routine monthly payment logistics
+personal,NEUTRAL_BENIGN,0,generic loan type descriptor
+use fund,NEUTRAL_BENIGN,0,routine statement of proceeds use
+consolidate debt,DEBT_PRESSURE,1,explicit multiple debt burden consolidation
+allow,NEUTRAL_BENIGN,0,generic conversational verb
+ask,NEUTRAL_BENIGN,0,routine request language
+minimum,DEBT_PRESSURE,1,minimum payments suggest revolving debt trap
+saving,NEUTRAL_BENIGN,0,positive financial reserve reference
+life,NEUTRAL_BENIGN,0,general conversational prose
+secure,NEUTRAL_BENIGN,0,routine collateral or stability wording
+come,NEUTRAL_BENIGN,0,generic conversational verb
+way,NEUTRAL_BENIGN,0,generic conversational noun
+business,NEUTRAL_BENIGN,0,routine business purpose mention
+feel,NEUTRAL_BENIGN,0,conversational sentiment verb
+position,NEUTRAL_BENIGN,0,generic situational descriptor
+finance,NEUTRAL_BENIGN,0,generic financing term
+insurance,NEUTRAL_BENIGN,0,routine expense category
+request,NEUTRAL_BENIGN,0,routine loan application language
+total,NEUTRAL_BENIGN,0,generic aggregate amount reference
+don,NEUTRAL_BENIGN,0,tokenization artifact of contraction
+receive,NEUTRAL_BENIGN,0,generic conversational verb
+past,NEUTRAL_BENIGN,0,ambiguous temporal reference
+close,NEUTRAL_BENIGN,0,routine account or timing language
+recently,NEUTRAL_BENIGN,0,generic temporal qualifier
+high credit,DEBT_PRESSURE,1,high balances or rates signal debt load
+little,NEUTRAL_BENIGN,0,Generic quantifier in conversational prose
+really,NEUTRAL_BENIGN,0,Generic intensifier with no risk signal
+cash,NEUTRAL_BENIGN,0,Ambiguous financial noun without distress context
+goal,NEUTRAL_BENIGN,0,Planning language reflecting positive intent
+higher,NEUTRAL_BENIGN,0,Comparative adjective lacking specific risk context
+student,NEUTRAL_BENIGN,0,Refers to routine education loan context
+job year,NEUTRAL_BENIGN,0,Tenure statement indicating employment stability
+increase,NEUTRAL_BENIGN,0,Ambiguous change term without direction of risk
+debt free,NEUTRAL_BENIGN,0,Aspirational payoff goal not current distress
+include,NEUTRAL_BENIGN,0,Routine listing verb in prose
+medical,SHOCK_EMERGENCY,1,Signals medical expense shock
+invest,NEUTRAL_BENIGN,0,Discretionary investment purpose not distress
+leave,NEUTRAL_BENIGN,0,Ambiguous verb without distress context
+day,NEUTRAL_BENIGN,0,Temporal reference in routine prose
+tax,NEUTRAL_BENIGN,0,Routine financial obligation reference
+better,NEUTRAL_BENIGN,0,Positive comparative sentiment
+lower rate,NEUTRAL_BENIGN,0,Routine rate-improvement refinancing rationale
+miss payment,LIQUIDITY_SHORTAGE,1,Explicit delinquency and cash-flow deficit
+plan pay,NEUTRAL_BENIGN,0,Repayment planning language
+small,NEUTRAL_BENIGN,0,Size descriptor without risk signal
+cost,NEUTRAL_BENIGN,0,Generic expense reference
+investor,NEUTRAL_BENIGN,0,Platform lender reference in loan logistics
+investment,NEUTRAL_BENIGN,0,Discretionary purpose not distress
+responsible,NEUTRAL_BENIGN,0,Positive borrower self-characterization
+end,NEUTRAL_BENIGN,0,Temporal boundary word in prose
+ago,NEUTRAL_BENIGN,0,Temporal reference in narrative
+employment,NEUTRAL_BENIGN,0,Routine income source description
+job stable,NEUTRAL_BENIGN,0,Stable employment positive signal
+fix,NEUTRAL_BENIGN,0,Ambiguous repair verb without urgency
+purpose,NEUTRAL_BENIGN,0,Routine loan application logistics
+card pay,DEBT_PRESSURE,1,Credit card balance repayment burden
+pay high,DEBT_PRESSURE,1,Servicing high-interest balances
+consider,NEUTRAL_BENIGN,0,Deliberative conversational verb
+apr,NEUTRAL_BENIGN,0,Standard rate terminology in loan logistics
+term,NEUTRAL_BENIGN,0,Loan structure logistics term
+future,NEUTRAL_BENIGN,0,Forward-looking planning language
+old,NEUTRAL_BENIGN,0,Age or vintage descriptor
+monthly budget,NEUTRAL_BENIGN,0,Routine budgeting language
+wed,NEUTRAL_BENIGN,0,Planned life event wedding financing
+additional,NEUTRAL_BENIGN,0,Quantity modifier without risk signal
+continue,NEUTRAL_BENIGN,0,Continuity verb in prose
+pay year,NEUTRAL_BENIGN,0,Repayment timeline reference
+good credit,NEUTRAL_BENIGN,0,Positive creditworthiness signal
+low,NEUTRAL_BENIGN,0,Ambiguous magnitude descriptor
+salary,NEUTRAL_BENIGN,0,Stable income source reference
+cover,LIQUIDITY_SHORTAGE,1,Implies covering shortfall in expenses
+utility,LIQUIDITY_SHORTAGE,1,Basic living bill needing funding
+debt consolidation,DEBT_PRESSURE,1,Multiple debts consolidated indicating load
+extra,NEUTRAL_BENIGN,0,Quantity modifier without risk signal
+hope,NEUTRAL_BENIGN,0,Optimistic conversational sentiment
+payoff,NEUTRAL_BENIGN,0,routine loan settlement logistics
+problem,NEUTRAL_BENIGN,0,generic conversational term
+employer,NEUTRAL_BENIGN,0,stable employment reference
+thing,NEUTRAL_BENIGN,0,generic filler word
+child,NEUTRAL_BENIGN,0,routine family mention
+debt pay,DEBT_PRESSURE,1,indicates servicing existing debt load
+graduate,NEUTRAL_BENIGN,0,planned life event
+answer,NEUTRAL_BENIGN,0,general conversational prose
+reason,NEUTRAL_BENIGN,0,generic explanatory term
+remain,NEUTRAL_BENIGN,0,neutral descriptive verb
+week,NEUTRAL_BENIGN,0,routine time reference
+company year,NEUTRAL_BENIGN,0,employment tenure reference
+state,NEUTRAL_BENIGN,0,geographic or descriptive term
+card balance,DEBT_PRESSURE,1,revolving credit balance outstanding
+long,NEUTRAL_BENIGN,0,generic descriptor
+order,NEUTRAL_BENIGN,0,generic prose term
+past year,NEUTRAL_BENIGN,0,neutral time reference
+possible,NEUTRAL_BENIGN,0,generic modal descriptor
+reduce,NEUTRAL_BENIGN,0,planned debt reduction intent
+credit history,NEUTRAL_BENIGN,0,routine credit profile reference
+excellent credit,NEUTRAL_BENIGN,0,positive creditworthiness signal
+phone,NEUTRAL_BENIGN,0,routine expense or contact item
+spend,NEUTRAL_BENIGN,0,generic spending reference
+raise,NEUTRAL_BENIGN,0,positive income event
+hard,NEUTRAL_BENIGN,0,ambiguous general difficulty descriptor
+owe,DEBT_PRESSURE,1,explicit outstanding obligation
+repair,SHOCK_EMERGENCY,1,urgent unexpected repair need
+soon,NEUTRAL_BENIGN,0,generic timing word
+marry,NEUTRAL_BENIGN,0,planned life event
+opportunity,NEUTRAL_BENIGN,0,positive sentiment term
+repay,NEUTRAL_BENIGN,0,routine repayment intent
+single,NEUTRAL_BENIGN,0,demographic descriptor
+use money,NEUTRAL_BENIGN,0,routine fund usage statement
+let,NEUTRAL_BENIGN,0,generic filler verb
+line,NEUTRAL_BENIGN,0,credit line logistics reference
+think,NEUTRAL_BENIGN,0,conversational prose verb
+provide,NEUTRAL_BENIGN,0,generic verb
+steady,NEUTRAL_BENIGN,0,stable employment or income signal
+year ago,NEUTRAL_BENIGN,0,neutral time reference
+improvement,NEUTRAL_BENIGN,0,positive planned upgrade
+food,LIQUIDITY_SHORTAGE,1,basic living expense coverage need
+payment pay,DEBT_PRESSURE,1,servicing multiple monthly obligations
+report,NEUTRAL_BENIGN,0,credit report logistics
+husband,NEUTRAL_BENIGN,0,routine household mention
+offer,NEUTRAL_BENIGN,0,routine loan logistics
+card payment,DEBT_PRESSURE,1,revolving credit obligation burden
+far,NEUTRAL_BENIGN,0,generic descriptor
+build,NEUTRAL_BENIGN,0,positive credit building intent
+sell,NEUTRAL_BENIGN,0,routine asset transaction
+use consolidate,DEBT_PRESSURE,1,consolidating multiple existing debts
+right,NEUTRAL_BENIGN,0,generic conversational filler
+advance,HIGH_RISK_REFINANCING,1,suggests payday cash advance borrowing
+borrow,NEUTRAL_BENIGN,0,generic lending verb
+payment credit,DEBT_PRESSURE,1,references credit obligation payments
+monthly expense,LIQUIDITY_SHORTAGE,1,recurring living cost pressure
+say,NEUTRAL_BENIGN,0,conversational prose
+charge,DEBT_PRESSURE,1,implies credit card charges accruing
+set,NEUTRAL_BENIGN,0,routine neutral verb
+check,NEUTRAL_BENIGN,0,routine logistics term
+finish,NEUTRAL_BENIGN,0,neutral completion term
+revolve,DEBT_PRESSURE,1,revolving balance carrying debt
+situation,NEUTRAL_BENIGN,0,vague context word
+hello,NEUTRAL_BENIGN,0,greeting prose
+market,NEUTRAL_BENIGN,0,general economic noun
+apply,NEUTRAL_BENIGN,0,routine loan application logistics
+lot,NEUTRAL_BENIGN,0,generic quantifier
+change,NEUTRAL_BENIGN,0,neutral general term
+service,NEUTRAL_BENIGN,0,routine servicing term
+place,NEUTRAL_BENIGN,0,generic location noun
+lender,NEUTRAL_BENIGN,0,routine loan participant
+early,NEUTRAL_BENIGN,0,neutral timing word
+career,NEUTRAL_BENIGN,0,stable employment reference
+support,NEUTRAL_BENIGN,0,general positive term
+vehicle,NEUTRAL_BENIGN,0,routine asset mention
+able pay,NEUTRAL_BENIGN,0,positive repayment capacity
+fund pay,NEUTRAL_BENIGN,0,routine use of funds
+faster,NEUTRAL_BENIGN,0,neutral speed descriptor
+instead,NEUTRAL_BENIGN,0,conversational connector
+care,NEUTRAL_BENIGN,0,ambiguous general term
+payment month,NEUTRAL_BENIGN,0,routine payment schedule
+rid,DEBT_PRESSURE,1,desire to eliminate debt burden
+auto,NEUTRAL_BENIGN,0,routine vehicle reference
+car payment,NEUTRAL_BENIGN,0,routine installment obligation
+industry,NEUTRAL_BENIGN,0,employment sector reference
+large,NEUTRAL_BENIGN,0,generic size descriptor
+money pay,NEUTRAL_BENIGN,0,routine payment phrasing
+gas,LIQUIDITY_SHORTAGE,1,basic living expense strain
+process,NEUTRAL_BENIGN,0,routine application logistics
+refinance,NEUTRAL_BENIGN,0,generic refinancing without predatory signal
+half,NEUTRAL_BENIGN,0,generic proportion word
+approximately,NEUTRAL_BENIGN,0,generic estimation word
+information,NEUTRAL_BENIGN,0,routine disclosure term
+home improvement,NEUTRAL_BENIGN,0,planned discretionary project
+people,NEUTRAL_BENIGN,0,generic conversational noun
+fee,DEBT_PRESSURE,1,added borrowing costs accruing
+feel free,NEUTRAL_BENIGN,0,polite conversational phrase
+list,NEUTRAL_BENIGN,0,routine listing logistics
+expect,NEUTRAL_BENIGN,0,neutral forward-looking word
+card company,DEBT_PRESSURE,1,credit card issuer debt context
+default,DEBT_PRESSURE,1,Signals failure to meet debt obligations
+help pay,LIQUIDITY_SHORTAGE,1,Requesting assistance covering payments
+pay minimum,DEBT_PRESSURE,1,Minimum-only payments indicate debt spiral
+complete,NEUTRAL_BENIGN,0,Routine completion language
+degree,NEUTRAL_BENIGN,0,Education reference
+manager,NEUTRAL_BENIGN,0,Stable employment title
+chase,NEUTRAL_BENIGN,0,Bank or lender name
+minimum payment,DEBT_PRESSURE,1,Minimum payments signal heavy revolving debt
+run,NEUTRAL_BENIGN,0,Generic conversational verb
+couple,NEUTRAL_BENIGN,0,Generic quantity or family reference
+pay monthly,NEUTRAL_BENIGN,0,Routine repayment logistics
+away,NEUTRAL_BENIGN,0,Generic prose
+person,NEUTRAL_BENIGN,0,Generic reference
+plus,NEUTRAL_BENIGN,0,Generic connector
+project,NEUTRAL_BENIGN,0,Planned undertaking
+rate credit,DEBT_PRESSURE,1,References credit card interest rates
+save money,NEUTRAL_BENIGN,0,Positive financial intent
+use credit,DEBT_PRESSURE,1,Reliance on revolving credit
+intend,NEUTRAL_BENIGN,0,Statement of plan
+note,NEUTRAL_BENIGN,0,Loan listing logistics
+second,NEUTRAL_BENIGN,0,Ordinal descriptor
+credit report,NEUTRAL_BENIGN,0,Routine credit documentation reference
+grow,NEUTRAL_BENIGN,0,Positive growth language
+quickly,NEUTRAL_BENIGN,0,Generic adverb
+rest,NEUTRAL_BENIGN,0,Generic remainder reference
+currently pay,DEBT_PRESSURE,1,Describes existing ongoing debt servicing
+mean,NEUTRAL_BENIGN,0,Generic prose verb
+major,NEUTRAL_BENIGN,0,Generic intensifier
+best,NEUTRAL_BENIGN,0,Positive sentiment
+emergency,SHOCK_EMERGENCY,1,Explicit unexpected urgent event
+love,NEUTRAL_BENIGN,0,Positive sentiment
+parent,NEUTRAL_BENIGN,0,Family reference
+sure,NEUTRAL_BENIGN,0,Confidence filler word
+afford,LIQUIDITY_SHORTAGE,1,Concerns ability to cover expenses
+forward,NEUTRAL_BENIGN,0,Generic prose
+year pay,NEUTRAL_BENIGN,0,Routine payment timeframe
+bonus,NEUTRAL_BENIGN,0,Positive income event
+financially,NEUTRAL_BENIGN,0,General financial descriptor
+issue,NEUTRAL_BENIGN,0,Vague problem reference
+bring,NEUTRAL_BENIGN,0,Generic verb
+eliminate,NEUTRAL_BENIGN,0,Debt payoff intent stated positively
+high rate,HIGH_RISK_REFINANCING,1,Refinancing high-interest borrowing
+manage,NEUTRAL_BENIGN,0,Control or supervision language
+value,NEUTRAL_BENIGN,0,Generic valuation term
+year old,NEUTRAL_BENIGN,0,Age descriptor
+employee,NEUTRAL_BENIGN,0,Stable employment reference
+short,LIQUIDITY_SHORTAGE,1,Being short on cash
+follow,NEUTRAL_BENIGN,0,Generic verb
+hold,NEUTRAL_BENIGN,0,Generic verb
+fully,NEUTRAL_BENIGN,0,Generic adverb
+net,NEUTRAL_BENIGN,0,Generic financial descriptor in routine prose
+believe,NEUTRAL_BENIGN,0,Conversational sentiment verb
+daughter,NEUTRAL_BENIGN,0,Family reference in general narrative
+monthly income,NEUTRAL_BENIGN,0,Routine income disclosure
+property,NEUTRAL_BENIGN,0,Asset description not distress
+recent,NEUTRAL_BENIGN,0,Temporal qualifier without distress
+begin,NEUTRAL_BENIGN,0,Generic action verb
+internet,NEUTRAL_BENIGN,0,Routine service or utility mention
+look consolidate,DEBT_PRESSURE,1,Seeking consolidation implies multiple debt balances
+risk,NEUTRAL_BENIGN,0,Abstract term without specific distress signal
+dollar,NEUTRAL_BENIGN,0,Generic currency unit
+son,NEUTRAL_BENIGN,0,Family reference in general narrative
+actually,NEUTRAL_BENIGN,0,Conversational filler adverb
+addition,NEUTRAL_BENIGN,0,Neutral connective prose
+combine,DEBT_PRESSURE,1,Combining balances signals multiple obligations
+cut,NEUTRAL_BENIGN,0,Ambiguous verb often budget trimming
+decide,NEUTRAL_BENIGN,0,Neutral decision verb
+economy,NEUTRAL_BENIGN,0,Macro context not personal distress
+base,NEUTRAL_BENIGN,0,Base salary or baseline reference
+equity,NEUTRAL_BENIGN,0,Asset value reference
+year add,NEUTRAL_BENIGN,0,Temporal phrasing without distress
+free ask,NEUTRAL_BENIGN,0,Conversational invitation to ask questions
+member,NEUTRAL_BENIGN,0,Household or organization membership reference
+retirement,NEUTRAL_BENIGN,0,Planned life event or account
+security,NEUTRAL_BENIGN,0,Job security or collateral reference
+bite,NEUTRAL_BENIGN,0,Colloquial expression ambiguous meaning
+fund use,NEUTRAL_BENIGN,0,Routine loan purpose statement
+open,NEUTRAL_BENIGN,0,Generic account status verb
+education,NEUTRAL_BENIGN,0,Planned expense category
+extremely,NEUTRAL_BENIGN,0,Intensifier without inherent distress
+lose,SHOCK_EMERGENCY,1,Suggests job or income loss event
+period,NEUTRAL_BENIGN,0,Time span reference
+track,NEUTRAL_BENIGN,0,On-track progress phrasing
+earn,NEUTRAL_BENIGN,0,Income earning reference
+hop,NEUTRAL_BENIGN,0,Truncated hope conversational sentiment
+stay,NEUTRAL_BENIGN,0,Neutral persistence verb
+completely,NEUTRAL_BENIGN,0,Intensifier adverb
+field,NEUTRAL_BENIGN,0,Occupation or industry reference
+obligation,DEBT_PRESSURE,1,Explicit debt obligation burden
+require,NEUTRAL_BENIGN,0,Generic necessity verb
+sooner,NEUTRAL_BENIGN,0,Timing preference wording
+try pay,LIQUIDITY_SHORTAGE,1,Struggling attempt to make payments
+easy,NEUTRAL_BENIGN,0,Positive sentiment descriptor
+high rat,HIGH_RISK_REFINANCING,1,High rate debt targeted for payoff
+sale,NEUTRAL_BENIGN,0,Asset sale or transaction reference
+timely,NEUTRAL_BENIGN,0,Positive on-time payment sentiment
+contract,NEUTRAL_BENIGN,0,Routine agreement or employment terms
+date,NEUTRAL_BENIGN,0,Calendar reference in logistics
+happy,NEUTRAL_BENIGN,0,Positive sentiment word
+household,NEUTRAL_BENIGN,0,Routine household income context
+point,NEUTRAL_BENIGN,0,generic conversational filler
+university,NEUTRAL_BENIGN,0,routine education reference
+cell,NEUTRAL_BENIGN,0,routine phone or contact mention
+greatly,NEUTRAL_BENIGN,0,generic intensifier prose
+payment add,NEUTRAL_BENIGN,0,routine payment logistics phrasing
+record,NEUTRAL_BENIGN,0,neutral reference to credit or work record
+ask question,NEUTRAL_BENIGN,0,conversational lender interaction
+previous,NEUTRAL_BENIGN,0,neutral temporal reference
+room,NEUTRAL_BENIGN,0,routine housing or budget mention
+consolidate high,DEBT_PRESSURE,1,consolidating high interest balances
+exist,NEUTRAL_BENIGN,0,generic descriptive verb
+hour,NEUTRAL_BENIGN,0,routine work hours reference
+improve,NEUTRAL_BENIGN,0,positive forward-looking sentiment
+outstanding,DEBT_PRESSURE,1,unpaid outstanding balances signal debt load
+program,NEUTRAL_BENIGN,0,routine program or plan reference
+unexpected,SHOCK_EMERGENCY,1,signals sudden exogenous financial event
+answer question,NEUTRAL_BENIGN,0,conversational lender interaction
+motorcycle,NEUTRAL_BENIGN,0,routine purchase item
+professional,NEUTRAL_BENIGN,0,stable employment descriptor
+replace,NEUTRAL_BENIGN,0,generic replacement mention
+solid,NEUTRAL_BENIGN,0,positive stability sentiment
+work year,NEUTRAL_BENIGN,0,stable employment tenure
+current job,NEUTRAL_BENIGN,0,stable employment reference
+experience,NEUTRAL_BENIGN,0,neutral background descriptor
+longer,NEUTRAL_BENIGN,0,generic comparative term
+seek,NEUTRAL_BENIGN,0,routine loan-seeking language
+accumulate,DEBT_PRESSURE,1,accumulated balances signal mounting debt
+gross,NEUTRAL_BENIGN,0,gross income reporting
+look forward,NEUTRAL_BENIGN,0,positive forward sentiment
+month pay,NEUTRAL_BENIGN,0,routine monthly payment logistics
+summer,NEUTRAL_BENIGN,0,neutral seasonal reference
+win,NEUTRAL_BENIGN,0,positive sentiment term
+annual,NEUTRAL_BENIGN,0,routine annual income or rate reference
+credit rat,NEUTRAL_BENIGN,0,neutral credit rating mention
+finally,NEUTRAL_BENIGN,0,generic prose adverb
+cable,NEUTRAL_BENIGN,0,routine household bill item
+clear,NEUTRAL_BENIGN,0,generic intent to clear balance
+debt credit,DEBT_PRESSURE,1,credit debt load reference
+fact,NEUTRAL_BENIGN,0,generic prose filler
+ahead,NEUTRAL_BENIGN,0,forward-looking neutral phrasing
+approve,NEUTRAL_BENIGN,0,routine loan approval logistics
+card add,DEBT_PRESSURE,1,credit card balances accumulating
+debt add,DEBT_PRESSURE,1,added debt burden
+department,NEUTRAL_BENIGN,0,routine workplace reference
+fiance,NEUTRAL_BENIGN,0,planned life event reference
+master,NEUTRAL_BENIGN,0,education degree reference
+pay pay,NEUTRAL_BENIGN,0,routine repayment phrasing
+add pay,NEUTRAL_BENIGN,0,routine payment logistics
+america,NEUTRAL_BENIGN,0,neutral proper noun reference
+average,NEUTRAL_BENIGN,0,generic statistical descriptor
+big,NEUTRAL_BENIGN,0,generic descriptor without distress signal
+car insurance,NEUTRAL_BENIGN,0,routine recurring expense mention
+easier,NEUTRAL_BENIGN,0,positive sentiment word
+incur,NEUTRAL_BENIGN,0,generic verb lacking context
+limit,DEBT_PRESSURE,1,often references credit limit strain
+repayment,NEUTRAL_BENIGN,0,routine loan logistics term
+stand,NEUTRAL_BENIGN,0,conversational prose verb
+dream,NEUTRAL_BENIGN,0,aspirational planned life event
+government,NEUTRAL_BENIGN,0,neutral institutional reference
+money use,NEUTRAL_BENIGN,0,describes intended fund usage
+reliable,NEUTRAL_BENIGN,0,positive borrower attribute
+review,NEUTRAL_BENIGN,0,routine application process term
+send,NEUTRAL_BENIGN,0,routine logistics verb
+wait,NEUTRAL_BENIGN,0,conversational timing word
+year work,NEUTRAL_BENIGN,0,stable employment tenure
+add add,NEUTRAL_BENIGN,0,artifact token no distress meaning
+discover,NEUTRAL_BENIGN,0,likely card brand or neutral verb
+easily,NEUTRAL_BENIGN,0,positive confidence sentiment
+engineer,NEUTRAL_BENIGN,0,stable occupation mention
+pay balance,DEBT_PRESSURE,1,outstanding revolving balance payoff
+pay card,DEBT_PRESSURE,1,credit card debt repayment focus
+didn,NEUTRAL_BENIGN,0,truncated conversational token
+firm,NEUTRAL_BENIGN,0,employer reference
+important,NEUTRAL_BENIGN,0,generic emphasis word
+let know,NEUTRAL_BENIGN,0,conversational lender communication
+meet,NEUTRAL_BENIGN,0,generic verb
+pay add,NEUTRAL_BENIGN,0,fragmented payment phrase
+pay early,NEUTRAL_BENIGN,0,positive prepayment intent
+add plan,NEUTRAL_BENIGN,0,planning language neutral
+deal,NEUTRAL_BENIGN,0,generic transaction term
+free year,NEUTRAL_BENIGN,0,promotional rate or debt-free aspiration
+fund consolidate,DEBT_PRESSURE,1,consolidating multiple debt obligations
+health,SHOCK_EMERGENCY,1,medical situation driving borrowing
+promotion,NEUTRAL_BENIGN,0,positive career advancement
+result,NEUTRAL_BENIGN,0,generic prose noun
+debt year,DEBT_PRESSURE,1,prolonged debt burden reference
+kitchen,NEUTRAL_BENIGN,0,planned home improvement project
+steady job,NEUTRAL_BENIGN,0,stable employment signal
+verify,NEUTRAL_BENIGN,0,routine verification logistics
+area,NEUTRAL_BENIGN,0,geographic filler word
+available,NEUTRAL_BENIGN,0,neutral availability descriptor
+debt lower,DEBT_PRESSURE,1,seeking reduced debt burden
+live expense,LIQUIDITY_SHORTAGE,1,covering basic living costs
+nurse,NEUTRAL_BENIGN,0,stable occupation mention
+payment history,NEUTRAL_BENIGN,0,routine credit record reference
+real,NEUTRAL_BENIGN,0,generic emphasis adjective
+secure job,NEUTRAL_BENIGN,0,stable employment signal
+teacher,NEUTRAL_BENIGN,0,stable occupation mention
+water,NEUTRAL_BENIGN,0,utility or repair context neutral
+work company,NEUTRAL_BENIGN,0,employment description
+allow pay,NEUTRAL_BENIGN,0,routine affordability phrasing
+assistance,NEUTRAL_BENIGN,0,generic request for help
+cell phone,NEUTRAL_BENIGN,0,routine expense item
+contact,NEUTRAL_BENIGN,0,conversational logistics
+law,NEUTRAL_BENIGN,0,generic noun without distress signal
+mother,NEUTRAL_BENIGN,0,family reference neutral
+application,NEUTRAL_BENIGN,0,loan process logistics
+different,NEUTRAL_BENIGN,0,general prose filler
+divorce,SHOCK_EMERGENCY,1,unexpected life disruption straining finances
+higher rate,DEBT_PRESSURE,1,mounting interest cost signal
+purchase home,NEUTRAL_BENIGN,0,planned life event
+turn,NEUTRAL_BENIGN,0,generic verb
+worth,NEUTRAL_BENIGN,0,general valuation prose
+assist,NEUTRAL_BENIGN,0,generic help language
+bank america,NEUTRAL_BENIGN,0,named lender routine mention
+debt payment,DEBT_PRESSURE,1,ongoing debt obligation burden
+happen,NEUTRAL_BENIGN,0,generic verb
+job secure,NEUTRAL_BENIGN,0,stable employment signal
+month credit,DEBT_PRESSURE,1,monthly credit obligation reference
+office,NEUTRAL_BENIGN,0,workplace reference neutral
+promote,NEUTRAL_BENIGN,0,positive career progression
+quicker,NEUTRAL_BENIGN,0,pace descriptor neutral
+car pay,NEUTRAL_BENIGN,0,routine auto loan logistics
+nearly,NEUTRAL_BENIGN,0,generic qualifier
+pay higher,DEBT_PRESSURE,1,paying elevated interest burden
+private,NEUTRAL_BENIGN,0,generic descriptor
+schedule,NEUTRAL_BENIGN,0,routine planning term
+union,NEUTRAL_BENIGN,0,credit union or labor reference
+card use,DEBT_PRESSURE,1,credit card utilization signal
+hospital,SHOCK_EMERGENCY,1,medical event driven expense
+option,NEUTRAL_BENIGN,0,generic choice language
+prior,NEUTRAL_BENIGN,0,temporal qualifier
+apartment,NEUTRAL_BENIGN,0,routine housing reference
+candidate,NEUTRAL_BENIGN,0,self-presentation as borrower
+card high,DEBT_PRESSURE,1,high credit card balances or rates
+card rat,DEBT_PRESSURE,1,credit card interest rate burden
+delinquency,LIQUIDITY_SHORTAGE,1,past due payment status
+fall,LIQUIDITY_SHORTAGE,1,falling behind on payments
+father,NEUTRAL_BENIGN,0,family reference neutral
+friend,NEUTRAL_BENIGN,0,social reference neutral
+greatly appreciate,NEUTRAL_BENIGN,0,polite positive sentiment
+kid,NEUTRAL_BENIGN,0,household family reference
+local,NEUTRAL_BENIGN,0,geographic descriptor
+payment year,NEUTRAL_BENIGN,0,routine payment timeline
+rate pay,DEBT_PRESSURE,1,interest rate payment burden
+tuition,NEUTRAL_BENIGN,0,planned education expense
+american,NEUTRAL_BENIGN,0,generic descriptor
+bad,NEUTRAL_BENIGN,0,vague negative sentiment without specificity
+employer year,NEUTRAL_BENIGN,0,employment tenure stability
+hand,NEUTRAL_BENIGN,0,generic noun
+individual,NEUTRAL_BENIGN,0,generic descriptor with no risk signal
+learn,NEUTRAL_BENIGN,0,conversational prose
+simply,NEUTRAL_BENIGN,0,filler adverb
+teach,NEUTRAL_BENIGN,0,occupation or general prose
+upgrade,NEUTRAL_BENIGN,0,planned improvement spending
+lendingclub,NEUTRAL_BENIGN,0,platform name loan logistics
+surgery,SHOCK_EMERGENCY,1,medical event driving borrowing
+vacation,NEUTRAL_BENIGN,0,planned discretionary life event
+year plan,NEUTRAL_BENIGN,0,forward planning language
+avoid,NEUTRAL_BENIGN,0,ambiguous intent verb
+case,NEUTRAL_BENIGN,0,generic prose noun
+electric,NEUTRAL_BENIGN,0,utility or trade reference
+focus,NEUTRAL_BENIGN,0,positive intent language
+hire,NEUTRAL_BENIGN,0,employment context
+hopefully,NEUTRAL_BENIGN,0,sentiment filler
+july,NEUTRAL_BENIGN,0,calendar reference
+maintain,NEUTRAL_BENIGN,0,stability language
+management,NEUTRAL_BENIGN,0,job or admin term
+owner,NEUTRAL_BENIGN,0,ownership status descriptor
+ratio,DEBT_PRESSURE,1,references debt-to-income leverage metric
+remodel,NEUTRAL_BENIGN,0,planned home project
+retire,NEUTRAL_BENIGN,0,planned life event
+unfortunately,SHOCK_EMERGENCY,1,signals adverse unexpected event
+wish,NEUTRAL_BENIGN,0,sentiment word
+accrue,DEBT_PRESSURE,1,mounting interest accumulation
+baby,NEUTRAL_BENIGN,0,planned family event
+company work,NEUTRAL_BENIGN,0,stable employment mention
+double,DEBT_PRESSURE,1,implies doubled payments or balances
+federal,NEUTRAL_BENIGN,0,government or student loan reference
+help add,NEUTRAL_BENIGN,0,vague assistance phrasing
+june,NEUTRAL_BENIGN,0,calendar reference
+obtain,NEUTRAL_BENIGN,0,routine loan logistics
+pay car,NEUTRAL_BENIGN,0,routine installment obligation
+pay faster,NEUTRAL_BENIGN,0,accelerated repayment intent
+regard,NEUTRAL_BENIGN,0,conversational connector
+revolve credit,DEBT_PRESSURE,1,revolving balance debt load
+ring,NEUTRAL_BENIGN,0,planned wedding purchase
+travel,NEUTRAL_BENIGN,0,discretionary planned spending
+assure,NEUTRAL_BENIGN,0,reassurance sentiment
+creditor,DEBT_PRESSURE,1,implies outstanding obligations and collections
+great credit,NEUTRAL_BENIGN,0,positive creditworthiness claim
+home year,NEUTRAL_BENIGN,0,residence tenure descriptor
+near,NEUTRAL_BENIGN,0,generic proximity word
+pay rent,LIQUIDITY_SHORTAGE,1,covering basic living expense
+read,NEUTRAL_BENIGN,0,conversational prose
+work hard,NEUTRAL_BENIGN,0,positive employment sentiment
+work job,NEUTRAL_BENIGN,0,employment stability mention
+year year,NEUTRAL_BENIGN,0,tenure duration phrasing
+benefit,NEUTRAL_BENIGN,0,positive outcome language
+customer,NEUTRAL_BENIGN,0,business or service reference
+lay,SHOCK_EMERGENCY,1,likely stem of layoff or job loss
+look pay,NEUTRAL_BENIGN,0,routine intent to repay
+manner,NEUTRAL_BENIGN,0,generic conversational prose
+potential,NEUTRAL_BENIGN,0,generic descriptive term
+realize,NEUTRAL_BENIGN,0,generic narrative verb
+truck,NEUTRAL_BENIGN,0,vehicle purchase or asset mention
+visa,NEUTRAL_BENIGN,0,card brand mention without distress signal
+year job,NEUTRAL_BENIGN,0,employment tenure indicator
+add credit,DEBT_PRESSURE,1,accumulating additional credit balances
+capital,NEUTRAL_BENIGN,0,general finance term
+current employer,NEUTRAL_BENIGN,0,stable employment reference
+establish,NEUTRAL_BENIGN,0,routine credit building language
+goal pay,NEUTRAL_BENIGN,0,planned repayment objective
+mention,NEUTRAL_BENIGN,0,conversational filler
+month add,NEUTRAL_BENIGN,0,routine monthly accounting phrase
+pay job,NEUTRAL_BENIGN,0,employment income reference
+payment lower,NEUTRAL_BENIGN,0,routine refinancing benefit
+responsibility,NEUTRAL_BENIGN,0,positive borrower sentiment
+revolve debt,DEBT_PRESSURE,1,revolving balances signal debt load
+try consolidate,DEBT_PRESSURE,1,attempting to manage multiple debts
+buy house,NEUTRAL_BENIGN,0,planned life event
+chance,NEUTRAL_BENIGN,0,generic prose word
+deposit,NEUTRAL_BENIGN,0,routine banking logistics
+description,NEUTRAL_BENIGN,0,listing boilerplate
+fix rate,NEUTRAL_BENIGN,0,standard loan term feature
+flow,NEUTRAL_BENIGN,0,ambiguous generic token
+furniture,NEUTRAL_BENIGN,0,discretionary purchase item
+job work,NEUTRAL_BENIGN,0,stable employment reference
+paycheck,NEUTRAL_BENIGN,0,routine income mention
+add use,NEUTRAL_BENIGN,0,ambiguous generic phrase
+approx,NEUTRAL_BENIGN,0,estimation shorthand
+carry,NEUTRAL_BENIGN,0,ambiguous without balance context
+cash flow,LIQUIDITY_SHORTAGE,1,cash timing and coverage concerns
+class,NEUTRAL_BENIGN,0,education reference
+currently work,NEUTRAL_BENIGN,0,active employment statement
+despite,NEUTRAL_BENIGN,0,conversational connector
+employ year,NEUTRAL_BENIGN,0,employment tenure indicator
+excite,NEUTRAL_BENIGN,0,positive sentiment
+financial situation,NEUTRAL_BENIGN,0,generic framing phrase
+good pay,NEUTRAL_BENIGN,0,positive income statement
+lower monthly,NEUTRAL_BENIGN,0,routine payment reduction goal
+strong,NEUTRAL_BENIGN,0,positive descriptor
+update,NEUTRAL_BENIGN,0,listing logistics
+year credit,NEUTRAL_BENIGN,0,credit history length reference
+country,NEUTRAL_BENIGN,0,geographic prose
+delinquent,LIQUIDITY_SHORTAGE,1,past due obligations
+entire,NEUTRAL_BENIGN,0,generic quantifier
+job pay,NEUTRAL_BENIGN,0,employment income reference
+line credit,NEUTRAL_BENIGN,0,neutral credit product mention
+today,NEUTRAL_BENIGN,0,temporal filler word
+understand,NEUTRAL_BENIGN,0,General conversational prose
+year company,NEUTRAL_BENIGN,0,Stable employment tenure reference
+add work,NEUTRAL_BENIGN,0,Routine employment mention
+attend,NEUTRAL_BENIGN,0,Planned event or schooling
+bathroom,NEUTRAL_BENIGN,0,Routine home improvement item
+break,NEUTRAL_BENIGN,0,Ambiguous general prose
+cancel,NEUTRAL_BENIGN,0,Routine logistics term
+city,NEUTRAL_BENIGN,0,Location descriptor
+contribute,NEUTRAL_BENIGN,0,Positive general prose
+control,NEUTRAL_BENIGN,0,General sentiment term
+credit line,DEBT_PRESSURE,1,Revolving credit exposure signal
+multiple,DEBT_PRESSURE,1,Often multiple accounts or debts
+number,NEUTRAL_BENIGN,0,Generic quantitative term
+pay late,LIQUIDITY_SHORTAGE,1,Past due payment indicator
+perfect,NEUTRAL_BENIGN,0,Positive sentiment descriptor
+reach,NEUTRAL_BENIGN,0,General conversational verb
+step,NEUTRAL_BENIGN,0,General planning prose
+successful,NEUTRAL_BENIGN,0,Positive sentiment descriptor
+assistant,NEUTRAL_BENIGN,0,Occupation reference
+clean,NEUTRAL_BENIGN,0,General descriptor
+consolidate payment,DEBT_PRESSURE,1,Debt consolidation signals multiple obligations
+difficult,LIQUIDITY_SHORTAGE,1,Signals hardship meeting expenses
+guarantee,NEUTRAL_BENIGN,0,Assurance language in loan pitch
+help fund,NEUTRAL_BENIGN,0,Routine loan purpose phrasing
+income month,NEUTRAL_BENIGN,0,Routine income disclosure
+month ago,NEUTRAL_BENIGN,0,Temporal reference
+portion,NEUTRAL_BENIGN,0,Generic quantity term
+price,NEUTRAL_BENIGN,0,Routine cost reference
+stability,NEUTRAL_BENIGN,0,Positive stability signal
+stop,NEUTRAL_BENIGN,0,Ambiguous general verb
+store,NEUTRAL_BENIGN,0,Retail reference
+balance pay,DEBT_PRESSURE,1,Outstanding balance repayment burden
+card lower,DEBT_PRESSURE,1,Card interest reduction motive
+choose,NEUTRAL_BENIGN,0,General conversational verb
+extra money,LIQUIDITY_SHORTAGE,1,Need for additional cash
+grocery,LIQUIDITY_SHORTAGE,1,Basic living expense coverage
+payment monthly,NEUTRAL_BENIGN,0,Routine loan logistics
+post,NEUTRAL_BENIGN,0,Platform listing term
+problem pay,LIQUIDITY_SHORTAGE,1,Difficulty meeting payments
+self,NEUTRAL_BENIGN,0,Generic pronoun-like term
+senior,NEUTRAL_BENIGN,0,Job title or age descriptor
+site,NEUTRAL_BENIGN,0,Platform reference
+better rate,DEBT_PRESSURE,1,Seeking relief from high interest
+citi,DEBT_PRESSURE,1,Credit card issuer balance reference
+create,NEUTRAL_BENIGN,0,General verb
+engagement,NEUTRAL_BENIGN,0,Planned life event
+enjoy,NEUTRAL_BENIGN,0,Positive sentiment
+figure,NEUTRAL_BENIGN,0,General conversational term
+good candidate,NEUTRAL_BENIGN,0,Positive borrower self-description
+level,NEUTRAL_BENIGN,0,Generic descriptor
+profit,NEUTRAL_BENIGN,0,routine business or financial prose
+ready,NEUTRAL_BENIGN,0,general conversational term
+roughly,NEUTRAL_BENIGN,0,approximation filler word
+safe,NEUTRAL_BENIGN,0,positive sentiment term
+soon possible,NEUTRAL_BENIGN,0,generic urgency phrasing in logistics
+train,NEUTRAL_BENIGN,0,routine context term
+add help,NEUTRAL_BENIGN,0,general assistance prose
+age,NEUTRAL_BENIGN,0,demographic descriptor
+comfortable,NEUTRAL_BENIGN,0,positive stability sentiment
+commit,NEUTRAL_BENIGN,0,repayment intent language
+course,NEUTRAL_BENIGN,0,conversational filler
+decent,NEUTRAL_BENIGN,0,positive descriptor
+enable,NEUTRAL_BENIGN,0,generic verb
+necessary,NEUTRAL_BENIGN,0,generic qualifier
+overall,NEUTRAL_BENIGN,0,summary filler word
+pay quickly,NEUTRAL_BENIGN,0,repayment intent statement
+payment plan,NEUTRAL_BENIGN,0,routine loan logistics
+question feel,NEUTRAL_BENIGN,0,conversational prose
+range,NEUTRAL_BENIGN,0,numeric descriptor
+remainder,NEUTRAL_BENIGN,0,balance logistics term
+rent utility,LIQUIDITY_SHORTAGE,1,basic living expenses coverage need
+saving account,NEUTRAL_BENIGN,0,routine financial asset mention
+stable work,NEUTRAL_BENIGN,0,stable employment signal
+type,NEUTRAL_BENIGN,0,generic noun
+unemployed,SHOCK_EMERGENCY,1,sudden job loss indicator
+add monthly,NEUTRAL_BENIGN,0,routine payment arithmetic
+amex,NEUTRAL_BENIGN,0,credit card brand mention
+appreciate help,NEUTRAL_BENIGN,0,polite conversational sentiment
+card credit,DEBT_PRESSURE,1,revolving credit card debt load
+card monthly,DEBT_PRESSURE,1,monthly card obligations burden
+close account,NEUTRAL_BENIGN,0,routine account logistics
+contractor,NEUTRAL_BENIGN,0,employment or service descriptor
+debt monthly,DEBT_PRESSURE,1,recurring debt obligations burden
+floor,NEUTRAL_BENIGN,0,home improvement context
+idea,NEUTRAL_BENIGN,0,conversational filler
+item,NEUTRAL_BENIGN,0,generic noun
+new job,NEUTRAL_BENIGN,0,positive employment event
+october,NEUTRAL_BENIGN,0,calendar reference
+payoff credit,DEBT_PRESSURE,1,consolidating existing credit balances
+pretty,NEUTRAL_BENIGN,0,conversational intensifier
+pride,NEUTRAL_BENIGN,0,positive sentiment term
+really appreciate,NEUTRAL_BENIGN,0,polite conversational sentiment
+roof,SHOCK_EMERGENCY,1,urgent home repair need
+accept,NEUTRAL_BENIGN,0,routine loan logistics
+anticipate,NEUTRAL_BENIGN,0,forward-looking planning language
+card currently,DEBT_PRESSURE,1,current card balances outstanding
+condition,NEUTRAL_BENIGN,0,ambiguous general descriptor
+credit pay,DEBT_PRESSURE,1,servicing credit obligations
+debt accumulate,DEBT_PRESSURE,1,mounting debt spiral signal
+earlier,NEUTRAL_BENIGN,0,temporal filler word
+job security,NEUTRAL_BENIGN,0,Stable employment descriptor
+pay cash,NEUTRAL_BENIGN,0,Routine payment method
+share,NEUTRAL_BENIGN,0,General conversational prose
+software,NEUTRAL_BENIGN,0,Generic occupation or product term
+tell,NEUTRAL_BENIGN,0,Generic narrative verb
+timely manner,NEUTRAL_BENIGN,0,Promise of on-time repayment
+wed expense,NEUTRAL_BENIGN,0,Planned life event financing
+worry,LIQUIDITY_SHORTAGE,1,Expresses financial anxiety over shortfall
+acquire,NEUTRAL_BENIGN,0,Neutral acquisition verb
+add fund,NEUTRAL_BENIGN,0,Routine funding logistics
+amp,NEUTRAL_BENIGN,0,HTML artifact token
+asap,LIQUIDITY_SHORTAGE,1,Signals urgent immediate cash need
+bank account,NEUTRAL_BENIGN,0,Routine banking logistics
+bankruptcy,DEBT_PRESSURE,1,Severe insolvency indicator
+concern,LIQUIDITY_SHORTAGE,1,Expresses financial worry
+decision,NEUTRAL_BENIGN,0,General prose noun
+director,NEUTRAL_BENIGN,0,Job title indicating employment
+hard work,NEUTRAL_BENIGN,0,Positive work sentiment
+haven,NEUTRAL_BENIGN,0,Tokenization artifact of have not
+higher credit,DEBT_PRESSURE,1,Implies rising credit balances or rates
+home pay,NEUTRAL_BENIGN,0,Take-home pay income reference
+largest,NEUTRAL_BENIGN,0,Generic superlative
+new home,NEUTRAL_BENIGN,0,Planned housing purchase
+prepare,NEUTRAL_BENIGN,0,Planning verb
+public,NEUTRAL_BENIGN,0,Generic descriptor
+quite,NEUTRAL_BENIGN,0,Intensifier in prose
+reasonable,NEUTRAL_BENIGN,0,Positive rate sentiment
+relate,NEUTRAL_BENIGN,0,Generic verb
+window,NEUTRAL_BENIGN,0,Home improvement or generic noun
+ability,NEUTRAL_BENIGN,0,Repayment capability statement
+add good,NEUTRAL_BENIGN,0,Positive generic phrase
+add job,NEUTRAL_BENIGN,0,Additional employment mention
+card account,DEBT_PRESSURE,1,Credit card debt reference
+card rate,DEBT_PRESSURE,1,High credit card interest burden
+cause,NEUTRAL_BENIGN,0,Generic causal connector
+ensure,NEUTRAL_BENIGN,0,Assurance verb
+good job,NEUTRAL_BENIGN,0,Stable employment positive
+home equity,NEUTRAL_BENIGN,0,Asset-backed financing reference
+main,NEUTRAL_BENIGN,0,Generic modifier
+non,NEUTRAL_BENIGN,0,Fragment token
+pay money,NEUTRAL_BENIGN,0,Routine payment phrasing
+prefer,NEUTRAL_BENIGN,0,Preference statement
+short term,HIGH_RISK_REFINANCING,1,Short-term high-interest borrowing signal
+transfer,NEUTRAL_BENIGN,0,Balance or fund transfer logistics
+usually,NEUTRAL_BENIGN,0,Frequency adverb
+world,NEUTRAL_BENIGN,0,Generic prose noun
+agency,NEUTRAL_BENIGN,0,Organization reference
+april,NEUTRAL_BENIGN,0,Calendar month mention
+asset,NEUTRAL_BENIGN,0,Positive net worth reference
+associate,NEUTRAL_BENIGN,0,Job title or degree reference
+august,NEUTRAL_BENIGN,0,calendar month reference
+buy home,NEUTRAL_BENIGN,0,planned major purchase
+current debt,DEBT_PRESSURE,1,references existing debt load
+debt income,DEBT_PRESSURE,1,debt-to-income ratio signal
+economic,NEUTRAL_BENIGN,0,generic macro term
+effort,NEUTRAL_BENIGN,0,generic prose
+engagement ring,NEUTRAL_BENIGN,0,planned life event purchase
+estate,NEUTRAL_BENIGN,0,generic property reference
+event,NEUTRAL_BENIGN,0,generic prose
+fast,NEUTRAL_BENIGN,0,ambiguous speed descriptor
+intend pay,NEUTRAL_BENIGN,0,repayment intent statement
+mistake,NEUTRAL_BENIGN,0,vague regret language
+mom,NEUTRAL_BENIGN,0,family mention
+nice,NEUTRAL_BENIGN,0,positive sentiment
+pay wed,NEUTRAL_BENIGN,0,planned wedding expense
+payment car,NEUTRAL_BENIGN,0,routine auto payment
+payment late,LIQUIDITY_SHORTAGE,1,past due indicator
+submit,NEUTRAL_BENIGN,0,application logistics
+young,NEUTRAL_BENIGN,0,demographic descriptor
+add invest,NEUTRAL_BENIGN,0,investment intent
+aside,NEUTRAL_BENIGN,0,generic prose
+borrow money,DEBT_PRESSURE,1,additional borrowing signal
+card month,DEBT_PRESSURE,1,monthly credit card obligation
+citibank,NEUTRAL_BENIGN,0,lender name reference
+client,NEUTRAL_BENIGN,0,employment or business context
+debit,NEUTRAL_BENIGN,0,routine payment mechanism
+dont,NEUTRAL_BENIGN,0,conversational contraction fragment
+final,NEUTRAL_BENIGN,0,generic prose
+great job,NEUTRAL_BENIGN,0,stable employment positive sentiment
+land,NEUTRAL_BENIGN,0,property or generic term
+month payment,NEUTRAL_BENIGN,0,routine payment logistics
+net income,NEUTRAL_BENIGN,0,income disclosure
+overtime,NEUTRAL_BENIGN,0,employment income detail
+pas,NEUTRAL_BENIGN,0,truncated token no signal
+payment card,DEBT_PRESSURE,1,credit card payment burden
+smaller,NEUTRAL_BENIGN,0,generic comparative
+start new,NEUTRAL_BENIGN,0,new job or venture
+status,NEUTRAL_BENIGN,0,generic descriptor
+unit,NEUTRAL_BENIGN,0,property or generic unit
+worker,NEUTRAL_BENIGN,0,employment descriptor
+attempt,NEUTRAL_BENIGN,0,generic prose
+basis,NEUTRAL_BENIGN,0,generic prose
+com,NEUTRAL_BENIGN,0,web address fragment
+computer,NEUTRAL_BENIGN,0,routine purchase item
+dental,SHOCK_EMERGENCY,1,medical dental expense
+doesn,NEUTRAL_BENIGN,0,contraction fragment
+drive,NEUTRAL_BENIGN,0,generic transport term
+foot,NEUTRAL_BENIGN,0,ambiguous term possibly medical
+good stand,NEUTRAL_BENIGN,0,positive account standing
+graduate college,NEUTRAL_BENIGN,0,planned education milestone
+hit,NEUTRAL_BENIGN,0,generic verb without clear distress context
+intrest,DEBT_PRESSURE,1,misspelled interest signals mounting interest cost
+likely,NEUTRAL_BENIGN,0,generic hedging prose
+military,NEUTRAL_BENIGN,0,stable employment sector
+mind,NEUTRAL_BENIGN,0,conversational filler
+primary,NEUTRAL_BENIGN,0,routine descriptor
+probably,NEUTRAL_BENIGN,0,generic hedging prose
+rate add,DEBT_PRESSURE,1,added rate suggests rising borrowing cost
+rental,NEUTRAL_BENIGN,0,routine housing or property reference
+sorry,NEUTRAL_BENIGN,0,conversational politeness
+trust,NEUTRAL_BENIGN,0,positive sentiment word
+unable,LIQUIDITY_SHORTAGE,1,inability to cover obligations
+card year,DEBT_PRESSURE,1,credit card carrying over years
+community,NEUTRAL_BENIGN,0,general social reference
+debt debt,DEBT_PRESSURE,1,repeated debt emphasis indicates heavy load
+express,NEUTRAL_BENIGN,0,generic conversational verb
+guy,NEUTRAL_BENIGN,0,conversational filler
+higher rat,DEBT_PRESSURE,1,higher rate implies costly interest burden
+immediately,SHOCK_EMERGENCY,1,urgency suggests unexpected pressing need
+jump,NEUTRAL_BENIGN,0,ambiguous generic verb
+lead,NEUTRAL_BENIGN,0,generic prose verb
+lose job,SHOCK_EMERGENCY,1,sudden employment loss shock
+matter,NEUTRAL_BENIGN,0,generic prose noun
+present,NEUTRAL_BENIGN,0,routine time descriptor
+product,NEUTRAL_BENIGN,0,routine commercial term
+purchase new,NEUTRAL_BENIGN,0,planned discretionary purchase
+rat credit,DEBT_PRESSURE,1,credit rate reference implies interest burden
+september,NEUTRAL_BENIGN,0,calendar month logistics
+sign,NEUTRAL_BENIGN,0,routine loan paperwork
+tire,NEUTRAL_BENIGN,0,vehicle part routine expense
+title,HIGH_RISK_REFINANCING,1,title loans are predatory high-interest borrowing
+use car,NEUTRAL_BENIGN,0,used car purchase routine
+wonderful,NEUTRAL_BENIGN,0,positive sentiment
+zero,NEUTRAL_BENIGN,0,numeric term without distress context
+add debt,DEBT_PRESSURE,1,additional debt accumulation
+add investor,NEUTRAL_BENIGN,0,platform lending logistics
+air,NEUTRAL_BENIGN,0,likely HVAC or generic noun
+bedroom,NEUTRAL_BENIGN,0,housing descriptor
+book,NEUTRAL_BENIGN,0,routine noun
+check account,NEUTRAL_BENIGN,0,routine banking logistics
+credit account,NEUTRAL_BENIGN,0,neutral account reference
+debt faster,DEBT_PRESSURE,1,urgency to accelerate debt payoff
+difference,NEUTRAL_BENIGN,0,generic comparative noun
+email,NEUTRAL_BENIGN,0,communication logistics
+entertainment,NEUTRAL_BENIGN,0,discretionary spending category
+goal debt,DEBT_PRESSURE,1,debt reduction goal implies existing burden
+handle,NEUTRAL_BENIGN,0,generic capability verb
+hesitate,NEUTRAL_BENIGN,0,conversational prose
+house year,NEUTRAL_BENIGN,0,homeownership tenure descriptor
+info,NEUTRAL_BENIGN,0,routine information request
+misc,NEUTRAL_BENIGN,0,Generic filler term
+pay close,NEUTRAL_BENIGN,0,Routine payment phrasing
+pay payment,NEUTRAL_BENIGN,0,Generic payment logistics
+pick,NEUTRAL_BENIGN,0,Conversational prose
+proceed,NEUTRAL_BENIGN,0,Routine loan process language
+promise,NEUTRAL_BENIGN,0,Positive repayment sentiment
+recession,SHOCK_EMERGENCY,1,Exogenous economic downturn shock
+spouse,NEUTRAL_BENIGN,0,Household descriptor
+stable company,NEUTRAL_BENIGN,0,Stable employment signal
+add consolidate,DEBT_PRESSURE,1,Debt consolidation of accumulated balances
+appliance,NEUTRAL_BENIGN,0,Routine purchase purpose
+confident,NEUTRAL_BENIGN,0,Positive sentiment
+credit good,NEUTRAL_BENIGN,0,Positive credit standing
+current credit,NEUTRAL_BENIGN,0,Neutral credit status description
+debt incur,DEBT_PRESSURE,1,Accumulating debt load
+dept,DEBT_PRESSURE,1,Misspelled debt reference
+doctor,SHOCK_EMERGENCY,1,Medical context expense
+expand,NEUTRAL_BENIGN,0,Growth or business plan
+extremely stable,NEUTRAL_BENIGN,0,Strong stability claim
+family member,NEUTRAL_BENIGN,0,Household descriptor
+fresh,NEUTRAL_BENIGN,0,Fresh start positive phrasing
+majority,NEUTRAL_BENIGN,0,Generic quantifier
+march,NEUTRAL_BENIGN,0,Calendar month reference
+medical expense,SHOCK_EMERGENCY,1,Unexpected healthcare cost
+month month,NEUTRAL_BENIGN,0,Generic time phrasing
+officer,NEUTRAL_BENIGN,0,Occupation or role
+pay current,NEUTRAL_BENIGN,0,Accounts current status
+pay sooner,NEUTRAL_BENIGN,0,Early repayment intent
+payment debt,DEBT_PRESSURE,1,Debt servicing burden
+purpose pay,NEUTRAL_BENIGN,0,Stated loan purpose
+qualify,NEUTRAL_BENIGN,0,Loan eligibility logistics
+real estate,NEUTRAL_BENIGN,0,Property related purpose
+source,NEUTRAL_BENIGN,0,Generic income source reference
+steady income,NEUTRAL_BENIGN,0,Stable earnings signal
+total monthly,NEUTRAL_BENIGN,0,Budget arithmetic reference
+use help,NEUTRAL_BENIGN,0,Generic assistance phrasing
+use purchase,NEUTRAL_BENIGN,0,Planned purchase purpose
+year current,NEUTRAL_BENIGN,0,Employment tenure reference
+year currently,NEUTRAL_BENIGN,0,Tenure or timeframe reference
+year stable,NEUTRAL_BENIGN,0,Long stable employment
+yearly,NEUTRAL_BENIGN,0,Annual income reference
+account pay,NEUTRAL_BENIGN,0,Routine account payment
+add current,NEUTRAL_BENIGN,0,Generic additive phrasing
+advantage,NEUTRAL_BENIGN,0,Positive benefit framing
+bachelor,NEUTRAL_BENIGN,0,Education credential
+california,NEUTRAL_BENIGN,0,Geographic location
+card consolidation,DEBT_PRESSURE,1,Credit card debt consolidation
+card help,DEBT_PRESSURE,1,Seeking relief from card balances
+condo,NEUTRAL_BENIGN,0,Property type reference
+debt help,DEBT_PRESSURE,1,Requesting debt burden relief
+drop,NEUTRAL_BENIGN,0,generic term without clear distress signal
+happy answer,NEUTRAL_BENIGN,0,positive conversational sentiment
+help consolidate,DEBT_PRESSURE,1,consolidation implies multiple debt balances
+income pay,NEUTRAL_BENIGN,0,routine income and payment mention
+installment,NEUTRAL_BENIGN,0,standard loan logistics term
+intention,NEUTRAL_BENIGN,0,generic prose
+job good,NEUTRAL_BENIGN,0,stable employment signal
+larger,NEUTRAL_BENIGN,0,generic size descriptor
+late miss,LIQUIDITY_SHORTAGE,1,late or missed payments indicate past due
+lower rat,DEBT_PRESSURE,1,seeking lower rate on costly debt
+money help,LIQUIDITY_SHORTAGE,1,requesting cash to cover shortfall
+online,NEUTRAL_BENIGN,0,routine channel reference
+pay lower,DEBT_PRESSURE,1,rate reduction on existing debt
+payment help,LIQUIDITY_SHORTAGE,1,needs assistance meeting payments
+pocket,NEUTRAL_BENIGN,0,generic conversational term
+prove,NEUTRAL_BENIGN,0,generic prose
+research,NEUTRAL_BENIGN,0,neutral descriptive term
+retail,NEUTRAL_BENIGN,0,routine sector reference
+sense,NEUTRAL_BENIGN,0,generic prose
+technology,NEUTRAL_BENIGN,0,neutral topic reference
+trouble,LIQUIDITY_SHORTAGE,1,signals difficulty meeting obligations
+wife work,NEUTRAL_BENIGN,0,household employment stability
+year good,NEUTRAL_BENIGN,0,positive stability sentiment
+year month,NEUTRAL_BENIGN,0,routine time reference
+add note,NEUTRAL_BENIGN,0,loan listing logistics
+affect,NEUTRAL_BENIGN,0,generic prose
+automatically,NEUTRAL_BENIGN,0,routine payment logistics
+cable internet,NEUTRAL_BENIGN,0,routine household expense item
+card total,DEBT_PRESSURE,1,aggregate credit card balance
+credit union,NEUTRAL_BENIGN,0,mainstream lender reference
+debt consolidate,DEBT_PRESSURE,1,multiple debts being consolidated
+especially,NEUTRAL_BENIGN,0,generic prose
+file,NEUTRAL_BENIGN,0,generic administrative term
+fully fund,NEUTRAL_BENIGN,0,loan funding logistics
+girlfriend,NEUTRAL_BENIGN,0,personal conversational reference
+huge,NEUTRAL_BENIGN,0,generic intensifier without context
+improve credit,NEUTRAL_BENIGN,0,forward-looking credit goal
+isn,NEUTRAL_BENIGN,0,tokenization artifact of contraction
+kind,NEUTRAL_BENIGN,0,generic prose
+later,NEUTRAL_BENIGN,0,generic time reference
+lease,NEUTRAL_BENIGN,0,routine housing or vehicle contract
+master degree,NEUTRAL_BENIGN,0,planned education milestone
+mortgage payment,NEUTRAL_BENIGN,0,routine secured obligation
+outside,NEUTRAL_BENIGN,0,generic prose
+pay mortgage,NEUTRAL_BENIGN,0,routine housing payment mention
+payment allow,NEUTRAL_BENIGN,0,neutral payment structuring language
+reflect,NEUTRAL_BENIGN,0,generic prose
+significant,NEUTRAL_BENIGN,0,generic intensifier
+stable income,NEUTRAL_BENIGN,0,employment stability signal
+start save,NEUTRAL_BENIGN,0,positive savings intent
+supply,NEUTRAL_BENIGN,0,Generic noun with no risk signal
+trip,NEUTRAL_BENIGN,0,Planned travel expense
+utilize,NEUTRAL_BENIGN,0,Routine verb usage
+various,NEUTRAL_BENIGN,0,Generic qualifier
+achieve,NEUTRAL_BENIGN,0,Positive goal-oriented sentiment
+add currently,NEUTRAL_BENIGN,0,Conversational filler phrase
+alot,NEUTRAL_BENIGN,0,Informal quantifier without context
+approximately month,NEUTRAL_BENIGN,0,Neutral time reference
+consolidate pay,NEUTRAL_BENIGN,0,Routine consolidation logistics
+consolidation add,NEUTRAL_BENIGN,0,Routine consolidation phrasing
+decrease,NEUTRAL_BENIGN,0,Ambiguous direction term
+definitely,NEUTRAL_BENIGN,0,Confidence adverb
+employ company,NEUTRAL_BENIGN,0,Stable employment reference
+equipment,NEUTRAL_BENIGN,0,Business or purchase item
+expense credit,DEBT_PRESSURE,1,Living expenses charged to credit lines
+force,SHOCK_EMERGENCY,1,Suggests involuntary unexpected circumstance
+form,NEUTRAL_BENIGN,0,Administrative paperwork term
+freedom,NEUTRAL_BENIGN,0,Positive aspirational sentiment
+general,NEUTRAL_BENIGN,0,Generic qualifier
+graduate school,NEUTRAL_BENIGN,0,Planned education event
+growth,NEUTRAL_BENIGN,0,Positive expansion sentiment
+income ratio,DEBT_PRESSURE,1,Debt-to-income leverage metric
+income tax,NEUTRAL_BENIGN,0,Routine tax reference
+manageable,NEUTRAL_BENIGN,0,Positive affordability sentiment
+month rent,NEUTRAL_BENIGN,0,Routine housing cost mention
+nan,NEUTRAL_BENIGN,0,Missing value placeholder
+practice,NEUTRAL_BENIGN,0,Professional or habitual term
+profile,NEUTRAL_BENIGN,0,Borrower profile logistics
+question add,NEUTRAL_BENIGN,0,Conversational listing filler
+remove,NEUTRAL_BENIGN,0,Neutral action verb
+response,NEUTRAL_BENIGN,0,Conversational reply term
+rid credit,DEBT_PRESSURE,1,Desire to eliminate credit card debt
+single payment,NEUTRAL_BENIGN,0,Consolidation logistics benefit
+stable employment,NEUTRAL_BENIGN,0,Positive income stability
+sum,NEUTRAL_BENIGN,0,Generic amount reference
+year monthly,NEUTRAL_BENIGN,0,Neutral payment period phrasing
+american express,NEUTRAL_BENIGN,0,Card issuer name only
+attorney,NEUTRAL_BENIGN,0,Professional service reference
+balance credit,DEBT_PRESSURE,1,Outstanding revolving card balances
+card close,DEBT_PRESSURE,1,Cards near limit or closed accounts
+couple year,NEUTRAL_BENIGN,0,Neutral time reference
+credit debt,DEBT_PRESSURE,1,Explicit credit card debt load
+dent,NEUTRAL_BENIGN,0,Progress metaphor on balances
+exceed,DEBT_PRESSURE,1,Implies limits or income exceeded
+expensive,DEBT_PRESSURE,1,Signals costly high-interest obligations
+fargo,NEUTRAL_BENIGN,0,Bank name reference only
+fico,NEUTRAL_BENIGN,0,Credit score metric mention
+forget,NEUTRAL_BENIGN,0,Conversational verb
+high debt,DEBT_PRESSURE,1,Explicit heavy debt burden
+honest,NEUTRAL_BENIGN,0,Trust-building conversational sentiment
+income year,NEUTRAL_BENIGN,0,routine income description
+invest far,NEUTRAL_BENIGN,0,investment prose
+january,NEUTRAL_BENIGN,0,calendar month
+long term,NEUTRAL_BENIGN,0,routine loan tenor
+loss,SHOCK_EMERGENCY,1,suggests job or income loss
+lump,NEUTRAL_BENIGN,0,lump sum payment logistics
+mile,NEUTRAL_BENIGN,0,generic distance term
+min,DEBT_PRESSURE,1,likely minimum payments only
+money month,NEUTRAL_BENIGN,0,generic monthly money mention
+normal,NEUTRAL_BENIGN,0,neutral descriptor
+organization,NEUTRAL_BENIGN,0,employer reference
+pay exist,NEUTRAL_BENIGN,0,paying existing obligations
+pay soon,LIQUIDITY_SHORTAGE,1,implies urgent near-term payment need
+payment work,NEUTRAL_BENIGN,0,routine payment logistics
+previously,NEUTRAL_BENIGN,0,conversational time reference
+relocate,NEUTRAL_BENIGN,0,planned life event
+special,NEUTRAL_BENIGN,0,generic positive descriptor
+stick,NEUTRAL_BENIGN,0,conversational commitment language
+study,NEUTRAL_BENIGN,0,education plans
+website,NEUTRAL_BENIGN,0,platform logistics
+year half,NEUTRAL_BENIGN,0,time duration
+add additional,NEUTRAL_BENIGN,0,generic additive phrasing
+add look,NEUTRAL_BENIGN,0,conversational filler
+agree,NEUTRAL_BENIGN,0,agreement language
+automatic,NEUTRAL_BENIGN,0,automatic payment setup
+bless,NEUTRAL_BENIGN,0,positive sentiment
+bring home,NEUTRAL_BENIGN,0,take-home pay reference
+business year,NEUTRAL_BENIGN,0,business tenure
+card consolidate,DEBT_PRESSURE,1,credit card debt consolidation
+close credit,DEBT_PRESSURE,1,closing or maxed credit lines
+clothe,NEUTRAL_BENIGN,0,routine spending category
+consistent,NEUTRAL_BENIGN,0,stability signal
+consult,NEUTRAL_BENIGN,0,occupation or advice
+current monthly,NEUTRAL_BENIGN,0,routine monthly figures
+current position,NEUTRAL_BENIGN,0,stable employment reference
+direct,NEUTRAL_BENIGN,0,direct payment logistics
+directly,NEUTRAL_BENIGN,0,conversational adverb
+discover card,DEBT_PRESSURE,1,named credit card balance
+eliminate debt,DEBT_PRESSURE,1,debt burden removal intent
+energy,NEUTRAL_BENIGN,0,utility or generic term
+eventually,NEUTRAL_BENIGN,0,conversational time adverb
+february,NEUTRAL_BENIGN,0,calendar month
+gift,NEUTRAL_BENIGN,0,planned gifting expense
+grad,NEUTRAL_BENIGN,0,education milestone
+head,NEUTRAL_BENIGN,0,generic prose word
+home add,NEUTRAL_BENIGN,0,home improvement addition
+institution,NEUTRAL_BENIGN,0,financial institution reference
+involve,NEUTRAL_BENIGN,0,generic verb
+lower payment,NEUTRAL_BENIGN,0,refinance to reduce payment
+mba,NEUTRAL_BENIGN,0,education credential
+nearly year,NEUTRAL_BENIGN,0,generic time reference
+new york,NEUTRAL_BENIGN,0,geographic location
+notice,NEUTRAL_BENIGN,0,generic conversational term
+partner,NEUTRAL_BENIGN,0,relationship or business reference
+pay good,NEUTRAL_BENIGN,0,positive income sentiment
+peer,NEUTRAL_BENIGN,0,platform terminology
+plan consolidate,NEUTRAL_BENIGN,0,routine consolidation planning
+principal,NEUTRAL_BENIGN,0,standard loan terminology
+purpose consolidate,NEUTRAL_BENIGN,0,routine stated loan purpose
+remain balance,DEBT_PRESSURE,1,outstanding balance still owed
+significantly,NEUTRAL_BENIGN,0,generic intensifier
+team,NEUTRAL_BENIGN,0,workplace reference
+transportation,NEUTRAL_BENIGN,0,routine expense category
+truly,NEUTRAL_BENIGN,0,generic emphasis word
+use payoff,NEUTRAL_BENIGN,0,routine debt payoff intent
+weekend,NEUTRAL_BENIGN,0,generic time reference
+york,NEUTRAL_BENIGN,0,geographic location
+additionally,NEUTRAL_BENIGN,0,generic connector
+analyst,NEUTRAL_BENIGN,0,occupation reference
+background,NEUTRAL_BENIGN,0,general narrative prose
+development,NEUTRAL_BENIGN,0,generic business term
+disability,SHOCK_EMERGENCY,1,health shock impairing income
+end month,LIQUIDITY_SHORTAGE,1,month-end cash squeeze signal
+end year,NEUTRAL_BENIGN,0,generic time reference
+enter,NEUTRAL_BENIGN,0,generic verb
+gross income,NEUTRAL_BENIGN,0,standard income disclosure
+home repair,SHOCK_EMERGENCY,1,urgent property repair need
+income monthly,NEUTRAL_BENIGN,0,routine income statement
+lifestyle,NEUTRAL_BENIGN,0,general descriptive prose
+little bite,NEUTRAL_BENIGN,0,minor colloquial qualifier
+location,NEUTRAL_BENIGN,0,geographic reference
+mid,NEUTRAL_BENIGN,0,generic modifier
+near future,NEUTRAL_BENIGN,0,generic time reference
+originally,NEUTRAL_BENIGN,0,narrative connector
+paint,NEUTRAL_BENIGN,0,home improvement task
+pay lend,NEUTRAL_BENIGN,0,routine repayment reference
+pay student,NEUTRAL_BENIGN,0,student loan repayment routine
+phone internet,NEUTRAL_BENIGN,0,routine utility expense
+plenty,NEUTRAL_BENIGN,0,positive sufficiency sentiment
+pre,NEUTRAL_BENIGN,0,fragment prefix
+priority,NEUTRAL_BENIGN,0,generic planning term
+rate card,DEBT_PRESSURE,1,high rate credit card burden
+regular,NEUTRAL_BENIGN,0,stability descriptor
+rent car,NEUTRAL_BENIGN,0,routine transportation expense
+responsible person,NEUTRAL_BENIGN,0,positive borrower self-description
+restaurant,NEUTRAL_BENIGN,0,employment or spending context
+semester,NEUTRAL_BENIGN,0,planned education timeline
+sister,NEUTRAL_BENIGN,0,family reference
+staff,NEUTRAL_BENIGN,0,employment reference
+stress,NEUTRAL_BENIGN,0,general emotional prose
+test,NEUTRAL_BENIGN,0,generic non-financial term
+use card,DEBT_PRESSURE,1,credit card usage reliance
+write,NEUTRAL_BENIGN,0,conversational prose
+year late,LIQUIDITY_SHORTAGE,1,past due for a year
+basically,NEUTRAL_BENIGN,0,filler word
+boat,NEUTRAL_BENIGN,0,discretionary purchase item
+budget pay,NEUTRAL_BENIGN,0,routine budgeting language
+center,NEUTRAL_BENIGN,0,generic noun
+commercial,NEUTRAL_BENIGN,0,business descriptor
+county,NEUTRAL_BENIGN,0,geographic reference
+dedicate,NEUTRAL_BENIGN,0,positive commitment language
+depend,NEUTRAL_BENIGN,0,ambiguous general verb
+eliminate credit,DEBT_PRESSURE,1,seeking to wipe out card debt
+extend,NEUTRAL_BENIGN,0,routine term extension language
+fit,NEUTRAL_BENIGN,0,generic descriptor
+grant,NEUTRAL_BENIGN,0,routine approval language
+hesitate ask,NEUTRAL_BENIGN,0,conversational politeness phrase
+home month,NEUTRAL_BENIGN,0,routine housing payment reference
+insurance car,NEUTRAL_BENIGN,0,routine expense category
+load,NEUTRAL_BENIGN,0,ambiguous generic term
+mortgage car,NEUTRAL_BENIGN,0,routine secured obligations listing
+network,NEUTRAL_BENIGN,0,generic professional term
+order pay,NEUTRAL_BENIGN,0,routine payment logistics
+pay medical,SHOCK_EMERGENCY,1,covering medical bills
+pay remain,NEUTRAL_BENIGN,0,routine remaining balance payment
+pay work,NEUTRAL_BENIGN,0,employment related payment
+quality,NEUTRAL_BENIGN,0,positive generic descriptor
+raise rat,DEBT_PRESSURE,1,rising interest rate burden
+relocation,NEUTRAL_BENIGN,0,planned life event
+serve,NEUTRAL_BENIGN,0,generic verb
+stock,NEUTRAL_BENIGN,0,investment reference
+struggle,LIQUIDITY_SHORTAGE,1,difficulty meeting expenses
+true,NEUTRAL_BENIGN,0,conversational assertion
+verification,NEUTRAL_BENIGN,0,routine loan processing
+word,NEUTRAL_BENIGN,0,conversational filler
+year use,NEUTRAL_BENIGN,0,generic time reference
+additional income,NEUTRAL_BENIGN,0,positive income capacity
+appreciate add,NEUTRAL_BENIGN,0,polite gratitude phrase
+card car,NEUTRAL_BENIGN,0,routine obligations listing
+catch,LIQUIDITY_SHORTAGE,1,catching up on behind payments
+consolidation pay,DEBT_PRESSURE,1,consolidating existing debt load
+construction,NEUTRAL_BENIGN,0,industry or project reference
+continue pay,NEUTRAL_BENIGN,0,routine ongoing payment
+debt accrue,DEBT_PRESSURE,1,mounting accumulating debt
+debt currently,DEBT_PRESSURE,1,existing debt load reference
+december,NEUTRAL_BENIGN,0,calendar reference
+deduct,NEUTRAL_BENIGN,0,routine payroll deduction
+dependable,NEUTRAL_BENIGN,0,positive reliability trait
+district,NEUTRAL_BENIGN,0,geographic reference
+ease,NEUTRAL_BENIGN,0,general positive sentiment
+efficient,NEUTRAL_BENIGN,0,positive descriptive sentiment
+expense rent,LIQUIDITY_SHORTAGE,1,rent expense cash-flow burden
+girl,NEUTRAL_BENIGN,0,conversational family reference
+high school,NEUTRAL_BENIGN,0,routine life/education reference
+highest,NEUTRAL_BENIGN,0,generic superlative without context
+impact,NEUTRAL_BENIGN,0,generic prose term
+irs,NEUTRAL_BENIGN,0,tax agency mention routine
+layoff,SHOCK_EMERGENCY,1,sudden job loss
+minimum monthly,DEBT_PRESSURE,1,minimum payments signal debt load
+moment,NEUTRAL_BENIGN,0,generic temporal prose
+older,NEUTRAL_BENIGN,0,descriptive age reference
+outstanding debt,DEBT_PRESSURE,1,explicit unpaid debt balance
+pay owe,DEBT_PRESSURE,1,owed amounts indicate obligation load
+pay quicker,NEUTRAL_BENIGN,0,intent to accelerate repayment
+pay tax,NEUTRAL_BENIGN,0,routine tax payment logistics
+payment current,NEUTRAL_BENIGN,0,accounts in good standing
+payment currently,NEUTRAL_BENIGN,0,routine payment status description
+payment life,NEUTRAL_BENIGN,0,generic payment prose
+payment payment,NEUTRAL_BENIGN,0,repetitive routine payment mention
+percent,NEUTRAL_BENIGN,0,generic rate reference
+question ask,NEUTRAL_BENIGN,0,conversational lender interaction
+rat pay,NEUTRAL_BENIGN,0,garbled rate/payment reference
+renovation,NEUTRAL_BENIGN,0,planned home improvement project
+rid debt,DEBT_PRESSURE,1,desire to eliminate debt burden
+save month,NEUTRAL_BENIGN,0,monthly savings positive framing
+self employ,NEUTRAL_BENIGN,0,employment status description
+split,NEUTRAL_BENIGN,0,generic allocation term
+stable position,NEUTRAL_BENIGN,0,stable employment signal
+tax return,NEUTRAL_BENIGN,0,routine financial documentation
+thousand,NEUTRAL_BENIGN,0,generic amount reference
+unsecured,DEBT_PRESSURE,1,unsecured debt exposure
+work pay,NEUTRAL_BENIGN,0,employment income reference
+year help,NEUTRAL_BENIGN,0,generic prose phrase
+add really,NEUTRAL_BENIGN,0,conversational filler
+annual income,NEUTRAL_BENIGN,0,routine income disclosure
+basement,NEUTRAL_BENIGN,0,home improvement context
+card higher,DEBT_PRESSURE,1,higher card rates mounting interest
+choice,NEUTRAL_BENIGN,0,generic decision prose
+contribution,NEUTRAL_BENIGN,0,routine savings or payment term
+currently employ,NEUTRAL_BENIGN,0,stable employment status
+daily,NEUTRAL_BENIGN,0,generic frequency term
+debt good,NEUTRAL_BENIGN,0,positive framing of debt standing
+expense include,NEUTRAL_BENIGN,0,routine budget listing
+fund purchase,NEUTRAL_BENIGN,0,planned purchase financing
+gain,NEUTRAL_BENIGN,0,positive generic term
+group,NEUTRAL_BENIGN,0,generic noun
+healthcare,SHOCK_EMERGENCY,1,medical cost exposure
+household income,NEUTRAL_BENIGN,0,routine income disclosure
+industry year,NEUTRAL_BENIGN,0,employment tenure reference
+ira,NEUTRAL_BENIGN,0,retirement account reference
+job extremely,NEUTRAL_BENIGN,0,employment descriptor fragment
+know question,NEUTRAL_BENIGN,0,conversational prose with lender
+landscape,NEUTRAL_BENIGN,0,routine home or work context
+light,NEUTRAL_BENIGN,0,generic ambiguous term
+low risk,NEUTRAL_BENIGN,0,positive borrower self-assessment
+lump sum,NEUTRAL_BENIGN,0,routine payment logistics
+maintenance,NEUTRAL_BENIGN,0,routine upkeep expense
+marry year,NEUTRAL_BENIGN,0,planned life event
+money consolidate,DEBT_PRESSURE,1,debt consolidation signals debt load
+money save,NEUTRAL_BENIGN,0,positive savings sentiment
+month car,NEUTRAL_BENIGN,0,routine monthly auto payment
+month debt,DEBT_PRESSURE,1,monthly debt obligation burden
+monthly net,NEUTRAL_BENIGN,0,routine income disclosure
+night,NEUTRAL_BENIGN,0,generic time reference
+past month,NEUTRAL_BENIGN,0,generic time reference
+pay revolve,DEBT_PRESSURE,1,revolving credit balance payoff
+payment job,NEUTRAL_BENIGN,0,employment and payment logistics
+payment rate,NEUTRAL_BENIGN,0,routine loan terms
+plan purchase,NEUTRAL_BENIGN,0,planned discretionary purchase
+positive,NEUTRAL_BENIGN,0,positive sentiment
+purchase house,NEUTRAL_BENIGN,0,planned major life purchase
+quick,NEUTRAL_BENIGN,0,generic speed descriptor
+reduce debt,DEBT_PRESSURE,1,indicates existing debt burden
+rent month,NEUTRAL_BENIGN,0,routine housing expense
+rsquo,NEUTRAL_BENIGN,0,encoding artifact of apostrophe
+simple,NEUTRAL_BENIGN,0,generic descriptor
+sit,NEUTRAL_BENIGN,0,generic conversational verb
+speak,NEUTRAL_BENIGN,0,conversational prose
+specialist,NEUTRAL_BENIGN,0,occupation or medical role
+successfully,NEUTRAL_BENIGN,0,positive sentiment
+surprise,SHOCK_EMERGENCY,1,unexpected event language
+upcoming,NEUTRAL_BENIGN,0,planned future event
+utility phone,LIQUIDITY_SHORTAGE,1,basic living expense coverage need
+yes,NEUTRAL_BENIGN,0,conversational affirmation
+add year,NEUTRAL_BENIGN,0,generic time reference
+additional information,NEUTRAL_BENIGN,0,routine application disclosure
+car car,NEUTRAL_BENIGN,0,routine vehicle reference
+car credit,NEUTRAL_BENIGN,0,auto financing logistics
+car repair,SHOCK_EMERGENCY,1,urgent unexpected vehicle repair
+card personal,NEUTRAL_BENIGN,0,generic credit card mention
+certify,NEUTRAL_BENIGN,0,routine attestation language
+college year,NEUTRAL_BENIGN,0,education timeline mention
+consolidate lower,DEBT_PRESSURE,1,consolidating debt to lower rates
+consumer,NEUTRAL_BENIGN,0,generic economic term
+debt college,DEBT_PRESSURE,1,student debt burden
+debt month,DEBT_PRESSURE,1,recurring monthly debt load
+demand,NEUTRAL_BENIGN,0,generic ambiguous term
+dog,NEUTRAL_BENIGN,0,pet mention conversational
+don hesitate,NEUTRAL_BENIGN,0,polite conversational closing
+easy payment,NEUTRAL_BENIGN,0,positive repayment framing
+error,NEUTRAL_BENIGN,0,Generic conversational term
+extra cash,LIQUIDITY_SHORTAGE,1,Signals need for additional cash flow
+fiancee,NEUTRAL_BENIGN,0,Planned life event context
+fund add,NEUTRAL_BENIGN,0,Routine loan funding logistics
+homeowner,NEUTRAL_BENIGN,0,Stable asset ownership
+legal,NEUTRAL_BENIGN,0,Ambiguous routine legal reference
+man,NEUTRAL_BENIGN,0,Generic conversational prose
+mark,NEUTRAL_BENIGN,0,Generic term
+miss late,LIQUIDITY_SHORTAGE,1,Indicates missed or late payments
+outright,NEUTRAL_BENIGN,0,Routine descriptive term
+party,NEUTRAL_BENIGN,0,Planned event or generic prose
+payment instead,NEUTRAL_BENIGN,0,Routine payment restructuring language
+percentage,NEUTRAL_BENIGN,0,Generic rate reference
+power,NEUTRAL_BENIGN,0,Generic term
+quickly possible,LIQUIDITY_SHORTAGE,1,Urgency for immediate funds
+rack,DEBT_PRESSURE,1,Racked up mounting debt
+residence,NEUTRAL_BENIGN,0,Routine housing reference
+rise,DEBT_PRESSURE,1,Rising rates or balances
+second job,NEUTRAL_BENIGN,0,Additional employment income
+seriously,NEUTRAL_BENIGN,0,Generic emphasis word
+sole,NEUTRAL_BENIGN,0,Sole earner or owner descriptor
+solution,NEUTRAL_BENIGN,0,Positive framing of loan
+vary,NEUTRAL_BENIGN,0,Generic descriptive term
+year come,NEUTRAL_BENIGN,0,Forward-looking planning language
+actual,NEUTRAL_BENIGN,0,Generic qualifier
+add home,NEUTRAL_BENIGN,0,Home improvement planning
+add wife,NEUTRAL_BENIGN,0,Household description
+advance help,HIGH_RISK_REFINANCING,1,Suggests cash advance borrowing
+bike,NEUTRAL_BENIGN,0,Routine purchase item
+brother,NEUTRAL_BENIGN,0,Family reference
+build credit,NEUTRAL_BENIGN,0,Positive credit-building intent
+clarify,NEUTRAL_BENIGN,0,Conversational prose
+confidence,NEUTRAL_BENIGN,0,Positive sentiment
+credit limit,DEBT_PRESSURE,1,Credit line utilization pressure
+dear,NEUTRAL_BENIGN,0,Conversational salutation
+debt high,DEBT_PRESSURE,1,Explicit high debt load
+debt mortgage,DEBT_PRESSURE,1,Combined debt and mortgage burden
+emergency fund,SHOCK_EMERGENCY,1,Emergency reserve need
+employment year,NEUTRAL_BENIGN,0,Stable employment tenure
+engage,NEUTRAL_BENIGN,0,Planned life event
+financial freedom,NEUTRAL_BENIGN,0,Positive aspirational sentiment
+financial obligation,DEBT_PRESSURE,1,Existing debt obligations
+fund help,NEUTRAL_BENIGN,0,Routine funding request
+good payment,NEUTRAL_BENIGN,0,Positive repayment history
+help save,NEUTRAL_BENIGN,0,Positive savings intent
+house payment,NEUTRAL_BENIGN,0,Routine housing expense
+immediate,LIQUIDITY_SHORTAGE,1,Urgent cash need
+increase credit,DEBT_PRESSURE,1,Growing credit balances
+install,NEUTRAL_BENIGN,0,Routine installment or installation
+internet food,LIQUIDITY_SHORTAGE,1,Basic living expenses coverage
+invest add,NEUTRAL_BENIGN,0,routine investment mention
+investment add,NEUTRAL_BENIGN,0,routine investment mention
+job company,NEUTRAL_BENIGN,0,stable employment reference
+late credit,LIQUIDITY_SHORTAGE,1,past due payment signal
+lesson,NEUTRAL_BENIGN,0,general conversational prose
+license,NEUTRAL_BENIGN,0,routine credential mention
+lower apr,NEUTRAL_BENIGN,0,rate improvement goal not distress
+marriage,NEUTRAL_BENIGN,0,planned life event
+money saving,NEUTRAL_BENIGN,0,positive savings sentiment
+month work,NEUTRAL_BENIGN,0,employment tenure reference
+month year,NEUTRAL_BENIGN,0,generic time reference
+organize,NEUTRAL_BENIGN,0,planning language
+pay bank,NEUTRAL_BENIGN,0,routine payment logistics
+pay currently,NEUTRAL_BENIGN,0,routine payment status
+pay school,NEUTRAL_BENIGN,0,planned education expense
+pay timely,NEUTRAL_BENIGN,0,positive repayment history
+performance,NEUTRAL_BENIGN,0,general descriptive term
+pull,NEUTRAL_BENIGN,0,generic credit pull logistics
+reach goal,NEUTRAL_BENIGN,0,positive sentiment
+reduction,NEUTRAL_BENIGN,0,generic reduction reference
+refinance credit,DEBT_PRESSURE,1,refinancing existing credit balances
+refuse,NEUTRAL_BENIGN,0,general conversational prose
+register,NEUTRAL_BENIGN,0,routine administrative term
+ridiculous,DEBT_PRESSURE,1,typically describes ridiculous interest rates
+score pay,NEUTRAL_BENIGN,0,credit score and payment mention
+social,NEUTRAL_BENIGN,0,generic term
+sound,NEUTRAL_BENIGN,0,positive stability sentiment
+substantial,NEUTRAL_BENIGN,0,generic magnitude descriptor
+town,NEUTRAL_BENIGN,0,location reference
+twice,NEUTRAL_BENIGN,0,generic frequency term
+visit,NEUTRAL_BENIGN,0,general conversational prose
+wasn,NEUTRAL_BENIGN,0,tokenized contraction fragment
+year income,NEUTRAL_BENIGN,0,stable income reference
+year term,NEUTRAL_BENIGN,0,routine loan term logistics
+aren,NEUTRAL_BENIGN,0,tokenized contraction fragment
+breakdown,SHOCK_EMERGENCY,1,unexpected vehicle or equipment failure
+buyer,NEUTRAL_BENIGN,0,planned purchase reference
+carpet,NEUTRAL_BENIGN,0,routine home improvement item
+collection,LIQUIDITY_SHORTAGE,1,accounts in collections signals delinquency
+college graduate,NEUTRAL_BENIGN,0,education background reference
+consider request,NEUTRAL_BENIGN,0,routine application prose
+consolidate monthly,DEBT_PRESSURE,1,consolidating multiple monthly debt payments
+corporate,NEUTRAL_BENIGN,0,employment context
+correct,NEUTRAL_BENIGN,0,general conversational prose
+couldn,NEUTRAL_BENIGN,0,tokenized contraction fragment
+count,NEUTRAL_BENIGN,0,generic term
+current payment,NEUTRAL_BENIGN,0,routine payment status
+debt able,DEBT_PRESSURE,1,debt repayment capacity concern
+debt use,DEBT_PRESSURE,1,debt utilization reference
+debt work,DEBT_PRESSURE,1,working through debt load
+die,SHOCK_EMERGENCY,1,Death event signals exogenous distress
+don know,NEUTRAL_BENIGN,0,Conversational uncertainty filler
+equity home,NEUTRAL_BENIGN,0,Routine home equity reference
+excellent payment,NEUTRAL_BENIGN,0,Positive repayment history
+exist credit,NEUTRAL_BENIGN,0,Neutral existing credit reference
+expense pay,LIQUIDITY_SHORTAGE,1,Covering expenses indicates cash-flow strain
+fail,SHOCK_EMERGENCY,1,Failure event signals distress
+finance charge,DEBT_PRESSURE,1,Mounting interest charges
+florida,NEUTRAL_BENIGN,0,Geographic location
+gap,LIQUIDITY_SHORTAGE,1,Funding gap implies shortfall
+grateful,NEUTRAL_BENIGN,0,Positive sentiment
+hear,NEUTRAL_BENIGN,0,Conversational prose
+heloc,NEUTRAL_BENIGN,0,Standard secured credit product
+help greatly,NEUTRAL_BENIGN,0,General appeal phrasing
+hour week,NEUTRAL_BENIGN,0,Employment hours description
+household expense,LIQUIDITY_SHORTAGE,1,Basic living costs coverage
+initial,NEUTRAL_BENIGN,0,Generic ordinal term
+inquiry,NEUTRAL_BENIGN,0,Routine credit inquiry mention
+insurance company,NEUTRAL_BENIGN,0,Routine entity reference
+intend use,NEUTRAL_BENIGN,0,Stated loan purpose logistics
+international,NEUTRAL_BENIGN,0,Generic descriptor
+original,NEUTRAL_BENIGN,0,Generic descriptor
+pay account,NEUTRAL_BENIGN,0,Routine account payment logistics
+pay consolidate,NEUTRAL_BENIGN,0,Standard consolidation intent
+pay use,NEUTRAL_BENIGN,0,Generic payment usage phrase
+payment account,NEUTRAL_BENIGN,0,Routine payment logistics
+payment good,NEUTRAL_BENIGN,0,Positive payment record
+peace,NEUTRAL_BENIGN,0,Positive sentiment
+plan debt,NEUTRAL_BENIGN,0,Planned debt management
+play,NEUTRAL_BENIGN,0,Conversational prose
+plumb,SHOCK_EMERGENCY,1,Urgent plumbing repair need
+possibly,NEUTRAL_BENIGN,0,Hedging filler word
+production,NEUTRAL_BENIGN,0,Occupational context
+progress,NEUTRAL_BENIGN,0,Positive trajectory
+purchase use,NEUTRAL_BENIGN,0,Routine purchase purpose
+relationship,NEUTRAL_BENIGN,0,General conversational prose
+relief,LIQUIDITY_SHORTAGE,1,Seeking relief implies financial strain
+request consolidate,NEUTRAL_BENIGN,0,Standard consolidation request
+responsible pay,NEUTRAL_BENIGN,0,Positive repayment behavior
+settle,DEBT_PRESSURE,1,Debt settlement signals distress
+settlement,DEBT_PRESSURE,1,Debt settlement indicates impairment
+space,NEUTRAL_BENIGN,0,Generic noun
+steadily,NEUTRAL_BENIGN,0,Stability descriptor
+sufficient,NEUTRAL_BENIGN,0,Adequacy descriptor
+supervisor,NEUTRAL_BENIGN,0,Stable employment role
+target,NEUTRAL_BENIGN,0,Generic goal term
+treatment,SHOCK_EMERGENCY,1,Medical treatment need
+unexpected expense,SHOCK_EMERGENCY,1,Sudden unplanned cost
+value home,NEUTRAL_BENIGN,0,Asset valuation reference
+view,NEUTRAL_BENIGN,0,General conversational prose
+way pay,NEUTRAL_BENIGN,0,generic repayment phrasing
+work history,NEUTRAL_BENIGN,0,employment background descriptor
+work stable,NEUTRAL_BENIGN,0,stable employment signal
+year look,NEUTRAL_BENIGN,0,generic temporal prose
+year start,NEUTRAL_BENIGN,0,generic temporal prose
+able save,NEUTRAL_BENIGN,0,positive savings capacity
+accomplish,NEUTRAL_BENIGN,0,positive goal language
+accord,NEUTRAL_BENIGN,0,generic conversational prose
+additional question,NEUTRAL_BENIGN,0,routine loan logistics
+administration,NEUTRAL_BENIGN,0,occupational or institutional term
+administrator,NEUTRAL_BENIGN,0,job title
+annually,NEUTRAL_BENIGN,0,routine time frequency
+birth,NEUTRAL_BENIGN,0,planned life event
+card apr,DEBT_PRESSURE,1,credit card interest burden
+comfortably,NEUTRAL_BENIGN,0,positive affordability sentiment
+commute,NEUTRAL_BENIGN,0,routine daily logistics
+conservative,NEUTRAL_BENIGN,0,prudent financial posture
+corporation,NEUTRAL_BENIGN,0,employer descriptor
+cover expense,LIQUIDITY_SHORTAGE,1,struggling to meet living costs
+credit payment,DEBT_PRESSURE,1,ongoing credit obligations
+damage,SHOCK_EMERGENCY,1,unexpected property damage repair
+debt save,DEBT_PRESSURE,1,debt-focused consolidation framing
+debt start,DEBT_PRESSURE,1,debt accumulation narrative
+debt try,DEBT_PRESSURE,1,struggling with debt load
+develop,NEUTRAL_BENIGN,0,generic prose verb
+don pay,LIQUIDITY_SHORTAGE,1,inability to pay signal
+eat,LIQUIDITY_SHORTAGE,1,basic living necessity strain
+exactly,NEUTRAL_BENIGN,0,generic conversational filler
+expect pay,NEUTRAL_BENIGN,0,routine repayment intent
+expense add,LIQUIDITY_SHORTAGE,1,mounting expenses exceeding cash
+fully pay,NEUTRAL_BENIGN,0,positive full repayment intent
+fund far,NEUTRAL_BENIGN,0,routine funding progress talk
+garage,NEUTRAL_BENIGN,0,property or home feature
+good investment,NEUTRAL_BENIGN,0,positive planned use
+health insurance,NEUTRAL_BENIGN,0,routine coverage mention
+help family,NEUTRAL_BENIGN,0,general supportive prose
+highly,NEUTRAL_BENIGN,0,generic intensifier
+history pay,NEUTRAL_BENIGN,0,payment track record
+honor,NEUTRAL_BENIGN,0,positive commitment sentiment
+hope help,NEUTRAL_BENIGN,0,general conversational appeal
+income job,NEUTRAL_BENIGN,0,stable employment income
+increase rat,DEBT_PRESSURE,1,rising interest rate burden
+instal,NEUTRAL_BENIGN,0,routine installment logistics
+job stability,NEUTRAL_BENIGN,0,stable employment signal
+lend money,NEUTRAL_BENIGN,0,routine borrowing logistics
+live home,NEUTRAL_BENIGN,0,housing situation descriptor
+live mean,NEUTRAL_BENIGN,0,living within means
+locate,NEUTRAL_BENIGN,0,generic location prose
+lower credit,DEBT_PRESSURE,1,credit utilization or rate concern
+maybe,NEUTRAL_BENIGN,0,generic conversational hedge
+month plan,NEUTRAL_BENIGN,0,routine repayment planning language
+month use,NEUTRAL_BENIGN,0,generic time reference
+monthly credit,NEUTRAL_BENIGN,0,routine credit account reference
+negative,LIQUIDITY_SHORTAGE,1,suggests negative balance or cash deficit
+operation,SHOCK_EMERGENCY,1,medical procedure implies health shock
+pay half,DEBT_PRESSURE,1,partial payment signals strained obligations
+pay little,DEBT_PRESSURE,1,minimal payments indicate debt strain
+pay personal,NEUTRAL_BENIGN,0,routine personal loan payment
+payment home,NEUTRAL_BENIGN,0,routine mortgage payment reference
+payment minimum,DEBT_PRESSURE,1,minimum payments signal revolving debt trap
+payment try,LIQUIDITY_SHORTAGE,1,struggling to make payments
+peer peer,NEUTRAL_BENIGN,0,platform logistics term
+pension,NEUTRAL_BENIGN,0,stable retirement income source
+physician,NEUTRAL_BENIGN,0,occupation reference
+plant,NEUTRAL_BENIGN,0,workplace or facility reference
+plus year,NEUTRAL_BENIGN,0,tenure or duration phrase
+police,NEUTRAL_BENIGN,0,stable occupation reference
+proof,NEUTRAL_BENIGN,0,documentation logistics
+pursue,NEUTRAL_BENIGN,0,goal oriented planning language
+really help,NEUTRAL_BENIGN,0,conversational appeal phrase
+reduce monthly,DEBT_PRESSURE,1,seeking relief from monthly debt burden
+refund,NEUTRAL_BENIGN,0,routine financial transaction
+register nurse,NEUTRAL_BENIGN,0,stable occupation reference
+rely,NEUTRAL_BENIGN,0,general dependence prose
+reserve,NEUTRAL_BENIGN,0,savings or military reference
+simplify,NEUTRAL_BENIGN,0,consolidation convenience framing
+slow,NEUTRAL_BENIGN,0,ambiguous pace descriptor
+spring,NEUTRAL_BENIGN,0,seasonal timing reference
+start work,NEUTRAL_BENIGN,0,employment beginning reference
+student credit,DEBT_PRESSURE,1,student debt obligation
+tech,NEUTRAL_BENIGN,0,industry or occupation reference
+tenure,NEUTRAL_BENIGN,0,job stability indicator
+texas,NEUTRAL_BENIGN,0,geographic reference
+timely payment,NEUTRAL_BENIGN,0,positive repayment history
+total month,NEUTRAL_BENIGN,0,routine aggregation phrase
+trailer,NEUTRAL_BENIGN,0,housing or vehicle reference
+tree,NEUTRAL_BENIGN,0,property or landscaping reference
+use home,NEUTRAL_BENIGN,0,home related purpose
+wage,NEUTRAL_BENIGN,0,income source reference
+washington,NEUTRAL_BENIGN,0,geographic reference
+worthy,NEUTRAL_BENIGN,0,positive sentiment appeal
+account close,NEUTRAL_BENIGN,0,routine account logistics
+active,NEUTRAL_BENIGN,0,account or duty status
+amaze,NEUTRAL_BENIGN,0,positive sentiment expression
+anymore,LIQUIDITY_SHORTAGE,1,signals inability to continue paying
+army,NEUTRAL_BENIGN,0,stable employment reference
+ask help,LIQUIDITY_SHORTAGE,1,appeal for financial assistance
+aware,NEUTRAL_BENIGN,0,general conversational prose
+balance apr,DEBT_PRESSURE,1,interest accruing revolving balance
+balance card,DEBT_PRESSURE,1,outstanding credit card balance
+bath,NEUTRAL_BENIGN,0,home remodeling detail
+breathe,DEBT_PRESSURE,1,room to breathe implies debt strain
+central,NEUTRAL_BENIGN,0,generic location word
+check credit,NEUTRAL_BENIGN,0,routine credit inquiry mention
+closer,NEUTRAL_BENIGN,0,generic proximity term
+collect,DEBT_PRESSURE,1,suggests collections activity
+commitment,NEUTRAL_BENIGN,0,positive repayment intent
+completely debt,DEBT_PRESSURE,1,references total debt load
+driver,NEUTRAL_BENIGN,0,occupation descriptor
+duty,NEUTRAL_BENIGN,0,employment or service reference
+excess,DEBT_PRESSURE,1,excess debt or spending signal
+executive,NEUTRAL_BENIGN,0,stable occupation title
+expense mortgage,NEUTRAL_BENIGN,0,routine housing expense listing
+explain,NEUTRAL_BENIGN,0,conversational narrative filler
+finish pay,NEUTRAL_BENIGN,0,planned completion of payments
+food gas,LIQUIDITY_SHORTAGE,1,basic living expenses financed by loan
+fortunate,NEUTRAL_BENIGN,0,positive sentiment
+fortune,NEUTRAL_BENIGN,0,positive sentiment
+good money,NEUTRAL_BENIGN,0,stable income claim
+good stable,NEUTRAL_BENIGN,0,stable employment signal
+grad school,NEUTRAL_BENIGN,0,planned education event
+grade,NEUTRAL_BENIGN,0,loan grade logistics
+graduation,NEUTRAL_BENIGN,0,planned life event
+heat,SHOCK_EMERGENCY,1,urgent heating repair or utility need
+history late,DEBT_PRESSURE,1,past delinquency history
+hole,DEBT_PRESSURE,1,debt hole metaphor
+honeymoon,NEUTRAL_BENIGN,0,planned life event
+house add,NEUTRAL_BENIGN,0,home improvement project
+hsbc,HIGH_RISK_REFINANCING,1,high-rate card issuer being refinanced
+investor help,NEUTRAL_BENIGN,0,appeal to lenders prose
+joint,NEUTRAL_BENIGN,0,joint account logistics
+kill,DEBT_PRESSURE,1,interest killing borrower phrasing
+lock,NEUTRAL_BENIGN,0,rate lock logistics
+monthly pay,NEUTRAL_BENIGN,0,routine payment schedule
+pay home,NEUTRAL_BENIGN,0,mortgage payment logistics
+payment stable,NEUTRAL_BENIGN,0,stable payment capacity
+potential investor,NEUTRAL_BENIGN,0,addressing lenders directly
+profession,NEUTRAL_BENIGN,0,occupation descriptor
+raise rate,DEBT_PRESSURE,1,creditor raised interest rates
+receive promotion,NEUTRAL_BENIGN,0,positive career event
+recently promote,NEUTRAL_BENIGN,0,positive career event
+repay debt,NEUTRAL_BENIGN,0,routine debt repayment intent
+reward,NEUTRAL_BENIGN,0,rewards card or positive framing
+road,NEUTRAL_BENIGN,0,generic prose term
+slightly,NEUTRAL_BENIGN,0,generic qualifier
+spend money,NEUTRAL_BENIGN,0,general spending prose
+tight,LIQUIDITY_SHORTAGE,1,cash flow tight signal
+unite,NEUTRAL_BENIGN,0,likely United States fragment
+wouldn,NEUTRAL_BENIGN,0,conversational contraction fragment
+year debt,DEBT_PRESSURE,1,long-standing debt burden
+year payment,NEUTRAL_BENIGN,0,routine payment schedule language
+accident,SHOCK_EMERGENCY,1,unexpected exogenous event
+accountant,NEUTRAL_BENIGN,0,occupation reference
+add little,NEUTRAL_BENIGN,0,vague conversational filler
+aid,NEUTRAL_BENIGN,0,generic assistance term
+bachelor degree,NEUTRAL_BENIGN,0,education credential
+beautiful,NEUTRAL_BENIGN,0,positive sentiment
+breathe room,LIQUIDITY_SHORTAGE,1,implies cash flow squeeze
+budget allow,NEUTRAL_BENIGN,0,routine budgeting language
+burden,DEBT_PRESSURE,1,signals heavy debt load
+capable,NEUTRAL_BENIGN,0,positive capacity statement
+car expense,NEUTRAL_BENIGN,0,routine expense category
+car note,NEUTRAL_BENIGN,0,standard auto loan payment
+card expense,NEUTRAL_BENIGN,0,routine credit card spending
+card purchase,NEUTRAL_BENIGN,0,routine card usage
+card work,NEUTRAL_BENIGN,0,ambiguous card phrase
+concentrate,NEUTRAL_BENIGN,0,general prose
+consist,NEUTRAL_BENIGN,0,general prose
+consolidate current,DEBT_PRESSURE,1,consolidating existing debt load
+consolidation credit,DEBT_PRESSURE,1,credit debt consolidation signal
+cpa,NEUTRAL_BENIGN,0,occupation reference
+credit balance,DEBT_PRESSURE,1,outstanding revolving balance
+credit credit,DEBT_PRESSURE,1,repeated credit debt mention
+debt look,DEBT_PRESSURE,1,debt-focused phrasing
+desire,NEUTRAL_BENIGN,0,general sentiment
+discretionary,NEUTRAL_BENIGN,0,budgeting terminology
+division,NEUTRAL_BENIGN,0,workplace or generic term
+electricity,LIQUIDITY_SHORTAGE,1,basic utility expense need
+environment,NEUTRAL_BENIGN,0,general prose
+estimate,NEUTRAL_BENIGN,0,routine planning language
+fairly,NEUTRAL_BENIGN,0,general prose
+food entertainment,NEUTRAL_BENIGN,0,routine spending category
+frame,NEUTRAL_BENIGN,0,generic term
+fresh start,DEBT_PRESSURE,1,implies escaping debt spiral
+help debt,DEBT_PRESSURE,1,seeking debt relief
+help help,NEUTRAL_BENIGN,0,conversational repetition
+help people,NEUTRAL_BENIGN,0,general prose
+helpful,NEUTRAL_BENIGN,0,positive sentiment
+home purchase,NEUTRAL_BENIGN,0,planned life event
+hope pay,NEUTRAL_BENIGN,0,repayment intention statement
+house market,NEUTRAL_BENIGN,0,housing market context
+house pay,NEUTRAL_BENIGN,0,routine housing payment
+independent,NEUTRAL_BENIGN,0,positive descriptor
+instead pay,NEUTRAL_BENIGN,0,payment comparison phrasing
+job add,NEUTRAL_BENIGN,0,employment reference
+life add,NEUTRAL_BENIGN,0,vague conversational filler
+look purchase,NEUTRAL_BENIGN,0,planned purchase intent
+low monthly,NEUTRAL_BENIGN,0,favorable payment terms
+low rate,NEUTRAL_BENIGN,0,favorable interest terms
+mastercard,DEBT_PRESSURE,1,revolving credit card debt
+month job,NEUTRAL_BENIGN,0,routine employment tenure mention
+month monthly,NEUTRAL_BENIGN,0,generic payment period phrasing
+monthly basis,NEUTRAL_BENIGN,0,routine payment cadence
+monthly minimum,DEBT_PRESSURE,1,minimum payments signal revolving debt burden
+new position,NEUTRAL_BENIGN,0,stable or improving employment
+new window,NEUTRAL_BENIGN,0,home improvement item
+occur,NEUTRAL_BENIGN,0,generic conversational verb
+path,NEUTRAL_BENIGN,0,generic prose
+pay end,LIQUIDITY_SHORTAGE,1,suggests stretched to end of pay period
+pay extra,NEUTRAL_BENIGN,0,positive repayment intent
+pay help,NEUTRAL_BENIGN,0,generic request for assistance
+pay plan,NEUTRAL_BENIGN,0,routine repayment planning
+payback,NEUTRAL_BENIGN,0,routine repayment language
+payment able,NEUTRAL_BENIGN,0,affordability affirmation
+payment house,NEUTRAL_BENIGN,0,routine mortgage reference
+payoff high,DEBT_PRESSURE,1,paying off high interest balances
+personally,NEUTRAL_BENIGN,0,conversational filler
+phone car,NEUTRAL_BENIGN,0,routine expense items
+pool,NEUTRAL_BENIGN,0,discretionary home project
+position year,NEUTRAL_BENIGN,0,employment tenure
+problem payment,LIQUIDITY_SHORTAGE,1,difficulty making payments
+promptly,NEUTRAL_BENIGN,0,positive repayment sentiment
+provider,NEUTRAL_BENIGN,0,generic service reference
+rat card,DEBT_PRESSURE,1,credit card rate burden
+rate increase,DEBT_PRESSURE,1,rising interest on existing debt
+recently pay,NEUTRAL_BENIGN,0,generic recent payment mention
+reduce rate,NEUTRAL_BENIGN,0,routine refinancing goal
+rent payment,NEUTRAL_BENIGN,0,routine housing expense
+request pay,NEUTRAL_BENIGN,0,generic loan request language
+respect,NEUTRAL_BENIGN,0,conversational courtesy
+role,NEUTRAL_BENIGN,0,employment reference
+roommate,NEUTRAL_BENIGN,0,routine living arrangement
+school pay,NEUTRAL_BENIGN,0,planned education expense
+separate,NEUTRAL_BENIGN,0,generic descriptive term
+seven,NEUTRAL_BENIGN,0,numeric filler
+shop,NEUTRAL_BENIGN,0,routine spending or business term
+slowly,NEUTRAL_BENIGN,0,generic pace descriptor
+switch,NEUTRAL_BENIGN,0,generic change reference
+thankful,NEUTRAL_BENIGN,0,positive sentiment
+total debt,DEBT_PRESSURE,1,aggregate debt load reference
+transition,NEUTRAL_BENIGN,0,generic life or job change
+unemployment,SHOCK_EMERGENCY,1,sudden job loss income shock
+use debt,DEBT_PRESSURE,1,reliance on borrowing
+utilization,DEBT_PRESSURE,1,credit line usage ratio pressure
+weekly,NEUTRAL_BENIGN,0,routine pay frequency
+wise,NEUTRAL_BENIGN,0,positive judgment sentiment
+work hour,NEUTRAL_BENIGN,0,routine employment detail
+yard,NEUTRAL_BENIGN,0,home improvement item
+year excellent,NEUTRAL_BENIGN,0,positive credit history claim
+year experience,NEUTRAL_BENIGN,0,stable employment tenure

@@ -1,0 +1,21 @@
+# Zero-Shot LLM Annotation -- Audit Log
+
+- Executed: 2026-08-21T00:30:21
+- Model: `claude-opus-5`
+- anthropic package version: `0.125.0`
+- Python version: `3.13.8`
+- output_config.effort: `low` (no `thinking` override -- adaptive by default)
+- **Temperature deviation from the PDF**: the PDF's protocol specifies "Temperature fixed at 0.0 (strict determinism)". Claude Opus 5 no longer accepts a `temperature` parameter (returns HTTP 400 if sent) -- there is no equivalent knob for byte-identical determinism on this model generation. No `temperature` parameter was sent; the settings above (effort=low, adaptive thinking) are the closest available approximation and should be documented as a methodological footnote/adjustment in the thesis text.
+- Prompt artifact: `Dictionarys\prompts\zero_shot_lexicon_rubric_v1.json` (version `v1`)
+- Input vocabulary: `Dictionarys\dictionaries\frozen_vocabulary_initial_window.csv` (1,650 terms requested)
+- Chunk size: 50 terms/request | Chunks sent: 33
+- Wall-clock time: 523.2s
+- Terms classified (post-dedupe): 1,649 / 1,650 requested
+- Category counts:
+  - NEUTRAL_BENIGN: 1337
+  - DEBT_PRESSURE: 199
+  - LIQUIDITY_SHORTAGE: 66
+  - SHOCK_EMERGENCY: 40
+  - HIGH_RISK_REFINANCING: 7
+- Raw output: `Dictionarys\results\llm_raw_annotations.csv`
+- Curated lexicon output: `Dictionarys\dictionaries\LC_Distress_Lexicon_v1.csv`

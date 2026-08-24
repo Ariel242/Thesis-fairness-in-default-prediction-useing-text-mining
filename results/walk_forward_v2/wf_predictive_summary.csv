@@ -1,0 +1,6 @@
+,AUC,AUC,PR_AUC,PR_AUC,Brier,Brier,GINI,GINI
+,mean,std,mean,std,mean,std,mean,std
+Model,,,,,,,,
+Logistic,0.693,0.0152,0.2766,0.0322,0.2313,0.0151,0.386,0.0304
+RandomForest,0.6886,0.0199,0.2759,0.0336,0.1877,0.0135,0.3773,0.0397
+XGBoost,0.6904,0.0191,0.2794,0.0354,0.2114,0.0171,0.3808,0.0383
