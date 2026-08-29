@@ -1,0 +1,13 @@
+grouping_variable,model,comparison,gap_TPR,gap_FPR,gap_PPR,gap_AUC
+BlackConcentration,Logistic,Low-Medium,-0.0215,-0.0114,-0.0144,-0.0065
+BlackConcentration,Logistic,Low-High,-0.0449,-0.0244,-0.032,-0.0117
+BlackConcentration,Logistic,Medium-High,-0.0234,-0.013,-0.0176,-0.0052
+BlackConcentration,XGBoost,Low-Medium,-0.0091,0.002,-0.0011,-0.0064
+BlackConcentration,XGBoost,Low-High,-0.0218,-0.0117,-0.0176,-0.0095
+BlackConcentration,XGBoost,Medium-High,-0.0127,-0.0137,-0.0165,-0.0031
+SES_group,Logistic,Low-Medium,-0.0256,-0.0443,-0.045,0.01
+SES_group,Logistic,Low-High,-0.0566,-0.056,-0.0617,-0.0041
+SES_group,Logistic,Medium-High,-0.031,-0.0117,-0.0167,-0.0141
+SES_group,XGBoost,Low-Medium,-0.0216,-0.0395,-0.0404,0.0088
+SES_group,XGBoost,Low-High,-0.0529,-0.0518,-0.0577,-0.0029
+SES_group,XGBoost,Medium-High,-0.0313,-0.0123,-0.0173,-0.0117

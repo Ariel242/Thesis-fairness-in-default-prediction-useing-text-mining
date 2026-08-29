@@ -1,0 +1,9 @@
+direction,model,metric,weighted,Low,High,gap_High_minus_Low,n_eff_Low,n_eff_High,z,p_value
+BlackConcentration (entropy-balanced on 7 SES covariates),Logistic,FPR,False,0.3707,0.3951,0.0245,10665.0,28170.0,-4.42,0.0
+BlackConcentration (entropy-balanced on 7 SES covariates),Logistic,FPR,True,0.3861,0.3951,0.0091,4826.6,28170.0,-1.19,0.2328
+BlackConcentration (entropy-balanced on 7 SES covariates),XGBoost,FPR,False,0.3551,0.3668,0.0117,10665.0,28170.0,-2.14,0.0326
+BlackConcentration (entropy-balanced on 7 SES covariates),XGBoost,FPR,True,0.3653,0.3668,0.0015,4826.6,28170.0,-0.2,0.8452
+SES_group (entropy-balanced on 6 demographic covariates),Logistic,FPR,False,0.359,0.415,0.056,28487.0,14463.0,-11.32,0.0
+SES_group (entropy-balanced on 6 demographic covariates),Logistic,FPR,True,0.3826,0.415,0.0323,329.0,14463.0,-1.18,0.2389
+SES_group (entropy-balanced on 6 demographic covariates),XGBoost,FPR,False,0.335,0.3868,0.0519,28487.0,14463.0,-10.63,0.0
+SES_group (entropy-balanced on 6 demographic covariates),XGBoost,FPR,True,0.3701,0.3868,0.0168,329.0,14463.0,-0.62,0.5364

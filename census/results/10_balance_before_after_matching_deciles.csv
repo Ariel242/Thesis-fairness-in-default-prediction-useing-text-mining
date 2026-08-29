@@ -1,0 +1,9 @@
+direction,covariate,SMD_before_matching,SMD_after_matching
+BlackConcentration (matched on SESDisadvantage deciles),poverty_rate,0.4126,0.0493
+BlackConcentration (matched on SESDisadvantage deciles),unemployment_rate,0.7759,0.5039
+BlackConcentration (matched on SESDisadvantage deciles),share_bachelor_plus,0.2885,0.588
+BlackConcentration (matched on SESDisadvantage deciles),homeownership_rate,-0.7489,-0.7964
+BlackConcentration (matched on SESDisadvantage deciles),uninsured_rate,0.2289,-0.0715
+BlackConcentration (matched on SESDisadvantage deciles),median_income_approx,0.0626,0.381
+BlackConcentration (matched on SESDisadvantage deciles),median_home_value_approx,0.0638,0.279
+SES_group (matched on share_black_nh deciles),share_black_nh,0.6155,0.0338

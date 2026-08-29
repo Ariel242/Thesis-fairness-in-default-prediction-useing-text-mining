@@ -1,0 +1,9 @@
+direction,model,metric,weighted,Low,High,gap_High_minus_Low,n_eff_Low,n_eff_High,z,p_value
+BlackConcentration (matched on SES_group),Logistic,FPR,False,0.3707,0.3951,0.0245,10665.0,28170.0,-4.42,0.0
+BlackConcentration (matched on SES_group),Logistic,FPR,True,0.3783,0.3951,0.0169,8991.0,28170.0,-2.85,0.0043
+BlackConcentration (matched on SES_group),XGBoost,FPR,False,0.3551,0.3668,0.0117,10665.0,28170.0,-2.14,0.0326
+BlackConcentration (matched on SES_group),XGBoost,FPR,True,0.3606,0.3668,0.0062,8991.0,28170.0,-1.06,0.2904
+SES_group (matched on BlackConcentration),Logistic,FPR,False,0.359,0.415,0.056,28487.0,14463.0,-11.32,0.0
+SES_group (matched on BlackConcentration),Logistic,FPR,True,0.3571,0.415,0.0579,22980.2,14463.0,-11.24,0.0
+SES_group (matched on BlackConcentration),XGBoost,FPR,False,0.335,0.3868,0.0519,28487.0,14463.0,-10.63,0.0
+SES_group (matched on BlackConcentration),XGBoost,FPR,True,0.3326,0.3868,0.0542,22980.2,14463.0,-10.69,0.0

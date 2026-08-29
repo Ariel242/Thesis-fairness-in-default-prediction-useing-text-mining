@@ -1,0 +1,9 @@
+direction,covariate,SMD_before_matching,SMD_after_matching
+BlackConcentration (matched on SES_group),poverty_rate,0.4126,0.071
+BlackConcentration (matched on SES_group),unemployment_rate,0.7759,0.5497
+BlackConcentration (matched on SES_group),share_bachelor_plus,0.2885,0.5632
+BlackConcentration (matched on SES_group),homeownership_rate,-0.7489,-0.7769
+BlackConcentration (matched on SES_group),uninsured_rate,0.2289,-0.0461
+BlackConcentration (matched on SES_group),median_income_approx,0.0626,0.3613
+BlackConcentration (matched on SES_group),median_home_value_approx,0.0638,0.2673
+SES_group (matched on BlackConcentration),share_black_nh,0.6155,0.3465
