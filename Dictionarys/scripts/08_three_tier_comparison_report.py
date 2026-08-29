@@ -15,6 +15,11 @@ convention -- nothing is written back to these locations):
   Dictionarys/results/lexicon_ablation_summary.csv, lexicon_ablation_delong.csv
   TF-IDF/results/ablation_summary.csv, ablation_delong.csv
   FinBERT/results/{baseline_768,gridsearch_768,baseline_pca50,gridsearch_pca50}/wf_predictive_summary.csv
+  FinBERT/results/delong_vs_structured/delong_raw.csv (2026-08-29: added -- the FinBERT
+    baseline/gridsearch scripts themselves never ran a DeLong test against Structured;
+    FinBERT/DELONG_VS_STRUCTURED.py fills that gap by refitting Structured + both FinBERT
+    arms side by side per fold, for both fixed and grid-search configs, reusing each arm's
+    already-saved winning hyperparameters -- see that script's own docstring)
 
 Output: Dictionarys/Three_Tier_Algorithm_Comparison.pdf
 """
@@ -70,6 +75,10 @@ def main() -> None:
     fb_basepca = load_wide_summary(BASE_DIR / "FinBERT" / "results" / "baseline_pca50" / "wf_predictive_summary.csv", has_arm_col=False)
     fb_gridpca = load_wide_summary(BASE_DIR / "FinBERT" / "results" / "gridsearch_pca50" / "wf_predictive_summary.csv", has_arm_col=False)
 
+    fb_delong_all = pd.read_csv(BASE_DIR / "FinBERT" / "results" / "delong_vs_structured" / "delong_raw.csv")
+    fb_delong_fixed = fb_delong_all[fb_delong_all["config"] == "fixed"]  # both Arm_B values (768 / PCA50)
+    fb_delong_grid  = fb_delong_all[fb_delong_all["config"] == "grid"]
+
     # Canonical Structured-only reference: TF-IDF's "Structured" arm (identical
     # script family / numbers to the Lexicon ablation's own Structured arm).
     struct_ref = {m: get_auc(tfidf_summary, m, arm="Structured") for m in MODELS}
@@ -88,10 +97,10 @@ def main() -> None:
         ("Lexicon (7 features)", "fixed hyperparams", "Dictionarys", lex_summary, "arm", "Structured+Lexicon", lex_delong, "Structured+Lexicon"),
         ("TF-IDF (full, uncapped)", "fixed hyperparams", "TF-IDF", tfidf_summary, "arm", "Structured+TFIDF_full", tfidf_delong, "Structured+TFIDF_full"),
         ("TF-IDF (chi2 top-500)", "fixed hyperparams", "TF-IDF", tfidf_summary, "arm", "Structured+TFIDF_chi2", tfidf_delong, "Structured+TFIDF_chi2"),
-        ("FinBERT-768 (raw)", "fixed hyperparams", "FinBERT", fb_base768, "flat", None, None, None),
-        ("FinBERT-768 (raw)", "grid search", "FinBERT", fb_grid768, "flat", None, None, None),
-        ("FinBERT-PCA50", "fixed hyperparams", "FinBERT", fb_basepca, "flat", None, None, None),
-        ("FinBERT-PCA50", "grid search", "FinBERT", fb_gridpca, "flat", None, None, None),
+        ("FinBERT-768 (raw)", "fixed hyperparams", "FinBERT", fb_base768, "flat", None, fb_delong_fixed, "Structured+FinBERT-768"),
+        ("FinBERT-768 (raw)", "grid search", "FinBERT", fb_grid768, "flat", None, fb_delong_grid, "Structured+FinBERT-768"),
+        ("FinBERT-PCA50", "fixed hyperparams", "FinBERT", fb_basepca, "flat", None, fb_delong_fixed, "Structured+FinBERT-PCA50"),
+        ("FinBERT-PCA50", "grid search", "FinBERT", fb_gridpca, "flat", None, fb_delong_grid, "Structured+FinBERT-PCA50"),
     ]
 
     table_rows = []
@@ -221,10 +230,11 @@ def main() -> None:
     story.append(Paragraph("Master comparison table", h2))
     story.append(Paragraph(
         "&Delta;AUC is relative to the Structured-only reference above. \"Significant folds\" is the count "
-        "(of 14) where a per-fold DeLong test found the difference significant at p&lt;0.05 &mdash; this was "
-        "only run for the Lexicon and TF-IDF ablations; the FinBERT scripts never ran a DeLong test against "
-        "the Structured baseline (only 768-dim vs PCA50 against each other), so those cells read \"not run\", "
-        "not \"not significant\".", body))
+        "(of 14) where a per-fold DeLong test found the difference significant at p&lt;0.05 (raw, not "
+        "multiple-testing corrected). For FinBERT this comes from a dedicated script "
+        "(<font face='Courier'>FinBERT/DELONG_VS_STRUCTURED.py</font>, added 2026-08-29) that refits "
+        "Structured and both FinBERT arms side by side per fold, since the original baseline/gridsearch "
+        "scripts only saved aggregate AUC, not paired per-fold predictions.", body))
 
     tbl = [["Representation", "Config", "Model", "AUC", "Delta AUC", "Sig. folds"]]
     for _, r in master.iterrows():
@@ -259,7 +269,10 @@ def main() -> None:
         "<b>FinBERT-768 raw is the worst-performing representation tested, for every algorithm</b> "
         "(&Delta;AUC from -0.0064 to -0.0275 with fixed hyperparameters) &mdash; worse than adding nothing. "
         "It only becomes competitive after PCA-50 compression, and grid-search tuning recovers relatively "
-        "little more on top of that.",
+        "little more on top of that. This is also the one case in the whole comparison with strong, "
+        "consistent DeLong significance: RandomForest+FinBERT-768 loses to Structured-only in 12/14 folds "
+        "at fixed hyperparameters (8/14 even after grid-search tuning) &mdash; not a borderline or noisy "
+        "result, a reliably worse one.",
         "<b>Under fixed hyperparameters (the fairest apples-to-apples comparison, since this is how the "
         "Lexicon and TF-IDF arms were run), TF-IDF outperforms FinBERT-PCA50 for Logistic and XGBoost</b> "
         "(0.6965 vs 0.6948, 0.6936 vs 0.6887) &mdash; FinBERT only closes part of that gap with grid search, "
@@ -288,10 +301,13 @@ def main() -> None:
         "negligible (0.0004) cross-run numerical difference, not a methodological one, since all three "
         "reuse the identical STRUCT_COLS definition and walk-forward parameters.", body))
     story.append(Paragraph(
-        "No DeLong significance test exists for FinBERT vs Structured (only FinBERT-768 vs FinBERT-PCA50 "
-        "was tested directly, in FinBERT/results/delong_768_vs_pca50/). Anyone citing this comparison table "
-        "should not describe the FinBERT rows' AUC deltas as \"significant\" or \"not significant\" &mdash; "
-        "that test was simply never run against the Structured baseline.", note))
+        "The FinBERT vs Structured DeLong test (FinBERT/results/delong_vs_structured/, added 2026-08-29) "
+        "refits both arms independently of the original baseline_768/gridsearch_768/baseline_pca50/"
+        "gridsearch_pca50 runs, so its own AUC numbers can differ slightly (typically &lt;0.002) from the "
+        "AUC column above -- most likely from a scikit-learn version drift between when those scripts were "
+        "first run and this later DeLong-only run (a 'penalty' deprecation warning appears in the newer run's "
+        "logs that does not appear in the older ones). Only the Significant-folds count is taken from this "
+        "test; the AUC/&Delta;AUC columns still come from each arm's own original run.", note))
 
     doc.build(story)
     print(f"Report written: {OUT_PDF}")
