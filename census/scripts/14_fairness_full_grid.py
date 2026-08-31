@@ -89,7 +89,12 @@ GROUPINGS = [
     "BlackConcentration", "HispanicConcentration", "AsianConcentration",
     "WhiteConcentration", "ForeignBornConcentration", "LimitedEnglishConcentration",
 ]
-THRESHOLDS = [0.3, 0.4, 0.5, 0.6]
+# Full sweep 0.2-0.9. Note these models are fit with class_weight="balanced"
+# (and XGBoost with scale_pos_weight), which inflates predicted probabilities well
+# above the ~15% base rate -- the mean predicted probability sits near 0.45. So the
+# "natural" operating region here is the middle of this range, and the high end (0.8,
+# 0.9) is a deliberately conservative regime where very few loans are flagged at all.
+THRESHOLDS = [0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
 N_FOLDS = 14
 
 MIN_CELL_DEFAULTS = 30    # actual positives needed on each side for a usable TPR
