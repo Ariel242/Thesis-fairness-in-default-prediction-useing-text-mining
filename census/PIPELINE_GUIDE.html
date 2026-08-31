@@ -1,0 +1,688 @@
+<title>מפת הפייפליין הגאוגרפי</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Hebrew:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+  :root {
+    --ink:            #12262F;
+    --ink-soft:       #3E5560;
+    --ink-faint:      #6B838D;
+    --ground:         #FBFCFC;
+    --surface:        #FFFFFF;
+    --surface-sunk:   #F1F5F6;
+    --rule:           #DCE5E8;
+    --rule-strong:    #B9C9CE;
+    --accent:         #0E7C7B;
+    --accent-soft:    #E2F1F0;
+    --warn:           #9A6A18;
+    --warn-soft:      #F8EFDC;
+    --shadow:         0 1px 2px rgba(18, 38, 47, .05), 0 4px 16px rgba(18, 38, 47, .04);
+
+    --step--1: .8125rem;
+    --step-0:  1rem;
+    --step-1:  1.1875rem;
+    --step-2:  1.5rem;
+    --step-3:  2rem;
+    --step-4:  2.75rem;
+
+    --sans: "IBM Plex Sans Hebrew", "Segoe UI", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ink:          #E8EFF1;
+      --ink-soft:     #AEC2C9;
+      --ink-faint:    #7D949C;
+      --ground:       #0D1619;
+      --surface:      #141F23;
+      --surface-sunk: #1B282D;
+      --rule:         #2A3A40;
+      --rule-strong:  #3D5259;
+      --accent:       #4FC3B8;
+      --accent-soft:  #16302F;
+      --warn:         #D9A94E;
+      --warn-soft:    #2C2416;
+      --shadow:       0 1px 2px rgba(0,0,0,.3), 0 4px 16px rgba(0,0,0,.22);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ink:          #E8EFF1;
+    --ink-soft:     #AEC2C9;
+    --ink-faint:    #7D949C;
+    --ground:       #0D1619;
+    --surface:      #141F23;
+    --surface-sunk: #1B282D;
+    --rule:         #2A3A40;
+    --rule-strong:  #3D5259;
+    --accent:       #4FC3B8;
+    --accent-soft:  #16302F;
+    --warn:         #D9A94E;
+    --warn-soft:    #2C2416;
+    --shadow:       0 1px 2px rgba(0,0,0,.3), 0 4px 16px rgba(0,0,0,.22);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: var(--step-0);
+    line-height: 1.65;
+    direction: rtl;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 62rem;
+    margin: 0 auto;
+    padding: clamp(2rem, 5vw, 4.5rem) clamp(1rem, 4vw, 2.5rem) 6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+  }
+
+  /* ---------- masthead ---------- */
+  .masthead { display: flex; flex-direction: column; gap: 1rem; }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: var(--step--1);
+    letter-spacing: .09em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0;
+  }
+
+  h1 {
+    font-size: var(--step-4);
+    line-height: 1.12;
+    font-weight: 600;
+    letter-spacing: -.02em;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .standfirst {
+    font-size: var(--step-1);
+    color: var(--ink-soft);
+    max-width: 44ch;
+    margin: 0;
+    font-weight: 300;
+  }
+
+  .masthead-note {
+    border-top: 1px solid var(--rule);
+    padding-top: 1rem;
+    font-size: var(--step--1);
+    color: var(--ink-faint);
+    max-width: 60ch;
+  }
+
+  /* ---------- sections ---------- */
+  section { display: flex; flex-direction: column; gap: 1.25rem; }
+
+  h2 {
+    font-size: var(--step-2);
+    font-weight: 600;
+    letter-spacing: -.015em;
+    margin: 0;
+    padding-bottom: .6rem;
+    border-bottom: 2px solid var(--rule-strong);
+    text-wrap: balance;
+  }
+
+  h3 {
+    font-size: var(--step-1);
+    font-weight: 600;
+    margin: 0;
+  }
+
+  p { margin: 0; max-width: 68ch; }
+  .lead { color: var(--ink-soft); }
+
+  code {
+    font-family: var(--mono);
+    font-size: .875em;
+    background: var(--surface-sunk);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: .1em .35em;
+    direction: ltr;
+    display: inline-block;
+    unicode-bidi: embed;
+  }
+
+  /* ---------- location cards ---------- */
+  .places {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: 1rem;
+  }
+
+  .place {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 1.25rem;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+  }
+
+  .place .path {
+    font-family: var(--mono);
+    font-size: var(--step--1);
+    font-weight: 600;
+    color: var(--accent);
+    direction: ltr;
+    text-align: right;
+  }
+
+  .place .what {
+    font-size: var(--step--1);
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  /* ---------- run block ---------- */
+  .runblock {
+    background: var(--surface-sunk);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .runblock-head {
+    padding: .7rem 1.1rem;
+    border-bottom: 1px solid var(--rule);
+    font-size: var(--step--1);
+    font-weight: 600;
+    color: var(--ink-soft);
+    background: var(--surface);
+  }
+
+  pre {
+    margin: 0;
+    padding: 1.1rem;
+    overflow-x: auto;
+    direction: ltr;
+    text-align: left;
+    font-family: var(--mono);
+    font-size: var(--step--1);
+    line-height: 1.8;
+  }
+
+  pre .cmt { color: var(--ink-faint); }
+
+  /* ---------- stage list ---------- */
+  .tier-label {
+    display: flex;
+    align-items: baseline;
+    gap: .75rem;
+    flex-wrap: wrap;
+  }
+
+  .tier-tag {
+    font-family: var(--mono);
+    font-size: .6875rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: .2rem .55rem;
+    border-radius: 3px;
+    font-weight: 600;
+  }
+
+  .tag-auto  { background: var(--accent-soft); color: var(--accent); }
+  .tag-manual{ background: var(--warn-soft);   color: var(--warn); }
+
+  .stages { display: flex; flex-direction: column; gap: .75rem; }
+
+  .stage {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 1.1rem 1.25rem;
+    display: grid;
+    grid-template-columns: 2.75rem 1fr;
+    gap: 0 1rem;
+    align-items: start;
+    box-shadow: var(--shadow);
+  }
+
+  .stage.manual { border-right: 3px solid var(--warn); }
+  .stage.auto   { border-right: 3px solid var(--accent); }
+
+  .stage-num {
+    font-family: var(--mono);
+    font-size: var(--step-1);
+    font-weight: 600;
+    color: var(--ink-faint);
+    font-variant-numeric: tabular-nums;
+    line-height: 1.35;
+  }
+
+  .stage-body { display: flex; flex-direction: column; gap: .4rem; min-width: 0; }
+
+  .stage-file {
+    font-family: var(--mono);
+    font-size: var(--step--1);
+    font-weight: 600;
+    direction: ltr;
+    text-align: right;
+    word-break: break-all;
+  }
+
+  .stage-desc { font-size: var(--step--1); color: var(--ink-soft); line-height: 1.55; }
+
+  .stage-io {
+    font-family: var(--mono);
+    font-size: .75rem;
+    color: var(--ink-faint);
+    direction: ltr;
+    text-align: right;
+    line-height: 1.7;
+    word-break: break-all;
+  }
+  .stage-io b { color: var(--accent); font-weight: 600; }
+
+  /* ---------- tables ---------- */
+  .tablewrap {
+    overflow-x: auto;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--step--1);
+    min-width: 34rem;
+  }
+
+  th {
+    text-align: right;
+    font-weight: 600;
+    padding: .7rem 1rem;
+    border-bottom: 2px solid var(--rule-strong);
+    background: var(--surface-sunk);
+    white-space: nowrap;
+  }
+
+  td {
+    padding: .65rem 1rem;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+    color: var(--ink-soft);
+  }
+
+  tr:last-child td { border-bottom: none; }
+
+  td.file {
+    font-family: var(--mono);
+    font-size: .78rem;
+    color: var(--ink);
+    direction: ltr;
+    text-align: right;
+    word-break: break-all;
+    font-weight: 500;
+  }
+
+  td.rows {
+    font-family: var(--mono);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    color: var(--ink-faint);
+  }
+
+  /* ---------- callout ---------- */
+  .callout {
+    background: var(--warn-soft);
+    border: 1px solid var(--warn);
+    border-radius: 6px;
+    padding: 1.1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: .45rem;
+  }
+
+  .callout h3 { color: var(--warn); font-size: var(--step-0); }
+  .callout p  { font-size: var(--step--1); color: var(--ink-soft); }
+
+  .footer {
+    border-top: 1px solid var(--rule);
+    padding-top: 1.5rem;
+    font-size: var(--step--1);
+    color: var(--ink-faint);
+  }
+
+  a { color: var(--accent); }
+  a:focus-visible,
+  .stage:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  @media (max-width: 34rem) {
+    .stage { grid-template-columns: 1fr; gap: .5rem; }
+    .stage-num { font-size: var(--step-0); }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="eyebrow">census / ZIP3 grouping</p>
+    <h1>מפת הפייפליין הגאוגרפי</h1>
+    <p class="standfirst">איפה נמצא כל דבר, מה כל סקריפט קורא וכותב, ואיך מריצים כל שלב מחדש.</p>
+    <p class="masthead-note">
+      המסמך הזה הוא מפת ניווט בלבד — הוא לא מציג ממצאים או תוצאות מספריות.
+      התוצאות עצמן יושבות בקבצי ה־CSV שמפורטים כאן, ואת ההסבר המתודולוגי המלא
+      תמצא ב־<code>census/הסבר והצדקה מתודולוגית לאשכולות.docx</code>.
+    </p>
+  </header>
+
+  <section>
+    <h2>שלוש התיקיות שחשוב להכיר</h2>
+    <div class="places">
+      <div class="place">
+        <div class="path">census/</div>
+        <div class="what">
+          קלט המקור. כאן יושב קובץ ה־ACS המקורי
+          (<code>zip3_census_features_acs5_2012.csv</code>, 829 אזורים),
+          מילון הנתונים שלו, מסמך המתודולוגיה, והמחברת שיצרה אותם במקור.
+        </div>
+      </div>
+      <div class="place">
+        <div class="path">census/scripts/</div>
+        <div class="what">
+          כל הקוד — 13 שלבים ממוספרים, מתזמר להרצה מלאה,
+          ושני מסמכי תיעוד (<code>README.md</code> ו־<code>CODE_REFERENCE.md</code>).
+        </div>
+      </div>
+      <div class="place">
+        <div class="path">census/results/</div>
+        <div class="what">
+          כל הפלטים. כל שלב כותב לכאן קובץ אחד או יותר, בשם שמתחיל
+          במספר השלב שיצר אותו — כך תמיד ברור איזה סקריפט אחראי לאיזה קובץ.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>איך מריצים</h2>
+    <p class="lead">
+      כל הפקודות רצות משורש הריפו (<code>C:\Users\ariel\Desktop\Thesis\F-TM-CR</code>).
+      כל שלב הוא גם קובץ עצמאי שאפשר להריץ לבד, וגם חוליה בשרשרת.
+    </p>
+
+    <div class="runblock">
+      <div class="runblock-head">הפייפליין הליבתי — בונה את הקבוצות מאפס</div>
+      <pre><span class="cmt"># מריץ את שלבים 01→06 ברצף. לוקח שניות ספורות.</span>
+python census/scripts/run_pipeline.py</pre>
+    </div>
+
+    <div class="runblock">
+      <div class="runblock-head">שלב בודד, לבדיקה או ניפוי שגיאות</div>
+      <pre><span class="cmt"># כל שלב עומד בפני עצמו, כל עוד השלבים שלפניו כבר רצו</span>
+python census/scripts/03_build_ses_tertiles.py</pre>
+    </div>
+
+    <div class="runblock">
+      <div class="runblock-head">שלבי הניתוח — ידניים, לא נכללים ב־run_pipeline</div>
+      <pre>python census/scripts/07_robustness_variants.py
+python census/scripts/08_fairness_metrics_black_ses.py
+python census/scripts/09_matched_sensitivity_analysis.py
+python census/scripts/10_matched_sensitivity_analysis_deciles.py
+python census/scripts/11_entropy_balanced_sensitivity_analysis.py
+python census/scripts/12_fairness_by_fold_with_text.py
+python census/scripts/13_paired_text_effect_on_fairness.py</pre>
+    </div>
+  </section>
+
+  <section>
+    <h2>השלבים</h2>
+
+    <div class="tier-label">
+      <h3>הפייפליין הליבתי</h3>
+      <span class="tier-tag tag-auto">רץ אוטומטית ב־run_pipeline</span>
+    </div>
+    <p class="lead">
+      בונה את חלוקת ה־ZIP3 לקבוצות. השלבים תלויים זה בזה לפי הסדר — כל שלב קורא את הפלט של קודמו.
+    </p>
+
+    <div class="stages">
+      <article class="stage auto">
+        <div class="stage-num">01</div>
+        <div class="stage-body">
+          <div class="stage-file">01_load_and_validate_census_data.py</div>
+          <div class="stage-desc">טוען את קובץ ה־ACS ומריץ עליו בדיקות תקינות (מספר שורות, מפתח ייחודי, ערכים חסרים, טווחים). מכריח את <code>zip3</code> להישאר מחרוזת בת 3 תווים.</div>
+          <div class="stage-io"><b>in:</b> zip3_census_features_acs5_2012.csv &nbsp;·&nbsp; <b>out:</b> 01_census_data_validated.csv</div>
+        </div>
+      </article>
+
+      <article class="stage auto">
+        <div class="stage-num">02</div>
+        <div class="stage-body">
+          <div class="stage-file">02_build_ses_disadvantage_index.py</div>
+          <div class="stage-desc">בונה את מדד החיסרון הסוציו־אקונומי הרציף: ממיר 7 משתנים לדירוגים אחוזוניים, מיישר את כיוונם, וממצע במשקל שווה.</div>
+          <div class="stage-io"><b>in:</b> 01 &nbsp;·&nbsp; <b>out:</b> 02_ses_disadvantage_index.csv</div>
+        </div>
+      </article>
+
+      <article class="stage auto">
+        <div class="stage-num">03</div>
+        <div class="stage-body">
+          <div class="stage-file">03_build_ses_tertiles.py</div>
+          <div class="stage-desc">חותך את המדד הרציף לשלוש קבוצות (Low / Medium / High) לפי אחוזונים 33.3 ו־66.7, בלי לפצל ZIP3־ים בעלי ערך זהה בין קבוצות.</div>
+          <div class="stage-io"><b>in:</b> 02 &nbsp;·&nbsp; <b>out:</b> 03_ses_groups.csv</div>
+        </div>
+      </article>
+
+      <article class="stage auto">
+        <div class="stage-num">04</div>
+        <div class="stage-body">
+          <div class="stage-file">04_build_demographic_concentration.py</div>
+          <div class="stage-desc">בונה שש קבוצות ריכוז דמוגרפי <em>עצמאיות</em> — שחורים, היספנים, אסייתים, לבנים, ילידי חוץ, ואנגלית מוגבלת. כל אחת מחולקת ל־tertiles בנפרד; אין אינדקס דמוגרפי מאוחד.</div>
+          <div class="stage-io"><b>in:</b> 01 &nbsp;·&nbsp; <b>out:</b> 04_demographic_concentration_groups.csv</div>
+        </div>
+      </article>
+
+      <article class="stage auto">
+        <div class="stage-num">05</div>
+        <div class="stage-body">
+          <div class="stage-file">05_balance_diagnostics.py</div>
+          <div class="stage-desc">מודד עד כמה כל מערכת קבוצות מוטה ביחס לממד השני, באמצעות Standardized Mean Difference בכל שלושת הזוגות. מדידה בלבד — לא מתקן דבר.</div>
+          <div class="stage-io"><b>in:</b> 01, 03, 04 &nbsp;·&nbsp; <b>out:</b> 05_balance_diagnostics_detail.csv, 05_balance_diagnostics_summary.csv</div>
+        </div>
+      </article>
+
+      <article class="stage auto">
+        <div class="stage-num">06</div>
+        <div class="stage-body">
+          <div class="stage-file">06_join_zip3_labels_to_loans.py</div>
+          <div class="stage-desc">מחבר את תוויות ה־ZIP3 להלוואות הבודדות לפי <code>zip3</code>, ומדווח את אחוז הכיסוי ואת הקודים שלא נמצאה להם התאמה. הקובץ היחיד בפייפליין שנוגע בנתוני ההלוואות.</div>
+          <div class="stage-io"><b>in:</b> 02, 03, 04 + lc_after_03_advanced_prep…csv &nbsp;·&nbsp; <b>out:</b> 06_loan_level_zip3_group_labels.csv</div>
+        </div>
+      </article>
+    </div>
+
+    <div class="tier-label" style="margin-top:1.5rem">
+      <h3>שלבי הניתוח</h3>
+      <span class="tier-tag tag-manual">הרצה ידנית בלבד</span>
+    </div>
+    <p class="lead">
+      לא נכללים ב־<code>run_pipeline.py</code> במכוון — הם ניתוח על גבי הקבוצות, לא חלק מבנייתן.
+      כולם דורשים ששלב 06 כבר רץ.
+    </p>
+
+    <div class="stages">
+      <article class="stage manual">
+        <div class="stage-num">07</div>
+        <div class="stage-body">
+          <div class="stage-file">07_robustness_variants.py</div>
+          <div class="stage-desc">וריאציות רגישות שהוגדרו מראש: quartiles במקום tertiles, מדד SES חלופי מבוסס Z-score או PCA, וסינון להשוואת קצוות בלבד. מדפיס למסך, לא כותב קובץ.</div>
+          <div class="stage-io"><b>in:</b> 01, 02 &nbsp;·&nbsp; <b>out:</b> — (פלט למסך)</div>
+        </div>
+      </article>
+
+      <article class="stage manual">
+        <div class="stage-num">08</div>
+        <div class="stage-body">
+          <div class="stage-file">08_fairness_metrics_black_ses.py</div>
+          <div class="stage-desc">מדדי הוגנות ראשונים (TPR / FPR / PPR / AUC) לכל רמה, על מודל הבסיס ללא טקסט, כשכל 14 ה־folds מאוגדים יחד. מחשב גם פערים זוגיים בין הרמות.</div>
+          <div class="stage-io"><b>in:</b> 06 + strict_temporal_v2/predictions.csv &nbsp;·&nbsp; <b>out:</b> 08_fairness_by_group.csv, 08_fairness_gaps.csv</div>
+        </div>
+      </article>
+
+      <article class="stage manual">
+        <div class="stage-num">09</div>
+        <div class="stage-body">
+          <div class="stage-file">09_matched_sensitivity_analysis.py</div>
+          <div class="stage-desc">בדיקת רגישות ראשונה: Coarsened Exact Matching על הקבוצה הקטגוריאלית בת 3 הרמות, ואז חישוב מחדש של הפער עם משקלות.</div>
+          <div class="stage-io"><b>in:</b> 01, 03, 04, 06 + predictions.csv &nbsp;·&nbsp; <b>out:</b> 09_cem_weights.csv, 09_balance_before_after_matching.csv, 09_fairness_before_after_matching.csv</div>
+        </div>
+      </article>
+
+      <article class="stage manual">
+        <div class="stage-num">10</div>
+        <div class="stage-body">
+          <div class="stage-file">10_matched_sensitivity_analysis_deciles.py</div>
+          <div class="stage-desc">אותה שיטה בדיוק כמו 09, אבל עם עשירונים של הציון הרציף במקום 3 שכבות — התאמה עדינה יותר.</div>
+          <div class="stage-io"><b>in:</b> 01, 02, 03, 04, 06 + predictions.csv &nbsp;·&nbsp; <b>out:</b> 10_cem_weights_deciles.csv, 10_balance_…_deciles.csv, 10_fairness_…_deciles.csv</div>
+        </div>
+      </article>
+
+      <article class="stage manual">
+        <div class="stage-num">11</div>
+        <div class="stage-body">
+          <div class="stage-file">11_entropy_balanced_sensitivity_analysis.py</div>
+          <div class="stage-desc">בדיקת רגישות שלישית ורב־ממדית: Entropy Balancing שמאזן את כל 7 (או 6) המשתנים בו־זמנית. מדפיס גם את התפלגות המשקלות ואת גודל המדגם האפקטיבי — מדד לאמינות התוצאה.</div>
+          <div class="stage-io"><b>in:</b> 01, 03, 04, 06 + predictions.csv &nbsp;·&nbsp; <b>out:</b> 11_entropy_weights.csv, 11_balance_before_after_entropy.csv, 11_fairness_before_after_entropy.csv</div>
+        </div>
+      </article>
+
+      <article class="stage manual">
+        <div class="stage-num">12</div>
+        <div class="stage-body">
+          <div class="stage-file">12_fairness_by_fold_with_text.py</div>
+          <div class="stage-desc">מרחיב את שלב 08 בשני כיוונים: מוסיף שני ייצוגי טקסט (<code>tfidf_full</code>, <code>finbert_pca50</code>) לצד מודל הבסיס, ומחשב כל fold בנפרד במקום לאגד — עם תיקון BH-FDR על פני 14 ה־folds.</div>
+          <div class="stage-io"><b>in:</b> 06 + predictions.csv &nbsp;·&nbsp; <b>out:</b> 12_fairness_by_fold.csv, 12_fairness_by_fold_summary.csv</div>
+        </div>
+      </article>
+
+      <article class="stage manual">
+        <div class="stage-num">13</div>
+        <div class="stage-body">
+          <div class="stage-file">13_paired_text_effect_on_fairness.py</div>
+          <div class="stage-desc">המבחן הסטטיסטי לשאלת התזה: האם הוספת טקסט משנה את פער ההוגנות. מבחן זוגי על פני ה־folds (t-test ו־Wilcoxon יחד), עם גודל אפקט, רווח בר־סמך, ותיקון BH.</div>
+          <div class="stage-io"><b>in:</b> 12_fairness_by_fold.csv &nbsp;·&nbsp; <b>out:</b> 13_paired_text_effect.csv, 13_paired_text_effect_deltas.csv</div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <h2>קבצי הפלט</h2>
+    <p class="lead">
+      כל הקבצים ב־<code>census/results/</code>. מספר השורות עוזר לאמת שהקובץ נוצר במלואו.
+    </p>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr>
+            <th>קובץ</th>
+            <th>שורות</th>
+            <th>מה יש בו</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="file">01_census_data_validated.csv</td><td class="rows">830</td><td>נתוני המקור אחרי ולידציה, עמודה לכל משתנה ACS</td></tr>
+          <tr><td class="file">02_ses_disadvantage_index.csv</td><td class="rows">830</td><td>7 הערכים הגולמיים, 7 עמודות <code>D_*</code>, והציון <code>SESDisadvantage</code></td></tr>
+          <tr><td class="file">03_ses_groups.csv</td><td class="rows">830</td><td>הציון הרציף + <code>SES_group</code></td></tr>
+          <tr><td class="file">04_demographic_concentration_groups.csv</td><td class="rows">830</td><td>6 שיעורים גולמיים + 6 עמודות <code>*Concentration</code></td></tr>
+          <tr><td class="file">05_balance_diagnostics_detail.csv</td><td class="rows">145</td><td>SMD לכל שילוב של קבוצה × זוג רמות × משתנה</td></tr>
+          <tr><td class="file">05_balance_diagnostics_summary.csv</td><td class="rows">22</td><td>ממוצע ומקסימום |SMD| לכל קבוצה × זוג רמות</td></tr>
+          <tr><td class="file">06_loan_level_zip3_group_labels.csv</td><td class="rows">217,288</td><td>שורה לכל הלוואה: <code>id</code>, <code>zip3</code>, וכל התוויות</td></tr>
+          <tr><td class="file">08_fairness_by_group.csv</td><td class="rows">13</td><td>TPR / FPR / PPR / AUC לכל רמה × מודל</td></tr>
+          <tr><td class="file">08_fairness_gaps.csv</td><td class="rows">13</td><td>פערים זוגיים בין הרמות</td></tr>
+          <tr><td class="file">09_cem_weights.csv</td><td class="rows">1,107</td><td>משקל CEM לכל ZIP3, לכל כיוון התאמה</td></tr>
+          <tr><td class="file">09_balance_before_after_matching.csv</td><td class="rows">9</td><td>SMD לפני ואחרי ההתאמה</td></tr>
+          <tr><td class="file">09_fairness_before_after_matching.csv</td><td class="rows">9</td><td>פער FPR לפני ואחרי, עם מבחן מובהקות</td></tr>
+          <tr><td class="file">10_*_deciles.csv</td><td class="rows">1,107 / 9 / 9</td><td>אותו מבנה כמו 09, בגרסת העשירונים</td></tr>
+          <tr><td class="file">11_entropy_weights.csv</td><td class="rows">1,107</td><td>משקלות Entropy Balancing לכל ZIP3</td></tr>
+          <tr><td class="file">11_balance_before_after_entropy.csv</td><td class="rows">14</td><td>SMD לפני ואחרי, לכל אחד מהמשתנים</td></tr>
+          <tr><td class="file">11_fairness_before_after_entropy.csv</td><td class="rows">9</td><td>פער FPR לפני ואחרי, עם גודל מדגם אפקטיבי</td></tr>
+          <tr><td class="file">12_fairness_by_fold.csv</td><td class="rows">169</td><td>שורה לכל fold × ייצוג × מודל × קבוצה, עם ערכי p ו־q</td></tr>
+          <tr><td class="file">12_fairness_by_fold_summary.csv</td><td class="rows">49</td><td>סיכום על פני ה־folds: פער ממוצע וספירת מובהקות</td></tr>
+          <tr><td class="file">13_paired_text_effect.csv</td><td class="rows">49</td><td>מבחן זוגי לכל השוואה: דלתא ממוצעת, CI, גודל אפקט, שני מבחנים</td></tr>
+          <tr><td class="file">13_paired_text_effect_deltas.csv</td><td class="rows">673</td><td>הדלתאות הגולמיות לכל fold — הנתונים שמאחורי כל מבחן</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>שני דברים ששווה לדעת</h2>
+
+    <div class="callout">
+      <h3>קובץ אחד לא נמצא ב־git</h3>
+      <p>
+        <code>06_loan_level_zip3_group_labels.csv</code> שוקל 23MB והוחרג ב־<code>.gitignore</code>,
+        בהתאם לנוהג הקיים בריפו לקבצי פלט גדולים שניתן לשחזר. אם שיכפלת את הריפו מחדש
+        והוא חסר — הרץ <code>python census/scripts/run_pipeline.py</code> והוא ייבנה מחדש.
+        בלעדיו שלבים 08 עד 13 לא ירוצו.
+      </p>
+    </div>
+
+    <div class="callout">
+      <h3>תלות בקובץ שנמצא מחוץ ל־census</h3>
+      <p>
+        שלבים 08 עד 13 קוראים את <code>results/strict_temporal_v2/predictions.csv</code>
+        שיושב בשורש הריפו — גם הוא מוחרג מ־git בשל גודלו (86MB).
+        אם הוא חסר, יש לייצר אותו מחדש עם
+        <code>python -m strict_temporal_v2.run_full</code>.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <h2>איפה קוראים עוד</h2>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr><th>מסמך</th><th>מה תמצא בו</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="file">census/הסבר והצדקה מתודולוגית לאשכולות.docx</td>
+            <td>מסמך המקור. ההצדקה המתודולוגית המלאה לכל החלטה — למה tertiles, למה לא K-Means, למה אין אינדקס דמוגרפי מאוחד. כל הסקריפטים מפנים לסעיפים שלו.</td>
+          </tr>
+          <tr>
+            <td class="file">census/scripts/README.md</td>
+            <td>סקירה קצרה של השלבים והשיקולים העיצוביים שמאחוריהם, עם טבלת שלב ← קובץ ← סעיף במסמך.</td>
+          </tr>
+          <tr>
+            <td class="file">census/scripts/CODE_REFERENCE.md</td>
+            <td>תיעוד ברמת הקוד: כל נוסחה כפי שמומשה, כל שם עמודה, כל חתימת פונקציה וכל קבוע. המסמך שאליו פונים כששואלים "מה בדיוק הקוד עושה כאן".</td>
+          </tr>
+          <tr>
+            <td class="file">docs/strict_temporal_v2_changes.md</td>
+            <td>מחוץ ל־census: מסביר מאיפה מגיע <code>predictions.csv</code> ששלבים 08–13 מסתמכים עליו.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <p class="footer">
+    כל הסקריפטים והפלטים נמצאים תחת <code>census/</code>. לכל שאלה על מספר או ממצא —
+    הקובץ שמכיל אותו רשום בטבלת הפלטים למעלה, והסקריפט שיצר אותו נושא את אותו מספר.
+  </p>
+
+</div>
