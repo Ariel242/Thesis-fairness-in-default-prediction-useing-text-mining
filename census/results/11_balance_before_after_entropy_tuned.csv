@@ -1,0 +1,14 @@
+direction,covariate,SMD_before_matching,SMD_after_matching
+BlackConcentration (entropy-balanced on 7 SES covariates),poverty_rate,0.4126,-0.0003
+BlackConcentration (entropy-balanced on 7 SES covariates),unemployment_rate,0.7759,0.0007
+BlackConcentration (entropy-balanced on 7 SES covariates),share_bachelor_plus,0.2885,0.0002
+BlackConcentration (entropy-balanced on 7 SES covariates),homeownership_rate,-0.7489,-0.0005
+BlackConcentration (entropy-balanced on 7 SES covariates),uninsured_rate,0.2289,-0.0001
+BlackConcentration (entropy-balanced on 7 SES covariates),median_income_approx,0.0626,-0.0001
+BlackConcentration (entropy-balanced on 7 SES covariates),median_home_value_approx,0.0638,-0.0005
+SES_group (entropy-balanced on 6 demographic covariates),share_black_nh,0.6155,-0.0081
+SES_group (entropy-balanced on 6 demographic covariates),share_hispanic,0.3995,-0.021
+SES_group (entropy-balanced on 6 demographic covariates),share_asian_nh,-0.6429,-0.0593
+SES_group (entropy-balanced on 6 demographic covariates),share_white_nh,-0.5661,-0.0363
+SES_group (entropy-balanced on 6 demographic covariates),share_foreign_born,-0.3478,-0.0716
+SES_group (entropy-balanced on 6 demographic covariates),share_ltd_english_hh,0.1739,0.0847

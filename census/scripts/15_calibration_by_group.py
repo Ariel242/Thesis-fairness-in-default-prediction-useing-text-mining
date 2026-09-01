@@ -72,6 +72,7 @@ OUTPUT: census/results/15_calibration_curves.csv     (decile x group x fold x re
 
 import sys
 sys.stdout.reconfigure(encoding="utf-8")
+import argparse
 import warnings
 from pathlib import Path
 
@@ -87,13 +88,20 @@ CENSUS_DIR = SCRIPT_DIR.parent
 BASE_DIR = CENSUS_DIR.parent
 RESULTS_DIR = CENSUS_DIR / "results"
 
-PREDICTIONS_CSV = BASE_DIR / "results" / "strict_temporal_v2" / "predictions.csv"
-LABELS_CSV = RESULTS_DIR / "06_loan_level_zip3_group_labels.csv"
+_cli = argparse.ArgumentParser()
+_cli.add_argument("--predictions-csv", type=Path, default=None)
+_cli.add_argument("--suffix", type=str, default="",
+                  help='e.g. "_tuned" -- appended to every output filename.')
+_args = _cli.parse_args()
 
-CURVES_CSV = RESULTS_DIR / "15_calibration_curves.csv"
-FIT_CSV = RESULTS_DIR / "15_calibration_fit.csv"
-SUFFICIENCY_CSV = RESULTS_DIR / "15_sufficiency_test.csv"
-SUMMARY_CSV = RESULTS_DIR / "15_calibration_summary.csv"
+PREDICTIONS_CSV = _args.predictions_csv or (BASE_DIR / "results" / "strict_temporal_v2" / "predictions.csv")
+LABELS_CSV = RESULTS_DIR / "06_loan_level_zip3_group_labels.csv"
+SUFFIX = _args.suffix
+
+CURVES_CSV = RESULTS_DIR / f"15_calibration_curves{SUFFIX}.csv"
+FIT_CSV = RESULTS_DIR / f"15_calibration_fit{SUFFIX}.csv"
+SUFFICIENCY_CSV = RESULTS_DIR / f"15_sufficiency_test{SUFFIX}.csv"
+SUMMARY_CSV = RESULTS_DIR / f"15_calibration_summary{SUFFIX}.csv"
 
 REPRESENTATIONS = [
     "structured", "structured_has_desc", "lexicon",
@@ -186,12 +194,20 @@ def sufficiency_test(df_low: pd.DataFrame, df_high: pd.DataFrame) -> dict:
 def main() -> None:
     print("Loading predictions...")
     preds = pd.read_csv(PREDICTIONS_CSV)
+
+    global REPRESENTATIONS, MODELS
+    available_reps = set(preds["representation"].unique())
+    skipped = [r for r in REPRESENTATIONS if r not in available_reps]
+    REPRESENTATIONS = [r for r in REPRESENTATIONS if r in available_reps]
+    if skipped:
+        print(f"  Not present in this predictions file, skipped: {skipped}")
     preds = preds[preds["representation"].isin(REPRESENTATIONS)]
 
     labels = pd.read_csv(LABELS_CSV, dtype={"id": str, "zip3": str})
     labels["id"] = labels["id"].astype("int64")
     df = preds.merge(labels[["id"] + GROUPINGS], on="id", how="inner", validate="many_to_one")
-    print(f"  {len(df):,} rows.")
+    MODELS = sorted(df["model"].unique().tolist())
+    print(f"  {len(df):,} rows. Models: {MODELS}")
 
     curve_rows, fit_rows, suff_rows = [], [], []
 

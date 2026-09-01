@@ -1,0 +1,13 @@
+direction,model,metric,weighted,Low,High,gap_High_minus_Low,n_eff_Low,n_eff_High,z,p_value
+BlackConcentration (matched on SESDisadvantage deciles),Logistic,FPR,False,0.3704,0.394,0.0236,10665.0,28170.0,-4.26,0.0
+BlackConcentration (matched on SESDisadvantage deciles),Logistic,FPR,True,0.3789,0.394,0.0151,8303.1,28170.0,-2.47,0.0135
+BlackConcentration (matched on SESDisadvantage deciles),RandomForest,FPR,False,0.2103,0.2119,0.0015,10665.0,28170.0,-0.33,0.7397
+BlackConcentration (matched on SESDisadvantage deciles),RandomForest,FPR,True,0.2149,0.2119,-0.0031,8303.1,28170.0,0.6,0.5467
+BlackConcentration (matched on SESDisadvantage deciles),XGBoost,FPR,False,0.3697,0.3829,0.0132,10665.0,28170.0,-2.39,0.0166
+BlackConcentration (matched on SESDisadvantage deciles),XGBoost,FPR,True,0.3779,0.3829,0.005,8303.1,28170.0,-0.83,0.4059
+SES_group (matched on share_black_nh deciles),Logistic,FPR,False,0.3579,0.4136,0.0557,28487.0,14463.0,-11.26,0.0
+SES_group (matched on share_black_nh deciles),Logistic,FPR,True,0.349,0.4136,0.0646,11302.1,14463.0,-10.58,0.0
+SES_group (matched on share_black_nh deciles),RandomForest,FPR,False,0.201,0.2203,0.0193,28487.0,14463.0,-4.66,0.0
+SES_group (matched on share_black_nh deciles),RandomForest,FPR,True,0.2045,0.2203,0.0158,11302.1,14463.0,-3.08,0.0021
+SES_group (matched on share_black_nh deciles),XGBoost,FPR,False,0.3513,0.4032,0.052,28487.0,14463.0,-10.55,0.0
+SES_group (matched on share_black_nh deciles),XGBoost,FPR,True,0.3431,0.4032,0.0602,11302.1,14463.0,-9.89,0.0

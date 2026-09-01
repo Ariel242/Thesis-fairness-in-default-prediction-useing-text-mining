@@ -1,0 +1,13 @@
+grouping_variable,group_level,model,n,n_defaults,TPR,FPR,PPR,AUC
+BlackConcentration,Low,Logistic,12477,1812,0.649,0.3704,0.4108,0.689
+BlackConcentration,Medium,Logistic,28633,4304,0.6694,0.3804,0.4238,0.6957
+BlackConcentration,High,Logistic,33554,5384,0.6904,0.394,0.4415,0.7006
+BlackConcentration,Low,XGBoost,12477,1812,0.6567,0.3697,0.4114,0.6937
+BlackConcentration,Medium,XGBoost,28633,4304,0.6643,0.3715,0.4155,0.6995
+BlackConcentration,High,XGBoost,33554,5384,0.677,0.3829,0.4301,0.7027
+SES_group,Low,Logistic,33342,4855,0.6531,0.3579,0.4009,0.6988
+SES_group,Medium,Logistic,24010,3796,0.6786,0.4019,0.4457,0.689
+SES_group,High,Logistic,17312,2849,0.7115,0.4136,0.4626,0.7031
+SES_group,Low,XGBoost,33342,4855,0.648,0.3513,0.3945,0.7015
+SES_group,Medium,XGBoost,24010,3796,0.6699,0.3923,0.4362,0.6936
+SES_group,High,XGBoost,17312,2849,0.7038,0.4032,0.4527,0.7051

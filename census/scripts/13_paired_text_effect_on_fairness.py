@@ -61,6 +61,7 @@ OUTPUT: census/results/13_paired_text_effect.csv        (one row per comparison 
         census/results/13_paired_text_effect_deltas.csv (the raw per-fold deltas behind every test)
 """
 
+import argparse
 import sys
 sys.stdout.reconfigure(encoding="utf-8")
 from pathlib import Path
@@ -73,9 +74,18 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 CENSUS_DIR = SCRIPT_DIR.parent
 RESULTS_DIR = CENSUS_DIR / "results"
 
-BY_FOLD_CSV = RESULTS_DIR / "12_fairness_by_fold.csv"
-OUTPUT_CSV = RESULTS_DIR / "13_paired_text_effect.csv"
-DELTAS_CSV = RESULTS_DIR / "13_paired_text_effect_deltas.csv"
+# --suffix reads Stage 12's correspondingly-suffixed output (e.g. "_tuned") and writes
+# this stage's own output under the same suffix, so a tuned-vs-untuned pair of runs
+# never overwrites each other.
+_cli = argparse.ArgumentParser()
+_cli.add_argument("--suffix", type=str, default="",
+                  help='e.g. "_tuned" -- must match the suffix Stage 12 was run with.')
+_args = _cli.parse_args()
+SUFFIX = _args.suffix
+
+BY_FOLD_CSV = RESULTS_DIR / f"12_fairness_by_fold{SUFFIX}.csv"
+OUTPUT_CSV = RESULTS_DIR / f"13_paired_text_effect{SUFFIX}.csv"
+DELTAS_CSV = RESULTS_DIR / f"13_paired_text_effect_deltas{SUFFIX}.csv"
 
 MODELS = ["Logistic", "XGBoost"]
 GROUPINGS = ["BlackConcentration", "SES_group"]
@@ -146,6 +156,10 @@ def paired_test(deltas: np.ndarray) -> dict:
 
 def main() -> None:
     by_fold = pd.read_csv(BY_FOLD_CSV)
+
+    global MODELS
+    MODELS = sorted(by_fold["model"].unique().tolist())
+    print(f"Models found in {BY_FOLD_CSV.name}: {MODELS}")
 
     rows, delta_rows = [], []
     for model in MODELS:

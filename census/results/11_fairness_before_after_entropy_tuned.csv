@@ -1,0 +1,13 @@
+direction,model,metric,weighted,Low,High,gap_High_minus_Low,n_eff_Low,n_eff_High,z,p_value
+BlackConcentration (entropy-balanced on 7 SES covariates),Logistic,FPR,False,0.3704,0.394,0.0236,10665.0,28170.0,-4.26,0.0
+BlackConcentration (entropy-balanced on 7 SES covariates),Logistic,FPR,True,0.3855,0.394,0.0085,4826.6,28170.0,-1.11,0.2661
+BlackConcentration (entropy-balanced on 7 SES covariates),RandomForest,FPR,False,0.2103,0.2119,0.0015,10665.0,28170.0,-0.33,0.7397
+BlackConcentration (entropy-balanced on 7 SES covariates),RandomForest,FPR,True,0.2094,0.2119,0.0024,4826.6,28170.0,-0.38,0.701
+BlackConcentration (entropy-balanced on 7 SES covariates),XGBoost,FPR,False,0.3697,0.3829,0.0132,10665.0,28170.0,-2.39,0.0166
+BlackConcentration (entropy-balanced on 7 SES covariates),XGBoost,FPR,True,0.3808,0.3829,0.0021,4826.6,28170.0,-0.28,0.7792
+SES_group (entropy-balanced on 6 demographic covariates),Logistic,FPR,False,0.3579,0.4136,0.0557,28487.0,14463.0,-11.26,0.0
+SES_group (entropy-balanced on 6 demographic covariates),Logistic,FPR,True,0.3863,0.4136,0.0273,329.0,14463.0,-0.99,0.3202
+SES_group (entropy-balanced on 6 demographic covariates),RandomForest,FPR,False,0.201,0.2203,0.0193,28487.0,14463.0,-4.66,0.0
+SES_group (entropy-balanced on 6 demographic covariates),RandomForest,FPR,True,0.2099,0.2203,0.0104,329.0,14463.0,-0.45,0.6516
+SES_group (entropy-balanced on 6 demographic covariates),XGBoost,FPR,False,0.3513,0.4032,0.052,28487.0,14463.0,-10.55,0.0
+SES_group (entropy-balanced on 6 demographic covariates),XGBoost,FPR,True,0.3886,0.4032,0.0146,329.0,14463.0,-0.53,0.5931

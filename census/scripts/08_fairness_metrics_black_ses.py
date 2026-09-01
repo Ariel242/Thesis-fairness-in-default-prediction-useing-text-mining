@@ -55,6 +55,7 @@ OUTPUT: census/results/08_fairness_by_group.csv        (one row per model x grou
         census/results/08_fairness_gaps.csv             (one row per model x grouping x pairwise comparison)
 """
 
+import argparse
 import sys
 sys.stdout.reconfigure(encoding="utf-8")
 from itertools import combinations
@@ -68,11 +69,22 @@ CENSUS_DIR = SCRIPT_DIR.parent
 BASE_DIR = CENSUS_DIR.parent
 RESULTS_DIR = CENSUS_DIR / "results"
 
-PREDICTIONS_CSV = BASE_DIR / "results" / "strict_temporal_v2" / "predictions.csv"
-LABELS_CSV = RESULTS_DIR / "06_loan_level_zip3_group_labels.csv"
+# --predictions-csv / --suffix let this exact methodology be re-run against a
+# different prediction set (e.g. results/strict_temporal_v2_tuned/predictions.csv,
+# the grid-searched models) without touching the original untuned outputs -- the
+# suffix keeps the two runs' files side by side under clearly different names.
+_cli = argparse.ArgumentParser()
+_cli.add_argument("--predictions-csv", type=Path, default=None)
+_cli.add_argument("--suffix", type=str, default="",
+                  help='e.g. "_tuned" -- appended to every output filename.')
+_args = _cli.parse_args()
 
-BY_GROUP_CSV = RESULTS_DIR / "08_fairness_by_group.csv"
-GAPS_CSV = RESULTS_DIR / "08_fairness_gaps.csv"
+PREDICTIONS_CSV = _args.predictions_csv or (BASE_DIR / "results" / "strict_temporal_v2" / "predictions.csv")
+LABELS_CSV = RESULTS_DIR / "06_loan_level_zip3_group_labels.csv"
+SUFFIX = _args.suffix
+
+BY_GROUP_CSV = RESULTS_DIR / f"08_fairness_by_group{SUFFIX}.csv"
+GAPS_CSV = RESULTS_DIR / f"08_fairness_gaps{SUFFIX}.csv"
 
 PREDICTIONS_SOURCE_REPRESENTATION = "structured"  # baseline, no text -- see docstring
 THRESHOLD = 0.5

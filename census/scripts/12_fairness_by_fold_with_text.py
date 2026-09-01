@@ -48,6 +48,7 @@ OUTPUT: census/results/12_fairness_by_fold.csv           (one row per fold x rep
         census/results/12_fairness_by_fold_summary.csv   (one row per representation x model x grouping x metric, aggregated across folds)
 """
 
+import argparse
 import sys
 sys.stdout.reconfigure(encoding="utf-8")
 from pathlib import Path
@@ -62,11 +63,18 @@ CENSUS_DIR = SCRIPT_DIR.parent
 BASE_DIR = CENSUS_DIR.parent
 RESULTS_DIR = CENSUS_DIR / "results"
 
-PREDICTIONS_CSV = BASE_DIR / "results" / "strict_temporal_v2" / "predictions.csv"
-LABELS_CSV = RESULTS_DIR / "06_loan_level_zip3_group_labels.csv"
+_cli = argparse.ArgumentParser()
+_cli.add_argument("--predictions-csv", type=Path, default=None)
+_cli.add_argument("--suffix", type=str, default="",
+                  help='e.g. "_tuned" -- appended to every output filename.')
+_args = _cli.parse_args()
 
-BY_FOLD_CSV = RESULTS_DIR / "12_fairness_by_fold.csv"
-SUMMARY_CSV = RESULTS_DIR / "12_fairness_by_fold_summary.csv"
+PREDICTIONS_CSV = _args.predictions_csv or (BASE_DIR / "results" / "strict_temporal_v2" / "predictions.csv")
+LABELS_CSV = RESULTS_DIR / "06_loan_level_zip3_group_labels.csv"
+SUFFIX = _args.suffix
+
+BY_FOLD_CSV = RESULTS_DIR / f"12_fairness_by_fold{SUFFIX}.csv"
+SUMMARY_CSV = RESULTS_DIR / f"12_fairness_by_fold_summary{SUFFIX}.csv"
 
 THRESHOLD = 0.5
 REPRESENTATIONS = ["structured", "tfidf_full", "finbert_pca50"]
@@ -158,6 +166,10 @@ def main() -> None:
     labels = pd.read_csv(LABELS_CSV, dtype={"id": str, "zip3": str})
     labels["id"] = labels["id"].astype("int64")
     df = preds.merge(labels[["id"] + GROUPINGS], on="id", how="inner", validate="many_to_one")
+
+    global MODELS
+    MODELS = sorted(df["model"].unique().tolist())
+    print(f"Models found in predictions file: {MODELS}")
 
     rows = []
     for representation in REPRESENTATIONS:

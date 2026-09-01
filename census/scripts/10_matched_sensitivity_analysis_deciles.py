@@ -45,6 +45,7 @@ OUTPUT: census/results/10_cem_weights_deciles.csv
         census/results/10_fairness_before_after_matching_deciles.csv
 """
 
+import argparse
 import sys
 sys.stdout.reconfigure(encoding="utf-8")
 from pathlib import Path
@@ -63,11 +64,19 @@ SES_INDEX_CSV = RESULTS_DIR / "02_ses_disadvantage_index.csv"
 SES_GROUPS_CSV = RESULTS_DIR / "03_ses_groups.csv"
 DEMO_GROUPS_CSV = RESULTS_DIR / "04_demographic_concentration_groups.csv"
 LABELS_CSV = RESULTS_DIR / "06_loan_level_zip3_group_labels.csv"
-PREDICTIONS_CSV = BASE_DIR / "results" / "strict_temporal_v2" / "predictions.csv"
 
-WEIGHTS_CSV = RESULTS_DIR / "10_cem_weights_deciles.csv"
-BALANCE_CSV = RESULTS_DIR / "10_balance_before_after_matching_deciles.csv"
-FAIRNESS_CSV = RESULTS_DIR / "10_fairness_before_after_matching_deciles.csv"
+_cli = argparse.ArgumentParser()
+_cli.add_argument("--predictions-csv", type=Path, default=None)
+_cli.add_argument("--suffix", type=str, default="",
+                  help='e.g. "_tuned" -- appended to every output filename.')
+_args = _cli.parse_args()
+
+PREDICTIONS_CSV = _args.predictions_csv or (BASE_DIR / "results" / "strict_temporal_v2" / "predictions.csv")
+SUFFIX = _args.suffix
+
+WEIGHTS_CSV = RESULTS_DIR / f"10_cem_weights_deciles{SUFFIX}.csv"
+BALANCE_CSV = RESULTS_DIR / f"10_balance_before_after_matching_deciles{SUFFIX}.csv"
+FAIRNESS_CSV = RESULTS_DIR / f"10_fairness_before_after_matching_deciles{SUFFIX}.csv"
 
 THRESHOLD = 0.5
 MODELS = ["Logistic", "XGBoost"]
@@ -186,6 +195,10 @@ def main() -> None:
     )
 
     loan_preds = load_loan_predictions()
+
+    global MODELS
+    MODELS = sorted(loan_preds["model"].unique().tolist())
+    print(f"Models found in predictions file: {MODELS}")
 
     all_weights, balance_rows, fairness_rows = [], [], []
 

@@ -59,6 +59,7 @@ OUTPUT: census/results/14_fairness_full_grid.csv          (per fold x repr x mod
         census/results/14_fairness_full_grid_summary.csv  (aggregated across folds)
 """
 
+import argparse
 import sys
 sys.stdout.reconfigure(encoding="utf-8")
 from pathlib import Path
@@ -73,11 +74,18 @@ CENSUS_DIR = SCRIPT_DIR.parent
 BASE_DIR = CENSUS_DIR.parent
 RESULTS_DIR = CENSUS_DIR / "results"
 
-PREDICTIONS_CSV = BASE_DIR / "results" / "strict_temporal_v2" / "predictions.csv"
-LABELS_CSV = RESULTS_DIR / "06_loan_level_zip3_group_labels.csv"
+_cli = argparse.ArgumentParser()
+_cli.add_argument("--predictions-csv", type=Path, default=None)
+_cli.add_argument("--suffix", type=str, default="",
+                  help='e.g. "_tuned" -- appended to every output filename.')
+_args = _cli.parse_args()
 
-GRID_CSV = RESULTS_DIR / "14_fairness_full_grid.csv"
-SUMMARY_CSV = RESULTS_DIR / "14_fairness_full_grid_summary.csv"
+PREDICTIONS_CSV = _args.predictions_csv or (BASE_DIR / "results" / "strict_temporal_v2" / "predictions.csv")
+LABELS_CSV = RESULTS_DIR / "06_loan_level_zip3_group_labels.csv"
+SUFFIX = _args.suffix
+
+GRID_CSV = RESULTS_DIR / f"14_fairness_full_grid{SUFFIX}.csv"
+SUMMARY_CSV = RESULTS_DIR / f"14_fairness_full_grid_summary{SUFFIX}.csv"
 
 REPRESENTATIONS = [
     "structured", "structured_has_desc", "lexicon",
@@ -186,13 +194,21 @@ def cell_metrics(low: pd.DataFrame, high: pd.DataFrame, threshold: float) -> dic
 def main() -> None:
     print("Loading predictions...")
     preds = pd.read_csv(PREDICTIONS_CSV)
+
+    global REPRESENTATIONS, MODELS
+    available_reps = set(preds["representation"].unique())
+    skipped = [r for r in REPRESENTATIONS if r not in available_reps]
+    REPRESENTATIONS = [r for r in REPRESENTATIONS if r in available_reps]
+    if skipped:
+        print(f"  Not present in this predictions file, skipped: {skipped}")
     preds = preds[preds["representation"].isin(REPRESENTATIONS)]
 
     labels = pd.read_csv(LABELS_CSV, dtype={"id": str, "zip3": str})
     labels["id"] = labels["id"].astype("int64")
     df = preds.merge(labels[["id"] + GROUPINGS], on="id", how="inner", validate="many_to_one")
+    MODELS = sorted(df["model"].unique().tolist())
     print(f"  {len(df):,} prediction rows across "
-          f"{df['representation'].nunique()} representations x {df['model'].nunique()} models.")
+          f"{len(REPRESENTATIONS)} representations x {len(MODELS)} models {MODELS}.")
 
     rows = []
     for representation in REPRESENTATIONS:
