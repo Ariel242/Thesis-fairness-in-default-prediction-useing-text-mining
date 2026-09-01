@@ -50,9 +50,13 @@ Critically, the inner split rebuilds ALL preprocessing on the sub-train only:
     remove (and the row counts would not align anyway). So for the inner split this
     script refits a fresh TfidfVectorizer on the sub-train text only, using settings
     copied verbatim from TF-IDF/tfidf_pipeline.py (ngram_range=(1,2), min_df=5,
-    sublinear_tf=True, stop_words="english", no max_features cap). The cached fold-level
-    matrices are still used for the FINAL refit and test prediction, where they are
-    correct -- they were fit on exactly that fold's full training set.
+    sublinear_tf=True, stop_words="english"), EXCEPT capped at max_features=20,000 for
+    the search only (see TFIDF_INNER_SEARCH_KWARGS -- added 2026-09-01 after 15
+    consecutive near-instant kills specifically at fold 14's uncapped inner-search fit,
+    the one tfidf_full-specific step whose cost scales with fold size and that did not
+    exist at all in run_full.py). The cached fold-level matrices -- uncapped, exactly
+    matching TF-IDF/tfidf_pipeline.py -- are still used for the FINAL refit and test
+    prediction, where they are both correct and what the thesis actually reports.
 
 RUNTIME AND THE KNOWN RISK
 ----------------------------
@@ -138,9 +142,22 @@ GRID_LR = {"C": [0.01, 0.03, 0.1, 0.3, 1]}
 GRID_XGB = {"max_depth": [3, 4, 6], "learning_rate": [0.05, 0.1]}
 GRID_RF = {"min_samples_leaf": [10, 20, 50]}
 
-# TF-IDF settings copied verbatim from TF-IDF/tfidf_pipeline.py (see module docstring).
+# TF-IDF settings copied verbatim from TF-IDF/tfidf_pipeline.py (see module docstring),
+# used for the FINAL model (fit on the cached, uncapped fold-level matrix).
 TFIDF_KWARGS = dict(max_features=None, ngram_range=(1, 2), sublinear_tf=True,
                     min_df=5, stop_words="english")
+
+# Inner grid-search ONLY: 2026-09-01, after 15 consecutive near-instant kills specifically
+# at fold 14's tfidf_full inner search, regardless of --skip-rf-on -- narrowing the
+# search's own TfidfVectorizer.fit() (uncapped, ngram (1,2), on fold 14's ~162K-row
+# sub-train) to the likely cause, since it is the one tfidf_full-specific step that
+# scales with fold size and did not exist at all in run_full.py. This cap applies ONLY
+# to the 5+6+3 candidate fits used to pick a winning config -- the FINAL, THESIS-REPORTED
+# model for every fold is still fit on the uncapped cached fold-level matrix via
+# TFIDF_KWARGS above, so this is a search-efficiency choice, not a change to what gets
+# reported. Disclosed here rather than silently narrowed.
+TFIDF_INNER_SEARCH_KWARGS = dict(max_features=20_000, ngram_range=(1, 2), sublinear_tf=True,
+                                 min_df=5, stop_words="english")
 
 LR_BASE = dict(penalty="l2", solver="saga", max_iter=1000, tol=1e-4,
                class_weight="balanced", random_state=RANDOM_STATE)
@@ -202,7 +219,7 @@ def build_inner_matrix(df, sub_idx, val_idx, representation, y_sub, n_jobs):
     combo_val = np.hstack([result.X_test.values.astype(np.float32), hd_val])
     struct_sub, struct_val = reprs._scale(combo_sub, combo_val)
 
-    vec = TfidfVectorizer(**TFIDF_KWARGS)
+    vec = TfidfVectorizer(**TFIDF_INNER_SEARCH_KWARGS)
     tf_sub = vec.fit_transform(_get_text(df.loc[sub_idx, "id"]))
     tf_val = vec.transform(_get_text(df.loc[val_idx, "id"]))
 
