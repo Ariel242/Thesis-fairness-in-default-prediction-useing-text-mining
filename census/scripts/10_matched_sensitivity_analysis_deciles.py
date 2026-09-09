@@ -80,6 +80,7 @@ FAIRNESS_CSV = RESULTS_DIR / f"10_fairness_before_after_matching_deciles{SUFFIX}
 
 THRESHOLD = 0.5
 MODELS = ["Logistic", "XGBoost"]
+REPRESENTATIONS = ["structured", "tfidf_full", "finbert_pca50"]
 N_DECILES = 10
 
 SES_COVARIATES = [
@@ -174,7 +175,6 @@ def weighted_two_proportion_test(y1, w1, y2, w2):
 
 def load_loan_predictions() -> pd.DataFrame:
     preds = pd.read_csv(PREDICTIONS_CSV)
-    preds = preds[preds["representation"] == "structured"].copy()
     preds["y_pred"] = (preds["y_prob"] >= THRESHOLD).astype(int)
 
     labels = pd.read_csv(LABELS_CSV, dtype={"id": str, "zip3": str})
@@ -196,9 +196,15 @@ def main() -> None:
 
     loan_preds = load_loan_predictions()
 
-    global MODELS
+    global MODELS, REPRESENTATIONS
     MODELS = sorted(loan_preds["model"].unique().tolist())
+    available_reps = set(loan_preds["representation"].unique())
+    skipped = [r for r in REPRESENTATIONS if r not in available_reps]
+    REPRESENTATIONS = [r for r in REPRESENTATIONS if r in available_reps]
+    if skipped:
+        print(f"Not present in this predictions file, skipped: {skipped}")
     print(f"Models found in predictions file: {MODELS}")
+    print(f"Representations found in predictions file: {REPRESENTATIONS}")
 
     all_weights, balance_rows, fairness_rows = [], [], []
 
@@ -231,28 +237,30 @@ def main() -> None:
         df = loan_preds.merge(weights[["zip3", "weight"]], on="zip3", how="inner")
         df = df.merge(groups[["zip3", treatment_col]], on="zip3")
 
-        for model in MODELS:
-            sub = df[df["model"] == model]
-            for weighted in [False, True]:
-                w_col = sub["weight"] if weighted else pd.Series(1.0, index=sub.index)
+        for representation in REPRESENTATIONS:
+            rep_df = df[df["representation"] == representation]
+            for model in MODELS:
+                sub = rep_df[rep_df["model"] == model]
+                for weighted in [False, True]:
+                    w_col = sub["weight"] if weighted else pd.Series(1.0, index=sub.index)
 
-                neg = sub[sub["y_true"] == 0]
-                w_neg = w_col.loc[neg.index]
-                low_mask = neg[treatment_col] == "Low"
-                high_mask = neg[treatment_col] == "High"
+                    neg = sub[sub["y_true"] == 0]
+                    w_neg = w_col.loc[neg.index]
+                    low_mask = neg[treatment_col] == "Low"
+                    high_mask = neg[treatment_col] == "High"
 
-                p_low, p_high, n_low_eff, n_high_eff, z, pval = weighted_two_proportion_test(
-                    neg.loc[low_mask, "y_pred"], w_neg.loc[low_mask],
-                    neg.loc[high_mask, "y_pred"], w_neg.loc[high_mask],
-                )
-                fairness_rows.append({
-                    "direction": label, "model": model,
-                    "metric": "FPR", "weighted": weighted,
-                    "Low": round(p_low, 4), "High": round(p_high, 4),
-                    "gap_High_minus_Low": round(p_high - p_low, 4),
-                    "n_eff_Low": round(n_low_eff, 1), "n_eff_High": round(n_high_eff, 1),
-                    "z": round(z, 2), "p_value": round(pval, 4) if not np.isnan(pval) else np.nan,
-                })
+                    p_low, p_high, n_low_eff, n_high_eff, z, pval = weighted_two_proportion_test(
+                        neg.loc[low_mask, "y_pred"], w_neg.loc[low_mask],
+                        neg.loc[high_mask, "y_pred"], w_neg.loc[high_mask],
+                    )
+                    fairness_rows.append({
+                        "direction": label, "representation": representation, "model": model,
+                        "metric": "FPR", "weighted": weighted,
+                        "Low": round(p_low, 4), "High": round(p_high, 4),
+                        "gap_High_minus_Low": round(p_high - p_low, 4),
+                        "n_eff_Low": round(n_low_eff, 1), "n_eff_High": round(n_high_eff, 1),
+                        "z": round(z, 2), "p_value": round(pval, 4) if not np.isnan(pval) else np.nan,
+                    })
 
     weights_out = pd.concat(all_weights, ignore_index=True)
     balance_out = pd.DataFrame(balance_rows)
